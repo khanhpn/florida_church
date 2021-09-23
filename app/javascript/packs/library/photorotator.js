@@ -24,9 +24,9 @@ var Rotator = function(imageContent, timingSeconds, effect, zindexBase, rotatorD
 	rotator.shortcuts = rotator.parent.find('.' + shortcuts);
 	rotator.rotatorDiv.hover(function(e) { rotator.hoverIn(rotator); }, function(e) { rotator.hoverOut(rotator); });
 	rotator.width = rotator.rotatorDiv.width();
-	jQuery(window).resize(function() { rotator.width = rotator.rotatorDiv.width(); });
+	$ec(window).resize(function() { rotator.width = rotator.rotatorDiv.width(); });
 	rotator.height = rotator.rotatorDiv.height();
-	jQuery(window).resize(function() { rotator.height = rotator.rotatorDiv.height(); });
+	$ec(window).resize(function() { rotator.height = rotator.rotatorDiv.height(); });
 	//initialization
 	rotator.current = 0;
 	rotator.performingEffect = false;
@@ -39,7 +39,7 @@ var Rotator = function(imageContent, timingSeconds, effect, zindexBase, rotatorD
 	//setup timer
 	if(rotator.images.length > 1) {
 		//start image rotation only if there is more than one image
-		rotator.timer = jQuery.timer(function() {rotator.transition(true);}, timingSeconds * 1000, true);
+		rotator.timer = $ec.timer(function() {rotator.transition(true);}, timingSeconds * 1000, true);
 		if (rotator.pauseBtn.hasClass("rotatorPlay")) {
 			rotator.timer.toggle();
 		}
@@ -94,33 +94,37 @@ Rotator.prototype.load = function(imageContent) {
 			//create the container
 			var container;
 			if (content.hasOwnProperty('href') && content.href) {
-				container = jQuery(document.createElement('a'));
+				container = $ec(document.createElement('a'));
 				container.attr('href', content.href);
 				if (content.hasOwnProperty('target')) {
 					container.attr('target', content.target);
 				}
 			} else {
-				container = jQuery(document.createElement('span'));
+				container = $ec(document.createElement('span'));
 			}
-			jQuery(container).addClass('slideshowImageWrapper');
+			$ec(container).addClass('slideshowImageWrapper');
 			rotator.containers[cnt] = container;
 			//create the image
-			container.html('<img class="slideshowImage" src="' + content.img + '"/>');
+			if (!rotator.isGalleryModule && content.srcset != null) {
+				container.html('<picture><source type="image/webp" srcset="' + content.srcset + '"><img class="slideshowImage" src="' + content.img + '"></picture>');
+			} else {
+				container.html('<img class="slideshowImage" src="' + content.img + '"/>');
+			}
 			if (content.hasOwnProperty('additionalclass') && content.additionalclass) {
-				jQuery(container).find(".slideshowImage").addClass(content.additionalclass);
+				$ec(container).find(".slideshowImage").addClass(content.additionalclass);
 			}
 			//if in GalleryModule
 			if( rotator.isGalleryModule ) {
-				jQuery(container).addClass('lightbox[photoAlbum]');
+				$ec(container).addClass('lightbox[photoAlbum]');
 				if (cnt < 5 || cnt >= (imageContent.length - 2)) {
 					container.html(container.html() + '<img class="slideshowBackgroundImage" src="' + content.img + '"/>');
 				}
 				else {
-					jQuery(container).addClass('hidden');
+					$ec(container).addClass('hidden');
 					container.html('<img class="slideshowImage" hiddensrc="' + content.img + '"/><img class="slideshowBackgroundImage" hiddensrc="' + content.img + '"/>');
 				}
 			}
-			var img = container.children('img');
+			var img = container.find('img');
 			rotator.images[cnt] = img;
 			container.css({position: 'absolute', top: 0, left: 0});
 			if (cnt == 0) {
@@ -131,7 +135,7 @@ Rotator.prototype.load = function(imageContent) {
 				container.css({zIndex: rotator.zStorage});
 			}
 			//create the shortcut
-			var shortcut = jQuery(document.createElement('div'));
+			var shortcut = $ec(document.createElement('div'));
 			shortcut.attr('id', 'rotatorShortcut' + cnt);
 			shortcut.data('container', cnt);
 			if (cnt == 0) {
@@ -140,26 +144,27 @@ Rotator.prototype.load = function(imageContent) {
 			shortcut.click(function(e) { rotator.shortcutClick(rotator); });
 			rotator.shortcuts.append(shortcut);
 			rotator.firstShortcut = 0;
-			rotator.captions[cnt] = jQuery('');
+			rotator.captions[cnt] = $ec('');
 			//create the caption
-			if (content.title != undefined || content.caption != undefined || content.callToAction != undefined) {
-				var caption = jQuery(document.createElement('div'));
+			if (content.title != null || content.caption != null || content.callToAction != null) {
+				var caption = $ec(document.createElement('div'));
 				rotator.captions[cnt] = caption;
 				caption.addClass('captionPositioner');
 
-				var captionInner = jQuery(document.createElement('div'));
+				var captionInner = $ec(document.createElement('div'));
 				captionInner.addClass('caption');
-				jQuery(container).addClass('hasCaption');
+				$ec(container).addClass('hasCaption');
+				rotator.rotatorDiv.closest("#featureSlideshow").addClass('hasSlideshowCaption');
 				caption.append(captionInner);
-				if (content.title != undefined) {
-					var title = jQuery(document.createElement('div'));
+				if (content.title != null) {
+					var title = $ec(document.createElement('div'));
 					title.html(content.title);
 					title.addClass('title');
 					captionInner.append(title);
 					img.attr('alt', content.title);
 				}
-				if (content.caption != undefined) {
-					var captionContent = jQuery(document.createElement('div'));
+				if (content.caption != null) {
+					var captionContent = $ec(document.createElement('div'));
 					captionContent.html(content.caption);
 					captionContent.addClass('captionContent');
 					captionInner.append(captionContent);
@@ -170,8 +175,8 @@ Rotator.prototype.load = function(imageContent) {
 						container.attr('title', content.caption);
 					}
 				}
-				if(content.callToAction != undefined) {
-					var callToAction = jQuery(document.createElement('span'));
+				if(content.callToAction != null) {
+					var callToAction = $ec(document.createElement('span'));
 					callToAction.html(content.callToAction);
 					callToAction.addClass('callToAction');
 					captionInner.append(callToAction);
@@ -194,7 +199,7 @@ Rotator.prototype.load = function(imageContent) {
 	}
 	if( rotator.isGalleryModule ) {
 		rotator.rotatorDiv.find(".slideshowImage").each(function() {
-			rotator.setImageFill(jQuery(this));
+			rotator.setImageFill($ec(this));
 		});
 	}
 };
@@ -277,7 +282,7 @@ Rotator.prototype.shortcutClick = function(rotator) {
 			rotator.timer.reset();
 			rotator.timer.pause();
 		}
-		$this = jQuery(this);
+		$this = $ec(this);
 		var toStorage1 = rotator.current;
 		if (toStorage1 > rotator.containers.length - 1) {
 			toStorage1 = 0;
@@ -353,8 +358,8 @@ Rotator.prototype.back = function(rotator) {
 					hiddenDiv = hiddenDiv.prev();
 				}
 				hiddenDiv.find("img").each( function() {
-					jQuery(this).attr( "src", jQuery(this).attr("hiddensrc") );
-					jQuery(this).removeAttr( "hiddensrc" );
+					$ec(this).attr( "src", $ec(this).attr("hiddensrc") );
+					$ec(this).removeAttr( "hiddensrc" );
 				});
 				hiddenDiv.removeClass('hidden');
 				rotator.setImageFill(hiddenDiv.find(".slideshowImage"));
@@ -492,8 +497,8 @@ Rotator.prototype.transition = function(useEffect) {
 			rotator.rotatorDiv.find(".slideshowImageWrapper.hidden").first();
 		}
 		hiddenDiv.find("img").each( function() {
-			jQuery(this).attr( "src", jQuery(this).attr("hiddensrc") );
-			jQuery(this).removeAttr( "hiddensrc" );
+			$ec(this).attr( "src", $ec(this).attr("hiddensrc") );
+			$ec(this).removeAttr( "hiddensrc" );
 		});
 		hiddenDiv.removeClass('hidden');
 		rotator.setImageFill(hiddenDiv.find(".slideshowImage"));
@@ -504,7 +509,7 @@ Rotator.prototype.transition = function(useEffect) {
 Rotator.prototype.performEffect = function(oldImg, newImg, nextImg) {
 	var rotator = this;
 	rotator.performingEffect = true;
-
+	
 	switch (rotator.effect) {
 		case 'FADE':
 			rotator.containers[oldImg].animate({opacity: 0}, 1000, function(){rotator.finishEffect(oldImg, newImg, nextImg);});
@@ -695,15 +700,15 @@ Rotator.prototype.finishEffect = function(oldImg, newImg, nextImg) {
 
 /**
  * jquery.timer.js
- *
+ * 
  * Copyright (c) 2011 Jason Chavannes <jason.chavannes@gmail.com>
- *
+ * 
  * http://jchavannes.com/jquery-timer
- *
+ * 
  * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
- *
+ * 
  * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
- *
+ * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
@@ -783,10 +788,10 @@ Rotator.prototype.finishEffect = function(oldImg, newImg, nextImg) {
 	 	};
 
 	 	if(this.init) {
-	 		return new jQuery.timer(func, time, autostart);
+	 		return new $ec.timer(func, time, autostart);
 	 	} else {
 			this.set(func, time, autostart);
 	 		return this;
 	 	}
 	};
-})(jQuery);
+})($ec);

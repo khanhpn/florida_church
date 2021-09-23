@@ -1,108 +1,4 @@
 var prod = {};
-jQuery(document).ready(function() {
-	if (jQuery('#shieldLogin').length > 0) {
-		// Secure Page login
-		prod.setupShieldLogin(jQuery('#shieldLogin'));
-	}
-	if(jQuery('#adminLogin').length > 0) {
-		//admin login page
-		prod.setupLogin(jQuery('#adminLogin'));
-		prod.adminLoginAuto();
-	} else if(jQuery('#resetPassword').is('*')) {
-		//nothing runs for this yet
-	} else if(jQuery('#finder').length > 0) {
-		//nothing runs for this yet
-	} else {
-		//normal page
-		if(jQuery('#nav').length > 0) {
-			prod.setOrigLinksWidth();
-			prod.sticky = jQuery('#nav').hasClass('sticky');
-			prod.noResize = jQuery('#nav').hasClass('noResize');
-			prod.checkMegaMenus();
-			prod.checkMobile(true);
-			jQuery(window).resize(function() {prod.checkMobile(false);});
-			prod.resizeNav(false);
-
-			jQuery('#navicon').click(function() {
-				jQuery('body').toggleClass('mobilePanelActive');
-				prod.navCollapsibleOpenSelected(jQuery('#mobileNav'));
-				return false;
-			});
-			jQuery('.navCollapsible > ul').slideToggle(0).slideToggle(0); //CSS initializes to off, this toggles it ->on->off so it is ready to be used
-			//apply to group names and not group's collapsible icon to avoid double call on one click
-			jQuery('.navCollapsible:not(.navPage) > .navName').click(function() {
-				prod.navCollapsibleClick(jQuery(this).parent());
-			});
-			//apply to collapsible icons on pages and prevent following the link
-			jQuery('.navCollapsible.navPage > .navName > .collapsibleIcon').click(function() {
-				event.preventDefault();
-				prod.navCollapsibleClick(jQuery(this).closest('.navCollapsible'));
-			});
-
-			prod.resizeModules(jQuery('body')); //this was moved to the ready event to prevent videos from changing size on the screen
-			// run here at page load to mitigate the delay of a slow computer
-			prod.paymentForm.init();
-			prod.setupPaymentMessaging();
-		}
-		//this opens the link in data-url in a new window and prevents the original click event from going through
-		jQuery('#footerBrand a').click(function(event) {
-			event.preventDefault();
-			var url = jQuery(this).data('url');
-			window.open(url,'_blank');
-		});
-		// prod?.setFooterHeight();
-		//Try setting up SVGs, even though the CSS may not be completely rendered yet.
-		// prod.initializeSVG($("#socialMediaBody a, .personSocialMedia a, #navicon, #header #searchSubmit, #header #searchPopup"));
-		jQuery('body').on('click', '.printCalendar', prod.printCalendar);
-	}
-});
-
-//run after the load event
-$(window).load(function() {
-	if(!(jQuery('#adminLogin').length > 0 || jQuery('#resetPassword').is('*'))) {
-		//normal page
-		prod.initializeSVG(jQuery("#socialMediaBody a, .personSocialMedia a, #navicon, .searchBoxSubmit"));
-		if(jQuery('html.oldie').length == 0) { //disable footer height and core resizing for ie9 and earlier
-			prod.setFooterHeight();
-			prod.sizeCore();
-			if(typeof less !== "undefined") {
-				less.refresh().then(function(result) {
-					jQuery(window).trigger('resize');
-				});
-			}
-
-			if(!prod.isMobile()) {
-				prod.sizeContentDivs();
-			}
-		}
-		if(prod.sticky) {
-			prod.initNavSticky();
-		}
-
-		prod.initModules(jQuery('body'));
-		if(jQuery().waypoint) {
-			jQuery('.infinite-container').waypoint('infinite', {
-				container: 'auto',
-				items: '.infinite-item',
-				more: '.infinite-more-link',
-				offset: 'bottom-in-view',
-				onAfterPageLoad: function() {
-					if(typeof admin != 'undefined') {
-						admin.setupInactiveTags();
-					}
-					//Add lightbox for new items
-				    initPhotoSwipeFromDOM('.photoAlbum');
-
-					prod.initDynamicThumbs(jQuery('body'));
-				}
-			});
-		}
-		jQuery('#login:not(.disableLoginButton)').click(prod.openLogin);
-		jQuery('#calendarPageSelection').change(function() {
-			window.location = jQuery(this).val();
-		});
-	}
-});
 
 prod.navCollapsibleClick = function(collapsible) {
 	collapsible.toggleClass('navCollapsed');
@@ -110,36 +6,36 @@ prod.navCollapsibleClick = function(collapsible) {
 	//when opening, close open siblings
 	if(!collapsible.hasClass('navCollapsed')) {
 		collapsible.siblings('.navCollapsible:not(.navCollapsed)').each(function() {
-			jQuery(this).toggleClass('navCollapsed');
-			jQuery(this).find('> ul').slideToggle();
+			$ec(this).toggleClass('navCollapsed');
+			$ec(this).find('> ul').slideToggle();
 		});
 	}
 };
 prod.navCollapsibleOpenSelected = function(nav) {
 	//modify this on closing mobile panel so user doesn't see animation when opening
-	if(!jQuery('body').hasClass('mobilePanelActive')) {
+	if(!$ec('body').hasClass('mobilePanelActive')) {
 		nav.find('.sideNavSelected.navCollapsed').each(function() {
 			//open all selected collapsible pages and groups
 			//this also closes the non-selected ones by consequence
-			prod.navCollapsibleClick(jQuery(this));
-		})
+			prod.navCollapsibleClick($ec(this));
+		});
 		nav.find('.navCollapsible:not(.navCollapsed):not(.sideNavSelected)').each(function() {
 			//close any child collapsibles that aren't selected
-			prod.navCollapsibleClick(jQuery(this));
-		})
+			prod.navCollapsibleClick($ec(this));
+		});
 	}
 };
 
 prod.error = function(handler) {
 	return function(jqXHR, status, error) {
 		if(status != 'success') { //sometimes error is incorrectly called, when it is a success
-			if(error == 'Internal Server Error') {
-				//we created this was an exception that we formatted
-				var html = jQuery.parseHTML(jqXHR.responseText.trim());
+			if(error == 'Internal Server Error' || jqXHR.status == 500) {
+				//This was likely an exception that we formatted
+				var html = $ec.parseHTML(jqXHR.responseText.trim());
 				var text = "Unknown";
-				jQuery.each(html, function() {
-					if(jQuery(this).hasClass("errorMessage")) {
-						text = jQuery(this).html();
+				$ec.each(html, function() {
+					if($ec(this).find(".errorMessage").length > 0) {
+						text = $ec(this).find(".errorMessage").html();
 					}
 				});
 				handler("ERROR: " + text);
@@ -151,9 +47,9 @@ prod.error = function(handler) {
 };
 
 prod.checkMegaMenus = function() {
-	var listMegaMenu = jQuery(".megaMenu");
+	var listMegaMenu = $ec(".megaMenu");
 	listMegaMenu.each( function(index, element ) {
-		var ulM = jQuery(element).find(">ul");
+		var ulM = $ec(element).find(">ul");
 		ulM.css("display", "block"); //Needs to have a position
 		var linkWidth = parseInt(ulM.find(">li").css('width') );
 		var leftGroupObj = ulM.find(">li:first-child");
@@ -176,57 +72,57 @@ prod.checkMegaMenus = function() {
 	});
 };
 
-prod.setOrigLinksWidth = function() {
-	var nav = jQuery('#nav');	//origLinksWidth needs initialized with a value before sizing sections
-	nav.show();
-	prod.origLinksWidth = jQuery('#nav > ul').width();
-	nav.css('display', '');
+prod.setOrigSiteWidth = function() {
+	prod.origSiteWidth = $ec('#siteWidthIndicator').width();
 };
-
 prod.checkMobile = function(isInitialSetup) {
 	//the sizeContentDivs stuff needs to run after the core sizing the first time the page loads
 	if(prod.isMobile()) {
 		if(!isInitialSetup) {
-			if(jQuery('html.oldie').length == 0) { //disable core resizing for ie9 and earlier
+			if($ec('html.oldie').length == 0) { //disable core resizing for ie9 and earlier
 				prod.removeSizeContentDivs();
 				prod.setFooterHeight();
 			}
-			prod.setOrigLinksWidth();
+			prod.setOrigSiteWidth();
 			//set up tabs sections when switching from desktop to mobile
 			prod.tabsToAccordion();
 		}
-		if(jQuery('.slideshowModule.vimeoMode').length > 0 && !jQuery('.slideshowModule.vimeoMode').hasClass('playerControlsOn')) {
+		if($ec('.slideshowModule.vimeoMode').length > 0 && !$ec('.slideshowModule.vimeoMode').hasClass('playerControlsOn')) {
 
 			//Show controls on mobile
-			if (jQuery('#vimeoDesktop').attr('src').indexOf('&controls=0') !== -1) {
-				jQuery('#vimeoDesktop').attr('src', jQuery('#vimeoDesktop').attr('src').replace('&controls=0', ''));
+			if ($ec('#vimeoDesktop').attr('src').indexOf('&controls=0') !== -1) {
+				$ec('#vimeoDesktop').attr('src', $ec('#vimeoDesktop').attr('src').replace('&controls=0', ''));
 			}
 		}
 		prod.checkMobileSmallColumn();
 		prod.fixSectionHeights();
+		if (!isInitialSetup) {
+			prod.reinitFocusPoint();
+		}
 	} else {
 		if(!isInitialSetup) {
-			if(jQuery('html.oldie').length == 0) { //disable core resizing for ie9 and earlier
+			if($ec('html.oldie').length == 0) { //disable core resizing for ie9 and earlier
 				prod.sizeContentDivs();
 				prod.setFooterHeight();
 			}
 			//set up tabs sections when switching from mobile to desktop
 			prod.accordionToTabs();
+			prod.reinitFocusPoint();
 		}
-		if(jQuery('.slideshowModule.vimeoMode').length > 0 && !jQuery('.slideshowModule.vimeoMode').hasClass('playerControlsOn')) {
+		if($ec('.slideshowModule.vimeoMode').length > 0 && !$ec('.slideshowModule.vimeoMode').hasClass('playerControlsOn')) {
 			//Hide controls on desktop
-			if (jQuery('#vimeoDesktop').attr('src').indexOf('&controls=0') == -1) {
-				jQuery('#vimeoDesktop').attr('src', jQuery('#vimeoDesktop').attr('src') + '&controls=0');
+			if ($ec('#vimeoDesktop').attr('src').indexOf('&controls=0') == -1) {
+				$ec('#vimeoDesktop').attr('src', $ec('#vimeoDesktop').attr('src') + '&controls=0');
 			}
 		}
 		if(prod.sticky) {
 			prod.initNavSticky();
 		}
 		//Undo prod.fixSectionHeights(); for resize buttons
-		jQuery('.sectionRegion .sectionButtonModule:not(.sectionButtonMarkedDelete)').removeAttr("style");
+		$ec('.sectionRegion .sectionButtonModule:not(.sectionButtonMarkedDelete)').removeAttr("style");
 	}
 	prod.setupMassMode();
-	if(jQuery('#massModeButtonContainer').length > 0) {
+	if($ec('#massModeButtonContainer').length > 0) {
 		prod.setupMassModeSticky();
 	}
 	if(prod.hasMobileNav()) {
@@ -234,34 +130,34 @@ prod.checkMobile = function(isInitialSetup) {
 	} else {
 		prod.removeMobilePanel();
 	}
-	prod.resizeModules(jQuery('body'));
+	prod.resizeModules($ec('body'));
 };
 
 // Whether mobile width or not
 prod.isMobile = function() {
-	var mobileIndicatorWidth = jQuery('#mobileIndicator').width();
+	var mobileIndicatorWidth = $ec('#mobileIndicator').width();
 	return mobileIndicatorWidth > 0;
 };
 
 // Mobile nav can be visible on desktop
 prod.hasMobileNav = function() {
-	var navIconWidth = jQuery('#navicon').width();
+	var navIconWidth = $ec('#navicon').width();
 	return navIconWidth > 0;
 };
 
 prod.mobilePanel = function() {
 	try {
-		jQuery('#background').get(0).addEventListener("click", prod.backgroundClickFunction, true);
+		$ec('#background').get(0).addEventListener("click", prod.backgroundClickFunction, true);
 	} catch(e) {
 		// TODO add handler (but why would the above call fail?)
 	}
 };
 
 prod.removeMobilePanel = function() {
-	var nav = jQuery('#nav');
+	var nav = $ec('#nav');
 	nav.removeClass('mobile');
 	try {
-		jQuery('#background').get(0).removeEventListener("click", prod.backgroundClickFunction);
+		$ec('#background').get(0).removeEventListener("click", prod.backgroundClickFunction);
 	} catch(e) {
 		// TODO add handler (but why would the above call fail?)
 	}
@@ -292,52 +188,52 @@ prod.getCookie = function(cname) {
 };
 
 prod.setupMassMode = function() {
-	var massMode = jQuery('#massModePlaceholder');
+	var massMode = $ec('#massModePlaceholder');
 	if(massMode.length > 0) {
 		var getUrl = massMode.attr('getUrl');
 		prod.get(getUrl, null, function(result) {
-			var container = jQuery(document.createElement('div'));
+			var container = $ec(document.createElement('div'));
 			container.html(result);
 
 			if(container.find('#massModeToday').length > 0) {
 				//get the current date/time in the site time zone
 				var timeZoneID = container.find('#massModeToday').data('timezone');
 				var currentDateTime = new Date(new Date().toLocaleString("en-US", {timeZone: timeZoneID}));
-
+				
 				var day = null;
 				var vigil = null;
 				container.find('#massModeToday .massModeTimes').each(function() {
-					var date = jQuery(this).data('date').split('T')[0].replace(/-/g, '/');	//replace dashes with forward slashes for safari compatibility https://stackoverflow.com/a/31732581
+					var date = $ec(this).data('date').split('T')[0].replace(/-/g, '/');	//replace dashes with forward slashes for safari compatibility https://stackoverflow.com/a/31732581
 					var dayDate = new Date(date);
 					if(currentDateTime.getDate() === dayDate.getDate()) {
-						day = jQuery(this);
+						day = $ec(this);
 						return;
 					} else if(currentDateTime.getHours() >= 12) {
 						dayDate.setDate(dayDate.getDate() - 1);
 						if(currentDateTime.getDate() === dayDate.getDate()) {
-							vigil = jQuery(this);
+							vigil = $ec(this);
 							return;
 						}
 					}
-					jQuery(this).remove();
+					$ec(this).remove();
 				});
-
+				
 				if(day !== null) {
 					//remove vigil times
 					day.find(".day[class*='VIGIL']").each(function() {
-						jQuery(this).parent('.sacramentDay').remove();
+						$ec(this).parent('.sacramentDay').remove();
 					});
 
 					//remove any times that have already passed (i.e. started >15 minutes ago)
 					day.find(".startTime").each(function() {
-						var hr = Math.floor(jQuery(this).data('start') / 60);
-						var min = jQuery(this).data('start') % 60;
+						var hr = Math.floor($ec(this).data('start') / 60);
+						var min = $ec(this).data('start') % 60;
 						var mass = new Date(currentDateTime.getTime());
 						mass.setHours(hr);
 						mass.setMinutes(min + 15);	//add 15 minute adjustment to mass start time
 						mass.setSeconds(0);
 						if(currentDateTime > mass) {
-							jQuery(this).parent('.sacramentTime').remove();
+							$ec(this).parent('.sacramentTime').remove();
 						}
 					});
 
@@ -346,7 +242,7 @@ prod.setupMassMode = function() {
 						day.remove();
 						day = null;
 					} else {
-						container.find('#massModeToday.massModeSacramentTimes').addClass('onlyHolyDay')
+						container.find('#massModeToday.massModeSacramentTimes').addClass('onlyHolyDay');
 						if(vigil !== null) {
 							vigil.remove();
 							vigil = null;
@@ -356,14 +252,14 @@ prod.setupMassMode = function() {
 				if(day === null && vigil !== null) {
 					//remove any past vigil times
 					vigil.find(".day[class*='VIGIL'] + .sacramentGroup .startTime").each(function() {
-						var hr = Math.floor(jQuery(this).data('start') / 60);
-						var min = jQuery(this).data('start') % 60;
+						var hr = Math.floor($ec(this).data('start') / 60);
+						var min = $ec(this).data('start') % 60;
 						var mass = new Date(currentDateTime.getTime());
 						mass.setHours(hr);
 						mass.setMinutes(min + 15);	//add 15 minute adjustment to mass start time
 						mass.setSeconds(0);
 						if(currentDateTime > mass) {
-							jQuery(this).parent('.sacramentTime').remove();
+							$ec(this).parent('.sacramentTime').remove();
 						}
 					});
 					if(vigil.find(".day[class*='VIGIL'] + .sacramentGroup .startTime").length === 0) {
@@ -391,9 +287,9 @@ prod.setupMassMode = function() {
 				}
 			}
 
-			jQuery('#massModePlaceholder').replaceWith(container.html());
+			$ec('#massModePlaceholder').replaceWith(container.html());
 
-			massMode = jQuery('#massModeContainer');
+			massMode = $ec('#massModeContainer');
 			if(massMode.length > 0 && !massMode.find('.massModeTabs').data('ui-tabs')) {
 				var setCookieOnClose = false;
 				if(massMode.hasClass('hasActiveDay') && typeof admin == 'undefined') {
@@ -402,7 +298,7 @@ prod.setupMassMode = function() {
 					var closed = prod.getCookie("closedMassMode");
 					if (!closed) {
 						setTimeout(function(){
-							jQuery('body').addClass('massModeActive');
+							$ec('body').addClass('massModeActive');
 						}, 1000);
 						setCookieOnClose = true;
 					}
@@ -410,12 +306,12 @@ prod.setupMassMode = function() {
 				massMode.find('.massModeTabs').tabs({
 					heightStyle: "auto"
 				});
-				jQuery('#massModeModalBackground, #massModeContainer .massModeTitle, #massModeButton').click(function() {
-					if(!jQuery('body').hasClass('massModeActive')) {
-						jQuery('body').addClass('massModeActive');
+				$ec('#massModeModalBackground, #massModeContainer .massModeTitle, #massModeButton').click(function() {
+					if(!$ec('body').hasClass('massModeActive')) {
+						$ec('body').addClass('massModeActive');
 					} else {
 						massMode.scrollTop(0);
-						jQuery('body').removeClass('massModeActive');
+						$ec('body').removeClass('massModeActive');
 						if(setCookieOnClose) {
 							prod.setCookie("closedMassMode", true, 1);
 							setCookieOnClose = false;
@@ -423,41 +319,46 @@ prod.setupMassMode = function() {
 					}
 				});
 				//when clicking on video link, need to save cookie so it doesn't open again on new page
-				jQuery('#massModeContainer .videoIconLink a').click(function() {
+				$ec('#massModeContainer .videoIconLink a').click(function() {
 					prod.setCookie("closedMassMode", true, 1);
 				});
 				if(typeof admin != 'undefined') {
-					admin.activateEditable(jQuery('#massModeButtonContainer'));
-					admin.activateHoverable(jQuery('#massModeButtonContainer'));
-					admin.activateAdminModuleButtons(jQuery('#massModeButtonContainer'));
+					admin.activateEditable($ec('#massModeButtonContainer'));
+					admin.activateHoverable($ec('#massModeButtonContainer'));
+					admin.activateAdminModuleButtons($ec('#massModeButtonContainer'));
 				}
 				prod.setupMassModeSticky();
 			}
 		}, function() {
-			jQuery('#massModePlaceholder').remove();
+			$ec('#massModePlaceholder').remove();
 		});
 	}
 };
 
 prod.setupMassModeSticky = function() {
-	if(!prod.isMobile() && jQuery(window).width() < jQuery('#core').width() + 2 * jQuery('#massModeButtonContainer').width()) {
-		jQuery(window).off('scroll', prod.updateMassModeSticky);
-		var adminBarHeight = jQuery('#adminToolbar').height() + jQuery('#adminMessage').height();
-		if(jQuery('body.preview:not(".showPreviewToolbar")').length) {
-			adminBarHeight = 0;
+	if(!prod.isMobile() && $ec(window).width() < $ec('#core').width() + 2 * $ec('#massModeButtonContainer').width()) {
+		$ec(window).off('scroll', prod.updateMassModeSticky);
+		var adminBarHeight = 0;
+		if($ec('#background.admin').length || $ec('body.preview.showPreviewToolbar').length) {
+			if($ec('#adminToolbar').length) {
+				adminBarHeight += $ec('#adminToolbar').height();
+			}
+			if($ec('#adminMessage').length) {
+				adminBarHeight += $ec('#adminMessage').height();
+			}
 		}
-		prod.massModeStickyBottom = jQuery(window).height() + jQuery(window).scrollTop() - adminBarHeight - (jQuery('#massModeButtonContainer').offset().top + jQuery('#massModeButtonContainer').outerHeight());
-		jQuery(window).scroll(prod.updateMassModeSticky);
+		prod.massModeStickyBottom = $ec(window).height() + $ec(window).scrollTop() - adminBarHeight - ($ec('#massModeButtonContainer').offset().top + $ec('#massModeButtonContainer').outerHeight());
+		$ec(window).scroll(prod.updateMassModeSticky);
 	} else {
-		jQuery(window).off('scroll', prod.updateMassModeSticky);
+		$ec(window).off('scroll', prod.updateMassModeSticky);
 	}
-}
+};
 
 prod.updateMassModeSticky = function() {
 	//on scroll, check if MassMode button covers the login or brand info
-	var footerBrand = jQuery('#footerBrand');
-	var footerLogin = jQuery('#footerLinks');
-	var massModeButton = jQuery('#massModeButtonContainer');
+	var footerBrand = $ec('#footerBrand');
+	var footerLogin = $ec('#footerLinks');
+	var massModeButton = $ec('#massModeButtonContainer');
 
 	//gather all edge coordinates based on the origin in the top left
 	var footerTopEdge = footerBrand.offset().top;
@@ -468,11 +369,16 @@ prod.updateMassModeSticky = function() {
 	var buttonRightEdge = massModeButton.offset().left + massModeButton.outerWidth();
 
 	//get top and bottom coordinates from original button positioning
-	var adminBarHeight = jQuery('#adminToolbar').height() + jQuery('#adminMessage').height();
-	if(jQuery('body.preview:not(".showPreviewToolbar")').length) {
-		adminBarHeight = 0;
+	var adminBarHeight = 0;
+	if($ec('#background.admin').length || $ec('body.preview.showPreviewToolbar').length) {
+		if($ec('#adminToolbar').length) {
+			adminBarHeight += $ec('#adminToolbar').height();
+		}
+		if($ec('#adminMessage').length) {
+			adminBarHeight += $ec('#adminMessage').height();
+		}
 	}
-	var contentHeight = jQuery(window).height() + jQuery(window).scrollTop() - adminBarHeight;
+	var contentHeight = $ec(window).height() + $ec(window).scrollTop() - adminBarHeight;
 	var buttonTopEdge = contentHeight - (prod.massModeStickyBottom + massModeButton.outerHeight());
 	var buttonBottomEdge = buttonTopEdge + massModeButton.outerHeight();
 
@@ -499,27 +405,27 @@ prod.setupMobilePanel = function() {
 		}
 
 		//copy header elements to the mobile panel
-		var panel = jQuery('#mobilePanel');
-		var search = jQuery('#search').clone();
+		var panel = $ec('#mobilePanel');
+		var search = $ec('#search').clone();
 		search.attr('id', 'mobileSearch');
 		prod.initSearch(search.find('.searchBox'));
 		prod.initSearchBoxSubmit(search.find('.searchBoxSubmit'));
 		panel.append(search);
-		var qls = jQuery('#quickLinks').clone();
+		var qls = $ec('#quickLinks').clone();
 		qls.attr('id', 'mobileQuickLinks');
 		panel.append(qls);
 		//mobile nav - move to end
-		var nav = jQuery('#mobileNav');
+		var nav = $ec('#mobileNav');
 		panel.append(nav);
 
 		//create function to be executed on background click
 		prod.backgroundClickFunction = function(e) {
-			if(jQuery('body').hasClass('mobilePanelActive') && prod.hasMobileNav()) {
+			if($ec('body').hasClass('mobilePanelActive') && prod.hasMobileNav()) {
 				//navicon should always close mobile panel
 				//on mobile, clicking a background element that is outside of the mobile panel should close mobile panel
-				if(e.target.id === '#navicon' || (prod.isMobile() && e.pageX >= jQuery('#mobilePanel').outerWidth())) {
-					jQuery('body').toggleClass('mobilePanelActive');
-					prod.navCollapsibleOpenSelected(jQuery('#mobileNav'));
+				if((e.target.id === '#navicon' || (prod.isMobile() && $ec(e.target).parents("#mobilePanel").length === 0)) && !$ec(e.target).parents("#socialMediaBody").length) {
+					$ec('body').toggleClass('mobilePanelActive');
+					prod.navCollapsibleOpenSelected($ec('#mobileNav'));
 					e.preventDefault();
 					e.stopPropagation();
 				}
@@ -534,47 +440,47 @@ prod.setupMobilePanel = function() {
 
 prod.checkMobileSmallColumn = function() {
 	//if side nav is only module in column and is hidden on mobile, then hide column
-	var modules = jQuery('#content2 > li');
+	var modules = $ec('#content2 > li');
 	if(modules.length == 1) {
 		if(!modules.first().is(':visible')) {
-			jQuery('#content2').addClass('hideMobileColumn');
+			$ec('#content2').addClass('hideMobileColumn');
 		}
 	}
 };
 
 prod.resizeNav = function(secondRun) {
 	if(!prod.noResize) {
-		if (jQuery('#nav').width() <= 5 || jQuery('#nav').height() <= 5) {
+		if ($ec('#nav').width() <= 5 || $ec('#nav').height() <= 5) {
 			//[DEV-549] - Otherwise runs infinitely
-			jQuery(window).load(function() {
+			$ec(window).on("load", function() {
 				prod.resizeNav(secondRun);
 			});
 		}
 		else {
-			jQuery('#nav').removeClass("resize");
-			for(var i = jQuery('#nav > ul > li').length-1; i >= 0; i--) {
-				if (jQuery('#nav').width() < jQuery('#nav > ul').width()) {
-					jQuery(jQuery('#nav > ul > li').get(i)).hide();
-					jQuery('#sideTabNav').addClass('navDropped');
+			$ec('#nav').removeClass("resize");
+			for(var i = $ec('#nav > ul > li').length-1; i >= 0; i--) {
+				if ($ec('#nav').width() < $ec('#nav > ul').width()) {
+					$ec($ec('#nav > ul > li').get(i)).hide();
+					$ec('#sideTabNav').addClass('navDropped');
 				} else {
 					break;
 				}
 			}
-			jQuery('#nav').addClass("resize");
+			$ec('#nav').addClass("resize");
 		}
 		if (!secondRun) {
-			jQuery('#nav > ul > li').hover(function() {
-				var submenu = jQuery(this).children('ul');
-				var width = submenu.outerWidth() + jQuery(this).position().left;
-				var moveLeft = jQuery('#nav').width() - width;
+			$ec('#nav > ul > li').hover(function() {
+				var submenu = $ec(this).children('ul');
+				var width = submenu.outerWidth() + $ec(this).position().left;
+				var moveLeft = $ec('#nav').width() - width;
 				if(moveLeft > 0) {
 					moveLeft = "0px";
 				}
 				submenu.css({marginLeft: moveLeft});
 			});
 			//Rerun after fonts have loaded
-			jQuery(window).on('load', function () {
-				var hiddenItems = jQuery('#nav > ul > li');
+			$ec(window).on('load', function () {
+				var hiddenItems = $ec('#nav > ul > li');
 				if (hiddenItems.length > 0) {
 					hiddenItems.show();
 				}
@@ -586,65 +492,69 @@ prod.resizeNav = function(secondRun) {
 
 prod.initNavSticky = function() {
 	prod.removeNavSticky();
-	var adminBarHeight = jQuery('#adminToolbar').height() + jQuery('#adminMessage').height();
-	if(jQuery('body.preview:not(".showPreviewToolbar")').length) {
-		adminBarHeight = 0;
+	var adminBarHeight = 0;
+	if($ec('#background.admin').length || $ec('body.preview.showPreviewToolbar').length) {
+		if($ec('#adminToolbar').length) {
+			adminBarHeight += $ec('#adminToolbar').height();
+		}
+		if($ec('#adminMessage').length) {
+			adminBarHeight += $ec('#adminMessage').height();
+		}
 	}
-	prod.stickyNavTop = jQuery('#nav').offset().top - adminBarHeight;
-	prod.origStickyNavTop = parseInt(jQuery('#nav').css('top'));
-	jQuery(window).scroll(prod.updateNavSticky);
+	prod.stickyNavTop = $ec('#nav').offset().top - adminBarHeight;
+	prod.origStickyNavTop = parseInt($ec('#nav').css('top'));
+	$ec(window).scroll(prod.updateNavSticky);
 	prod.updateNavSticky();
 };
 prod.updateNavSticky = function() {
-	var scrollTop = jQuery(window).scrollTop();
-	var navBar = jQuery('#nav').width();
-	var messageBarHeight = jQuery('#adminMessage').height();
+	var scrollTop = $ec(window).scrollTop();
+	var navBar = $ec('#nav').width();
 
 	if(scrollTop > prod.stickyNavTop) {
-		var windowOffset = parseInt(jQuery('#background').css('border-top-width'));
+		var windowOffset = parseInt($ec('#background').css('border-top-width'));
 		//position on the top
-		jQuery('#nav').css('position', 'fixed');
-		jQuery('#nav').css('top', windowOffset + 'px');
-		jQuery('#nav').css('left', '50%');
-		jQuery('#nav').css('margin-left', '-' + navBar/2 + 'px');
-		jQuery('#navBackground').css('position', 'fixed');
-		jQuery('#navBackground').css('top', windowOffset + 'px');
-		jQuery('#navBackground').addClass('navSticky');
+		$ec('#nav').css('position', 'fixed');
+		$ec('#nav').css('top', windowOffset + 'px');
+		$ec('#nav').css('left', '50%');
+		$ec('#nav').css('margin-left', '-' + navBar/2 + 'px');
+		$ec('#navBackground').css('position', 'fixed');
+		$ec('#navBackground').css('top', windowOffset + 'px');
+		$ec('#navBackground').addClass('navSticky');
 	} else {
 		//original value
-		jQuery('#nav').css('position', 'absolute');
-		jQuery('#nav').css('top', prod.stickyNavTop + 'px');
-		jQuery('#navBackground').css('position', 'absolute');
-		jQuery('#navBackground').css('top', prod.stickyNavTop + 'px');
-		jQuery('#navBackground').removeClass('navSticky');
+		$ec('#nav').css('position', 'absolute');
+		$ec('#nav').css('top', prod.stickyNavTop + 'px');
+		$ec('#navBackground').css('position', 'absolute');
+		$ec('#navBackground').css('top', prod.stickyNavTop + 'px');
+		$ec('#navBackground').removeClass('navSticky');
 	}
 };
 prod.removeNavSticky = function() {
-	jQuery('#nav').css('position', '');
-	jQuery('#nav').css('top', '');
-	jQuery('#nav').css('left', '');
-	jQuery('#nav').css('margin-left', '');
-	jQuery('#navBackground').css('position', '');
-	jQuery('#navBackground').css('top', '');
+	$ec('#nav').css('position', '');
+	$ec('#nav').css('top', '');
+	$ec('#nav').css('left', '');
+	$ec('#nav').css('margin-left', '');
+	$ec('#navBackground').css('position', '');
+	$ec('#navBackground').css('top', '');
 };
 prod.setFooterHeight = function() {
-	var footerHeight = jQuery('#footerBackground').outerHeight(true);
+	var footerHeight = $ec('#footerBackground').outerHeight(true);
 	if(document.getElementById('background') != null) {
 		var pseudoAfterHeight = parseInt(window.getComputedStyle(document.getElementById('background'), ':after').getPropertyValue('height'));	//getting height of pseudo element - https://stackoverflow.com/a/44912365/8821716
 		if(footerHeight != pseudoAfterHeight) {	//avoid adding to <head> if the value hasn't changed
-			jQuery('head').append('<style>#background:after{height:' + footerHeight + 'px}</style>'); //generated content is not in the DOM so jquery can't touch it - you need to insert CSS to change it
+			$ec('head').append('<style>#background:after{height:' + footerHeight + 'px}</style>'); //generated content is not in the DOM so jquery can't touch it - you need to insert CSS to change it
 		}
 	}
 };
 prod.sizeCore = function() {
-	var core = jQuery('#core');
+	var core = $ec('#core');
 
 	// FIXME the administration page doesn't have a core; do we need to be doing any resizing that may be getting skipped because of this?
 	if (!core.length || core.hasClass('section')) {
 		return;
 	}
 
-	var footer = jQuery('#footer');
+	var footer = $ec('#footer');
 	//coreBottom: height and bottom margin (include margin then subtract margin top to avoid duplication)
 	var coreBottom = core.offset().top + core.outerHeight(true) - core.css('margin-top').replace('px', '');
 	var footerBottom = footer.offset().top;
@@ -659,7 +569,7 @@ prod.sizeCore = function() {
 };
 //section region module heights on mobile need to be fixed to preserve visible content
 prod.fixSectionHeights = function() {
-	var sectionRegion = jQuery('.sectionRegion');
+	var sectionRegion = $ec('.sectionRegion');
 
 	if (!sectionRegion.length) {
 		return;
@@ -667,79 +577,78 @@ prod.fixSectionHeights = function() {
 
 	//for fixed height sections, calculate and set height of modules
 	sectionRegion.find('.sectionInner.hasFixedHeight:not(.buttonsSection)').each(function() {
-		var height = jQuery(this)[0].style.height.replace('px', '');
+		var height = $ec(this)[0].style.height.replace('px', '');
 		if (height == 0) {
-			var sectionClone = jQuery(this).clone().insertAfter(jQuery(this)).css('width', prod.origLinksWidth).addClass('clonedMobileSection');
+			var sectionClone = $ec(this).clone().insertAfter($ec(this)).css('width', prod.origSiteWidth).addClass('clonedMobileSection');
 			height = sectionClone.height();
 			sectionClone.remove();
 		}
 
 		//create temporary clones of header and footer and make full width to calculate their height on desktop
 		//classes added for mobile styling exclusion
-		var headerClone = jQuery(this).find('> header').clone().appendTo(jQuery(this)).css('width', prod.origLinksWidth).addClass('clonedMobileHeader');
+		var headerClone = $ec(this).find('> header').clone().appendTo($ec(this)).css('width', prod.origSiteWidth).addClass('clonedMobileHeader');
 		var headerHeight = headerClone.outerHeight();
 		headerClone.remove();
-		var footerClone = jQuery(this).find('> footer').clone().appendTo(jQuery(this)).css('width', prod.origLinksWidth).addClass('clonedMobileFooter');
+		var footerClone = $ec(this).find('> footer').clone().appendTo($ec(this)).css('width', prod.origSiteWidth).addClass('clonedMobileFooter');
 		var footerHeight = footerClone.outerHeight();
 		footerClone.remove();
 
 		height = height - headerHeight - footerHeight;
-		jQuery(this).find(".modulePosition > li").each(function() {
-			if(!jQuery(this).find(".moduleInner").is('.markedDelete, .imageModule, .sectionButtonModule')) {
-				jQuery(this).css('height', height);
+		$ec(this).find(".modulePosition > li").each(function() {
+			var moduleInner = $ec(this).find(".moduleInner");
+			if(!moduleInner.is('.markedDelete, .buttonModule')) {
+				$ec(this).css('height', height);
 			}
 		});
 	});
-
+	
+	
 	//for section button modules, calculate and set height of modules
-	var isSmallMobile = (jQuery("#background").outerWidth() <= 425);
 	sectionRegion.find('.sectionInner').each(function() {
-		var section = jQuery(this);
-		if(section.find('.sectionButtonModule:not(.sectionButtonMarkedDelete)').length && !section.hasClass('buttonsSection')) {
+		var section = $ec(this);
+		if(section.find('.sectionButtonModule:not(.sectionButtonMarkedDelete)').length) {
 			//create temporary clone of section and make full width to calculate its height on desktop
 			//class added for mobile styling exclusion
-			var sectionClone = section.clone().css('width', prod.origLinksWidth).addClass('clonedMobileSection').insertAfter(section);
+			var sectionClone = section.clone().css('width', prod.origSiteWidth).addClass('clonedMobileSection').insertAfter(section);
 			section.find('.sectionButtonModule:not(.sectionButtonMarkedDelete)').each(function() {
-				var clonedItem = sectionClone.find("#"+jQuery(this).attr('id')).removeAttr("style").parent();
-				var correctHeight = clonedItem.innerHeight();
-				var width = clonedItem.innerWidth();
-				var currentWidth = jQuery(this).parent().innerWidth();
-						var maxWidth = jQuery(this).closest(".sectionBody").innerWidth();
-				if (width > maxWidth) {
-					jQuery(this).css('height', correctHeight);
-						jQuery(this).css("width", width);
-						jQuery(this).css("transform", "scale("+ (maxWidth / width) +")");
-					jQuery(this).css("margin-left", (currentWidth - maxWidth)/2);
-						jQuery(this).css("margin-top", this.getBoundingClientRect().height - correctHeight);
-					}
-					else {
-						jQuery(this).removeAttr("style");
-				jQuery(this).css('height', correctHeight);
+				var clonedItem = sectionClone.find("#"+$ec(this).attr('id')).removeAttr("style").parent();
+				var desktopHeight = clonedItem.innerHeight();
+				var desktopWidth = clonedItem.innerWidth();
+				var maxWidth = $ec(this).closest(".sectionBody").innerWidth();
+				if (desktopWidth > maxWidth) {
+					$ec(this).css("width", desktopWidth);
+					$ec(this).css("transform", "scale("+ (maxWidth / desktopWidth) +")");
+					$ec(this).css("margin-left", ($ec(this).parent().innerWidth() - maxWidth)/2);
+					$ec(this).css("margin-top", desktopHeight * ((maxWidth / desktopWidth) - 1));
 				}
+				else {
+					$ec(this).removeAttr("style");
+				}
+				$ec(this).css('height', desktopHeight);
 			});
 			sectionClone.remove();
 		}
 	});
 };
 prod.sizeContentDivs = function() {
-	var core = jQuery('#core');
+	var core = $ec('#core');
 
 	// FIXME the administration page doesn't have a core; do we need to be doing any resizing that may be getting skipped because of this?
 	if (!core.length || core.hasClass('section')) {
 		return;
 	}
 
-	var contents = jQuery('#content1, #content2, #content3, #section1');
-	var bottomHorizontals = jQuery('#bottomHorizontal1, #bottomHorizontal2');
+	var contents = $ec('#content1, #content2, #content3, #section1');
+	var bottomHorizontals = $ec('#bottomHorizontal1, #bottomHorizontal2');
 	//coreBottom: height and padding/border on only the top (include it all and subtract off the bottom)
 	var coreBottom = core.offset().top + core.outerHeight() - core.css('padding-bottom').replace('px', '') - core.css('border-bottom-width').replace('px', '');
 	var bottomHorizontalHeight = 0;
 	bottomHorizontals.each(function() {
-		var bottomHorizontal = jQuery(this);
+		var bottomHorizontal = $ec(this);
 		bottomHorizontalHeight += bottomHorizontal.outerHeight(true);
 	});
 	contents.each(function() {
-		var content = jQuery(this);
+		var content = $ec(this);
 		//contentbottom: height and bottom margin (include margin then subtract margin top to avoid duplication)
 		var contentbottom = content.offset().top + content.outerHeight(true) - content.css('margin-top').replace('px', '');
 		var diff = coreBottom - contentbottom - bottomHorizontalHeight;
@@ -753,7 +662,7 @@ prod.sizeContentDivs = function() {
 	});
 };
 prod.removeSizeContentDivs = function() {
-	var contents = jQuery('#content1, #content2, #content3, #section1');
+	var contents = $ec('#content1, #content2, #content3, #section1');
 	contents.css('min-height', '');
 };
 
@@ -762,8 +671,8 @@ prod.initModules = function(selector) {
 	prod.initMail(selector.find('.mail'));
 	prod.initSlideshow();
     initPhotoSwipeFromDOM('.galleryAlbum');
-	prod.initSearch(jQuery('.searchBox'));
-	prod.initSearchBoxSubmit(jQuery('.searchBoxSubmit'));
+	prod.initSearch($ec('.searchBox'));
+	prod.initSearchBoxSubmit($ec('.searchBoxSubmit'));
 	prod.initSearchPopup();
 	prod.initEventLocation(selector.find('.locationNameButton'));
 	prod.initOnlineForm(selector.find('.onlineFormModule'));
@@ -773,25 +682,28 @@ prod.initModules = function(selector) {
 	prod.initInfoButtons();
 	prod.paymentForm.init();
 	selector.find('.eCatholicLiveCountdownModule').each(function() {
-		prod.initLiveCountdown(jQuery(this));
+		prod.initLiveCountdown($ec(this));
 	});
 	prod.initDynamicThumbs(selector);
 	selector.find('.tabsSection').each(function() {
-		prod.initTabsSection(jQuery(this));
+		prod.initTabsSection($ec(this));
+	});
+	selector.find('.focusPointImage').each(function() {
+		prod.initFocusPoint($ec(this));
 	});
 };
 prod.initInfoButtons = function() {
-	prod.activateInfo(jQuery('.infoHolder'));
-}
+	prod.activateInfo($ec('.infoHolder'));
+};
 prod.calendarButtonLock = false;
 prod.initCalendar = function(selector) {
 	selector.each(function() {
-		jQuery(this).find('.hasEvents').click(function() {
-			var eventRepository = jQuery(this).find('.eventRepository');
-			var dayCalendar = jQuery(this).parents('.calendarModule').find('.dayCalendar');
+		$ec(this).find('.hasEvents').click(function() {
+			var eventRepository = $ec(this).find('.eventRepository');
+			var dayCalendar = $ec(this).parents('.calendarModule').find('.dayCalendar');
 			dayCalendar.html(eventRepository.clone(true));
 			dayCalendar.removeClass('disabled');
-			var monthCalendar = jQuery(this).parents('.calendarModule').find('.monthCalendar');
+			var monthCalendar = $ec(this).parents('.calendarModule').find('.monthCalendar');
 			monthCalendar.addClass('disabled');
 			prod.initDynamicThumbs(dayCalendar);
 			dayCalendar.find('.backButton').click(function() {
@@ -799,19 +711,19 @@ prod.initCalendar = function(selector) {
 				monthCalendar.removeClass('disabled');
 			});
 		});
-		jQuery(this).find('.nextButton').click(function() {
+		$ec(this).find('.nextButton').click(function() {
 			if(!prod.calendarButtonLock) {
 				prod.calendarButtonLock = true;
-				var module = jQuery(this).parents('.calendarModule');
+				var module = $ec(this).parents('.calendarModule');
 				var monthCalendar = module.find('.monthCalendar');
 				var nextMonthUrl = monthCalendar.data('nextmonthurl');
 				prod.updateCalendar(nextMonthUrl, monthCalendar);
 			}
 		});
-		jQuery(this).find('.lastButton').click(function() {
+		$ec(this).find('.lastButton').click(function() {
 			if(!prod.calendarButtonLock) {
 				prod.calendarButtonLock = true;
-				var module = jQuery(this).parents('.calendarModule');
+				var module = $ec(this).parents('.calendarModule');
 				var monthCalendar = module.find('.monthCalendar');
 				var lastMonthUrl = monthCalendar.data('lastmonthurl');
 				prod.updateCalendar(lastMonthUrl, monthCalendar);
@@ -830,7 +742,7 @@ prod.updateCalendar = function(url, monthCalendar) {
 			//code for admin
 			admin.resetupCalendar();
 			if(admin.saveMonthCalendarDate != undefined && admin.saveMonthCalendarDate != '') {
-				jQuery('.dayCalendarTitle[calendarDay="' + admin.saveMonthCalendarDate + '"]').click();
+				$ec('.dayCalendarTitle[calendarDay="' + admin.saveMonthCalendarDate + '"]').click();
 				admin.saveMonthCalendarDate = '';
 			}
 		}
@@ -839,14 +751,14 @@ prod.updateCalendar = function(url, monthCalendar) {
 };
 prod.initMail = function(selector) {
 	selector.mouseenter(function() {
-		var $this = jQuery(this);
+		var $this = $ec(this);
 		var localMail = $this.find('.localMail').html();
 		var domainMail = $this.find('.domainMail').html();
 		$this.attr('href', "mailto:" + localMail + "@" + domainMail);
 	});
 };
 prod.initSlideshow = function() {
-	var slideshow = jQuery('.slideshowModule');
+	var slideshow = $ec('.slideshowModule');
 	if(slideshow.hasClass('broadcastOn')) {
 		var time = slideshow.find('.broadcastTime').html();
 		if(time && typeof moment !== 'undefined') {
@@ -870,7 +782,7 @@ prod.initSlideshow = function() {
 						slideshow.find('#rotator').hide();
 						slideshow.find('.moduleBody').hide();
 						embed = embed.replace(/&lt;/g, "\<").replace(/&gt;/g, "\>");
-						jQuery("<div class='moduleBody livePlayerContainer'></div>").html(embed).appendTo(slideshow);
+						$ec("<div class='moduleBody livePlayerContainer'></div>").html(embed).appendTo(slideshow);
 						prod.resizeModules(slideshow);
 					} else {
 						//fallback to refreshing the page
@@ -882,13 +794,16 @@ prod.initSlideshow = function() {
 	}
 	if(slideshow.hasClass('videoMode')) {
 		slideshow.parent().parent().addClass("hasVideo");
+		if(slideshow.hasClass('captionOn')) {
+			slideshow.parent().parent().addClass("hasVideoCaption");
+		}
 		prod.resizeModules(slideshow);
 		prod.resizeWidthAndHeight(slideshow.find('.captionPositioner'));
 		slideshow.parent().parent().removeClass("hasCallToActionSlide");	//class added in photorotator.js
 		if(slideshow.hasClass('vimeoMode')) {
 			if (typeof Vimeo != 'undefined') {
 				if(slideshow.hasClass('autoplayOn')) {
-					var video = jQuery('#vimeoDesktop');
+					var video = $ec('#vimeoDesktop');
 				    var player = new Vimeo.Player(video[0]);
 					player.setVolume(0);	//mute fallback for videos from free Vimeo accounts
 				} else {
@@ -897,7 +812,7 @@ prod.initSlideshow = function() {
 					    var overlay = slideshow.find('#vimeoBlocker');
 					    var player = new Vimeo.Player(video);
 						player.ready().then(function() {
-						    jQuery(overlay).off().on('click', function() {
+						    $ec(overlay).off().on('click', function() {
 								player.getPaused().then(function(paused) {
 									if(paused) {
 										player.play();
@@ -908,32 +823,35 @@ prod.initSlideshow = function() {
 										overlay.removeClass('pause');
 										overlay.addClass('play');
 									}
-								})
-							})
+								});
+							});
 						});
 					}
 				}
 			}
 		}
 		if(slideshow.hasClass('callToActionOn')) {
-			prod.initializeSVG(jQuery("#featureSlideshow .callToActionArrow"));
+			prod.initializeSVG($ec("#featureSlideshow .callToActionArrow"));
 		}
 	} else if(typeof Rotator != "undefined") {
 		slideshow.parent().parent().removeClass("hasVideo");
-		prod.initializeSVG(jQuery("#featureSlideshow .callToActionArrow"));
+		prod.initializeSVG($ec("#featureSlideshow .callToActionArrow"));
 	}
 	//Load slideshow / gallery
-	if(jQuery('.rotator').length > 0) {
-		var rotatorDivs = jQuery('.rotator').each(function(){
-			if (jQuery(this).parent().find('.slideshowPhotoHolder').children().length > 0) { //has the rotator been loaded?
+	if($ec('.rotator').length > 0) {
+		var rotatorDivs = $ec('.rotator').each(function(){
+			if ($ec(this).parent().find('.slideshowPhotoHolder').children().length > 0) { //has the rotator been loaded?
 				var slides = new Array();
-				jQuery(this).parent().find('.slideshowPhotoHolder').each(function(){
+				$ec(this).parent().find('.slideshowPhotoHolder').each(function(){
 					var slide = new Object();
-					$this = jQuery(this);
+					$this = $ec(this);
 					if($this.attr("additionalclass") != "") {
 						slide.additionalclass = $this.attr("additionalclass");
 					}
-					slide.img = $this.find('.img').html();
+					slide.img = $this.find('.img').prop("href");
+					if($this.find('.srcset')) {
+						slide.srcset = $this.find('.srcset').prop("href");
+					}
 					if($this.find('.title')) {
 						slide.title = $this.find('.title').html();
 					}
@@ -945,7 +863,7 @@ prod.initSlideshow = function() {
 					}
 					if($this.find('.href')) {
 						slide.href = $this.find('.href').text();
-						if(jQuery('body.preview').length) {
+						if($ec('body.preview').length) {
 							slide.href = prod.createPreviewLink(slide.href);
 						}
 					}
@@ -955,7 +873,7 @@ prod.initSlideshow = function() {
 					slides.push(slide);
 					$this.remove();
 				});
-				var slideshowSettings = jQuery(this).parent().find('.slideshowSettings');
+				var slideshowSettings = $ec(this).parent().find('.slideshowSettings');
 				var timingSeconds = slideshowSettings.find('.timingSeconds').html();
 				if(timingSeconds < 1) {
 					timingSeconds = 1;
@@ -966,7 +884,7 @@ prod.initSlideshow = function() {
 						timingSeconds,
 						effect,
 						100,
-						jQuery(this),
+						$ec(this),
 						'backBtn',
 						'fwdBtn',
 						'pauseBtn',
@@ -978,34 +896,112 @@ prod.initSlideshow = function() {
 		});
 	}
 };
+prod.resizeSiteName = function(siteName, failed) {
+	var siteNameBody = siteName.find('#siteNameBody');
+	if (siteNameBody.length === 0) {
+		return;
+	} 
+	var siteNameHeight = siteName.height();
+	var siteNameLines = siteNameBody.find(".line1, .line2");
+	var siteNameContainers = siteNameLines.children(".editText, a");
+	if (!failed) {
+		// Sometimes the old textfill data messes with the calculations
+		siteNameBody.css("flex-wrap", "");
+		siteNameLines.css("font-size", "");
+		siteNameContainers.css("font-size", "");
+	}
+	var siteNameBodyHeight = siteNameBody.height();
+	var siteNameLineWidth1, siteNameLineWidth2, siteNameLineHeight1, siteNameLineHeight2;
+	if (siteNameBody.css('display').indexOf('flex') > -1) {
+		if (siteNameBody.css('flex-direction') === "row") {
+			siteNameLineWidth1 = siteNameBody.find(".line1").width();
+			siteNameLineWidth2 = siteNameBody.find(".line2").width();
+		} else if (siteNameBody.css('flex-direction') === "column") {
+			siteNameBody.css("height", "100%");
+			siteNameLineHeight1 = Math.floor(siteNameBody.find(".line1").height());
+			siteNameLineHeight2 = Math.floor(siteNameBody.find(".line2").height());
+		}
+	} else if (siteNameBodyHeight > siteNameHeight) {
+		siteNameLineHeight1 = siteNameBody.find(".line1").height();
+		siteNameLineHeight2 = siteNameBody.find(".line2").height();
+		siteNameBodySpacing = Math.max(siteNameBodyHeight - siteNameLineHeight1 - siteNameLineHeight2, 0);
+		siteNameLineHeight1 = Math.floor(siteNameLineHeight1 / (siteNameBodyHeight - siteNameBodySpacing) * (siteNameHeight - siteNameBodySpacing));
+		siteNameLineHeight2 = Math.floor(siteNameLineHeight2 / (siteNameBodyHeight - siteNameBodySpacing) * (siteNameHeight - siteNameBodySpacing));
+	}
+	var failedSizing = false;
+	siteNameLines.each(function() {
+		var siteNameLine = $ec(this);
+		var siteNameFontSize = parseFloat(siteNameLine.css('font-size'), 10); // base 10
+		var explicitWidth = null;
+		var explicitHeight = null;
+		if (siteNameLineWidth1) {
+			if (siteNameLine.hasClass("line1")) {
+				explicitWidth = siteNameLineWidth1;
+			} else {
+				explicitWidth = siteNameLineWidth2;
+			}
+		} else if (siteNameLineHeight1) {
+			if (siteNameLine.hasClass("line1")) {
+				explicitHeight = siteNameLineHeight1;
+			} else {
+				explicitHeight = siteNameLineHeight2;
+			}
+		}
+		siteNameLine.textfill({
+			innerTag: ".editText, a",
+			maxFontPixels: Math.max(siteNameFontSize, 12),
+			minFontPixels: 10,
+			explicitWidth: explicitWidth,
+			explicitHeight: explicitHeight || siteNameHeight,
+			changeLineHeight: true,
+			fail: function() {
+				if (!failed) {
+					//An issue happened, set this to the minimum font-size and run again
+					siteNameLine.css('font-size', 10);
+					siteNameLine.children(".editText, a").css('font-size', 10);
+					failedSizing = true;
+				} else if (explicitWidth != null && siteNameBody.css('flex-wrap') !== 'wrap') {
+					// Last ditch effort for inline items, set it to wrap
+					siteNameBody.css('flex-wrap', 'wrap');
+					failedSizing = true;
+				}
+				// If this fails twice in a row, just keep the 10px font-size
+			}
+		});
+		if (failedSizing) {
+			prod.resizeSiteName(siteName, true);
+			return false; // break out of this loop
+		}
+	});
+};
 prod.initSearch = function(element) {
 	element.keyup(function(e) {
 		if(e.keyCode == 13) { //enter key
-			prod.search(jQuery(this));
+			prod.search($ec(this));
 		}
 	});
 };
 prod.initSearchBoxSubmit = function(element) {
 	element.click(function() {
-		var searchBox = jQuery(this).parent().children('.searchBox');
+		var searchBox = $ec(this).parent().children('.searchBox');
 		prod.search(searchBox);
 	});
 };
 prod.initSearchPopup = function(element) {
-	jQuery('#searchPopup').on('click', function(event) {
-		jQuery('#search').addClass('open');
-        setTimeout(function() { jQuery('#header #searchField').get(0).focus()}, 1000);
+	$ec('#searchPopup').on('click', function(event) {
+		$ec('#search').addClass('open');
+        setTimeout(function() { $ec('#header #searchField').get(0).focus(); }, 1000);
 	});
-	jQuery('#search').on('click keyup', function(event) {
+	$ec('#search').on('click keyup', function(event) {
 		if (event.target == this || event.keyCode == 27) {
-			jQuery(this).removeClass('open');
+			$ec(this).removeClass('open');
 		}
 	});
 };
 prod.search = function(element) {
 	var val = element.val();
 	if(val != '') {
-		var baseUrl = jQuery('body').attr('baseUrl');
+		var baseUrl = $ec('body').attr('baseUrl');
 		var url = baseUrl + "search?query=" + val;
 		if (/[\?&]preview$/.test(window.location)) {
 			url += "&preview";
@@ -1014,16 +1010,16 @@ prod.search = function(element) {
 	}
 };
 prod.initEventLocation = function(selector) {
-	jQuery('.toggledLocationContent').hide();
+	$ec('.toggledLocationContent').hide();
 	selector.click(function(e) {
 		e.preventDefault();
-		jQuery('.toggledLocationContent').toggle();
+		$ec('.toggledLocationContent').toggle();
 	});
 };
 prod.initDynamicThumbs = function(selector) {
 	selector.find(".dynamicThumbImage.load").one("load", function() {
-		var $this = jQuery(this);
-		var parent = $this.parent(".dynamicThumb");
+		var $this = $ec(this);
+		var parent = $this.parents(".dynamicThumb");
 		if (!parent.is(":visible")) {
 			return;
 		}
@@ -1072,10 +1068,10 @@ prod.initDynamicThumbs = function(selector) {
 			width = finalZoom * $this.width();
 			height = finalZoom * $this.height();
 		}
-		$this.css( { left: "-" + (finalPosX/finalWidth*100) + "%", top: "-" + (finalPosY/finalHeight*100) + "%", "width": (width/finalWidth*100) + "%", "height": (height/finalHeight*100) + "%"} )
+		$this.css( { left: "-" + (finalPosX/finalWidth*100) + "%", top: "-" + (finalPosY/finalHeight*100) + "%", "width": (width/finalWidth*100) + "%", "height": (height/finalHeight*100) + "%"} );
 	}).each(function() {
 		//fires load event if image was cached
-		if(this.complete){jQuery(this).load();}
+		if(this.complete){$ec(this).trigger("load");}
 	});
 };
 prod.initTabsSection = function(selector) {
@@ -1090,6 +1086,9 @@ prod.initTabsSection = function(selector) {
 };
 prod.initTabsInSection = function(selector) {
 	var tabsBody = selector.find('.sectionBody');
+	tabsBody.find('.focusPointImage').each(function() {
+		prod.initFocusPoint($ec(this));
+	});
 	tabsBody.tabs({
 		create: function( event, ui ) {
 			//if admin, switch height to min height to accommodate editing
@@ -1104,11 +1103,14 @@ prod.initTabsInSection = function(selector) {
 		activate: function( event, ui ) {
 			//when switching tabs, reload iframes to avoid videos playing in tabs that are not visible
 			ui.oldPanel.find('iframe').each(function() {
-				jQuery(this).attr('src', jQuery(this).attr('src'));
+				$ec(this).attr('src', $ec(this).attr('src'));
+			});
+			ui.newPanel.find('.focusPointImage').each(function() {
+				prod.initFocusPoint($ec(this));
 			});
 			//if admin, update height then switch to min height to accommodate editing
 			if(typeof admin != 'undefined') {
-				tabsBody.find('.tabContent').css('min-height', '')
+				tabsBody.find('.tabContent').css('min-height', '');
 				tabsBody.tabs('refresh');
 				ui.newPanel.css('min-height', ui.newPanel.outerHeight());
 				ui.newPanel.height('');
@@ -1120,7 +1122,7 @@ prod.initTabsInSection = function(selector) {
 	});
 	//disable any tabs that are marked delete
 	selector.find('.tabArea .tab.markedDelete').each(function() {
-		tabsBody.tabs('disable', jQuery(this).children('.name').attr('href'));
+		tabsBody.tabs('disable', $ec(this).children('.name').attr('href'));
 	});
 	//activate the first enabled tab
 	prod.activateFirstTab(tabsBody);
@@ -1185,23 +1187,23 @@ prod.initAccordionInSection = function(selector) {
 	}
 };
 prod.tabsToAccordion = function() {
-	jQuery('.tabsSection.tabsView').each(function() {
-		var tabsBody = jQuery(this).find('.sectionBody');
+	$ec('.tabsSection.tabsView').each(function() {
+		var tabsBody = $ec(this).find('.sectionBody');
 		//turn tabs into accordions
 		if(tabsBody.data('ui-tabs')) {
 			clearInterval(tabsBody.attr('data-interval'));
 			tabsBody.tabs('destroy');
-			prod.initAccordionInSection(jQuery(this));
+			prod.initAccordionInSection($ec(this));
 		}
 	});
 };
 prod.accordionToTabs = function() {
-	jQuery('.tabsSection.tabsView').each(function() {
-		var tabsBody = jQuery(this).find('.sectionBody');
+	$ec('.tabsSection.tabsView').each(function() {
+		var tabsBody = $ec(this).find('.sectionBody');
 		//turn accordions into tabs
 		if(tabsBody.data('ui-accordion')) {
 			tabsBody.accordion('destroy');
-			prod.initTabsInSection(jQuery(this));
+			prod.initTabsInSection($ec(this));
 		}
 	});
 };
@@ -1221,6 +1223,77 @@ prod.advanceTab = function(tabsBody) {
 		tabsBody.tabs('option', 'active', index);
 	}
 };
+prod.reinitFocusPoint = function() {
+	//Delay until after css changes have been made
+	setTimeout(function(){
+		$ec(".focusPointImage.fixedHeight").removeClass("fixedHeight");
+		$ec('.focusPointImage').each(function() {
+			prod.initFocusPoint($ec(this));
+		});
+	}, 500);
+};
+prod.initFocusPoint = function(selector) {
+	// Fixed - Constant height / width
+	// Inset - Image height / width
+	// edgeToEdge - Based on monitor height / width
+	var imagePositioner = selector.find('.focusPointImagePositioner');
+	if(imagePositioner.length > 0) {
+		var imageContainer = imagePositioner.find('.focusPointImageContainer');
+		var image = imagePositioner.find('.focusPointImageHolder');
+		if (image.prop('complete')) {
+			image.removeClass('imageLoaded');
+			var heightMultiplier = 1;
+			if(selector.hasClass('sectionHeightSmall')) {
+				heightMultiplier = 0.5;
+			} else if(selector.hasClass('sectionHeightMedium')) {
+				heightMultiplier = 0.75;
+			} else if (selector.hasClass("fixed") && imageContainer.innerHeight() > image.height()) {
+				selector.addClass("fixedHeight");
+			}
+			if(prod.isMobile() && !selector.hasClass("fixed")) {
+				var imageHeight = image.height();
+				if(selector.hasClass('inset')) {
+					imageContainer.css('padding-top', '');
+					if (selector.hasClass('imageModule')) {
+						imageHeight = Math.min(imageHeight, imageContainer.innerHeight());
+					}
+				}
+				imageHeight = (imageHeight / image.width()) * imageContainer.innerWidth() * heightMultiplier;
+				imageContainer.css('height', imageHeight);
+				if(selector.hasClass('twoThirds')) {
+					var overlap = imageHeight / 3;
+					var maxOverlap = selector.find('.headlineContentHolder').innerHeight(); //do not allow overlap to exceed caption height
+					selector.find('.focusPointImageArea').css('margin-bottom', -(Math.min(overlap, maxOverlap)));
+				}
+			} else {
+				imageContainer.css('height', '');
+				if(selector.hasClass('twoThirds')) {
+					selector.find('.focusPointImageArea').css('margin-bottom', '');
+				}
+				if(selector.hasClass('inset')) {
+					var imagePadding = imageContainer.innerHeight() / image.width() * heightMultiplier;
+					if(selector.hasClass('headlineSection')) {
+						imagePadding = Math.min(imagePadding, $ec(window).height() / imageContainer.width()); //do not allow height to exceed monitor height
+					}
+					imageContainer.css('padding-top', (imagePadding * 100) + '%');
+				}
+			}
+			image.addClass('imageLoaded');
+			if(!imageContainer.data('focusPoint')) {
+				imageContainer.focusPoint({
+					reCalcOnWindowResize : selector.hasClass('edgeToEdge')
+				});
+			} else {
+				imageContainer.adjustFocus();
+			}
+		} else {
+			image.on('load', function() {
+				//try again after image has loaded
+				prod.initFocusPoint(selector);
+			});
+		}
+	}
+};
 // absolutely, positively squash an event in the most cross-browser way imaginable, all the way back to IE8
 // see http://www.quirksmode.org/js/events_order.html for a fun read
 prod.killEvent = function (e) {
@@ -1232,36 +1305,42 @@ prod.killEvent = function (e) {
 		e.preventDefault();
 	}
 	return false;
-}
+};
 // eases up/down to the given selector, usually an <a> with an id; mostly useful for returning to the top of a long form after submitting
 // also tries to account for online form field titles when focusing fields with errors
 // NOTE duration is optional, and defaults to 800ms, because that feels about right
 // NOTE only scrolls if the element is not already visible
 prod.scrollTo = function (selector, duration) {
-	var $el = jQuery(selector);
+	var $el = $ec(selector);
 	var $fieldWrapper = $el.closest('.ofField');
 	if($fieldWrapper.length) {
 		$el = $fieldWrapper;
 	}
-	var scrollDistance = $el.offset().top - jQuery('#adminToolbar').outerHeight() - jQuery('#navBackground.navSticky').outerHeight() - 15;
+	var scrollDistance = $el.offset().top - 15;
+	if($ec('#navBackground.navSticky').length) {
+		scrollDistance -= $ec('#navBackground.navSticky').outerHeight();
+	}
+	if($ec('#adminToolbar').length) {
+		scrollDistance -= $ec('#adminToolbar').outerHeight();
+	}
 	if ($fieldWrapper.length || !$el.visible()) {
-		jQuery('html,body').animate({scrollTop: scrollDistance}, duration || 800);
+		$ec('html,body').animate({scrollTop: scrollDistance}, duration || 800);
 	}
 };
 prod.onlineFormSubmitted = false;
 
 prod.initReplicatorCounters = function (form) {
 	function init() {
-		var el = jQuery(this);
+		var el = $ec(this);
 		var n = +el.val();
 		if (el.val() !== '') {
 			// allow deletion of the field
 			if (n > +el.attr('max')){el.val(n = +el.attr('max'));}else if (n < +el.attr('min')){el.val(n = +el.attr('min'));}
 		}
 		el.closest('li').siblings('.ofFieldGroup').each(function () {
-			!!n ? jQuery(this).removeClass('ofReplicatorHidden') && n-- : jQuery(this).addClass('ofReplicatorHidden');
+			!!n ? $ec(this).removeClass('ofReplicatorHidden') && n-- : $ec(this).addClass('ofReplicatorHidden');
 		});
-		jQuery(document).trigger('ofReplicatorInit');
+		$ec(document).trigger('ofReplicatorInit');
 		prod.paymentForm.init();
 	}
 	var ctrs = form.find('.replicatorCounter');
@@ -1269,30 +1348,122 @@ prod.initReplicatorCounters = function (form) {
 	ctrs.off('blur').on('blur', function () {
 		// this field is required, but the user is allowed to clear it
 		// fill a 0 if the user clears it and leaves it blank
-		if (jQuery(this).val() === ''){jQuery(this).val('0');}
+		if ($ec(this).val() === ''){$ec(this).val('0');}
 	});
 	ctrs.each(init);
 };
 prod.clearHiddenReplicatorFields = function (form) {
 	form.find('.ofReplicatorHidden').find('input, textarea, select').each(function () {
-		jQuery(this).val('');
-		jQuery(this).prop('checked', false);
-		jQuery(this).find('option').first().prop('selected', true);
-		jQuery(this).prop('disabled', true);
+		$ec(this).val('');
+		$ec(this).prop('checked', false);
+		$ec(this).find('option').first().prop('selected', true);
+		$ec(this).prop('disabled', true);
 	});
 };
 prod.initOnlineForm = function (selector) {
 	var onlineForm = selector.find('#onlineForm');
+	var form = onlineForm.find('#saveOnlineForm');
+	var targetSubmitButton = null;
 	onlineForm.find('.date').datepicker({
         showOtherMonths: true,
         selectOtherMonths: true
     });
-	var recaptchaKey = null;
-	if(onlineForm.find('#googleRecaptchaScript').length > 0) {
-		recaptchaKey = onlineForm.find('#googleRecaptchaScript').data('sitekey');
-	}
-
 	prod.initReplicatorCounters(onlineForm);
+	
+	var recaptchaKeyV2 = null;
+	var recaptchaKeyV3 = null;
+	var widgetId = null;
+	
+	var submit = function (token) {
+		try {
+			// build the payload
+			var paymentTotal = prod.paymentForm.getTotal();
+			var paymentSubtotal = prod.paymentForm.getAggregatedSubtotal();
+	
+			var dataToSend = prod.serializeForm(form);
+			dataToSend.total = paymentTotal;
+			dataToSend.subtotal = paymentSubtotal;
+			if(token !== null) {
+				dataToSend.recaptchaToken = token;
+			}
+			var data = JSON.stringify(dataToSend);
+	
+			var saveUrl = onlineForm.attr('postUrl');
+	
+			var isPayLater = $ec(targetSubmitButton).hasClass('payLater');
+			if(isPayLater) {
+				saveUrl += '?paylater=true';
+			}
+	
+			prod.postForm(saveUrl, {data: data}, function (response) {
+				// success
+				var json = JSON.parse(response);
+				if(json.hasOwnProperty('captchaFailure')) {
+					prod.onlineFormSubmitted = false;
+					var message = 'Captcha challenge failed. Please refresh this page and try again.';
+					onlineForm.html(message);
+					prod.scrollTo('#formTop');
+					return;
+				}
+				if(json.hasOwnProperty('submitMessage') || (json.hasOwnProperty('paymentURL') && paymentTotal === 0) || isPayLater) {
+					// regular form, or no payment due, or user selected "Pay Later"
+					var message = (json.submitMessage || 'Thank you. Your form has been submitted.');
+					if(json.hasOwnProperty('paymentURL')) {
+						if(paymentTotal) {
+							message += '<br><br><b>Total Due:</b> $' + prod.formatCurrency(paymentTotal);
+							message += '<br><br><a href="' + json.payLaterLink + '">Click here to complete your payment</a>';
+						} else if ($ec('.paymentAmount,.paymentMultiplier').length) {
+							message += '<br><br><b>Total Paid:</b> $0.00';
+						}
+					}
+					onlineForm.html(message);
+				} else if(json.hasOwnProperty('paymentURL')) {
+					// payment form
+					$ec('#saveOnlineForm').hide();
+					$ec('#onlineFormSidePanel').remove();
+					if(json.hasOwnProperty('paymentParams')) {
+						$ec('#paymentParameters').html(json.paymentParams);
+					}
+					$ec('#paymentForm').show().attr('src', prod.getUrlAbsoluteOrRelative(json.paymentURL));
+				}
+				prod.scrollTo('#formTop');
+			}, function (jqxhr, status, error) {
+				// error
+				console.log('error submitting online form');
+				prod.onlineFormSubmitted = false;
+				var message = 'There was an error submitting your form. An error report has been sent. Please refresh this page and try again.';
+				if(error || status) {
+					message += '<br><br>';
+					if(error) {
+						message += error;
+						if(status) {
+							message += ' (' + status + ')';
+						}
+					} else if(status) {
+						message += status;
+					}
+				}
+				onlineForm.html(message);
+				prod.scrollTo('#formTop');
+				prod.paymentFormError(message);
+			});
+		} catch(err) {
+			console.log(err);
+		}
+	}
+	if(onlineForm.find('#googleRecaptchaScript').length > 0) {
+		recaptchaKeyV2 = onlineForm.find('#googleRecaptchaScript').data('sitekeyv2');
+		recaptchaKeyV3 = onlineForm.find('#googleRecaptchaScript').data('sitekeyv3');
+		if(recaptchaKeyV2 != null) {
+			grecaptcha.ready(function() {
+				widgetId = grecaptcha.render(onlineForm.find('.onlineFormCaptchaPlaceholder')[0], {
+					'sitekey' : recaptchaKeyV2,
+					'callback' : submit,
+					'size' : 'invisible'
+				});
+			});
+		}
+	}
 	onlineForm.find('.submitForm').click(function () {
 		// keep the form from getting submitted twice
 		if(prod.onlineFormSubmitted) {
@@ -1300,25 +1471,23 @@ prod.initOnlineForm = function (selector) {
 		}
 		prod.onlineFormSubmitted = true;
 
-		var target = this;
+		targetSubmitButton = this;
 		// determine whether or not the limit broke under our feet
-		jQuery.get(onlineForm.data('checklimiturl')).done(function (data) {
+		$ec.get(onlineForm.data('checklimiturl')).done(function (data) {
 			if(data.limit === true) {
-				jQuery('#onlineForm').addClass('submissionLimitReached');
+				$ec('#onlineForm').addClass('submissionLimitReached');
 			} else {
-				validateAndSubmit.call(target);
+				validateAndSubmit.call(targetSubmitButton);
 			}
 		}).fail(function () {
 			// fail-open by default
-			validateAndSubmit.call(target);
+			validateAndSubmit.call(targetSubmitButton);
 		});
 
 		function validateAndSubmit() {
-			// validate the form
-			var form = onlineForm.find('#saveOnlineForm');
 			// strip commas from displayed numeric types to assist the validator
 			form.find('.paymentDataAmount').siblings().find('input[type="text"]').each(function () {
-				jQuery(this).val(jQuery(this).val().replace(/\,/g, ''));
+				$ec(this).val($ec(this).val().replace(/\,/g, ''));
 			});
 			prod.clearHiddenReplicatorFields(form);
 			if(!prod.validateForm(form)) {
@@ -1326,16 +1495,22 @@ prod.initOnlineForm = function (selector) {
 				prod.onlineFormSubmitted = false;
 				return;
 			} else {
-				jQuery(target).text('Sending...');
+				$ec(targetSubmitButton).text('Sending...');
 			}
 
-			if(recaptchaKey !== null) {
+			if(recaptchaKeyV2 != null || recaptchaKeyV3 != null) {
 				if(typeof grecaptcha !== 'undefined') {
-					grecaptcha.ready(function() {
-						grecaptcha.execute(recaptchaKey, {action: 'submit'}).then(function(token) {
-							submit(token);
+					if(recaptchaKeyV2 != null) {
+						grecaptcha.ready(function() {
+							grecaptcha.execute(widgetId);
 						});
-					});
+					} else {
+						grecaptcha.ready(function() {
+							grecaptcha.execute(recaptchaKeyV3, {action: 'submit'}).then(function(token) {
+								submit(token);
+							});
+						});
+					}
 				} else {
 					//script did not load properly for some reason -- reject submission
 					console.log('recaptcha script missing');
@@ -1346,94 +1521,26 @@ prod.initOnlineForm = function (selector) {
 				//form captcha is disabled for site
 				submit(null);
 			}
-
-			function submit(token) {
-				// build the payload
-				var paymentTotal = prod.paymentForm.getTotal();
-				var paymentSubtotal = prod.paymentForm.getAggregatedSubtotal();
-
-				var dataToSend = prod.serializeForm(form);
-				dataToSend.total = paymentTotal;
-				dataToSend.subtotal = paymentSubtotal;
-				if(token !== null) {
-					dataToSend.recaptchaToken = token;
-				}
-				var data = JSON.stringify(dataToSend);
-
-				var saveUrl = onlineForm.attr('postUrl');
-
-				var isPayLater = jQuery(target).hasClass('payLater');
-				if(isPayLater) {
-					saveUrl += '?paylater=true';
-				}
-
-				prod.postForm(saveUrl, {data: data}, function (response) {
-					// success
-					var json = jQuery.parseJSON(response);
-					if(json.hasOwnProperty('captchaFailure')) {
-						prod.onlineFormSubmitted = false;
-						var message = 'Captcha challenge failed. Please refresh this page and try again.';
-						onlineForm.html(message);
-						prod.scrollTo('#formTop');
-						return;
-					}
-					if(json.hasOwnProperty('submitMessage') || (json.hasOwnProperty('paymentURL') && paymentTotal === 0) || isPayLater) {
-						// regular form, or no payment due, or user selected "Pay Later"
-						var message = (json.submitMessage || 'Thank you. Your form has been submitted.');
-						if(json.hasOwnProperty('paymentURL')) {
-							if(paymentTotal) {
-								message += '<br><br><b>Total Due:</b> $' + prod.formatCurrency(paymentTotal);
-								message += '<br><br><a href="' + json.payLaterLink + '">Click here to complete your payment</a>';
-							} else if (jQuery('.paymentAmount,.paymentMultiplier').length) {
-								message += '<br><br><b>Total Paid:</b> $0.00';
-							}
-						}
-						onlineForm.html(message);
-					} else if(json.hasOwnProperty('paymentURL')) {
-						// payment form
-						jQuery('#saveOnlineForm').hide();
-						jQuery('#onlineFormSidePanel').remove();
-						if(json.hasOwnProperty('paymentParams')) {
-							jQuery('#paymentParameters').html(json.paymentParams);
-						}
-						jQuery('#paymentForm').show().attr('src', prod.getUrlAbsoluteOrRelative(json.paymentURL));
-					}
-					prod.scrollTo('#formTop');
-				}, function (jqxhr, status, error) {
-					// error
-					console.log('error submitting online form');
-					prod.onlineFormSubmitted = false;
-					var message = 'There was an error submitting your form. An error report has been sent. Please refresh this page and try again.';
-					if(error || status) {
-						message += '<br><br>';
-						if(error) {
-							message += error;
-							if(status) {
-								message += ' (' + status + ')';
-							}
-						} else if(status) {
-							message += status;
-						}
-					}
-					onlineForm.html(message);
-					prod.scrollTo('#formTop');
-					prod.get("/ecpayments/error?message=" + message, null, null, null);
-				});
-			}
+		}
+	});
+	onlineForm.find('.submitForm').on('keypress', function(e) {
+		var code = e.keyCode || e.which;
+		if (code == 13) {
+			$ec(this).click();
 		}
 	});
 
 	// prevent clicks on help popups from being captured by the body and errantly dismissing help dialogs
 	// also, prevent (possible) double registration by offing before we on
-	jQuery('body').off('click', '.fieldHelp').on('click', '.fieldHelp', function (e) {
-		if (jQuery(e.target).not('a').length) {
+	$ec('body').off('click', '.fieldHelp').on('click', '.fieldHelp', function (e) {
+		if ($ec(e.target).not('a').length) {
 			return prod.killEvent(e);
 		}
 	});
 
 	// register help popup listeners
-	jQuery('.ofField').each(function () {
-		prod.activateInfo(jQuery(this));
+	$ec('.ofField').each(function () {
+		prod.activateInfo($ec(this));
 	});
 };
 
@@ -1441,18 +1548,22 @@ prod.activateInfo = function (field) {
 	field.find('.fieldHelpButton,.infoButton').off('click').click(function (e) {
 		prod.killEvent(e);
 		// since the help context is toggleable and we've killed the click event, nix any other visible contexts
-		jQuery('.fieldHelp').fadeOut(400);
-		var button = jQuery(this);
+		$ec('.fieldHelp').fadeOut(400);
+		var button = $ec(this);
 		var help = button.closest('.inputHolder,.infoHolder').find('.fieldHelp');
 		var pos = button.position();
 		if(button.is('.fieldHelpButton')) {
-			help.css('left', pos.left + button.outerWidth() + 5).css('top', pos.top);
+			help.css('right', 'auto').css('left', pos.left + button.outerWidth() + 5).css('top', pos.top);
+			if (help.outerWidth() < 200) {
+				help.css('right', help.outerWidth() + 2 * (button.outerWidth() + 5)).css('left', 'auto');
+				help.addClass("rightAligned");
+			}
 		} else { // button.is('.infoButton.')
 			help.css('right', 0).css('top', pos.top + button.outerHeight() + 10);
 		}
 		if (help.is(':hidden')) {
 			help.fadeIn(400);
-			jQuery('body').one('click', function () {
+			$ec('body').one('click', function () {
 				help.fadeOut(400);
 			});
 		} else {
@@ -1461,23 +1572,27 @@ prod.activateInfo = function (field) {
 	});
 };
 
-prod.activateCountdown = function (field) {
-	function updateCountdown() {
-		var countdown = jQuery(this).parents('.inputHolder').find('.fieldCountdown');
-		var remaining = parseInt(countdown.attr('count')) - jQuery(this).val().length;
-		countdown.find('.fieldCountdownNumber').text(remaining);
+prod.activateCount = function (field) {
+	function updateCount() {
+		var $el = $ec(this);
+		var counter = $el.parents('.inputHolder').find('.fieldCounter');
+		counter.find('.fieldCounterNumber').text($el.val().length);
 	}
-	field.find('textarea,input').each(updateCountdown);
-	field.find('textarea,input').on('input', updateCountdown);
+	field.find('textarea,input').each(updateCount);
+	field.find('textarea,input').on('input', updateCount);
 };
 
 prod.validateForm = function(form) {
+	form.find('input[required],textarea[required]').each(function(){
+		//trim whitespace from required fields
+		$ec(this).val($ec(this).val().trim());
+	});
 	// TODO: If form[0].checkValidity does not exist, assumes the form is valid.
 	var valid = !form[0].checkValidity || form[0].checkValidity();
 	// Check checkbox groups
 	if (valid) {
 		form.find('.ofField').not('.ofFieldGroup, .markedDelete, .ofReplicatorHidden').find('.checkbox.requiredCheckbox').each(function() {
-			if(valid && !(jQuery(this).closest('.markedDelete').length || jQuery(this).closest('.ofReplicatorHidden').length || jQuery(this).find(':checkbox:checked').length != 0)) {
+			if(valid && !($ec(this).closest('.markedDelete').length || $ec(this).closest('.ofReplicatorHidden').length || $ec(this).find(':checkbox:checked').length != 0)) {
 				valid = false;
 			}
 		});
@@ -1487,13 +1602,14 @@ prod.validateForm = function(form) {
 
 	if(!valid) {
 		form.find('.ofField').not('.ofFieldGroup, .markedDelete, .ofReplicatorHidden').find('input, textarea, select').each(function() {
-			var parent = jQuery(this).parents('.inputHolder');
+			var $this = $ec(this);
+			var parent = $this.parents('.inputHolder');
 			parent.removeClass('requiredError');
 			parent.removeClass('validateError');
-			if(!(jQuery(this).closest('.markedDelete').length || jQuery(this).closest('.ofReplicatorHidden').length || this.validity.valid)) {
+			if(!($this.closest('.markedDelete').length || $this.closest('.ofReplicatorHidden').length || this.validity.valid)) {
 				returnValid = false;
 				if(!invalidField) {
-					invalidField = jQuery(this);
+					invalidField = $this;
 				}
 				if(this.validity.valueMissing) {
 					parent.addClass('requiredError');
@@ -1504,13 +1620,25 @@ prod.validateForm = function(form) {
 		});
 		// Check checkbox groups
 		form.find('.ofField').not('.ofFieldGroup, .markedDelete, .ofReplicatorHidden').find('.inputHolder.checkbox.requiredCheckbox').each(function() {
-			var parent = jQuery(this);
-			parent.removeClass('requiredError');
-			parent.removeClass('validateError');
-			if(!(jQuery(this).closest('.markedDelete').length || jQuery(this).closest('.ofReplicatorHidden').length || jQuery(this).find(':checkbox:checked').length != 0)) {
+			var $this = $ec(this);
+			$this.removeClass('requiredError');
+			$this.removeClass('validateError');
+			if(!($this.closest('.markedDelete').length || $this.closest('.ofReplicatorHidden').length || $this.find(':checkbox:checked').length != 0)) {
 				returnValid = false;
 				if(!invalidField) {
-					invalidField = jQuery(this);
+					invalidField = $this;
+				}
+				$this.addClass('requiredError');
+			}
+		});
+		// Check replicator counters
+		form.find('.ofField.ofReplicator .replicatorCounter').each(function() {
+			var $this = $ec(this);
+			var parent = $ec(this).parents('.inputHolder');
+			if($this.val() < $this.prop('min')) {
+				returnValid = false;
+				if(!invalidField) {
+					invalidField = $this;
 				}
 				parent.addClass('requiredError');
 			}
@@ -1523,10 +1651,10 @@ prod.validateForm = function(form) {
 };
 prod.initFlocknoteSignup = function (selector) {
 	selector.find('form').submit(function () {
-		jQuery('.flocknoteSignupsSubmitSuccess').css('display', 'inline');
+		$ec('.flocknoteSignupsSubmitSuccess').css('display', 'inline');
 	});
 	selector.find('input').on('input', function () {
-		jQuery('.flocknoteSignupsSubmitSuccess').css('display', 'none');
+		$ec('.flocknoteSignupsSubmitSuccess').css('display', 'none');
 	});
 	var $email = selector.find('#email');
 	var $phone = selector.find('#mobile_phone');
@@ -1542,12 +1670,12 @@ prod.initInstagramEmbed = function(selector) {
 		if(window.instgrm) {
 			window.instgrm.Embeds.process();
 		} else {
-			jQuery.getScript('//platform.instagram.com/en_US/embeds.js', function() {
+			$ec.getScript('//platform.instagram.com/en_US/embeds.js', function() {
 				window.instgrm.Embeds.process();
 			});
 		}
 	}
-}
+};
 prod.initLiveCountdown = function (selector) {
 	var countdown = selector.find('.liveCountdown');
 	var daysSpan = countdown.find('.days');
@@ -1607,6 +1735,7 @@ prod.initLiveCountdown = function (selector) {
 // add entries here as necessary
 // TODO is it possible to select resizable elements by class, or only resize modules that need it, rather than add one function/call per resizable element?
 prod.resizeModules = function(selector) {
+	prod.resizeSiteName(selector.find('#siteName'));
 	prod.resizeWidthAndHeight(selector.find('.video.youtube'));
 	prod.resizeWidthAndHeight(selector.find('.video.vimeo'));
 	prod.resizeFacebook(selector.find('.facebookModule'));
@@ -1619,7 +1748,7 @@ prod.resizeModules = function(selector) {
 	}
 
 	// NOTE the code that cares about this event exists in admin_edit.js
-	jQuery(document).trigger('resizeOnlineForm');
+	$ec(document).trigger('resizeOnlineForm');
 };
 prod.getModuleWidth = function(element) {
 	var parent = element.parents('.moduleInner');
@@ -1629,7 +1758,7 @@ prod.getModuleWidth = function(element) {
 };
 prod.resizeWidthAndHeight = function(selector) {
 	selector.each(function() {
-		var element = jQuery(this);
+		var element = $ec(this);
 		var origWidth = element.attr("width");
 		if(origWidth === undefined) { origWidth = element.width(); }
 		var origHeight = element.attr("height");
@@ -1642,7 +1771,7 @@ prod.resizeWidthAndHeight = function(selector) {
 };
 prod.resizeWidth = function(selector) {
 	selector.each(function() {
-		var element = jQuery(this);
+		var element = $ec(this);
 		var modWidth = prod.getModuleWidth(element);
 		element.width(modWidth);
 	});
@@ -1660,7 +1789,7 @@ function scaleFacebookIFrame(mod, frame, iframeWidth, scaleTarget) {
 prod.scaleFacebook = function(selector) {
 	selector.each(function() {
 		// Facebook plugin iframe lives inside a module
-		var el       = jQuery(this),
+		var el       = $ec(this),
 			fbModule = el.find('.facebook'),
 			fbFrame  = el.find('.fb-page iframe');
 
@@ -1688,14 +1817,14 @@ prod.resizeFacebook = function(selector) {
 		//reload the iframe's content with a new target width - this is because the facebook plugin is a pain
 		var src = iframe.attr('src');
 		var width = selector.find('.fb-page').parent().width();
-		src = src.replace(/width=\d*/g, 'width=' + width);
+		src = src.replace(/width=\d*/g, 'width=' + Math.floor(width));
 		iframe.attr('src', src);
 	}
 	prod.scaleFacebook(selector);
 };
 prod.resizeEmbed = function(selector) {
 	selector.each(function() {
-		var $this = jQuery(this);
+		var $this = $ec(this);
 		if($this.hasClass('RESIZE_ALL')) {
 			prod.resizeWidthAndHeight($this.find('iframe'));
 		} else if($this.hasClass('RESIZE_WIDTH')) {
@@ -1704,9 +1833,9 @@ prod.resizeEmbed = function(selector) {
 	});
 };
 prod.sendPaymentMessage = function(message) {
-	var iframe = jQuery('.paymentModule:not(.markedDelete) iframe, .onlineFormModule iframe, .paymentFormContainer iframe')[0];
+	var iframe = $ec('.paymentModule:not(.markedDelete) iframe, .onlineFormModule iframe#paymentForm, .paymentFormContainer iframe')[0];
 	if(!iframe) {
-		iframe = jQuery('.paymentModule iframe, .onlineFormModule iframe, .paymentFormContainer iframe')[0];
+		iframe = $ec('.paymentModule iframe, .onlineFormModule iframe#paymentForm, .paymentFormContainer iframe')[0];
 	}
 	if(iframe) {
 		var iframeWindow = iframe.contentWindow? iframe.contentWindow : iframe.contentDocument.defaultView;
@@ -1718,7 +1847,7 @@ prod.sendFirstPaymentMessagingInit = function() {
 	prod.sendPaymentMessage("paymentMessagingInit");
 };
 prod.paymentMessagingInit = function() {
-	var settings = jQuery('.paymentModule #paymentParameters, .onlineFormModule #paymentParameters, .paymentFormContainer #paymentParameters').html();
+	var settings = $ec('.paymentModule #paymentParameters, .onlineFormModule #paymentParameters, .paymentFormContainer #paymentParameters').html();
 	prod.sendPaymentMessage("settings=" + settings);
 	prod.initParentSwipe && prod.initParentSwipe();
 };
@@ -1745,23 +1874,23 @@ prod.sendPaymentSubmit = function(jsonMessage) {
 	prod.sendPaymentMessage("submitForm");
 };
 prod.setupPaymentMessaging = function() {
-	jQuery(window).on("message onmessage", function(e) {
+	$ec(window).off("message onmessage").on("message onmessage", function(e) {
 		var data = e.originalEvent.data;
 		if (typeof data.indexOf !== "undefined") {
 			if(data.indexOf("height=") > -1) {
 				var height = data.replace("height=", "");
-				jQuery('.paymentModule:not(.markedDelete) iframe, .onlineFormModule iframe, iframe#paymentForm').height(height);
-				jQuery('.paymentModule.markedDelete iframe').height(0);
+				$ec('.paymentModule:not(.markedDelete) iframe, iframe#paymentForm').height(height);
+				$ec('.paymentModule.markedDelete iframe').height(0);
 			} else if(data.indexOf("scrollTop") > -1) {
 				prod.scrollTo('#formTop', 800);
 			} else if(data.indexOf("paymentMessagingInit") > -1) {
 				prod.paymentMessagingInit();
 			} else if(data.indexOf("paymentMinMessagingInit") > -1) {
-				var styling = jQuery('#paymentMinimalStyling').text();
+				var styling = $ec('#paymentMinimalStyling').text();
 				prod.sendSetStyling(styling);
 			} else if(data.indexOf("paymentOrderID=") > -1) {
 				var orderID = data.replace("paymentOrderID=", "");
-				jQuery('#ORDER_ID').val(orderID);
+				$ec('#ORDER_ID').val(orderID);
 			} else if(data.indexOf("orgID=") > -1) {
 				var orgID = data.replace("orgID=", "");
 				prod.setURLPaymentOrgID(orgID);
@@ -1792,7 +1921,12 @@ prod.paymentFormSuccess = function() {
 	prod.paymentCustom.paymentSuccess();
 };
 prod.paymentFormError = function(error) {
-	jQuery.post("/ecpayments/error", "message="+error);
+	$ec.ajax({
+		type: "POST",
+		headers: prod.csrfHeaders(),
+		url: "/ecpayments/error",
+		data: "message="+error
+	});
 };
 prod.ccType = function(ccType) {
 	prod.paymentCustom.ccType(ccType);
@@ -1819,16 +1953,16 @@ prod.setURLPaymentOrgID = function(orgID) {
 		}
 	}
 	window.history.pushState('', document.title, loc);
-}
+};
 
 prod.createTwitter = function(selector) {
 	if(selector.length === 0) {
 		return;
 	}
 	selector.find('.twitter-timeline').remove();
-	jQuery('#twitter-wjs').remove();
+	$ec('#twitter-wjs').remove();
 	var newTwitterLink = selector.find('.twitter-timeline-backup').clone().removeClass('twitter-timeline-backup').addClass('twitter-timeline');
-	jQuery('.twitter-timeline-backup').after(newTwitterLink);
+	$ec('.twitter-timeline-backup').after(newTwitterLink);
 	var newTwitterScript = selector.find('script').clone();
 	newTwitterLink.after(newTwitterScript);
 
@@ -1848,9 +1982,10 @@ prod.createTwitter = function(selector) {
 prod.paymentForm = (function () {
 	// registries of payment fields
 	var amounts, multipliers;
+	let debouncePrint = debounce(printItemizedList, 300);
 
 	function calculateLineItemTotal(lineItem) {
-		return parseFloat((lineItem.amount * ((lineItem.multiplier && jQuery.isNumeric(lineItem.multiplier.amount)) ? lineItem.multiplier.amount : 1)).toFixed(2));
+		return parseFloat((lineItem.amount * ((lineItem.multiplier && $ec.isNumeric(lineItem.multiplier.amount)) ? lineItem.multiplier.amount : 1)).toFixed(2));
 	}
 
 	function calculateTotal(list) {
@@ -1859,7 +1994,7 @@ prod.paymentForm = (function () {
 		}, 0);
 	}
 
-	function fieldChange(field, init) {
+	function fieldChange(field) {
 		var element = field.forField;
 		if (element.is('input[type="text"]')) {
 			var val;
@@ -1895,15 +2030,11 @@ prod.paymentForm = (function () {
 				}
 			}
 		}
-		// no simple negation because init is not always passed
-		if(init !== true) {
-			printItemizedList();
-		}
 	}
 
 	function getItemizedList() {
 		return amounts.filter(function (item) {
-			return item.amount && !item.forField.closest('.markedDelete').length && !item.forField.closest('.ofReplicatorHidden').length;
+			return item.amount && !item.forField.closest('.markedDelete').length && !item.forField.closest('.ofReplicatorHidden').length && (!item.multiplier || item.multiplier.amount !== 0);
 		});
 	}
 
@@ -1917,33 +2048,33 @@ prod.paymentForm = (function () {
 		amounts = [];
 		multipliers = {};
 
-		var form = jQuery('#saveOnlineForm');
+		var form = $ec('#saveOnlineForm');
 		if(!form.length) {
 			return;
 		}
-		jQuery('#paymentsItemizedTotal').hide();
-		jQuery('#paymentForm').hide();
+		$ec('#paymentsItemizedTotal').hide();
+		$ec('#paymentForm').hide();
 
 		form.find('.paymentDataMultiplier').each(function () {
-			initMultiplierField(jQuery(this));
+			initMultiplierField($ec(this));
 		});
 		form.find('.paymentDataAmount').each(function () {
-			initAmountField(jQuery(this));
+			initAmountField($ec(this));
 		});
-		jQuery('.asCurrency').each(function () {
-			jQuery(this).text(prod.formatCurrency(jQuery(this).text(), true, true));
+		$ec('.asCurrency').each(function () {
+			$ec(this).text(prod.formatCurrency($ec(this).text(), true, true));
 		});
-		printItemizedList();
+		debouncePrint();
 
 		// change submit button text depending on the existence and/or visibility of a payment field
 		var atLeastOneVisible = amounts.reduce(function (a, c) { return a || !c.forField.closest('.ofReplicatorHidden').length; }, false);
 		var nonReplicatorMultipliers = Object.keys(multipliers).reduce(function (a, c) { return a || !multipliers[c].forField.is('.replicatorCounter'); }, false);
-		if (jQuery('.paymentSubmit').length && ((amounts.length && atLeastOneVisible) || nonReplicatorMultipliers)) {
-			jQuery('.normalSubmit').hide();
-			jQuery('.paymentSubmit').show();
+		if ($ec('.paymentSubmit').length && ((amounts.length && atLeastOneVisible) || nonReplicatorMultipliers)) {
+			$ec('.normalSubmit').hide();
+			$ec('.paymentSubmit').show();
 		} else {
-			jQuery('.paymentSubmit').hide();
-			jQuery('.normalSubmit').show();
+			$ec('.paymentSubmit').hide();
+			$ec('.normalSubmit').show();
 		}
 	}
 
@@ -1954,14 +2085,15 @@ prod.paymentForm = (function () {
 		var multiplierId = field.data('multiplier');
 
 		if (forField) {
-			fieldObj.forField = jQuery('#' + forField.replace(/([!"#$%&'()*+,./:;<=>?@[\\\]^`{|}~])/g, '\\$1'));
+			fieldObj.forField = $ec('#' + forField.replace(/([!"#$%&'()*+,./:;<=>?@[\\\]^`{|}~])/g, '\\$1'));
 			if (fieldObj.forField.closest('.markedDelete').length) {
 				return;
 			}
 			// init defaults for non-static fields
-			fieldChange(fieldObj, true);
+			fieldChange(fieldObj);
 			fieldObj.forField.change(function () {
 				fieldChange(fieldObj);
+				debouncePrint();
 			});
 		}
 		if (description){fieldObj.description = description;}
@@ -1985,14 +2117,15 @@ prod.paymentForm = (function () {
 
 		if (forField) {
 			fieldObj.id = forField.split('_')[1];
-			fieldObj.forField = jQuery('#' + forField);
+			fieldObj.forField = $ec('#' + forField);
 			if (fieldObj.forField.closest('.markedDelete').length) {
 				return;
 			}
 			// init defaults for non-static fields
-			fieldChange(fieldObj, true);
+			fieldChange(fieldObj);
 			fieldObj.forField.change(function () {
 				fieldChange(fieldObj);
+				debouncePrint();
 			});
 		}
 		if (description){fieldObj.description = description;}
@@ -2002,14 +2135,14 @@ prod.paymentForm = (function () {
 
 	function printItemizedList() {
 		var list = getItemizedList();
-		var $el = jQuery('#paymentsItemizedOrder');
+		var $el = $ec('#paymentsItemizedOrder');
 		$el.find('.subtotals').empty();
 		if (!list.length) {
 			$el.hide();
 		} else {
 			$el.show();
 			var total = calculateTotal(list);
-			jQuery('#paymentsTotal').text(prod.formatCurrency((total < 0 ? 0 : total), false, true));
+			$ec('#paymentsTotal').text(prod.formatCurrency((total < 0 ? 0 : total), false, true));
 			// no need to show an itemized list for one item
 			if (list.length > 1 || list.filter(function (item) { return item.multiplier; }).length >= 1) {
 				list.forEach(function (item) {
@@ -2017,22 +2150,22 @@ prod.paymentForm = (function () {
 					if (item.forField.closest('.ofReplicator').length) {
 						leader = item.forField.closest('.ofFieldGroup').find('.groupName').text() + '\u00a0\u2013\u00a0';
 					}
-					var $subtotal = jQuery('#subtotalTemplate').clone().removeAttr('id').addClass('subtotalLineItem').show();
+					var $subtotal = $ec('#subtotalTemplate').clone().removeAttr('id').addClass('subtotalLineItem').show();
 					$subtotal.find('.description').text(leader + (item.value ? (item.description + ':') : item.description));
 					$subtotal.find('.selectedValue').text(item.value ? (item.value) : '');
-					$subtotal.find('.multiplier').text((item.multiplier && jQuery.isNumeric(item.multiplier.amount)) ? (prod.formatCurrency(item.amount, false, true) + '\u00a0\u00d7\u00a0' + item.multiplier.amount) : '');
+					$subtotal.find('.multiplier').text((item.multiplier && $ec.isNumeric(item.multiplier.amount)) ? (prod.formatCurrency(item.amount, false, true) + '\u00a0\u00d7\u00a0' + item.multiplier.amount) : '');
 					$subtotal.find('.subtotal').text(prod.formatCurrency(calculateLineItemTotal(item), false, true));
-					jQuery('.subtotals').append($subtotal);
+					$ec('.subtotals').append($subtotal);
 				});
 			}
 			if (total < 0) {
 				// add an adjustment item to the subtotal to account for the added amount
-				var $subtotal = jQuery('#subtotalTemplate').clone().removeAttr('id').addClass('subtotalLineItem negativeAdjustment').show();
+				var $subtotal = $ec('#subtotalTemplate').clone().removeAttr('id').addClass('subtotalLineItem negativeAdjustment').show();
 				$subtotal.find('.description').text('Adjustment');
 				$subtotal.find('.subtotal').text(prod.formatCurrency((total * -1), false, true));
-				jQuery('.subtotals').append($subtotal);
+				$ec('.subtotals').append($subtotal);
 			} else {
-				jQuery('.negativeAdjustment').remove();
+				$ec('.negativeAdjustment').remove();
 			}
 		}
 	}
@@ -2059,7 +2192,7 @@ prod.paymentForm = (function () {
 				rtn += item.value ? ('-' + item.value.toString().replace(/[:;]/g, ' ')) : '';
 				rtn += ': ';
 				rtn += item.amount;
-				if (item.multiplier && jQuery.isNumeric(item.multiplier.amount)) {
+				if (item.multiplier && $ec.isNumeric(item.multiplier.amount)) {
 					rtn += ' x ';
 					rtn += item.multiplier.amount;
 					rtn += ' = ';
@@ -2068,7 +2201,7 @@ prod.paymentForm = (function () {
 				return rtn;
 			}).join('; ');
 			// adjustments for negative amounts are not listed in the field object and need to be handled manually
-			var $adjustment = jQuery('.negativeAdjustment');
+			var $adjustment = $ec('.negativeAdjustment');
 			if ($adjustment.length) {
 				aggregatedList += '; Adjustment: ';
 				aggregatedList += $adjustment.find('.subtotal').text().replace('$','');
@@ -2106,48 +2239,48 @@ prod.openLogin = function() {
 
 prod.initializeSVG = function(selector) {
 	selector.each(function() {
-		var icon = jQuery(this);
+		var icon = $ec(this);
 		var url = icon.css('background-image').replace(/^url\(['"]?/,'').replace(/['"]?\)$/,'');
-		var index = 0;
+		var index = url.indexOf("?");
 		var ending = "";
 		if (index != -1) {
 			ending = "#" + url.substring(index+1);
 			url = url.substring(0, index);
 		}
 		if (url.split('.').pop() == "svg" && ending != "") {
-			if (jQuery(".svg-defs " +  ending).length == 0) {
-				jQuery.get(url, function(data) {
-					var defs = jQuery(".svg-defs");
+			if ($ec(".svg-defs " +  ending).length == 0) {
+				$ec.get(url, function(data) {
+					var defs = $ec(".svg-defs");
 					if (defs.length == 0) {
 						var div = document.createElement("div");
 						div.setAttribute("class", "svg-defs");
 						div.innerHTML = new XMLSerializer().serializeToString(data.documentElement);
 						document.body.insertBefore(div, document.body.childNodes[0]);
 					}
-					else if (jQuery(".svg-defs " +  ending).length == 0) {
+					else if ($ec(".svg-defs " +  ending).length == 0) {
 						defs.append( new XMLSerializer().serializeToString(data.documentElement));
 					}
 				});
 			}
 			icon.css('background-image', 'none');
-			icon.append('<svg class="icon"><use xlink:href="'+ ending + '" /></svg>');
+			icon.prepend('<svg class="icon"><use xlink:href="'+ ending + '" /></svg>');
 		}
 	});
-}
+};
 
 prod.loadForLogin = function() {
 	//load stylesheet
 	var headContent = '<link rel="stylesheet" href="' + prod.getUrl('/resources/css/admin.css') + '" type="text/css" />';
-	jQuery('head').append(headContent);
+	$ec('head').append(headContent);
 	//load quick modal
-	jQuery.getScript(prod.getUrl('/resources/scripts/quick_modal.js'));
+	$ec.getScript(prod.getUrl('/resources/scripts/quick_modal.js'));
 };
 
 prod.waitForLoginLoad = function() {
 	if(typeof quickModal != "undefined") {
 		//run after quickModal has loaded
-		var url = jQuery('#login:not(.disableLoginButton)').attr('loginUrl');
-		jQuery.ajax(url, {
+		var url = $ec('#login:not(.disableLoginButton)').attr('loginUrl');
+		$ec.ajax(url, {
 			success: prod.loginDialog,
 			error: null,
 			dataType: 'text',
@@ -2167,10 +2300,10 @@ prod.getUrlAbsoluteOrRelative = function(url) {
 	} else {
 		return prod.getUrl(url);
 	}
-}
+};
 
 prod.getUrl = function(endUrl) {
-	baseUrl = jQuery('body').attr('baseUrl');
+	baseUrl = $ec('body').attr('baseUrl');
 	var baseFinalUrl = '';
 	var semiPosition = baseUrl.indexOf(';');
 	if(semiPosition != -1) {
@@ -2190,11 +2323,16 @@ prod.getUrl = function(endUrl) {
 };
 
 prod.loginDialog = function (result) {
-	var container = jQuery(document.createElement('div'));
+	// Now try to get the CSRF since we have a valid JSessionID
+	if (!prod.initCSRFToken) {
+		prod.loadCSRFScript();
+	}
+	
+	var container = $ec(document.createElement('div'));
 	container.html(prod.noscript(result));
 
-	var dialog = jQuery(container.find('#dialogContent').children('.quickModal'));
-	jQuery('body').append(dialog);
+	var dialog = $ec(container.find('#dialogContent').children('.quickModal'));
+	$ec('body').append(dialog);
 
 	dialog.quickModal();
 	prod.setDialogTimeout(dialog);
@@ -2204,7 +2342,7 @@ prod.loginDialog = function (result) {
 
 prod.shieldSuccess = function(element) {
 	return function (returnValue) {
-		returnValue = jQuery.parseJSON(returnValue);
+		returnValue = JSON.parse(returnValue);
 		if (returnValue.result == "success") {
 			location.reload(true);
 		} else {
@@ -2215,7 +2353,7 @@ prod.shieldSuccess = function(element) {
 };
 
 prod.shieldError = function(errorMessage) {
-	jQuery('.loginError').html(prod.noscript(errorMessage)).show();
+	$ec('.loginError').html(prod.noscript(errorMessage)).show();
 };
 
 prod.setupShieldLogin = function(element) {
@@ -2258,7 +2396,7 @@ prod.badSessionWorkaround = function(element, saveUrl, data, password) {
 };
 prod.badSessionWorkaroundReceiver = function(element, saveUrl, data, password) {
 	return function (returnValue) {
-		returnValue = jQuery.parseJSON(returnValue);
+		returnValue = JSON.parse(returnValue);
 		if (returnValue.result == "success") {
 			location.reload(true);
 		} else {
@@ -2269,9 +2407,9 @@ prod.badSessionWorkaroundReceiver = function(element, saveUrl, data, password) {
 };
 
 prod.setupLogin = function(dialog) {
-	jQuery('#loginError').hide();
-	jQuery('#rememberMe').not('.donorRememberMe').prop('checked', true);
-	jQuery('#password').attr('type', 'password');
+	$ec('#loginError').hide();
+	$ec('#rememberMe').not('.donorRememberMe').prop('checked', true);
+	$ec('#password').attr('type', 'password');
 
 	dialog.find('input').first().focus();
 
@@ -2281,7 +2419,7 @@ prod.setupLogin = function(dialog) {
 		prod.clearDialogTimeout();
 	});
 	dialog.find('.save').click(function() {
-		var pageID = jQuery('#core').attr('pageid');
+		var pageID = $ec('#core').attr('pageid');
 		dialog.find('#pageID').val(pageID);
 		prod.loginSecurity(dialog);
 		var data = dialog.find('form').serialize();
@@ -2293,16 +2431,16 @@ prod.setupLogin = function(dialog) {
 	});
 
 	//properly setup secureUrl to take you to this page
-	jQuery('#secureUrl').attr('href',  jQuery('#secureUrl').attr('href') + window.location.pathname);
+	$ec('#secureUrl').attr('href',  $ec('#secureUrl').attr('href') + window.location.pathname);
 };
 
 prod.adminLoginAuto = function() {
-	jQuery(document).keypress(function(e) {
+	$ec(document).keypress(function(e) {
 		var code = (e.keyCode ? e.keyCode : e.which); // Should be unnecessary with JQuery.
 		if(code == 13) {
 			//enter: click the login button
-			jQuery('.save').each(function() {
-				jQuery(this).click();
+			$ec('.save').each(function() {
+				$ec(this).click();
 			});
 			e.preventDefault();
 		}
@@ -2339,7 +2477,7 @@ prod.loginSecurity = function(dialog) {
 	if(dialog.find('#siteID').val() != '') {
 		username = dialog.find('#siteID').val() + '_' + username;
 	}
-	if(jQuery('body').is('.donorLogin')) {
+	if($ec('body').is('.donorLogin')) {
 		username = 'd_' + username;
 	}
 	dialog.find('#j_username').val(username);
@@ -2362,45 +2500,50 @@ prod.loginError = function(jqXHR, textStatus, errorThrown) {
 	if(errorThrown != undefined && errorThrown.indexOf("Internal") >= 0) {
 		if((window.location.pathname.indexOf("adminlogin") >= 0 || window.location.pathname.indexOf("dashboard") >= 0)) {
 			// this is actually a superadmin success
-			jQuery('#loginError').html("Success");
+			$ec('#loginError').html("Success");
 			location.reload(true);
 		} else if((window.location.pathname.indexOf("payments") >= 0)) {
 			// this is actually a payment donor success
-			jQuery('#loginError').html("Success");
+			$ec('#loginError').html("Success");
 			location.reload(true);
 		}
 	}
-	jQuery('#loginError').show();
+	$ec('#loginError').show();
 };
 
 prod.usernameType = function() {
-	var username = jQuery(this).val();
+	var username = $ec(this).val();
+	var donorID = $ec('#donorID').val();
+	var resetCode = $ec('#resetCode').val();
 	var dataObject = {
-		username: username
+		username: username,
+		donorID: donorID, 
+		resetCode: resetCode
 	};
 	var data = JSON.stringify(dataObject);
 
 	//send info to server
-	jQuery.ajax('/payments/donorManagement/createAccount/checkUsername', {
+	$ec.ajax('/payments/donorManagement/createAccount/checkUsername', {
 		type: 'POST',
+		headers: prod.csrfHeaders(),
 		data: {
 			data: data
 		},
 		success: function() {
 			prod.setLockFlag('usernameExists', false);
-			jQuery('#usernameExistsErrorText').hide();
+			$ec('#usernameExistsErrorText').hide();
 		},
-		error: function() {
+		error: prod.error(function(text) {
 			prod.setLockFlag('usernameExists', true);
-			jQuery('#usernameExistsErrorText').show();
-		},
+			$ec('#usernameExistsErrorText').text(text).show();
+		}),
 		cache: false,
 		traditional: true
 	});
 };
 
 prod.passwordType = function() {
-	var $el = jQuery(this);
+	var $el = $ec(this);
 	$el.addClass('passwordEdited');
 	var password = $el.val();
 	var result = zxcvbn(password);
@@ -2412,10 +2555,10 @@ prod.passwordType = function() {
 		3: "Good",
 		4: "Very Strong"
 	};
-	jQuery('#passwordStrengthLabel').html(strength[result.score]);
-	jQuery('#passwordStrengthLabel').removeClass('pw0 pw1 pw2 pw3 pw4').addClass('pw' + result.score);
+	$ec('#passwordStrengthLabel').html(strength[result.score]);
+	$ec('#passwordStrengthLabel').removeClass('pw0 pw1 pw2 pw3 pw4').addClass('pw' + result.score);
 	prod.setLockFlag('passwordWeak', result.score < 2); //if the score is too low, don't allow the password to change
-	jQuery('#passwordMeter').val(result.score);
+	$ec('#passwordMeter').val(result.score);
 	if(result.feedback.warning.length > 0) {
 		passwordSuggestions += "<p class='passwordWarning'>" + result.feedback.warning + "</p>";
 	}
@@ -2423,19 +2566,19 @@ prod.passwordType = function() {
 		passwordSuggestions += "<p class='passwordSuggestion'>" + result.feedback.suggestions[i] + "</p>";
 	}
 	if(passwordSuggestions.length > 0) {
-		jQuery('#passwordSuggestions').addClass("warning").html(passwordSuggestions);
+		$ec('#passwordSuggestions').addClass("warning").html(passwordSuggestions);
 	} else {
-		jQuery('#passwordSuggestions').removeClass("warning").html("");
+		$ec('#passwordSuggestions').removeClass("warning").html("");
 	}
 };
 
 prod.passwordConfirm = function() {
-	if(jQuery('#password').val() !== jQuery('#confirm').val()) {
+	if($ec('#password').val() !== $ec('#confirm').val()) {
 		prod.setLockFlag('passwordMismatch', true);
-		jQuery('#passwordMismatchErrorText').show();
+		$ec('#passwordMismatchErrorText').show();
 	} else {
 		prod.setLockFlag('passwordMismatch', false);
-		jQuery('#passwordMismatchErrorText').hide();
+		$ec('#passwordMismatchErrorText').hide();
 	}
 };
 
@@ -2447,8 +2590,8 @@ prod.passwordSubmitClicked = false;
 // some locks are automatically disabled based on the dialog mode
 prod.passwordLockFlags = {
 	passwordWeak: true,
-	usernameExists: !!jQuery('#username').length,
-	passwordMismatch: !!jQuery('#confirm').length
+	usernameExists: !!$ec('#username').length,
+	passwordMismatch: !!$ec('#confirm').length
 };
 
 prod.setLockFlag = function(k, v) {
@@ -2465,7 +2608,7 @@ prod.setLockFlag = function(k, v) {
 
 //strips any script tags from html code
 prod.noscript = function(strCode) {
-	var html = jQuery(strCode.bold());
+	var html = $ec(strCode.bold());
 	html.find('script').remove();
 	return html.html();
 };
@@ -2478,13 +2621,13 @@ prod.serializeForm = function(form)
 	o.data = {};
 	form.find('.paymentAmount').each(function () {
 		//Don't show results for hidden replicated payments
-		if(!jQuery(this).parents('.ofReplicatorHidden').length) {
-			staticValue = jQuery(this).find('.staticValue');
-			staticValue.parent().append('<input hidden name="'+jQuery(this).find('.static').attr('id')+'" value="'+staticValue.text()+'" />');
+		if(!$ec(this).parents('.ofReplicatorHidden').length) {
+			staticValue = $ec(this).find('.staticValue');
+			staticValue.parent().append('<input hidden name="'+$ec(this).find('.static').attr('id')+'" value="'+staticValue.text()+'" />');
 		}
 	});
 	var a = form.serializeArray();
-	jQuery.each(a, function() {
+	$ec.each(a, function() {
 		if (o[form.name] !== undefined) {
 			if (!o[this.name].push) {
 				o[this.name] = [o[this.name]];
@@ -2507,10 +2650,32 @@ prod.serializeForm = function(form)
 	return o;
 };
 
+// Spring generates CSRF tokens which are included on every page via head.jsp (and in one case, adminLogin.jsp).
+// These tokens need to be sent with every POST request to the server.
+prod.csrfHeaders = function () {
+	var token = $ec("meta[name='_csrf']").attr("content");
+	var header = $ec("meta[name='_csrf_header']").attr("content");
+	var headers = {};
+	headers[header] = token;
+	return headers;
+};
+
+// Load the CSRF token, since we will need it
+prod.loadCSRFScript = function () {
+	if (!prod.initCSRFToken) {
+		$ec.getScript( prod.getUrl('/resources/scripts/csrf.js'), function() {
+			prod.initCSRFToken && prod.initCSRFToken();
+		});
+	}
+};
+
+
+
 //put without blocking the screen
 prod.postForm = function (url, data, success, error) {
-	jQuery.ajax(url, {
+	$ec.ajax(url, {
 		type: 'POST',
+		headers: prod.csrfHeaders(),
 		data: data,
 		success: success,
 		error: error,
@@ -2521,7 +2686,7 @@ prod.postForm = function (url, data, success, error) {
 };
 
 prod.get = function (url, data, success, error) {
-	jQuery.ajax(url, {
+	$ec.ajax(url, {
 		data: data,
 		success: success,
 		error: error,
@@ -2532,21 +2697,159 @@ prod.get = function (url, data, success, error) {
 };
 
 prod.printCalendar = function (el) {
-	var $el = jQuery(el.target);
+	var $el = $ec(el.target);
 	var $module = $el.closest('.calendarModule');
-	var printUrl = $el.closest('.calendarExportContainer').data('printurl') + '&page=' + jQuery('#core').attr('pageid') + '&printView=' + ($el.is('.calendarView') ? 'calendar' : 'list');
-	var $printLink = jQuery('<a>').attr({
+	var printUrl = $el.closest('.calendarExportContainer').data('printurl') + '&page=' + $ec('#core').attr('pageid') + '&printView=' + ($el.is('.calendarView') ? 'calendar' : 'list');
+	var $printLink = $ec('<a>').attr({
 		href: printUrl,
 		target: '_blank',
 		id: 'printCalendarDispatcher'
 	}).css({
 		display: 'none'
 	});
-	var $body = jQuery('body');
+	var $body = $ec('body');
 	$body.append($printLink);
 	document.getElementById('printCalendarDispatcher').click();
 	$printLink.remove();
 };
+
+$ec(function() {
+	if ($ec('#shieldLogin').length > 0) {
+		// Secure Page login
+		prod.setupShieldLogin($ec('#shieldLogin'));
+	}
+	if($ec('#adminLogin').length > 0) {
+		//admin login page
+		prod.setupLogin($ec('#adminLogin'));
+		prod.adminLoginAuto();
+	} else if($ec('#resetPassword').is('*')) {
+		//nothing runs for this yet
+	} else if($ec('#finder').length > 0) {
+		//nothing runs for this yet
+	} else {
+		//normal page
+		if($ec('#nav').length > 0) {
+			prod.setOrigSiteWidth();
+			prod.sticky = $ec('#nav').hasClass('sticky');
+			prod.noResize = $ec('#nav').hasClass('noResize');
+			prod.checkMegaMenus();
+			prod.checkMobile(true);
+			$ec(window).resize(function() {prod.checkMobile(false);});
+			prod.resizeNav(false);
+
+			$ec('#navicon').click(function() {
+				$ec('body').toggleClass('mobilePanelActive');
+				prod.navCollapsibleOpenSelected($ec('#mobileNav'));
+				//if possible, scroll to current page at vertical center of mobile panel
+				var center = $ec('#mobilePanel').height()/2;
+			    var top = $ec('#mobileNav .sideNavCurrent').offset().top;
+			    if (top > center){
+			        $ec('#mobilePanel').scrollTop(top-center);
+			    }
+				return false;
+			});
+			$ec('.navCollapsible.navCollapsed > ul').slideToggle(0); //Initalize the Toggle off collapsibles
+			//apply to group names and not group's collapsible icon to avoid double call on one click
+			$ec('.navCollapsible:not(.navPage) > .navName').click(function() {
+				prod.navCollapsibleClick($ec(this).parent());
+			});
+			//apply to collapsible icons on pages and prevent following the link
+			$ec('.navCollapsible.navPage > .navName > .collapsibleIcon').click(function(event) {
+				event.preventDefault();
+				prod.navCollapsibleClick($ec(this).closest('.navCollapsible'));
+			});
+			
+			prod.resizeModules($ec('body')); //this was moved to the ready event to prevent videos from changing size on the screen
+			//Rerun sitename sizing after fonts have loaded
+			$ec(window).on('load', function () {
+				prod.resizeSiteName($ec('#siteName'));
+			});
+			// run here at page load to mitigate the delay of a slow computer
+			prod.paymentForm.init();
+			prod.setupPaymentMessaging();
+		}
+		//this opens the link in data-url in a new window and prevents the original click event from going through
+		$ec('#footerBrand a').click(function(event) {
+			event.preventDefault();
+			var url = $ec(this).data('url');
+			window.open(url,'_blank');
+		});
+		prod.setFooterHeight();
+		//Try setting up SVGs, even though the CSS may not be completely rendered yet.
+		prod.initializeSVG($ec("#socialMediaBody a, .personSocialMedia a, #navicon, #header #searchSubmit, #header #searchPopup, .buttonModuleButton.nonCustomButton .buttonLabelContainer"));
+		$ec('body').on('click', '.printCalendar', prod.printCalendar);
+		prod.initCSRFToken && prod.initCSRFToken();
+		if (!prod.initCSRFToken && $ec("form, .paymentModule").length > 0) {
+			prod.loadCSRFScript();
+		}
+	}
+});
+
+//run after the load event
+$ec(window).on("load", function() {
+	if(!($ec('#adminLogin').length > 0 || $ec('#resetPassword').is('*'))) {
+		//normal page
+		prod.initializeSVG($ec("#socialMediaBody a, .personSocialMedia a, #navicon, .searchBoxSubmit, .buttonModuleButton.nonCustomButton .buttonLabelContainer"));
+		if($ec('html.oldie').length == 0) { //disable footer height and core resizing for ie9 and earlier
+			prod.setFooterHeight();
+			prod.sizeCore();
+			if(typeof less !== "undefined") {
+				less.refresh().then(function(result) {
+					$ec(window).trigger('resize');
+				});
+			}
+
+			if(!prod.isMobile()) {
+				prod.sizeContentDivs();
+			}
+		}
+		if(prod.sticky) {
+			prod.initNavSticky();
+		}
+
+		prod.initModules($ec('body'));
+		if($ec(".infinite-more-link").length > 0) {
+			var debouncedHandler;
+			var infiniteScrolling = function() {
+				var link = $ec(".infinite-more-link").first();
+				if (link.length > 0) {
+					const scrollTop = $ec(window).scrollTop();
+				    const buffer = 300;
+				    if (link.offset().top <= Math.floor($ec(window).height() + scrollTop) + buffer) {
+						$ec.ajax({
+					        dataType : 'html',
+					        url: link.prop("href"),
+					        success: function (html) {
+					        	html = $ec($ec.parseHTML(html)).find('.infinite-container').addBack('.infinite-container').html();
+					            $ec(".infinite-container").first().append(html);
+					            link.remove();
+					            // Ensure the browser didn't scroll
+					            $ec(window).scrollTop(scrollTop);
+					            
+					            if(typeof admin != 'undefined') {
+									admin.setupInactiveTags();
+								}
+								//Add lightbox for new items
+							    initPhotoSwipeFromDOM('.photoAlbum');
+			
+								prod.initDynamicThumbs($ec('body'));
+					        }
+					    });
+				    }
+				} else {
+					// no more items, so remove this listener
+					$ec(window).off("scroll", debouncedHandler);
+				}
+			};
+			debouncedHandler = debounce(infiniteScrolling, 250);
+			$ec(window).on("scroll", debouncedHandler);
+		}
+		$ec('#login:not(.disableLoginButton)').click(prod.openLogin);
+		$ec('#calendarPageSelection').change(function() {
+			window.location = $ec(this).val();
+		});
+	}
+});
 
 /*
  * JavaScript Pretty Date
@@ -2577,11 +2880,11 @@ function prettyDate(time){
 }
 
 /**
- *
+ * 
  * Secure Hash Algorithm (SHA256) http://www.webtoolkit.info/
- *
+ * 
  * Original code by Angel Marin, Paul Johnston.
- *
+ * 
  */
 
 function SHA256(s){
@@ -2730,14 +3033,14 @@ function SHA256(s){
 	return!!b&&m<=a&&v>=u;
 } else if(r==="horizontal") {
 	return!!b&&y<=l&&g>=f}
-}})(jQuery);
+}})($ec);
 
 /**
  * Copyright Marc J. Schmidt. See the LICENSE file at the top-level directory of this distribution and at https://github.com/marcj/css-element-queries/blob/master/LICENSE.
  */
 !function(){this.ResizeSensor=function(e,t){function s(){this.q=[],this.add=function(e){this.q.push(e)};var e,t;this.call=function(){for(e=0,t=this.q.length;t>e;e++) {this.q[e].call()}}}function i(e,t){return e.currentStyle?e.currentStyle[t]:window.getComputedStyle?window.getComputedStyle(e,null).getPropertyValue(t):e.style[t]}function o(e,t){if(e.resizedAttached){if(e.resizedAttached) {
 	return void e.resizedAttached.add(t)}
-} else {e.resizedAttached=new s,e.resizedAttached.add(t);}e.resizeSensor=document.createElement("div"),e.resizeSensor.className="resize-sensor";var o="position: absolute; left: 0; top: 0; right: 0; bottom: 0; overflow: scroll; z-index: -1; visibility: hidden;",n="position: absolute; left: 0; top: 0;";e.resizeSensor.style.cssText=o,e.resizeSensor.innerHTML='<div class="resize-sensor-expand" style="'+o+'"><div style="'+n+'"></div></div><div class="resize-sensor-shrink" style="'+o+'"><div style="'+n+' width: 200%; height: 200%"></div></div>',e.appendChild(e.resizeSensor),{fixed:1,absolute:1}[i(e,"position")]||(e.style.position="relative");var r,d,l=e.resizeSensor.childNodes[0],c=l.childNodes[0],h=e.resizeSensor.childNodes[1],f=(h.childNodes[0],function(){c.style.width=l.offsetWidth+10+"px",c.style.height=l.offsetHeight+10+"px",l.scrollLeft=l.scrollWidth,l.scrollTop=l.scrollHeight,h.scrollLeft=h.scrollWidth,h.scrollTop=h.scrollHeight,r=e.offsetWidth,d=e.offsetHeight});f();var a=function(){e.resizedAttached&&e.resizedAttached.call()},u=function(e,t,s){e.attachEvent?e.attachEvent("on"+t,s):e.addEventListener(t,s)},z=function(){(e.offsetWidth>r||e.offsetHeight>d||e.offsetWidth<r||e.offsetHeight<d)&&a(),f()};u(l,"scroll",z),u(h,"scroll",z)}if("[object Array]"===Object.prototype.toString.call(e)||"undefined"!=typeof jQuery&&e instanceof jQuery||"undefined"!=typeof Elements&&e instanceof Elements) {
+} else {e.resizedAttached=new s,e.resizedAttached.add(t);}e.resizeSensor=document.createElement("div"),e.resizeSensor.className="resize-sensor";var o="position: absolute; left: 0; top: 0; right: 0; bottom: 0; overflow: scroll; z-index: -1; visibility: hidden;",n="position: absolute; left: 0; top: 0;";e.resizeSensor.style.cssText=o,e.resizeSensor.innerHTML='<div class="resize-sensor-expand" style="'+o+'"><div style="'+n+'"></div></div><div class="resize-sensor-shrink" style="'+o+'"><div style="'+n+' width: 200%; height: 200%"></div></div>',e.appendChild(e.resizeSensor),{fixed:1,absolute:1}[i(e,"position")]||(e.style.position="relative");var r,d,l=e.resizeSensor.childNodes[0],c=l.childNodes[0],h=e.resizeSensor.childNodes[1],f=(h.childNodes[0],function(){c.style.width=l.offsetWidth+10+"px",c.style.height=l.offsetHeight+10+"px",l.scrollLeft=l.scrollWidth,l.scrollTop=l.scrollHeight,h.scrollLeft=h.scrollWidth,h.scrollTop=h.scrollHeight,r=e.offsetWidth,d=e.offsetHeight});f();var a=function(){e.resizedAttached&&e.resizedAttached.call()},u=function(e,t,s){e.attachEvent?e.attachEvent("on"+t,s):e.addEventListener(t,s)},z=function(){(e.offsetWidth>r||e.offsetHeight>d||e.offsetWidth<r||e.offsetHeight<d)&&a(),f()};u(l,"scroll",z),u(h,"scroll",z)}if("[object Array]"===Object.prototype.toString.call(e)||"undefined"!=typeof $ec&&e instanceof $ec||"undefined"!=typeof Elements&&e instanceof Elements) {
 	for(var n=0,r=e.length;r>n;n++) {o(e[n],t);}
 } else {o(e,t);}this.detach=function(){ResizeSensor.detach(e)}},this.ResizeSensor.detach=function(e){e.resizeSensor&&(e.removeChild(e.resizeSensor),delete e.resizeSensor,delete e.resizedAttached)}}();
 
