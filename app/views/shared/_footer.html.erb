@@ -27,9 +27,9 @@
             </div>
             <div class="column">
               <p>
-                <a class="footerWhiteLink" href="tel:1-210-478-5000">(210) 478-5000</a>
+                <a class="footerWhiteLink" href="tel:1-210-478-5000"><%= @introduction&.phone %></a>
                 <br />
-                <a href="mailto:info@stmatts.org">info@stmatts.org</a>
+                <a href="mailto:info@stmatts.org"><%= @introduction&.email %></a>
               </p>
             </div>
             <div class="column">
@@ -55,22 +55,13 @@
 						<%= link_to image_tag("design/footerIcon4_03.png"), "http://www.vatican.va/content/vatican/en.html" %>
 						<%= link_to image_tag("design/footerIcon5_03.png"), "http://www.vatican.va/content/vatican/en.html" %>
           </div>
-          <div class="copyright"> © 2021 St. Matthew Catholic Church   <span>-</span>
+          <div class="copyright"> <%= @introduction&.copyright %>   <span>-</span>
             <br />
              All rights reserved.
           </div>
         </div>
       </div>
     </div>
-    <div id="footerGroup">
-      <div id="footerLinks">
-        <span id="login" loginUrl="/login">Login</span>
-      </div>
-      <div id="footerBrand">powered by <a href="https://www.ecatholic.com/" target="_blank"
-							data-url="https://www.ecatholic.com/?referral=marketing#oid=1008_2_PoweredBy">eCatholic <span
-								class="trademark">&reg;</span>
-        </a>
-      </div>
-    </div>
+    <div id="footerGroup"><div id="footerLinks"></div></div>
   </footer>
 </div>
