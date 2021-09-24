@@ -3788,7 +3788,22 @@ jest-worker@^26.5.0:
     merge-stream "^2.0.0"
     supports-color "^7.0.0"
 
-jquery@^3.6.0:
+jquery-mapael@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/jquery-mapael/-/jquery-mapael-2.2.0.tgz#a68850c680ef0ce3f8b865e8a48b2a018250ca73"
+  integrity sha512-B5cVcCkfs7Ezia1Zs8bEfVacYD/GvaASyqQeidApR/NJ1C4igcExk9VULVsgLcTPkxohcZrrz5uCaPXvuKeZWw==
+  dependencies:
+    jquery "^3.0 || ^2.0 || ^1.0"
+    raphael "^2.2.0 || ^2.1.1"
+  optionalDependencies:
+    jquery-mousewheel "^3.1"
+
+jquery-mousewheel@^3.1, jquery-mousewheel@^3.1.13:
+  version "3.1.13"
+  resolved "https://registry.yarnpkg.com/jquery-mousewheel/-/jquery-mousewheel-3.1.13.tgz#06f0335f16e353a695e7206bf50503cb523a6ee5"
+  integrity sha1-BvAzXxbjU6aV5yBr9QUDy1I6buU=
+
+"jquery@^3.0 || ^2.0 || ^1.0", jquery@^3.6.0:
   version "3.6.0"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.6.0.tgz#c72a09f15c1bdce142f49dbf1170bdf8adac2470"
   integrity sha512-JVzAR/AjBvVt2BmYhxRCSYysDsPcssdmTFnzyLEts9qNwmjmu4JTAMYubEfwVOSwpQ1I1sKKFcxhZCI2buerfw==
@@ -5555,7 +5570,7 @@ range-parser@^1.2.1, range-parser@~1.2.1:
   resolved "https://registry.yarnpkg.com/range-parser/-/range-parser-1.2.1.tgz#3cf37023d199e1c24d1a55b84800c2f3e6468031"
   integrity sha512-Hrgsx+orqoygnmhFbKaHE6c296J+HTAQXoxEF6gNupROmmGJRoyzfG3ccAveqCBrwr/2yxQ5BVd/GTl5agOwSg==
 
-raphael@^2.3.0:
+"raphael@^2.2.0 || ^2.1.1", raphael@^2.3.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/raphael/-/raphael-2.3.0.tgz#eabeb09dba861a1d4cee077eaafb8c53f3131f89"
   integrity sha512-w2yIenZAQnp257XUWGni4bLMVxpUpcIl7qgxEgDIXtmSypYtlNxfXWpOBxs7LBTps5sDwhRnrToJrMUrivqNTQ==

@@ -8,12 +8,12 @@ import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 require("jquery");
 require("raphael");
+require("jquery-mousewheel");
+require("jquery-mapael");
 require("packs/admin/jquery.min.js");
 require("packs/admin/bootstrap.bundle.min.js");
 require("packs/admin/jquery.overlayScrollbars.min.js");
 require("packs/admin/adminlte.js");
-require("packs/admin/jquery.mousewheel.js");
-require("packs/admin/jquery.mapael.js");
 require("packs/admin/usa_states.min.js");
 require("packs/admin/Chart.min.js");
 require("packs/admin/demo.js");
