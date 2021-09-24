@@ -12,9 +12,13 @@ Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
+require("packs/library/hammer.min.js");
 require("packs/library/photorotator");
 require("packs/library/moment");
 require("packs/library/moment-timezone-with-data-2012-2022");
 require("packs/library/jquery.textfill.min");
 require("packs/library/jquery.focuspoint");
+require("packs/library/photoswipe-init");
+require("packs/library/photoswipe");
+require("packs/library/photoswipe-ui-default");
 require("packs/library/production");

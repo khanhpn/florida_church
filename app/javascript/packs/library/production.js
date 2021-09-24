@@ -199,7 +199,7 @@ prod.setupMassMode = function() {
 				//get the current date/time in the site time zone
 				var timeZoneID = container.find('#massModeToday').data('timezone');
 				var currentDateTime = new Date(new Date().toLocaleString("en-US", {timeZone: timeZoneID}));
-				
+
 				var day = null;
 				var vigil = null;
 				container.find('#massModeToday .massModeTimes').each(function() {
@@ -217,7 +217,7 @@ prod.setupMassMode = function() {
 					}
 					$ec(this).remove();
 				});
-				
+
 				if(day !== null) {
 					//remove vigil times
 					day.find(".day[class*='VIGIL']").each(function() {
@@ -601,8 +601,8 @@ prod.fixSectionHeights = function() {
 			}
 		});
 	});
-	
-	
+
+
 	//for section button modules, calculate and set height of modules
 	sectionRegion.find('.sectionInner').each(function() {
 		var section = $ec(this);
@@ -670,7 +670,6 @@ prod.initModules = function(selector) {
 	prod.initCalendar(selector.find('.calendarModule'));
 	prod.initMail(selector.find('.mail'));
 	prod.initSlideshow();
-    initPhotoSwipeFromDOM('.galleryAlbum');
 	prod.initSearch($ec('.searchBox'));
 	prod.initSearchBoxSubmit($ec('.searchBoxSubmit'));
 	prod.initSearchPopup();
@@ -900,7 +899,7 @@ prod.resizeSiteName = function(siteName, failed) {
 	var siteNameBody = siteName.find('#siteNameBody');
 	if (siteNameBody.length === 0) {
 		return;
-	} 
+	}
 	var siteNameHeight = siteName.height();
 	var siteNameLines = siteNameBody.find(".line1, .line2");
 	var siteNameContainers = siteNameLines.children(".editText, a");
@@ -1369,17 +1368,17 @@ prod.initOnlineForm = function (selector) {
         selectOtherMonths: true
     });
 	prod.initReplicatorCounters(onlineForm);
-	
+
 	var recaptchaKeyV2 = null;
 	var recaptchaKeyV3 = null;
 	var widgetId = null;
-	
+
 	var submit = function (token) {
 		try {
 			// build the payload
 			var paymentTotal = prod.paymentForm.getTotal();
 			var paymentSubtotal = prod.paymentForm.getAggregatedSubtotal();
-	
+
 			var dataToSend = prod.serializeForm(form);
 			dataToSend.total = paymentTotal;
 			dataToSend.subtotal = paymentSubtotal;
@@ -1387,14 +1386,14 @@ prod.initOnlineForm = function (selector) {
 				dataToSend.recaptchaToken = token;
 			}
 			var data = JSON.stringify(dataToSend);
-	
+
 			var saveUrl = onlineForm.attr('postUrl');
-	
+
 			var isPayLater = $ec(targetSubmitButton).hasClass('payLater');
 			if(isPayLater) {
 				saveUrl += '?paylater=true';
 			}
-	
+
 			prod.postForm(saveUrl, {data: data}, function (response) {
 				// success
 				var json = JSON.parse(response);
@@ -2327,7 +2326,7 @@ prod.loginDialog = function (result) {
 	if (!prod.initCSRFToken) {
 		prod.loadCSRFScript();
 	}
-	
+
 	var container = $ec(document.createElement('div'));
 	container.html(prod.noscript(result));
 
@@ -2517,7 +2516,7 @@ prod.usernameType = function() {
 	var resetCode = $ec('#resetCode').val();
 	var dataObject = {
 		username: username,
-		donorID: donorID, 
+		donorID: donorID,
 		resetCode: resetCode
 	};
 	var data = JSON.stringify(dataObject);
@@ -2758,7 +2757,7 @@ $ec(function() {
 				event.preventDefault();
 				prod.navCollapsibleClick($ec(this).closest('.navCollapsible'));
 			});
-			
+
 			prod.resizeModules($ec('body')); //this was moved to the ready event to prevent videos from changing size on the screen
 			//Rerun sitename sizing after fonts have loaded
 			$ec(window).on('load', function () {
@@ -2825,13 +2824,13 @@ $ec(window).on("load", function() {
 					            link.remove();
 					            // Ensure the browser didn't scroll
 					            $ec(window).scrollTop(scrollTop);
-					            
+
 					            if(typeof admin != 'undefined') {
 									admin.setupInactiveTags();
 								}
 								//Add lightbox for new items
 							    initPhotoSwipeFromDOM('.photoAlbum');
-			
+
 								prod.initDynamicThumbs($ec('body'));
 					        }
 					    });
@@ -2880,11 +2879,11 @@ function prettyDate(time){
 }
 
 /**
- * 
+ *
  * Secure Hash Algorithm (SHA256) http://www.webtoolkit.info/
- * 
+ *
  * Original code by Angel Marin, Paul Johnston.
- * 
+ *
  */
 
 function SHA256(s){

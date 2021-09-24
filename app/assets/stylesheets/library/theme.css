@@ -314,8 +314,8 @@ table {
 /* IE7 */
 @font-face {
   font-family: 'Font Awesome';
-  src: url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/fonts/fontawesome-webfont.eot');
-  src: url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/fonts/fontawesome-webfont.eot?#iefix') format('embedded-opentype'), url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/fonts/fontawesome-webfont.woff') format('woff'), url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/fonts/fontawesome-webfont.ttf') format('truetype');
+  src: font-url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/fonts/fontawesome-webfont.eot');
+  src: font-url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/fonts/fontawesome-webfont.eot?#iefix') format('embedded-opentype'), url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/fonts/fontawesome-webfont.woff') format('woff'), url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/fonts/fontawesome-webfont.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
@@ -346,7 +346,7 @@ a:hover {
   border-top: solid 0 transparent !important;
   border-bottom: solid 0 transparent;
   padding-top: 0px;
-  background: url("/15071/design/texturedBackground_01.png") repeat;
+  background: url("texturedBackground_01.png") repeat;
   background-color: transparent;
   overflow: hidden;
 }
@@ -549,8 +549,8 @@ a:hover {
   filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='https://d2y1pz2y630308.cloudfront.net/agnes/resources/base-images/social-media/socialMediaIcons.svg?svgYouTube', sizingMethod='scale');
 }
 #socialMedia a.custom1SocialMedia {
-  background-image: url("/15071/design/icon_flickr_lowercase_white.png");
-  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='/15071/design/icon_flickr_lowercase_white.png', sizingMethod='scale');
+  background-image: url("icon_flickr_lowercase_white.png");
+  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='icon_flickr_lowercase_white.png', sizingMethod='scale');
 }
 #socialMedia a.custom2SocialMedia {
   background-image: url("");
@@ -8980,43 +8980,43 @@ h3 {
 }
 @font-face {
   font-family: "LibreBaskerville";
-  src: url("/15071/design/LibreBaskerville-Bold.ttf") format("truetype");
+  src: font-url("LibreBaskerville-Bold.ttf") format("truetype");
   font-weight: 800;
   font-style: normal;
 }
 @font-face {
   font-family: "LibreBaskerville";
-  src: url("/15071/design/LibreBaskerville-Italic.ttf") format("truetype");
+  src: font-url("LibreBaskerville-Italic.ttf") format("truetype");
   font-weight: normal;
   font-style: italic;
 }
 @font-face {
   font-family: "LibreBaskerville";
-  src: url("/15071/design/LibreBaskerville-Regular.ttf") format("truetype");
+  src: font-url("LibreBaskerville-Regular.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: "Poppins";
-  src: url("/15071/design/Poppins-Regular.ttf") format("truetype");
+  src: font-url("Poppins-Regular.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: "Poppins";
-  src: url("/15071/design/Poppins-SemiBold.ttf") format("truetype");
+  src: font-url("Poppins-SemiBold.ttf") format("truetype");
   font-weight: 600;
   font-style: normal;
 }
 @font-face {
   font-family: "Poppins";
-  src: url("/15071/design/Poppins-Light.ttf") format("truetype");
+  src: font-url("Poppins-Light.ttf") format("truetype");
   font-weight: 300;
   font-style: normal;
 }
 @font-face {
   font-family: "Poppins";
-  src: url("/15071/design/Poppins-Bold.ttf") format("truetype");
+  src: font-url("Poppins-Bold.ttf") format("truetype");
   font-weight: 800;
   font-style: normal;
 }
@@ -9119,7 +9119,7 @@ h3 {
   }
 }
 #socialMediaBody .custom1SocialMedia:hover {
-  background-image: url("/15071/design/icon_flickr_lowercase_yellow.png");
+  background-image: url("icon_flickr_lowercase_yellow.png");
 }
 #search #searchField {
   padding: 10px 44px 10px 20px;
@@ -10050,10 +10050,10 @@ a.name {
     pointer-events: none;
     width: 1920px;
     margin-left: -960px;
-    background: url("/15071/design/sacramentGrayBackground_02.png");
+    background: url("sacramentGrayBackground_02.png");
   }
   .sacramentTimesSection.hasBackgroundImage .sectionBackground {
-    background-image: url("/15071/design/sacramentGrayBackground_02.png") !important;
+    background-image: url("sacramentGrayBackground_02.png") !important;
   }
 }
 @media (min-width: 701px) and (min-width: 1920px) {
@@ -10367,7 +10367,7 @@ blockquote {
   position: relative;
 }
 blockquote:before {
-  content: url("/15071/design/littleQuote_03.png");
+  content: url("littleQuote_03.png");
   position: absolute;
   top: 15px;
   left: 20px;
@@ -10909,7 +10909,7 @@ blockquote:before {
   width: 360px;
   height: 100px;
   margin-top: 5px;
-  background: #fff url("/15071/design/footerLogo_03.png") no-repeat;
+  background: #fff url("footerLogo_03.png") no-repeat;
   background-size: contain;
   position: absolute;
   left: 50%;
@@ -10965,7 +10965,7 @@ blockquote:before {
 }
 @media (max-width: 700px) {
   #background {
-    background: url("/15071/design/texturedBackground_01.png") repeat;
+    background: url("texturedBackground_01.png") repeat;
   }
   #headerBackground {
     background: #7c2335;
