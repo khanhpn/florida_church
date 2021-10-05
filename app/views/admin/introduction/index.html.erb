@@ -1,0 +1,82 @@
+<%= render "admin/shared/bread_crumb", name: {title: "Introduction", bread_crumb: "Top"} %>
+<!-- Main content -->
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Manage introduction</h3>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <table id="example2" class="table table-bordered table-hover">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Content</th>
+                  <th>Youtube url</th>
+                  <th>Flict Channel</th>
+                  <th>Youtube channel</th>
+                  <th>Facebook channel</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><%= @introduction&.name || "-" %></td>
+                  <td><%= @introduction&.content || "-"  %></td>
+                  <td><%= @introduction&.youtube_url || "-"  %></td>
+                  <td><%= @introduction&.flict_channel || "-"  %></td>
+                  <td><%= @introduction&.youtube_channel_url || "-"  %></td>
+                  <td><%= @introduction&.facebook_channel || "-"  %></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="card-body">
+            <table id="example2" class="table table-bordered table-hover">
+              <thead>
+                <tr>
+                  <th>Address</th>
+                  <th>Phone</th>
+                  <th>Email</th>
+                  <th>Copywrite</th>
+                  <th>Office hour</th>
+                  <th>Logo icon</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><%= @introduction&.address || "-"  %></td>
+                  <td><%= @introduction&.phone || "-"  %></td>
+                  <td><%= @introduction&.email || "-"  %></td>
+                  <td><%= @introduction&.copywrite || "-"  %></td>
+                  <td><%= @introduction&.office_hour || "-"  %></td>
+                  <td class="wrap-img"><%= image_tag @introduction&.logo_icon || "no_available.png", class: "logo-wrap" %></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- /.card-body -->
+        </div>
+      </div>
+      <!-- /.col -->
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container-fluid -->
+</section>
+
+<section class="section-btn-group">
+  <div class="section-btn-group-wrap">
+    <% if @introduction.blank? %>
+      <%= link_to "Create", new_admin_introduction_path, class: "btn btn-info" %>
+    <% end %>
+
+    <% unless @introduction&.blank? %>
+      <%= link_to "Edit", edit_admin_introduction_path(@introduction), class: "btn btn-success" %>
+      <%= link_to "Delete", admin_introduction_path(@introduction), method: :delete, class: "btn btn-danger" %>
+    <% end %>
+  </div>
+</section>

@@ -18,6 +18,7 @@ require("packs/admin/usa_states.min.js");
 require("packs/admin/Chart.min.js");
 require("packs/admin/demo.js");
 require("packs/admin/dashboard2.js");
+require("packs/admin/bs-custom-file-input.min.js");
 
 
 Rails.start()
