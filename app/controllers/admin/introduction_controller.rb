@@ -1,5 +1,5 @@
 class Admin::IntroductionController < Admin::AdminController
-  before_action :set_introduction, only: [:show, :destroy, :edit, :update]
+  before_action :set_introduction, only: [:destroy, :edit, :update]
 
   def index
     @introduction = Introduction.first
@@ -11,23 +11,19 @@ class Admin::IntroductionController < Admin::AdminController
 
   def create
     introduction = current_user.introductions.new(params_introduction)
-    byebug
     if introduction.save
       flash[:notice] = 'You created introduction successfully'
-      redirect_to admin_introduction_path(introduction)
+      redirect_to admin_introduction_index_path
     else
       flash.now[:warning] = 'You can not create introduction, please check error'
       render :new
     end
   end
 
-  def show
-  end
-
   def update
     if @introduction.update(params_introduction)
       flash[:notice] = 'You updated introduction successfully'
-      redirect_to admin_introduction_path(introduction)
+      redirect_to admin_introduction_index_path
     else
       flash.now[:warning] = 'You can not update introduction, please check error'
       render :edit

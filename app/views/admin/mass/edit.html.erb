@@ -1,5 +1,5 @@
-<%= render "admin/shared/bread_crumb", name: {title: "Edit introduction", bread_crumb: "Edit"} %>
-<%= form_with model: @introduction, url: admin_introduction_path(@introduction), method: :patch do |form| %>
+<%= render "admin/shared/bread_crumb", name: {title: "Edit mass", bread_crumb: "Edit"} %>
+<%= form_with model: @mass, url: admin_mass_path(@mass), method: :patch do |form| %>
   <section class="content">
     <div class="container-fluid">
       <%= render "form", form: form %>
@@ -7,7 +7,7 @@
     </div>
     <!-- /.container-fluid -->
     <div class="section-btn-group-wrap">
-      <%= link_to "Back", admin_introduction_index_path, class: "btn btn-info" %>
+      <%= link_to "Back", admin_mass_index_path, class: "btn btn-info" %>
       <%= form.submit "Update", class: "btn btn-success" %>
     </div>
   </section>

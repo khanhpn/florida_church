@@ -74,7 +74,7 @@
       <%= link_to "Create", new_admin_introduction_path, class: "btn btn-info" %>
     <% end %>
 
-    <% unless @introduction&.blank? %>
+    <% unless @introduction.blank? %>
       <%= link_to "Edit", edit_admin_introduction_path(@introduction), class: "btn btn-success" %>
       <%= link_to "Delete", admin_introduction_path(@introduction), method: :delete, class: "btn btn-danger" %>
     <% end %>

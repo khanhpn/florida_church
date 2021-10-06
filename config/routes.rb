@@ -6,7 +6,8 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get "dashboard", to: 'dashboard#index'
-    resources :introduction
+    resources :introduction, except: :show
+    resources :mass
   end
 
   root to: "home#index"

@@ -1,0 +1,83 @@
+<div class="row">
+  <!-- right column -->
+  <div class="col-md-12">
+    <!-- Form Element sizes -->
+    <!-- /.card -->
+    <!-- general form elements disabled -->
+    <div class="card card-success">
+      <div class="card-header">
+        <h3 class="card-title">Create introduction</h3>
+      </div>
+      <!-- /.card-header -->
+      <div class="card-body">
+        <div class="row">
+          <div class="col-sm-12">
+            <!-- text input -->
+            <div class="form-group">
+              <label>Name</label>
+              <%= form.text_field :name, class: "form-control", placeholder: "Enter name" %>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <!-- textarea -->
+            <div class="form-group">
+              <label>Content</label>
+              <%= form.text_area :content, class: "form-control", placeholder: "Enter name" %>
+            </div>
+          </div>
+        </div>
+        <!-- input states -->
+        <div class="form-group">
+          <label class="col-form-label" for="inputSuccess"><i class="fas fa-check"></i> Input youtube description</label>
+          <%= form.text_field :youtube_url, class: "form-control is-valid", placeholder: "Enter youtube url" %>
+        </div>
+        <div class="form-group">
+          <label class="col-form-label" for="inputWarning"><i class="far fa-bell"></i> Input with flict</label>
+          <%= form.text_field :flict_channel, class: "form-control is-valid", placeholder: "Enter flict url" %>
+        </div>
+        <div class="form-group">
+          <label class="col-form-label" for="inputWarning"><i class="far fa-bell"></i> Input with facebook</label>
+          <%= form.text_field :facebook_channel, class: "form-control is-valid", placeholder: "Enter facebook channel" %>
+        </div>
+        <div class="form-group">
+          <label class="col-form-label" for="inputWarning"><i class="far fa-bell"></i> Input with youtube channel</label>
+          <%= form.text_field :youtube_channel_url, class: "form-control is-valid", placeholder: "Enter youtube url" %>
+        </div>
+        <div class="form-group">
+          <label class="col-form-label" for="inputWarning"><i class="far fa-bell"></i> Input address</label>
+          <%= form.text_field :address, class: "form-control is-valid", placeholder: "Enter youtube url" %>
+        </div>
+        <div class="form-group">
+          <label class="col-form-label" for="inputWarning"><i class="far fa-bell"></i> Input phone</label>
+          <%= form.text_field :phone, class: "form-control is-valid", placeholder: "Enter youtube url" %>
+        </div>
+        <div class="form-group">
+          <label class="col-form-label" for="inputWarning"><i class="far fa-bell"></i> Input email</label>
+          <%= form.text_field :email, class: "form-control is-valid", placeholder: "Enter youtube url" %>
+        </div>
+        <div class="form-group">
+          <label class="col-form-label" for="inputWarning"><i class="far fa-bell"></i> Input copywrite</label>
+          <%= form.text_field :copywrite, class: "form-control is-valid", placeholder: "Enter youtube url" %>
+        </div>
+        <div class="form-group">
+          <label class="col-form-label" for="inputWarning"><i class="far fa-bell"></i> Input with office_hour</label>
+          <%= form.text_field :office_hour, class: "form-control is-valid", placeholder: "Enter youtube url" %>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputFile">Upload logo icon</label>
+          <div class="input-group">
+            <div class="custom-file">
+              <%= form.file_field :logo_icon, class: "custom-file-input" %>
+              <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+  </div>
+  <!--/.col (right) -->
+</div>
