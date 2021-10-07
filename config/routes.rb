@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     get "dashboard", to: 'dashboard#index'
     resources :introduction, except: :show
     resources :mass
+    resources :users
   end
 
   root to: "home#index"
