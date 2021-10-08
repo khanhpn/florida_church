@@ -9,16 +9,7 @@
     <div id="siteLogo" class="moduleContainer logoOnly">
       <div class="moduleInner ">
         <div id="siteLogoBody">
-          <a href="index.html">
-            <picture>
-              <source type='image/webp'
-										srcset='https://d35r3vzpjv6bi5.cloudfront.net/15071/pictures/2020/1/headerLogo_03.png?t=1579179484000'
-										thumbUrl='https://d35r3vzpjv6bi5.cloudfront.net/15071/pictures/2020/1/headerLogo_03.png?t=1579179484000'>
-              <img alt="St. Matthew Catholic Church"
-										src="https://d2y1pz2y630308.cloudfront.net/15071/pictures/2020/1/headerLogo_03.png"
-										style="left:0px;top:0px;">
-            </picture>
-          </a>
+          <%= image_tag(@introduction&.logo_icon, style: "left:0px;top:0px;width:100%;height:100%;", alt: "Saint John the Evangelist Catholic Church Boca Raton") %>
         </div>
       </div>
     </div>
@@ -43,12 +34,9 @@
     <div id="socialMedia" class="moduleContainer">
       <div class="moduleInner ">
         <div id="socialMediaBody">
-          <a class="custom1SocialMedia" href="https://www.flickr.com/photos/143326047@N04/albums" target="_blank"
-								title="" alt="Custom Social Media">Custom Social Media</a>
-          <a class="facebookSocialMedia" href="https://www.facebook.com/STMATTSA" target="_blank" title="Facebook"
-								alt="Facebook">Facebook</a>
-          <a class="youtubeSocialMedia" href="https://www.youtube.com/channel/UCRJOUyOibhnRwNjIzIoSOnw"
-								target="_blank" title="YouTube" alt="YouTube">YouTube</a>
+          <%= link_to "Custom Social Media", @introduction&.flict_channel, class: "custom1SocialMedia", target: "_blank" %>
+          <%= link_to "Facebook", @introduction&.facebook_channel, class: "facebookSocialMedia", target: "_blank" %>
+          <%= link_to "YouTube", @introduction&.youtube_channel_url, class: "youtubeSocialMedia", target: "_blank" %>
         </div>
       </div>
     </div>
