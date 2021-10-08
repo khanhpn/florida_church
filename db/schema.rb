@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_05_233114) do
+ActiveRecord::Schema.define(version: 2021_10_08_011410) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,6 +60,16 @@ ActiveRecord::Schema.define(version: 2021_10_05_233114) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_introductions_on_user_id"
+  end
+
+  create_table "linked_logos", force: :cascade do |t|
+    t.string "name"
+    t.text "logo_linked"
+    t.boolean "display"
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_linked_logos_on_user_id"
   end
 
   create_table "masses", force: :cascade do |t|

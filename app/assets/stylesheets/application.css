@@ -13,3 +13,12 @@
  *= require_tree .
  *= require_self
  */
+
+ span.captionContent.extra-content {
+  overflow: hidden !important;
+  display: -webkit-box !important;
+  -webkit-box-orient: vertical !important;
+  -webkit-line-clamp: 3 !important;
+  font-weight: bold !important;
+  color: whitesmoke !important;
+ }

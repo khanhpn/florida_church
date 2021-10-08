@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     resources :introduction, except: :show
     resources :mass
     resources :users
+    resources :logo_link, except: :show
   end
 
   root to: "home#index"
