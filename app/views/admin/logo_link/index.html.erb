@@ -27,6 +27,7 @@
                     <td><%= logo_link&.name || "-" %></td>
                     <td class="wrap-img"><%= image_tag logo_link&.logo_linked || "no_available.png", class: "logo-wrap" %></td>
                     <td><%= logo_link&.display %></td>
+                    <td><%= link_to "Link", logo_link&.logo_url || "-" %></td>
                     <td><%= logo_link&.created_at || "-"  %></td>
                     <td><%= logo_link&.updated_at || "-"  %></td>
                     <td>

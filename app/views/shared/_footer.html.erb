@@ -40,11 +40,9 @@
             </div>
           </div>
           <div class="footerLinksRow">
-						<%= link_to image_tag("design/footerIcon1_03.png"), "http://www.vatican.va/content/vatican/en.html" %>
-						<%= link_to image_tag("design/footerIcon2_03.png"), "http://www.vatican.va/content/vatican/en.html" %>
-						<%= link_to image_tag("design/footerIcon3_03.png"), "http://www.vatican.va/content/vatican/en.html" %>
-						<%= link_to image_tag("design/footerIcon4_03.png"), "http://www.vatican.va/content/vatican/en.html" %>
-						<%= link_to image_tag("design/footerIcon5_03.png"), "http://www.vatican.va/content/vatican/en.html" %>
+            <% @linked_logos.each do |item| %>
+						  <%= link_to image_tag(item&.logo_linked), item&.logo_url %>
+            <% end %>
           </div>
           <div class="copyright"> <%= @introduction&.copywrite %>   <span>-</span>
             <br />

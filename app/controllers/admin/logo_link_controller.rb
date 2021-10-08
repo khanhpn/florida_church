@@ -41,7 +41,7 @@ class Admin::LogoLinkController < Admin::AdminController
 
   private
   def params_logo_link
-    params.require(:linked_logo).permit(:name, :display, :logo_linked)
+    params.require(:linked_logo).permit(:name, :display, :logo_url, :logo_linked)
   end
 
   def set_logo_link

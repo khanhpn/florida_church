@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(version: 2021_10_08_011410) do
   create_table "linked_logos", force: :cascade do |t|
     t.string "name"
     t.text "logo_linked"
+    t.text "logo_url"
     t.boolean "display"
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
