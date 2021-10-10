@@ -19,6 +19,11 @@ require("packs/admin/Chart.min.js");
 require("packs/admin/demo.js");
 require("packs/admin/dashboard2.js");
 require("packs/admin/bs-custom-file-input.min.js");
+require("packs/admin/summernote-bs4.min.js");
+require("packs/admin/codemirror.js");
+require("packs/admin/css.js");
+require("packs/admin/xml.js");
+require("packs/admin/htmlmixed.js");
 
 
 Rails.start()

@@ -9,34 +9,17 @@
                 <header>
                   <h2 class="moduleName">
                     <div class="moduleTitle">
-                      <span>Live Stream Mass</span>
+                      <span>Live stream mass</span>
                     </div>
                   </h2>
                 </header>
+                <% @masses.each do |mass| %>
                 <ul class="aggregate moduleBody">
                   <li class="link group">
-                    <a class="name" href="http://youtube.com/channel/UCRJOUyOibhnRwNjIzIoSOnw/live"
-													target="_blank">Live Stream Mass - YouTube Channel</a>
+                    <%= link_to mass&.name, mass&.content || mass&.file_attached, target: "_blank", class: "name" %>
                   </li>
                 </ul>
-                <footer></footer>
-              </div>
-            </li>
-            <li id="module_3875292">
-              <div class="moduleInner linksModule">
-                <header>
-                  <h2 class="moduleName">
-                    <div class="moduleTitle">
-                      <span>Responses & Prayers for the Mass</span>
-                    </div>
-                  </h2>
-                </header>
-                <ul class="aggregate moduleBody">
-                  <li class="link group">
-                    <a class="name" href="documents/2021/6/Responses%20for%20Mass%201.pdf" target="_blank">Responses
-                      & Prayers for the Mass</a>
-                  </li>
-                </ul>
+                <% end %>
                 <footer></footer>
               </div>
             </li>
@@ -47,7 +30,7 @@
                 <header>
                   <h2 class="moduleName">
                     <div class="moduleTitle">
-                      <span>Prayer after Mass</span>
+                      <span><%= @mass_ticked&.name %></span>
                     </div>
                   </h2>
                 </header>
@@ -55,10 +38,7 @@
                   <p style="text-align: justify;">
                     <br />
                     <span style="font-size:22px;">
-                      <em>St. Michael the Archangel, defend us in battle, be our safeguard against the wickedness
-                        and snares of the devil, may God rebuke him, we humbly pray and do thou, O Prince of the
-                        Heavenly Host, by the power of God, cast into hell Satan and the other evil spirits who
-                        prowl the world for the ruin of souls.                      Amen.</em>
+                      <em><%= @mass_ticked&.content %></em>
                     </span>
                   </p>
                 </div>

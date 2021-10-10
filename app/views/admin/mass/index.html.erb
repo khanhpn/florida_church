@@ -25,8 +25,10 @@
                 <% @masses.each do |mass| %>
                   <tr>
                     <td><%= mass&.name || "-" %></td>
-                    <td><%= mass&.content || "-"  %></td>
-                    <td><%= link_to 'download', mass.file_attached ? rails_blob_path(mass.file_attached, disposition: "download") : "-" %></td>
+                    <td><%= mass&.content&.html_safe || "-"  %></td>
+                    <td>
+                        <%= link_to 'download', mass.file_attached.present? ? rails_blob_path(mass.file_attached, disposition: "download") : "-" %>
+                    </td>
                     <td><%= mass&.created_at || "-"  %></td>
                     <td><%= mass&.updated_at || "-"  %></td>
                     <td>
@@ -56,7 +58,7 @@
               <tbody>
                 <tr>
                   <td><%= @ticked_mass&.name || "-" %></td>
-                  <td><%= @ticked_mass&.content || "-"  %></td>
+                  <td><%= @ticked_mass&.content&.html_safe || "-"  %></td>
                   <td><%= @ticked_mass&.created_at || "-"  %></td>
                   <td><%= @ticked_mass&.updated_at || "-"  %></td>
                   <td>

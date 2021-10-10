@@ -1,18 +1,18 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
   <!-- Brand Logo -->
-  <a href="index3.html" class="brand-link">
+  <a href="/admin/dashboard" class="brand-link">
     <%= image_tag("admin/AdminLTELogo.png", class: "brand-image img-circle elevation-3", style: "opacity: 0.8;") %>
-    <span class="brand-text font-weight-light">AdminLTE 3</span>
+    <span class="brand-text font-weight-light">Admin Page</span>
   </a>
   <!-- Sidebar -->
   <div class="sidebar">
     <!-- Sidebar user panel (optional) -->
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
       <div class="image">
-        <%= image_tag("admin/user2-160x160.jpg", class: "img-circle elevation-2") %>
+        <%= image_tag(current_user&.logo_icon.present? ? current_user&.logo_icon : "admin/user2-160x160.jpg", class: "img-circle elevation-2") %>
       </div>
       <div class="info">
-        <a href="#" class="d-block">Alexander Pierce</a>
+        <%= link_to full_name(current_user&.first_name, current_user&.last_name), admin_dashboard_path, class: "d-block" %>
       </div>
     </div>
     <!-- SidebarSearch Form -->
@@ -34,7 +34,7 @@
         <li class="nav-item menu-open">
           <%= link_to "", class: "nav-link active" do %>
             <i class="nav-icon fas fa-tachometer-alt"></i>
-            <p>Dashboard<i class="right fas fa-angle-left"></i></p>
+            <p>Manage Header-Footer<i class="right fas fa-angle-left"></i></p>
           <% end %>
           <ul class="nav nav-treeview">
             <li class="nav-item">
@@ -76,7 +76,7 @@
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-copy"></i>
             <p>
-              Layout Options
+              Manage Home Page
               <i class="fas fa-angle-left right"></i>
               <span class="badge badge-info right">6</span>
             </p>

@@ -24,7 +24,7 @@
               <tbody>
                 <tr>
                   <td><%= @introduction&.name || "-" %></td>
-                  <td><%= @introduction&.content || "-"  %></td>
+                  <td><%= @introduction&.content&.html_safe || "-"  %></td>
                   <td><%= @introduction&.youtube_url || "-"  %></td>
                   <td><%= @introduction&.flict_channel || "-"  %></td>
                   <td><%= @introduction&.youtube_channel_url || "-"  %></td>
@@ -48,7 +48,7 @@
               </thead>
               <tbody>
                 <tr>
-                  <td><%= @introduction&.address || "-"  %></td>
+                  <td><%= @introduction&.address&.html_safe || "-"  %></td>
                   <td><%= @introduction&.phone || "-"  %></td>
                   <td><%= @introduction&.email || "-"  %></td>
                   <td><%= @introduction&.copywrite || "-"  %></td>

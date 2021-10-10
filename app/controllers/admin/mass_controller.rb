@@ -23,7 +23,6 @@ class Admin::MassController < Admin::AdminController
 
   def update
     if @mass.update(params_mass)
-      byebug
       flash[:notice] = 'You updated mass successfully'
       redirect_to admin_mass_index_path
     else
