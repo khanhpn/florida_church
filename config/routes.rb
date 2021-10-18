@@ -10,6 +10,10 @@ Rails.application.routes.draw do
     resources :mass
     resources :users
     resources :logo_link, except: :show
+    resources :mass_times
+    resources :special_notes
+    resources :adoration_times
+    resources :gallery_images
   end
 
   root to: "home#index"

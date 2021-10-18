@@ -16,7 +16,7 @@
                 <% @masses.each do |mass| %>
                 <ul class="aggregate moduleBody">
                   <li class="link group">
-                    <%= link_to mass&.name, mass&.content || mass&.file_attached, target: "_blank", class: "name" %>
+                    <%= link_to mass&.name, mass&.content&.html_safe || mass&.file_attached, target: "_blank", class: "name" %>
                   </li>
                 </ul>
                 <% end %>
@@ -35,12 +35,9 @@
                   </h2>
                 </header>
                 <div class="moduleBody">
-                  <p style="text-align: justify;">
-                    <br />
-                    <span style="font-size:22px;">
-                      <em><%= @mass_ticked&.content %></em>
-                    </span>
-                  </p>
+                  <span>
+                    <em><%= @mass_ticked&.content&.html_safe %></em>
+                  </span>
                 </div>
                 <footer></footer>
               </div>

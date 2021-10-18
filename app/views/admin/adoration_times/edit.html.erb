@@ -1,0 +1,14 @@
+<%= render "admin/shared/bread_crumb", name: {title: "Edit adoration time", bread_crumb: "Edit"} %>
+<%= form_with model: @adoration_time, url: admin_adoration_time_path(@adoration_time), method: :patch do |form| %>
+  <section class="content">
+    <div class="container-fluid">
+      <%= render "form", form: form %>
+      <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+    <div class="section-btn-group-wrap">
+      <%= link_to "Back", admin_adoration_time_path, class: "btn btn-info" %>
+      <%= form.submit "Update", class: "btn btn-success", id: "id_submit_adoration_time" %>
+    </div>
+  </section>
+<% end %>

@@ -1,0 +1,14 @@
+<%= render "admin/shared/bread_crumb", name: {title: "Edit gallery image", bread_crumb: "Edit"} %>
+<%= form_with model: @gallery_image, url: admin_gallery_image_path(@gallery_image), method: :patch do |form| %>
+  <section class="content">
+    <div class="container-fluid">
+      <%= render "form", form: form %>
+      <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+    <div class="section-btn-group-wrap">
+      <%= link_to "Back", admin_gallery_image_path(@gallery_image), class: "btn btn-info" %>
+      <%= form.submit "Update", class: "btn btn-success", id: "id_submit_gallery_image" %>
+    </div>
+  </section>
+<% end %>

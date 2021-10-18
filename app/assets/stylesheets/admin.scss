@@ -6,3 +6,14 @@
 @import "admin/codemirror";
 @import "admin/monokai";
 @import 'suneditor/dist/css/suneditor.min.css';
+@import "admin/ekko-lightbox";
+
+
+.extra-images {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+}
+.wrap-gallery-image {
+  flex-wrap: wrap;
+}

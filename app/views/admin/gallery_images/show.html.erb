@@ -1,0 +1,50 @@
+<%= render "admin/shared/bread_crumb", name: {title: "Gallery Images", bread_crumb: "Top"} %>
+<!-- Main content -->
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card card-primary">
+          <div class="card-header">
+            <h4 class="card-title"><%= @gallery_image&.name %></h4>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <% @gallery_image.contents.each do |item| %>
+                <div class="col-sm-2">
+                  <%= link_to item, "data-toggle" => "lightbox", "data-title" => "sample 1 - white", "data-gallery" => "gallery" do %>
+                    <%= image_tag item, class: "img-fluid mb-2 extra-images" %>
+                  <% end %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /.container-fluid -->
+</section>
+<section class="section-btn-group">
+  <div class="section-btn-group-wrap">
+    <%= link_to "Back", admin_gallery_images_path, class: "btn btn-warning" %>
+    <%= link_to "Edit", edit_admin_gallery_image_path(@gallery_image), class: "btn btn-success" %>
+    <%= link_to "Delete", admin_gallery_image_path(@gallery_image), method: :delete, class: "btn btn-danger" %>
+  </div>
+</section>
+<script>
+  $(function () {
+    $(document).on('click', '[data-toggle="lightbox"]', function(event) {
+      event.preventDefault();
+      $(this).ekkoLightbox({
+        alwaysShowClose: true
+      });
+    });
+
+    $('.filter-container').filterizr({gutterPixels: 3});
+    $('.btn[data-filter]').on('click', function() {
+      $('.btn[data-filter]').removeClass('active');
+      $(this).addClass('active');
+    });
+  })
+</script>

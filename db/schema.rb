@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_08_232406) do
+ActiveRecord::Schema.define(version: 2021_10_16_022107) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +53,35 @@ ActiveRecord::Schema.define(version: 2021_10_08_232406) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "adoration_times", force: :cascade do |t|
+    t.string "name"
+    t.text "content"
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_adoration_times_on_user_id"
+  end
+
+  create_table "confression_times", force: :cascade do |t|
+    t.string "name"
+    t.text "content"
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_confression_times_on_user_id"
+  end
+
+  create_table "gallery_images", force: :cascade do |t|
+    t.string "name"
+    t.boolean "display"
+    t.integer "display_order"
+    t.text "content"
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_gallery_images_on_user_id"
+  end
+
   create_table "introductions", force: :cascade do |t|
     t.string "name"
     t.text "content"
@@ -83,6 +112,15 @@ ActiveRecord::Schema.define(version: 2021_10_08_232406) do
     t.index ["user_id"], name: "index_linked_logos_on_user_id"
   end
 
+  create_table "mass_times", force: :cascade do |t|
+    t.string "name"
+    t.text "content"
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_mass_times_on_user_id"
+  end
+
   create_table "masses", force: :cascade do |t|
     t.string "name"
     t.text "content"
@@ -92,6 +130,15 @@ ActiveRecord::Schema.define(version: 2021_10_08_232406) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_masses_on_user_id"
+  end
+
+  create_table "special_notes", force: :cascade do |t|
+    t.string "name"
+    t.text "content"
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_special_notes_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

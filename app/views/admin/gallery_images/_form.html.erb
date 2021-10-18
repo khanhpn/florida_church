@@ -1,0 +1,45 @@
+<div class="row">
+  <!-- right column -->
+  <div class="col-md-12">
+    <!-- Form Element sizes -->
+    <!-- /.card -->
+    <!-- general form elements disabled -->
+    <div class="card card-success">
+      <div class="card-header">
+        <h3 class="card-title">Create gallery image</h3>
+      </div>
+      <!-- /.card-header -->
+      <div class="card-body">
+        <div class="row">
+          <div class="col-sm-12">
+            <!-- text input -->
+            <div class="form-group">
+              <label>Name</label>
+              <%= form.text_field :name, class: "form-control", placeholder: "Enter name" %>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="offset-sm-12">
+            <div class="form-check">
+              <%= form.check_box :display, class: "form-check-input" %>
+              <label class="form-check-label" for="exampleCheck2">Display</label>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputFile">Upload gallery image</label>
+          <div class="input-group">
+            <div class="custom-file">
+              <%= form.file_field :contents, class: "custom-file-input", multiple: true %>
+              <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+  </div>
+  <!--/.col (right) -->
+</div>

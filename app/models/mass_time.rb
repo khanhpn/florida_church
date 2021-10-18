@@ -1,0 +1,2 @@
+class MassTime < ApplicationRecord
+end

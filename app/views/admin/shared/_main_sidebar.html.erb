@@ -31,28 +31,16 @@
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-        <li class="nav-item menu-open">
-          <%= link_to "", class: "nav-link active" do %>
+        <li class="nav-item <%= active_main_navbar_open(ApplicationHelper::MAIN_MENU_ADMIN.dig(:HEADER)) %>">
+          <%= link_to "", class: "nav-link #{active_main_navbar(ApplicationHelper::MAIN_MENU_ADMIN.dig(:HEADER))}" do %>
             <i class="nav-icon fas fa-tachometer-alt"></i>
             <p>Manage Header-Footer<i class="right fas fa-angle-left"></i></p>
           <% end %>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <%= link_to admin_users_path, class: "nav-link #{active_navbar('user')}" do %>
-                <i class="far fa-circle nav-icon"></i>
-                <p>Manage Users</p>
-              <% end %>
-            </li>
-            <li class="nav-item">
               <%= link_to admin_introduction_index_path, class: "nav-link #{active_navbar('introduction')}" do %>
                 <i class="far fa-circle nav-icon"></i>
                 <p>Manage Introduction</p>
-              <% end %>
-            </li>
-            <li class="nav-item">
-              <%= link_to admin_mass_index_path, class: "nav-link #{active_navbar('mass')}" do %>
-                <i class="far fa-circle nav-icon"></i>
-                <p>Manage Mass</p>
               <% end %>
             </li>
             <li class="nav-item">
@@ -63,76 +51,65 @@
             </li>
           </ul>
         </li>
-        <li class="nav-item">
-          <a href="pages/widgets.html" class="nav-link">
-            <i class="nav-icon fas fa-th"></i>
-            <p>
-              Widgets
-              <span class="right badge badge-danger">New</span>
-            </p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="#" class="nav-link">
+        <li class="nav-item <%= active_main_navbar_open(ApplicationHelper::MAIN_MENU_ADMIN.dig(:HOME)) %>">
+          <%= link_to "#", class: "nav-link #{active_main_navbar(ApplicationHelper::MAIN_MENU_ADMIN.dig(:HOME))}" do %>
             <i class="nav-icon fas fa-copy"></i>
             <p>
               Manage Home Page
               <i class="fas fa-angle-left right"></i>
-              <span class="badge badge-info right">6</span>
+            </p>
+          <% end %>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <%= link_to admin_mass_index_path, class: "nav-link #{active_navbar('mass')}" do %>
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage Mass</p>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to admin_mass_times_path, class: "nav-link #{active_navbar('mass_times')}" do %>
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage Mass Times</p>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to admin_special_notes_path, class: "nav-link #{active_navbar('special_notes')}" do %>
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage Special Notes</p>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to admin_adoration_times_path, class: "nav-link #{active_navbar('adoration_times')}" do %>
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage Adoration Times</p>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to admin_gallery_images_path, class: "nav-link #{active_navbar('gallery_images')}" do %>
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage Gallery Images</p>
+              <% end %>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item <%= active_main_navbar_open(ApplicationHelper::MAIN_MENU_ADMIN.dig(:HEADER)) %>">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-copy"></i>
+            <p>
+              Manage User
+              <i class="fas fa-angle-left right"></i>
             </p>
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="pages/layout/top-nav.html" class="nav-link">
+              <%= link_to admin_users_path, class: "nav-link #{active_navbar('user')}" do %>
                 <i class="far fa-circle nav-icon"></i>
-                <p>Top Navigation</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Top Navigation + Sidebar</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="pages/layout/boxed.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Boxed</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="pages/layout/fixed-sidebar.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Fixed Sidebar</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="pages/layout/fixed-sidebar-custom.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Fixed Sidebar <small>+ Custom Area</small></p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="pages/layout/fixed-topnav.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Fixed Navbar</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="pages/layout/fixed-footer.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Fixed Footer</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="pages/layout/collapsed-sidebar.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Collapsed Sidebar</p>
-              </a>
+                <p>Manage Users</p>
+              <% end %>
             </li>
           </ul>
         </li>
-        <li class="nav-item">
+        <li class="nav-item <%= active_main_navbar_open(ApplicationHelper::MAIN_MENU_ADMIN.dig(:HEADER)) %>">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-chart-pie"></i>
             <p>
@@ -167,7 +144,7 @@
             </li>
           </ul>
         </li>
-        <li class="nav-item">
+        <li class="nav-item <%= active_main_navbar_open(ApplicationHelper::MAIN_MENU_ADMIN.dig(:HEADER)) %>">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-tree"></i>
             <p>

@@ -1,0 +1,54 @@
+<%= render "admin/shared/bread_crumb", name: {title: "Gallery Images", bread_crumb: "Top"} %>
+<!-- Main content -->
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Manage gallery images</h3>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <table id="example2" class="table table-bordered table-hover">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Number of images</th>
+                  <th>Created at</th>
+                  <th>Updated at</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @gallery_images.each do |gallery_image| %>
+                  <tr>
+                    <td><%= gallery_image&.name || "-"  %></td>
+                    <td><%= gallery_image&.contents&.size || "-"  %></td>
+                    <td><%= gallery_image&.created_at || "-"  %></td>
+                    <td><%= gallery_image&.updated_at || "-"  %></td>
+                    <td>
+                      <%= link_to "Show", admin_gallery_image_path(gallery_image), class: "btn btn-warning" %>
+                      <%= link_to "Edit", edit_admin_gallery_image_path(gallery_image), class: "btn btn-success" %>
+                      <%= link_to "Delete", admin_gallery_image_path(gallery_image), method: :delete, class: "btn btn-danger" %>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+          <!-- /.card-body -->
+        </div>
+      </div>
+      <!-- /.col -->
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container-fluid -->
+</section>
+
+<section class="section-btn-group">
+  <div class="section-btn-group-wrap">
+    <%= link_to "Create", new_admin_gallery_image_path, class: "btn btn-info" %>
+  </div>
+</section>

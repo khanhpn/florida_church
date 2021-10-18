@@ -22,3 +22,7 @@
   font-weight: bold !important;
   color: whitesmoke !important;
  }
+img.focusPointImageHolder.image.extra-gallery-image-detail.imageLoaded {
+  width: 100% !important;
+  object-fit: contain;
+}
