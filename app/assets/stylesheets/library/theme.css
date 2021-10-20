@@ -7956,12 +7956,6 @@ body.preview.showPreviewToolbar.massModeActive #massModeModal {
     text-align: right;
     transition: left 0.5s ease, right 0.5s ease;
   }
-  #socialMedia a {
-    color: ;
-  }
-  #socialMedia a:hover {
-    color: ;
-  }
   #search {
     display: none;
   }
