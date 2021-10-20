@@ -1089,17 +1089,6 @@ a:hover {
     padding-top: 80px;
     display: inline-block;
   }
-  @supports (scroll-snap-align) {
-    .anchor:target {
-      padding-top: 0;
-      display: inline;
-    }
-    html {
-      -ms-scroll-padding-top: 62px;
-      -webkit-scroll-padding-top: 62px;
-      scroll-padding-top: 62px;
-    }
-  }
 }
 .translated-ltr #nav[style*="fixed"],
 .translated-ltr #navBackground[style*="fixed"] {
