@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users do
+  devise_for :users, skip: [:registrations], controllers: { sessions: 'users/sessions' } do
     get 'admin/login', to: 'devise/sessions#new'
     delete 'admin/logout', to: 'devise/sessions#destroy'
   end
