@@ -5,12 +5,10 @@
 
 import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
-import * as ActiveStorage from "@rails/activestorage"
 require("jquery");
 
 Rails.start()
 Turbolinks.start()
-ActiveStorage.start()
 
 require("packs/library/hammer.min.js");
 require("packs/library/photorotator");
