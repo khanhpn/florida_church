@@ -8,8 +8,6 @@
     "@rails/ujs": "^6.0.0",
     "@rails/webpacker": "5.4.3",
     "jquery": "^3.6.0",
-    "jquery-mapael": "^2.2.0",
-    "jquery-mousewheel": "^3.1.13",
     "moment": "^2.29.1",
     "raphael": "^2.3.0",
     "suneditor": "^2.41.3",
