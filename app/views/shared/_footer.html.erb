@@ -3,7 +3,7 @@
     <div id="footerText" class="moduleContainer footerText1 footerText">
       <div class="moduleInner ">
         <div id="footerTextBody" class="footerTextBody1 footerTextBody">
-					<%= image_tag(@introduction&.logo_icon, class: "footerLogo", style: "width:144px;height:174px;", alt: "footer logo") %>
+					<%= image_tag(@introduction&.logo_icon || "no_available.png", class: "footerLogo", style: "width:144px;height:174px;", alt: "footer logo") %>
           <div class="container">
             <div class="column">
               <p><%= @introduction&.address %></p>
@@ -41,7 +41,7 @@
           </div>
           <div class="footerLinksRow">
             <% @linked_logos.each do |item| %>
-						  <%= link_to image_tag(item&.logo_linked), item&.logo_url %>
+						  <%= link_to image_tag(item&.logo_linked || "no_available.png"), item&.logo_url %>
             <% end %>
           </div>
           <div class="copyright"> <%= @introduction&.copywrite %>   <span>-</span>
