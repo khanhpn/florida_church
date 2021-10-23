@@ -12,7 +12,7 @@
         <%= image_tag(current_user&.logo_icon.present? ? current_user&.logo_icon : "admin/user2-160x160.jpg", class: "img-circle elevation-2") %>
       </div>
       <div class="info">
-        <%= link_to full_name(current_user&.first_name, current_user&.last_name), admin_dashboard_path, class: "d-block" %>
+        <%= link_to full_name(current_user&.first_name, current_user&.last_name), admin_path, class: "d-block" %>
       </div>
     </div>
     <!-- SidebarSearch Form -->

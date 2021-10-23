@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    get "dashboard", to: 'dashboard#index'
+    get "/", to: 'dashboard#index'
     resources :introduction, except: :show
     resources :mass
     resources :users
