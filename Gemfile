@@ -37,7 +37,7 @@ gem 'pagy', '~> 4.11'
 gem 'devise', '~> 4.8'
 gem 'cancancan', '~> 3.3'
 gem 'passenger', '~> 6.0', '>= 6.0.10'
-
+gem 'sendgrid-ruby'
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'web-console', '>= 4.1.0'
