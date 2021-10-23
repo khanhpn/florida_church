@@ -12,5 +12,7 @@ class ContactController < ApplicationController
       phone: params[:phone],
       content: params[:content]
     ).contact_email.deliver_later
+
+    redirect_to root_path
   end
 end

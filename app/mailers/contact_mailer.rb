@@ -9,6 +9,5 @@ class ContactMailer < ApplicationMailer
     @last_name = params[:last_name]
 
     mail(to: @email, subject: @subject)
-    redirect_to root_path
   end
 end
