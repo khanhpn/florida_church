@@ -9851,7 +9851,7 @@ a.name {
 .sectionRegion .buttonsSection .sectionName {
   color: #fff;
   font-size: 25px;
-  background-color: #7c2335;
+  background-color: #3497bd;
   padding-top: 30px;
   margin-top: 10px;
 }
@@ -9863,14 +9863,14 @@ a.name {
   top: 10px;
   left: 50%;
   transform: translateX(-50%);
-  background-color: #7c2335;
+  background-color: #3497bd;
   z-index: -1;
 }
 .sectionRegion .buttonsSection .sectionName:before {
   content: "";
   height: 10px;
   width: 1920px;
-  background-color: rgba(123, 35, 52, 0.5);
+  background-color: #91b6c5;
   position: absolute;
   top: 0px;
   left: 50%;
@@ -9896,7 +9896,7 @@ a.name {
 .sectionRegion .sectionButtonModule {
   margin-top: 0px;
   transition: all 0.3s;
-  border-top: 8px solid #7c2335;
+  border-top: 8px solid #3497bd;
 }
 .sectionRegion .sectionButtonModule:hover {
   border-top-color: #999;
@@ -10049,7 +10049,7 @@ a.name {
   background-color: #fff;
 }
 .sacramentTimesSection .modulePosition:not(.titlePosition) > li {
-  border-top: 8px solid #7c2335;
+  border-top: 8px solid #3497bd;
 }
 .sacramentTimesSection .content1 > li:first-child {
   margin-bottom: 0px;
