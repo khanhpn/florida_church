@@ -549,7 +549,6 @@ a:hover {
   filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='https://d2y1pz2y630308.cloudfront.net/agnes/resources/base-images/social-media/socialMediaIcons.svg?svgYouTube', sizingMethod='scale');
 }
 #socialMedia a.custom1SocialMedia {
-  background-image: url("icon_flickr_lowercase_white.png");
   filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src='icon_flickr_lowercase_white.png', sizingMethod='scale');
 }
 #socialMedia a.custom2SocialMedia {
@@ -9100,9 +9099,6 @@ h3 {
   #socialMediaBody .custom1SocialMedia {
     margin-top: 10px !important;
   }
-}
-#socialMediaBody .custom1SocialMedia:hover {
-  background-image: url("icon_flickr_lowercase_yellow.png");
 }
 #search #searchField {
   padding: 10px 44px 10px 20px;
