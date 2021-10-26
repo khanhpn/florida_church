@@ -20,4 +20,5 @@ Rails.application.routes.draw do
   root to: "home#index"
   get 'contact', to: "contact#index"
   post 'contact', to: "contact#send_contact"
+  get 'bulletin', to: "bulletin#index"
 end
