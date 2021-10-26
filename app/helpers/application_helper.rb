@@ -1,7 +1,8 @@
 module ApplicationHelper
   MAIN_MENU_ADMIN = {
     HEADER: ["introduction", "logo_link"],
-    HOME: ["mass", "mass_time", "special_notes", "adoration_times", "gallery_images"]
+    HOME: ["mass", "mass_time", "special_notes", "adoration_times", "gallery_images"],
+    BULLETIN: ["bulletin"],
   }
   def active_navbar(prefix)
     request.path.gsub("/admin/", "") == prefix ? "active" : ""

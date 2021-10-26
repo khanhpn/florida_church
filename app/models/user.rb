@@ -6,6 +6,7 @@ class User < ApplicationRecord
   has_many :special_notes
   has_many :adoration_times
   has_many :gallery_images
+  has_many :bulletins
 
   has_one_attached :logo_icon
 

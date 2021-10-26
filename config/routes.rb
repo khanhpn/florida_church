@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     resources :special_notes
     resources :adoration_times
     resources :gallery_images
+    resources :bulletin, except: :show
   end
 
   root to: "home#index"
