@@ -40,7 +40,7 @@
           </div>
           <div class="footerLinksRow">
             <% @linked_logos.each do |item| %>
-						  <%= link_to image_tag(item&.logo_linked || "no_available.png"), item&.logo_url %>
+						  <%= link_to image_tag(item&.logo_linked || "no_available.png"), item&.logo_url, class: "logo-linked" %>
             <% end %>
           </div>
           <div class="copyright"> <%= @introduction&.copywrite %>   <span>-</span>
