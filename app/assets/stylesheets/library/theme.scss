@@ -9888,6 +9888,7 @@ a.name {
 @media (min-width: 701px) {
   .sectionRegion .buttonsSection.twoRow .buttonRow1 {
     margin-bottom: 70px;
+    flex-wrap: wrap;
   }
 }
 .sectionInner .buttonModuleButton .buttonLabelContainer .buttonSubtext {
