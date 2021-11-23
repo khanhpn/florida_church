@@ -1,0 +1,2 @@
+class MusicMinistry < ApplicationRecord
+end

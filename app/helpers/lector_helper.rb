@@ -1,0 +1,2 @@
+module LectorHelper
+end

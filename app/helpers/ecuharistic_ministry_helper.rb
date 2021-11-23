@@ -1,0 +1,2 @@
+module EcuharisticMinistryHelper
+end

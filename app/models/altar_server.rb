@@ -1,0 +1,2 @@
+class AltarServer < ApplicationRecord
+end

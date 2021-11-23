@@ -1,0 +1,2 @@
+class TeachingMass < ApplicationRecord
+end

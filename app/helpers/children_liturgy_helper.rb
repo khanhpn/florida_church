@@ -1,0 +1,2 @@
+module ChildrenLiturgyHelper
+end

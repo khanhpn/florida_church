@@ -1,0 +1,2 @@
+module MusicMinistryHelper
+end

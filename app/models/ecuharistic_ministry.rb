@@ -1,0 +1,2 @@
+class EcuharisticMinistry < ApplicationRecord
+end

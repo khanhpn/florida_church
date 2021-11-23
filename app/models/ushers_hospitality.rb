@@ -1,0 +1,2 @@
+class UshersHospitality < ApplicationRecord
+end

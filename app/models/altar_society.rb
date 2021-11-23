@@ -1,0 +1,2 @@
+class AltarSociety < ApplicationRecord
+end

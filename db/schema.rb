@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_26_005743) do
+ActiveRecord::Schema.define(version: 2021_11_23_012705) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,6 +62,30 @@ ActiveRecord::Schema.define(version: 2021_10_26_005743) do
     t.index ["user_id"], name: "index_adoration_times_on_user_id"
   end
 
+  create_table "altar_servers", force: :cascade do |t|
+    t.string "name"
+    t.text "content"
+    t.boolean "display", default: false
+    t.integer "display_order"
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["display_order"], name: "index_altar_servers_on_display_order"
+    t.index ["user_id"], name: "index_altar_servers_on_user_id"
+  end
+
+  create_table "altar_societies", force: :cascade do |t|
+    t.string "name"
+    t.text "content"
+    t.boolean "display", default: false
+    t.integer "display_order"
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["display_order"], name: "index_altar_societies_on_display_order"
+    t.index ["user_id"], name: "index_altar_societies_on_user_id"
+  end
+
   create_table "bulletins", force: :cascade do |t|
     t.string "name"
     t.text "content"
@@ -70,6 +94,15 @@ ActiveRecord::Schema.define(version: 2021_10_26_005743) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_bulletins_on_user_id"
+  end
+
+  create_table "childrens_liturgies", force: :cascade do |t|
+    t.string "name"
+    t.text "content"
+    t.boolean "display_order"
+    t.boolean "display"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "confression_times", force: :cascade do |t|
@@ -84,6 +117,24 @@ ActiveRecord::Schema.define(version: 2021_10_26_005743) do
   create_table "contacts", force: :cascade do |t|
     t.text "google_map"
     t.text "office_hour"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "ecuharistic_ministries", force: :cascade do |t|
+    t.string "name"
+    t.text "content"
+    t.boolean "display_order"
+    t.boolean "display"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "funerals", force: :cascade do |t|
+    t.string "name"
+    t.text "content"
+    t.boolean "display_order"
+    t.boolean "display"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -118,6 +169,15 @@ ActiveRecord::Schema.define(version: 2021_10_26_005743) do
     t.index ["user_id"], name: "index_introductions_on_user_id"
   end
 
+  create_table "lectors", force: :cascade do |t|
+    t.string "name"
+    t.text "content"
+    t.boolean "display_order"
+    t.boolean "display"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "linked_logos", force: :cascade do |t|
     t.string "name"
     t.text "logo_linked"
@@ -149,6 +209,27 @@ ActiveRecord::Schema.define(version: 2021_10_26_005743) do
     t.index ["user_id"], name: "index_masses_on_user_id"
   end
 
+  create_table "music_ministries", force: :cascade do |t|
+    t.string "name"
+    t.text "content"
+    t.boolean "display_order"
+    t.boolean "display"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "prayer_groups", force: :cascade do |t|
+    t.string "name"
+    t.text "content"
+    t.boolean "display", default: false
+    t.integer "display_order"
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["display_order"], name: "index_prayer_groups_on_display_order"
+    t.index ["user_id"], name: "index_prayer_groups_on_user_id"
+  end
+
   create_table "special_notes", force: :cascade do |t|
     t.string "name"
     t.text "content"
@@ -156,6 +237,18 @@ ActiveRecord::Schema.define(version: 2021_10_26_005743) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_special_notes_on_user_id"
+  end
+
+  create_table "teaching_masses", force: :cascade do |t|
+    t.string "name"
+    t.text "content"
+    t.boolean "display", default: false
+    t.integer "display_order"
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["display_order"], name: "index_teaching_masses_on_display_order"
+    t.index ["user_id"], name: "index_teaching_masses_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -190,6 +283,15 @@ ActiveRecord::Schema.define(version: 2021_10_26_005743) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
+  end
+
+  create_table "ushers_hospitalities", force: :cascade do |t|
+    t.string "name"
+    t.text "content"
+    t.boolean "display_order"
+    t.boolean "display"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

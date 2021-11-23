@@ -1,0 +1,2 @@
+class ChildrensLiturgy < ApplicationRecord
+end
