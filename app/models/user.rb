@@ -7,6 +7,16 @@ class User < ApplicationRecord
   has_many :adoration_times
   has_many :gallery_images
   has_many :bulletins
+  has_many :altar_serveres
+  has_many :altar_societies
+  has_many :childrens_liturgies
+  has_many :ecuharistic_ministries
+  has_many :funerals
+  has_many :music_ministries
+  has_many :prayer_groups
+  has_many :teaching_masses
+  has_many :ushers_hospitalities
+  has_many :lectors
 
   has_one_attached :logo_icon
 
