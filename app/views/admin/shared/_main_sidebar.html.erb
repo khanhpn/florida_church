@@ -126,6 +126,77 @@
             </li>
           </ul>
         </li>
+        <li class="nav-item <%= active_main_navbar_open(ApplicationHelper::MAIN_MENU_ADMIN.dig(:WORSHIP)) %>">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-chart-pie"></i>
+            <p>
+              Worship
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <%= link_to admin_teaching_mass_index_path, class: "nav-link #{active_navbar('teaching_mass')}" do %>
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage Teaching mass</p>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to admin_altar_server_index_path, class: "nav-link #{active_navbar('altar_server')}" do %>
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage Altar Server</p>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to admin_altar_society_index_path, class: "nav-link #{active_navbar('altar_society')}" do %>
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage Altar Society</p>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to admin_children_liturgy_index_path, class: "nav-link #{active_navbar('children_liturgy')}" do %>
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage Children Liturgy</p>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to admin_ecuharistic_ministry_index_path, class: "nav-link #{active_navbar('ecuharistic_ministry')}" do %>
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage Ecuharistic</p>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to admin_funeral_index_path, class: "nav-link #{active_navbar('funeral')}" do %>
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage Funeral</p>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to admin_lector_index_path, class: "nav-link #{active_navbar('lector')}" do %>
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage Lector</p>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to admin_music_ministry_index_path, class: "nav-link #{active_navbar('music_ministry')}" do %>
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage Music Ministry</p>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to admin_ushers_hospital_index_path, class: "nav-link #{active_navbar('ushers_hospital')}" do %>
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage Ushers Hospital</p>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to admin_player_group_index_path, class: "nav-link #{active_navbar('player_group')}" do %>
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage Player Group</p>
+              <% end %>
+            </li>
+          </ul>
+        </li>
         <li class="nav-item <%= active_main_navbar_open(ApplicationHelper::MAIN_MENU_ADMIN.dig(:HEADER)) %>">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-tree"></i>

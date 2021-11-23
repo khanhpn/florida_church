@@ -2,11 +2,11 @@ class Admin::PlayerGroupController < Admin::AdminController
   before_action :set_player_group, only: [:destroy, :edit, :update]
 
   def index
-    @player_groups = PlayerGroup.all
+    @player_groups = PrayerGroup.all
   end
 
   def new
-    @player_group = PlayerGroup.new
+    @player_group = PrayerGroup.new
   end
 
   def create
@@ -45,6 +45,6 @@ class Admin::PlayerGroupController < Admin::AdminController
   end
 
   def set_player_group
-    @player_group = PlayerGroup.find_by(id: params[:id])
+    @player_group = PrayerGroup.find_by(id: params[:id])
   end
 end

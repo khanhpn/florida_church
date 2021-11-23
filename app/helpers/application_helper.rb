@@ -3,6 +3,10 @@ module ApplicationHelper
     HEADER: ["introduction", "logo_link"],
     HOME: ["mass", "mass_time", "special_notes", "adoration_times", "gallery_images"],
     BULLETIN: ["bulletin"],
+    WORSHIP: [
+      "teaching_mass", "altar_server", "altar_society", "children_liturgy", "ecuharistic_ministry",
+      "funeral", "lector", "music_ministry", "ushers_hospital", "player_group"
+    ]
   }
   def active_navbar(prefix)
     request.path.gsub("/admin/", "") == prefix ? "active" : ""

@@ -2,11 +2,11 @@ class Admin::ChildrenLiturgyController < Admin::AdminController
   before_action :set_children_liturgy, only: [:destroy, :edit, :update]
 
   def index
-    @children_liturgies = ChildrenLiturgy.all
+    @children_liturgies = ChildrensLiturgy.all
   end
 
   def new
-    @children_liturgy = ChildrenLiturgy.new
+    @children_liturgy = ChildrensLiturgy.new
   end
 
   def create
@@ -45,6 +45,6 @@ class Admin::ChildrenLiturgyController < Admin::AdminController
   end
 
   def set_children_liturgy
-    @children_liturgy = ChildrenLiturgy.find_by(id: params[:id])
+    @children_liturgy = ChildrensLiturgy.find_by(id: params[:id])
   end
 end

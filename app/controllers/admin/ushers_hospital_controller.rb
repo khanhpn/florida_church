@@ -2,11 +2,11 @@ class Admin::UshersHospitalController < Admin::AdminController
   before_action :set_usher_hospital, only: [:destroy, :edit, :update]
 
   def index
-    @usher_hospitals = UshersHospital.all
+    @usher_hospitals = UshersHospitality.all
   end
 
   def new
-    @usher_hospital = UshersHospital.new
+    @usher_hospital = UshersHospitality.new
   end
 
   def create
@@ -45,6 +45,6 @@ class Admin::UshersHospitalController < Admin::AdminController
   end
 
   def set_usher_hospital
-    @usher_hospital = UshersHospital.find_by(id: params[:id])
+    @usher_hospital = UshersHospitality.find_by(id: params[:id])
   end
 end
