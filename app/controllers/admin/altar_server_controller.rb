@@ -2,7 +2,7 @@ class Admin::AltarServerController < Admin::AdminController
   before_action :set_altar_server, only: [:destroy, :edit, :update]
 
   def index
-    @altar_serveres = AltarServer.all
+    @altar_servers = AltarServer.all
   end
 
   def new
@@ -10,7 +10,8 @@ class Admin::AltarServerController < Admin::AdminController
   end
 
   def create
-    altar_server = current_user.altar_serveres.new(params_altar_server)
+    altar_server = AltarServer.new(params_altar_server)
+    altar_server.user_id = current_user.id
     if altar_server.save
       flash[:notice] = 'You created altar server successfully'
       redirect_to admin_altar_server_index_path

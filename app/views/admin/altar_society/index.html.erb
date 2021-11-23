@@ -1,2 +1,59 @@
-<h1>Admin::AltarSociety#index</h1>
-<p>Find me in app/views/admin/altar_society/index.html.erb</p>
+<%= render "admin/shared/bread_crumb", name: {title: "Altar Society", bread_crumb: "Top"} %>
+<!-- Main content -->
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Manage altar society</h3>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <table id="example2" class="table table-bordered table-hover">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Content</th>
+                  <th>Display</th>
+                  <th>Display Order</th>
+                  <th>Created at</th>
+                  <th>Updated at</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @altar_societies.each do |altar_society| %>
+                  <tr>
+                    <td><%= altar_society&.name || "-" %></td>
+                    <td><%= altar_society&.content&.html_safe || "-"  %></td>
+                    <td><%= altar_society&.display || "-"  %></td>
+                    <td><%= altar_society&.display_order || "-"  %></td>
+                    <td><%= altar_society&.created_at || "-"  %></td>
+                    <td><%= altar_society&.updated_at || "-"  %></td>
+                    <td>
+                      <% unless altar_society.blank? %>
+                        <%= link_to "Edit", edit_admin_altar_society_path(altar_society), class: "btn btn-success" %>
+                        <%= link_to "Delete", admin_altar_society_path(altar_society), method: :delete, class: "btn btn-danger" %>
+                      <% end %>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+          <!-- /.card-body -->
+        </div>
+      </div>
+      <!-- /.col -->
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container-fluid -->
+</section>
+
+<section class="section-btn-group">
+  <div class="section-btn-group-wrap">
+    <%= link_to "Create", new_admin_altar_society_path, class: "btn btn-info" %>
+  </div>
+</section>

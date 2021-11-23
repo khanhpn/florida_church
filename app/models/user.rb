@@ -17,6 +17,14 @@ class User < ApplicationRecord
   has_many :teaching_masses
   has_many :ushers_hospitalities
   has_many :lectors
+  has_many :anointing_thesicks
+  has_many :baptisms
+  has_many :confirmations
+  has_many :eucharists
+  has_many :holyorders
+  has_many :marriages
+  has_many :reconciliations
+  has_many :sacramentals
 
   has_one_attached :logo_icon
 

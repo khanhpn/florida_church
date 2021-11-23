@@ -1,0 +1,2 @@
+module EucharistHelper
+end

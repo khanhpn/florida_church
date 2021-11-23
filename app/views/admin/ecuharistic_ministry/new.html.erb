@@ -1,2 +1,14 @@
-<h1>Admin::EcuharisticMinistry#new</h1>
-<p>Find me in app/views/admin/ecuharistic_ministry/new.html.erb</p>
+<%= render "admin/shared/bread_crumb", name: {title: "Create ecuharistic ministry", bread_crumb: "New"} %>
+<%= form_with model: @ecuharistic_ministry, url: admin_ecuharistic_ministry_index_path do |form| %>
+  <section class="content">
+    <div class="container-fluid">
+      <%= render "form", form: form %>
+      <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+    <div class="section-btn-group-wrap">
+      <%= link_to "Back", admin_ecuharistic_ministry_index_path, class: "btn btn-info" %>
+      <%= form.submit "Create", class: "btn btn-success", id: "id_submit_ecuharistic_ministry" %>
+    </div>
+  </section>
+<% end %>

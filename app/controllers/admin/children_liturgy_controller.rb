@@ -10,7 +10,7 @@ class Admin::ChildrenLiturgyController < Admin::AdminController
   end
 
   def create
-    children_liturgy = current_user.children_liturgies.new(params_children_liturgy)
+    children_liturgy = current_user.childrens_liturgies.new(params_children_liturgy)
     if children_liturgy.save
       flash[:notice] = 'You created children liturgy successfully'
       redirect_to admin_children_liturgy_index_path
@@ -41,7 +41,7 @@ class Admin::ChildrenLiturgyController < Admin::AdminController
 
   private
   def params_children_liturgy
-    params.require(:children_liturgy).permit(:name, :content, :display_order, :display)
+    params.require(:childrens_liturgy).permit(:name, :content, :display_order, :display)
   end
 
   def set_children_liturgy

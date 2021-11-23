@@ -1,0 +1,2 @@
+module Admin::EucharistHelper
+end

@@ -25,6 +25,14 @@ Rails.application.routes.draw do
     resources :music_ministry, except: :show
     resources :ushers_hospital, except: :show
     resources :player_group, except: :show
+    resources :sacramental, except: :show
+    resources :anointing, except: :show
+    resources :holyorders, except: :show
+    resources :marriage, except: :show
+    resources :confirmation, except: :show
+    resources :eucharist, except: :show
+    resources :reconciliation, except: :show
+    resources :baptism, except: :show
   end
 
   root to: "home#index"
@@ -41,4 +49,12 @@ Rails.application.routes.draw do
   get 'music_ministry', to: "music_ministry#index"
   get 'ushers_hospital', to: "ushers_hospital#index"
   get 'player_group', to: "player_group#index"
+  get 'sacramental', to: "sacramental#index"
+  get 'anointing', to: "anointing#index"
+  get 'holyorders', to: "holyorders#index"
+  get 'marriage', to: "marriage#index"
+  get 'confirmation', to: "confirmation#index"
+  get 'eucharist', to: "eucharist#index"
+  get 'reconciliation', to: "reconciliation#index"
+  get 'baptism', to: "baptism#index"
 end

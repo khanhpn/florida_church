@@ -1,0 +1,2 @@
+module AnointingHelper
+end

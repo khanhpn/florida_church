@@ -1,2 +1,59 @@
-<h1>Admin::EcuharisticMinistry#index</h1>
-<p>Find me in app/views/admin/ecuharistic_ministry/index.html.erb</p>
+<%= render "admin/shared/bread_crumb", name: {title: "Children Liturgy", bread_crumb: "Top"} %>
+<!-- Main content -->
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Manage children liturgy</h3>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <table id="example2" class="table table-bordered table-hover">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Content</th>
+                  <th>Display</th>
+                  <th>Display Order</th>
+                  <th>Created at</th>
+                  <th>Updated at</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @ecuharistic_ministries.each do |ecuharistic_ministry| %>
+                  <tr>
+                    <td><%= ecuharistic_ministry&.name || "-" %></td>
+                    <td><%= ecuharistic_ministry&.content&.html_safe || "-"  %></td>
+                    <td><%= ecuharistic_ministry&.display || "-"  %></td>
+                    <td><%= ecuharistic_ministry&.display_order || "-"  %></td>
+                    <td><%= ecuharistic_ministry&.created_at || "-"  %></td>
+                    <td><%= ecuharistic_ministry&.updated_at || "-"  %></td>
+                    <td>
+                      <% unless ecuharistic_ministry.blank? %>
+                        <%= link_to "Edit", edit_admin_ecuharistic_ministry_path(ecuharistic_ministry), class: "btn btn-success" %>
+                        <%= link_to "Delete", admin_ecuharistic_ministry_path(ecuharistic_ministry), method: :delete, class: "btn btn-danger" %>
+                      <% end %>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+          <!-- /.card-body -->
+        </div>
+      </div>
+      <!-- /.col -->
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container-fluid -->
+</section>
+
+<section class="section-btn-group">
+  <div class="section-btn-group-wrap">
+    <%= link_to "Create", new_admin_ecuharistic_ministry_path, class: "btn btn-info" %>
+  </div>
+</section>

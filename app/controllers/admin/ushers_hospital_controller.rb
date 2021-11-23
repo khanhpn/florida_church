@@ -10,10 +10,10 @@ class Admin::UshersHospitalController < Admin::AdminController
   end
 
   def create
-    usher_hospital = current_user.usher_hospitals.new(params_usher_hospital)
+    usher_hospital = current_user.ushers_hospitalities.new(params_usher_hospital)
     if usher_hospital.save
       flash[:notice] = 'You created usher hospital successfully'
-      redirect_to admin_usher_hospital_index_path
+      redirect_to admin_ushers_hospital_index_path
     else
       flash.now[:warning] = 'You can not create usher hospital, please check error'
       render :new
@@ -23,7 +23,7 @@ class Admin::UshersHospitalController < Admin::AdminController
   def update
     if @usher_hospital.update(params_usher_hospital)
       flash[:notice] = 'You updated usher hospital successfully'
-      redirect_to admin_usher_hospital_index_path
+      redirect_to admin_ushers_hospital_index_path
     else
       flash.now[:warning] = 'You can not update usher hospital, please check error'
       render :edit
@@ -36,12 +36,12 @@ class Admin::UshersHospitalController < Admin::AdminController
   def destroy
     @usher_hospital.destroy
     flash[:notice] = 'You deleted usher hospital successfully'
-    redirect_to admin_usher_hospital_index_path
+    redirect_to admin_ushers_hospital_index_path
   end
 
   private
   def params_usher_hospital
-    params.require(:usher_hospital).permit(:name, :content, :display_order, :display)
+    params.require(:ushers_hospitality).permit(:name, :content, :display_order, :display)
   end
 
   def set_usher_hospital

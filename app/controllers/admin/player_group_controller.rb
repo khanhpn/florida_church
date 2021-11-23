@@ -10,7 +10,7 @@ class Admin::PlayerGroupController < Admin::AdminController
   end
 
   def create
-    player_group = current_user.player_groups.new(params_player_group)
+    player_group = current_user.prayer_groups.new(params_player_group)
     if player_group.save
       flash[:notice] = 'You created player group successfully'
       redirect_to admin_player_group_index_path
@@ -41,7 +41,7 @@ class Admin::PlayerGroupController < Admin::AdminController
 
   private
   def params_player_group
-    params.require(:player_group).permit(:name, :content, :display_order, :display)
+    params.require(:prayer_group).permit(:name, :content, :display_order, :display)
   end
 
   def set_player_group

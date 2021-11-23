@@ -1,0 +1,2 @@
+module SacramentalHelper
+end

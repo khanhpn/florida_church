@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_23_012705) do
+ActiveRecord::Schema.define(version: 2021_11_23_151300) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -86,6 +86,30 @@ ActiveRecord::Schema.define(version: 2021_11_23_012705) do
     t.index ["user_id"], name: "index_altar_societies_on_user_id"
   end
 
+  create_table "anointing_thesicks", force: :cascade do |t|
+    t.string "name"
+    t.text "content"
+    t.boolean "display", default: false
+    t.integer "display_order"
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["display_order"], name: "index_anointing_thesicks_on_display_order"
+    t.index ["user_id"], name: "index_anointing_thesicks_on_user_id"
+  end
+
+  create_table "baptisms", force: :cascade do |t|
+    t.string "name"
+    t.text "content"
+    t.boolean "display", default: false
+    t.integer "display_order"
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["display_order"], name: "index_baptisms_on_display_order"
+    t.index ["user_id"], name: "index_baptisms_on_user_id"
+  end
+
   create_table "bulletins", force: :cascade do |t|
     t.string "name"
     t.text "content"
@@ -99,10 +123,25 @@ ActiveRecord::Schema.define(version: 2021_11_23_012705) do
   create_table "childrens_liturgies", force: :cascade do |t|
     t.string "name"
     t.text "content"
-    t.boolean "display_order"
-    t.boolean "display"
+    t.boolean "display", default: false
+    t.integer "display_order"
+    t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["display_order"], name: "index_childrens_liturgies_on_display_order"
+    t.index ["user_id"], name: "index_childrens_liturgies_on_user_id"
+  end
+
+  create_table "confirmations", force: :cascade do |t|
+    t.string "name"
+    t.text "content"
+    t.boolean "display", default: false
+    t.integer "display_order"
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["display_order"], name: "index_confirmations_on_display_order"
+    t.index ["user_id"], name: "index_confirmations_on_user_id"
   end
 
   create_table "confression_times", force: :cascade do |t|
@@ -124,19 +163,37 @@ ActiveRecord::Schema.define(version: 2021_11_23_012705) do
   create_table "ecuharistic_ministries", force: :cascade do |t|
     t.string "name"
     t.text "content"
-    t.boolean "display_order"
-    t.boolean "display"
+    t.boolean "display", default: false
+    t.integer "display_order"
+    t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["display_order"], name: "index_ecuharistic_ministries_on_display_order"
+    t.index ["user_id"], name: "index_ecuharistic_ministries_on_user_id"
+  end
+
+  create_table "eucharists", force: :cascade do |t|
+    t.string "name"
+    t.text "content"
+    t.boolean "display", default: false
+    t.integer "display_order"
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["display_order"], name: "index_eucharists_on_display_order"
+    t.index ["user_id"], name: "index_eucharists_on_user_id"
   end
 
   create_table "funerals", force: :cascade do |t|
     t.string "name"
     t.text "content"
-    t.boolean "display_order"
-    t.boolean "display"
+    t.boolean "display", default: false
+    t.integer "display_order"
+    t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["display_order"], name: "index_funerals_on_display_order"
+    t.index ["user_id"], name: "index_funerals_on_user_id"
   end
 
   create_table "gallery_images", force: :cascade do |t|
@@ -148,6 +205,18 @@ ActiveRecord::Schema.define(version: 2021_11_23_012705) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_gallery_images_on_user_id"
+  end
+
+  create_table "holyorders", force: :cascade do |t|
+    t.string "name"
+    t.text "content"
+    t.boolean "display", default: false
+    t.integer "display_order"
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["display_order"], name: "index_holyorders_on_display_order"
+    t.index ["user_id"], name: "index_holyorders_on_user_id"
   end
 
   create_table "introductions", force: :cascade do |t|
@@ -172,10 +241,13 @@ ActiveRecord::Schema.define(version: 2021_11_23_012705) do
   create_table "lectors", force: :cascade do |t|
     t.string "name"
     t.text "content"
-    t.boolean "display_order"
-    t.boolean "display"
+    t.boolean "display", default: false
+    t.integer "display_order"
+    t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["display_order"], name: "index_lectors_on_display_order"
+    t.index ["user_id"], name: "index_lectors_on_user_id"
   end
 
   create_table "linked_logos", force: :cascade do |t|
@@ -187,6 +259,18 @@ ActiveRecord::Schema.define(version: 2021_11_23_012705) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_linked_logos_on_user_id"
+  end
+
+  create_table "marriages", force: :cascade do |t|
+    t.string "name"
+    t.text "content"
+    t.boolean "display", default: false
+    t.integer "display_order"
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["display_order"], name: "index_marriages_on_display_order"
+    t.index ["user_id"], name: "index_marriages_on_user_id"
   end
 
   create_table "mass_times", force: :cascade do |t|
@@ -212,10 +296,13 @@ ActiveRecord::Schema.define(version: 2021_11_23_012705) do
   create_table "music_ministries", force: :cascade do |t|
     t.string "name"
     t.text "content"
-    t.boolean "display_order"
-    t.boolean "display"
+    t.boolean "display", default: false
+    t.integer "display_order"
+    t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["display_order"], name: "index_music_ministries_on_display_order"
+    t.index ["user_id"], name: "index_music_ministries_on_user_id"
   end
 
   create_table "prayer_groups", force: :cascade do |t|
@@ -228,6 +315,30 @@ ActiveRecord::Schema.define(version: 2021_11_23_012705) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["display_order"], name: "index_prayer_groups_on_display_order"
     t.index ["user_id"], name: "index_prayer_groups_on_user_id"
+  end
+
+  create_table "reconciliations", force: :cascade do |t|
+    t.string "name"
+    t.text "content"
+    t.boolean "display", default: false
+    t.integer "display_order"
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["display_order"], name: "index_reconciliations_on_display_order"
+    t.index ["user_id"], name: "index_reconciliations_on_user_id"
+  end
+
+  create_table "sacramentals", force: :cascade do |t|
+    t.string "name"
+    t.text "content"
+    t.boolean "display", default: false
+    t.integer "display_order"
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["display_order"], name: "index_sacramentals_on_display_order"
+    t.index ["user_id"], name: "index_sacramentals_on_user_id"
   end
 
   create_table "special_notes", force: :cascade do |t|
@@ -288,10 +399,13 @@ ActiveRecord::Schema.define(version: 2021_11_23_012705) do
   create_table "ushers_hospitalities", force: :cascade do |t|
     t.string "name"
     t.text "content"
-    t.boolean "display_order"
-    t.boolean "display"
+    t.boolean "display", default: false
+    t.integer "display_order"
+    t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["display_order"], name: "index_ushers_hospitalities_on_display_order"
+    t.index ["user_id"], name: "index_ushers_hospitalities_on_user_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

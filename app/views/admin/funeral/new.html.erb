@@ -1,2 +1,14 @@
-<h1>Admin::Funeral#new</h1>
-<p>Find me in app/views/admin/funeral/new.html.erb</p>
+<%= render "admin/shared/bread_crumb", name: {title: "Create funeral", bread_crumb: "New"} %>
+<%= form_with model: @funeral, url: admin_funeral_index_path do |form| %>
+  <section class="content">
+    <div class="container-fluid">
+      <%= render "form", form: form %>
+      <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+    <div class="section-btn-group-wrap">
+      <%= link_to "Back", admin_funeral_index_path, class: "btn btn-info" %>
+      <%= form.submit "Create", class: "btn btn-success", id: "id_submit_funeral" %>
+    </div>
+  </section>
+<% end %>
