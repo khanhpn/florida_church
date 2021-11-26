@@ -41,7 +41,7 @@ class Admin::BulletinController < Admin::AdminController
 
   private
   def params_bulletin
-    params.require(:bulletin).permit(:name, :content, :display)
+    params.require(:bulletin).permit(:name, :content, :display, :image_content)
   end
 
   def set_bulletin
