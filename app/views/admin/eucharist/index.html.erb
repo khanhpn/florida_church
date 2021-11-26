@@ -1,2 +1,58 @@
-<h1>Admin::Eucharist#index</h1>
-<p>Find me in app/views/admin/eucharist/index.html.erb</p>
+<%= render "admin/shared/bread_crumb", name: {title: "Eucharist", bread_crumb: "Top"} %>
+<!-- Main content -->
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Manage eucharist</h3>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <table id="example2" class="table table-bordered table-hover">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Content</th>
+                  <th>Display</th>
+                  <th>Display Order</th>
+                  <th>Created at</th>
+                  <th>Updated at</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @eucharists.each do |eucharist| %>
+                  <tr>
+                    <td><%= eucharist&.name || "-" %></td>
+                    <td><%= eucharist&.content&.html_safe || "-"  %></td>
+                    <td><%= eucharist&.display || "-"  %></td>
+                    <td><%= eucharist&.display_order || "-"  %></td>
+                    <td><%= eucharist&.created_at || "-"  %></td>
+                    <td><%= eucharist&.updated_at || "-"  %></td>
+                    <td>
+                      <% unless eucharist.blank? %>
+                        <%= link_to "Edit", edit_admin_eucharist_path(eucharist), class: "btn btn-success" %>
+                        <%= link_to "Delete", admin_eucharist_path(eucharist), method: :delete, class: "btn btn-danger" %>
+                      <% end %>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+          <!-- /.card-body -->
+        </div>
+      </div>
+      <!-- /.col -->
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container-fluid -->
+</section>
+<section class="section-btn-group">
+  <div class="section-btn-group-wrap">
+    <%= link_to "Create", new_admin_eucharist_path, class: "btn btn-info" %>
+  </div>
+</section>

@@ -197,6 +197,65 @@
             </li>
           </ul>
         </li>
+        <li class="nav-item <%= active_main_navbar_open(ApplicationHelper::MAIN_MENU_ADMIN.dig(:SACRAMENT)) %>">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-chart-pie"></i>
+            <p>
+              Sacrament
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <%= link_to admin_baptism_index_path, class: "nav-link #{active_navbar('baptism')}" do %>
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage Baptism</p>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to admin_reconciliation_index_path, class: "nav-link #{active_navbar('reconciliation')}" do %>
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage Reconciliation</p>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to admin_eucharist_index_path, class: "nav-link #{active_navbar('eucharist')}" do %>
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage Eucharist</p>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to admin_confirmation_index_path, class: "nav-link #{active_navbar('confirmation')}" do %>
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage Confirmation</p>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to admin_marriage_index_path, class: "nav-link #{active_navbar('marriage')}" do %>
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage Marriage</p>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to admin_holyorders_path, class: "nav-link #{active_navbar('holyorders')}" do %>
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage Holyorders</p>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to admin_anointing_index_path, class: "nav-link #{active_navbar('anointing')}" do %>
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage Anointing</p>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to admin_sacramental_index_path, class: "nav-link #{active_navbar('sacramental')}" do %>
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage Sacramental</p>
+              <% end %>
+            </li>
+          </ul>
+        </li>
         <li class="nav-item <%= active_main_navbar_open(ApplicationHelper::MAIN_MENU_ADMIN.dig(:HEADER)) %>">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-tree"></i>

@@ -1,2 +1,58 @@
-<h1>Admin::Sacramental#index</h1>
-<p>Find me in app/views/admin/sacramental/index.html.erb</p>
+<%= render "admin/shared/bread_crumb", name: {title: "Sacramental", bread_crumb: "Top"} %>
+<!-- Main content -->
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Manage sacramental</h3>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <table id="example2" class="table table-bordered table-hover">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Content</th>
+                  <th>Display</th>
+                  <th>Display Order</th>
+                  <th>Created at</th>
+                  <th>Updated at</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @sacramentals.each do |sacramental| %>
+                  <tr>
+                    <td><%= sacramental&.name || "-" %></td>
+                    <td><%= sacramental&.content&.html_safe || "-"  %></td>
+                    <td><%= sacramental&.display || "-"  %></td>
+                    <td><%= sacramental&.display_order || "-"  %></td>
+                    <td><%= sacramental&.created_at || "-"  %></td>
+                    <td><%= sacramental&.updated_at || "-"  %></td>
+                    <td>
+                      <% unless sacramental.blank? %>
+                        <%= link_to "Edit", edit_admin_sacramental_path(sacramental), class: "btn btn-success" %>
+                        <%= link_to "Delete", admin_sacramental_path(sacramental), method: :delete, class: "btn btn-danger" %>
+                      <% end %>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+          <!-- /.card-body -->
+        </div>
+      </div>
+      <!-- /.col -->
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container-fluid -->
+</section>
+<section class="section-btn-group">
+  <div class="section-btn-group-wrap">
+    <%= link_to "Create", new_admin_sacramental_path, class: "btn btn-info" %>
+  </div>
+</section>

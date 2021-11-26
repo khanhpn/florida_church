@@ -6,6 +6,10 @@ module ApplicationHelper
     WORSHIP: [
       "teaching_mass", "altar_server", "altar_society", "children_liturgy", "ecuharistic_ministry",
       "funeral", "lector", "music_ministry", "ushers_hospital", "player_group"
+    ],
+    SACRAMENT: [
+      "baptism", "reconciliation", "eucharist", "confirmation", "marriage",
+      "holyorders", "anointing", "sacramental"
     ]
   }
   def active_navbar(prefix)
