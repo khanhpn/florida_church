@@ -1,0 +1,2 @@
+module Admin::CouncilHelper
+end
