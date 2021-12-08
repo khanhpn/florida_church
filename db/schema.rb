@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_26_005337) do
+ActiveRecord::Schema.define(version: 2021_12_08_093503) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -133,6 +133,17 @@ ActiveRecord::Schema.define(version: 2021_11_26_005337) do
     t.index ["user_id"], name: "index_childrens_liturgies_on_user_id"
   end
 
+  create_table "clergies", force: :cascade do |t|
+    t.string "name"
+    t.text "content"
+    t.text "image_user"
+    t.boolean "display"
+    t.bigint "users_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["users_id"], name: "index_clergies_on_users_id"
+  end
+
   create_table "confirmations", force: :cascade do |t|
     t.string "name"
     t.text "content"
@@ -161,6 +172,28 @@ ActiveRecord::Schema.define(version: 2021_11_26_005337) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "councils", force: :cascade do |t|
+    t.string "name"
+    t.text "content"
+    t.text "image_user"
+    t.boolean "display"
+    t.bigint "users_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["users_id"], name: "index_councils_on_users_id"
+  end
+
+  create_table "deacons", force: :cascade do |t|
+    t.string "name"
+    t.text "content"
+    t.text "image_user"
+    t.boolean "display"
+    t.bigint "users_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["users_id"], name: "index_deacons_on_users_id"
+  end
+
   create_table "ecuharistic_ministries", force: :cascade do |t|
     t.string "name"
     t.text "content"
@@ -171,6 +204,16 @@ ActiveRecord::Schema.define(version: 2021_11_26_005337) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["display_order"], name: "index_ecuharistic_ministries_on_display_order"
     t.index ["user_id"], name: "index_ecuharistic_ministries_on_user_id"
+  end
+
+  create_table "environment_churches", force: :cascade do |t|
+    t.string "name"
+    t.text "content"
+    t.boolean "display"
+    t.bigint "users_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["users_id"], name: "index_environment_churches_on_users_id"
   end
 
   create_table "eucharists", force: :cascade do |t|
@@ -206,6 +249,16 @@ ActiveRecord::Schema.define(version: 2021_11_26_005337) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_gallery_images_on_user_id"
+  end
+
+  create_table "history_churches", force: :cascade do |t|
+    t.string "name"
+    t.text "content"
+    t.boolean "display"
+    t.bigint "users_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["users_id"], name: "index_history_churches_on_users_id"
   end
 
   create_table "holyorders", force: :cascade do |t|
@@ -351,6 +404,17 @@ ActiveRecord::Schema.define(version: 2021_11_26_005337) do
     t.index ["user_id"], name: "index_special_notes_on_user_id"
   end
 
+  create_table "staffs", force: :cascade do |t|
+    t.string "name"
+    t.text "content"
+    t.text "image_user"
+    t.boolean "display"
+    t.bigint "users_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["users_id"], name: "index_staffs_on_users_id"
+  end
+
   create_table "teaching_masses", force: :cascade do |t|
     t.string "name"
     t.text "content"
@@ -407,6 +471,13 @@ ActiveRecord::Schema.define(version: 2021_11_26_005337) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["display_order"], name: "index_ushers_hospitalities_on_display_order"
     t.index ["user_id"], name: "index_ushers_hospitalities_on_user_id"
+  end
+
+  create_table "welcomes", force: :cascade do |t|
+    t.string "name"
+    t.text "content"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

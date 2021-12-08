@@ -1,0 +1,2 @@
+class Deacon < ApplicationRecord
+end

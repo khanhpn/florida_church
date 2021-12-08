@@ -1,0 +1,2 @@
+class EnvironmentChurch < ApplicationRecord
+end

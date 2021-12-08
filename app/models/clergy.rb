@@ -1,0 +1,2 @@
+class Clergy < ApplicationRecord
+end

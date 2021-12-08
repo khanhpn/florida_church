@@ -1,0 +1,2 @@
+class HistoryChurch < ApplicationRecord
+end
