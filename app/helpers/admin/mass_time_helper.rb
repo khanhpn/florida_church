@@ -1,2 +1,0 @@
-module Admin::MassTimeHelper
-end
