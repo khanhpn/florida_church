@@ -1,2 +1,36 @@
-<h1>TeachingMass#index</h1>
-<p>Find me in app/views/teaching_mass/index.html.erb</p>
+<div id="core" class="empty section" class="interior">
+  <div id="interiorHeader">
+    <h1 id="pageTitle"> Teaching Mass </h1>
+  </div>
+  <ul id="section1" class="region sectionRegion">
+    <li>
+      <div class="sectionInner columnSection twinColumn">
+        <div class="sectionBackground"></div>
+        <div class="sectionBody">
+          <ul class="modulePosition modulePositionColumn content1 halfColumn" sectionPosition="1">
+            <% @teachings.each_with_index do |item, index| %>
+              <% if index.odd? %>
+                <li id="section_155862">
+                  <div class="moduleInner youtubeModule mediaFormatting">
+                    <iframe class="youtube video moduleBody" width="640" height="360" src="<%= item.content %>?feature=player_detailpage&amp;wmode=transparent&amp;rel=0" frameborder="0" wmode="Opaque" allowfullscreen></iframe>
+                  </div>
+                </li>
+              <% end %>
+            <% end %>
+          </ul>
+          <ul class="modulePosition modulePositionColumn content2 halfColumn" sectionPosition="101">
+            <% @teachings.each_with_index do |item, index| %>
+              <% if index.even? %>
+                <li id="section_155862">
+                  <div class="moduleInner youtubeModule mediaFormatting">
+                    <iframe class="youtube video moduleBody" width="640" height="360" src="<%= item.content %>?feature=player_detailpage&amp;wmode=transparent&amp;rel=0" frameborder="0" wmode="Opaque" allowfullscreen></iframe>
+                  </div>
+                </li>
+              <% end %>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
