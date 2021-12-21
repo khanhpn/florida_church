@@ -26,7 +26,7 @@ class User < ApplicationRecord
   has_many :reconciliations
   has_many :sacramentals
   has_many :clergies
-  has_many :daecons
+  has_many :deacons
   has_many :staffs
   has_many :councils
   has_many :history_churchs

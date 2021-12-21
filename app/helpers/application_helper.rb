@@ -12,7 +12,7 @@ module ApplicationHelper
       "holyorders", "anointing", "sacramental"
     ],
     ABOUT_US: [
-      "welcome", "clergy", "deacon", "staff", "council", "history", "environment"
+      "welcome", "clergy", "deacon", "staff", "council", "history_church", "environment_church"
     ]
   }
   def active_navbar(prefix)
