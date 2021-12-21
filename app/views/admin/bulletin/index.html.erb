@@ -24,7 +24,11 @@
                   <tr>
                     <td><%= bulletin&.name || "-" %></td>
                     <td><%= image_tag bulletin&.image_content.present? ? bulletin&.image_content : "no_available.png", class: "logo-wrap"  %></td>
-                    <td><%= link_to "File download", bulletin&.content || "#", download: true  %></td>
+                    <td>
+                      <% if bulletin.content.present? %>
+                        <%= link_to "File download", bulletin&.content || "#", download: true  %>
+                      <% end %>
+                    </td>
                     <td><%= bulletin&.display || "-"  %></td>
                     <td>
                       <% unless bulletin.blank? %>
