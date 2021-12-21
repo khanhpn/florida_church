@@ -33,6 +33,14 @@ Rails.application.routes.draw do
     resources :eucharist, except: :show
     resources :reconciliation, except: :show
     resources :baptism, except: :show
+
+    resources :welcome, except: :show
+    resources :environment_church, except: :show
+    resources :history_church, except: :show
+    resources :council, except: :show
+    resources :staff, except: :show
+    resources :deacon, except: :show
+    resources :clergy, except: :show
   end
 
   root to: "home#index"

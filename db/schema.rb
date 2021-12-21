@@ -138,10 +138,12 @@ ActiveRecord::Schema.define(version: 2021_12_08_093503) do
     t.text "content"
     t.text "image_user"
     t.boolean "display"
-    t.bigint "users_id"
+    t.integer "display_order"
+    t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["users_id"], name: "index_clergies_on_users_id"
+    t.index ["display_order"], name: "index_clergies_on_display_order"
+    t.index ["user_id"], name: "index_clergies_on_user_id"
   end
 
   create_table "confirmations", force: :cascade do |t|
@@ -177,10 +179,12 @@ ActiveRecord::Schema.define(version: 2021_12_08_093503) do
     t.text "content"
     t.text "image_user"
     t.boolean "display"
-    t.bigint "users_id"
+    t.integer "display_order"
+    t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["users_id"], name: "index_councils_on_users_id"
+    t.index ["display_order"], name: "index_councils_on_display_order"
+    t.index ["user_id"], name: "index_councils_on_user_id"
   end
 
   create_table "deacons", force: :cascade do |t|
@@ -188,10 +192,12 @@ ActiveRecord::Schema.define(version: 2021_12_08_093503) do
     t.text "content"
     t.text "image_user"
     t.boolean "display"
-    t.bigint "users_id"
+    t.integer "display_order"
+    t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["users_id"], name: "index_deacons_on_users_id"
+    t.index ["display_order"], name: "index_deacons_on_display_order"
+    t.index ["user_id"], name: "index_deacons_on_user_id"
   end
 
   create_table "ecuharistic_ministries", force: :cascade do |t|
@@ -210,10 +216,12 @@ ActiveRecord::Schema.define(version: 2021_12_08_093503) do
     t.string "name"
     t.text "content"
     t.boolean "display"
-    t.bigint "users_id"
+    t.bigint "user_id"
+    t.integer "display_order"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["users_id"], name: "index_environment_churches_on_users_id"
+    t.index ["display_order"], name: "index_environment_churches_on_display_order"
+    t.index ["user_id"], name: "index_environment_churches_on_user_id"
   end
 
   create_table "eucharists", force: :cascade do |t|
@@ -255,10 +263,12 @@ ActiveRecord::Schema.define(version: 2021_12_08_093503) do
     t.string "name"
     t.text "content"
     t.boolean "display"
-    t.bigint "users_id"
+    t.bigint "user_id"
+    t.integer "display_order"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["users_id"], name: "index_history_churches_on_users_id"
+    t.index ["display_order"], name: "index_history_churches_on_display_order"
+    t.index ["user_id"], name: "index_history_churches_on_user_id"
   end
 
   create_table "holyorders", force: :cascade do |t|
@@ -409,10 +419,12 @@ ActiveRecord::Schema.define(version: 2021_12_08_093503) do
     t.text "content"
     t.text "image_user"
     t.boolean "display"
-    t.bigint "users_id"
+    t.integer "display_order"
+    t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["users_id"], name: "index_staffs_on_users_id"
+    t.index ["display_order"], name: "index_staffs_on_display_order"
+    t.index ["user_id"], name: "index_staffs_on_user_id"
   end
 
   create_table "teaching_masses", force: :cascade do |t|

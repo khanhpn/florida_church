@@ -10,6 +10,9 @@ module ApplicationHelper
     SACRAMENT: [
       "baptism", "reconciliation", "eucharist", "confirmation", "marriage",
       "holyorders", "anointing", "sacramental"
+    ],
+    ABOUT_US: [
+      "welcome", "clergy", "deacon", "staff", "council", "history", "environment"
     ]
   }
   def active_navbar(prefix)

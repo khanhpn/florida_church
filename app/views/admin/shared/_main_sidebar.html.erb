@@ -315,6 +315,59 @@
             </li>
           </ul>
         </li>
+        <li class="nav-item <%= active_main_navbar_open(ApplicationHelper::MAIN_MENU_ADMIN.dig(:ABOUT_US)) %>">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-chart-pie"></i>
+            <p>
+              About us
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <%= link_to admin_welcome_index_path, class: "nav-link #{active_navbar('welcome')}" do %>
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage welcome</p>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to admin_clergy_index_path, class: "nav-link #{active_navbar('clergy')}" do %>
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage clergy</p>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to admin_deacon_index_path, class: "nav-link #{active_navbar('deacon')}" do %>
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage Deacon</p>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to admin_staff_index_path, class: "nav-link #{active_navbar('staff')}" do %>
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage Staff</p>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to admin_council_index_path, class: "nav-link #{active_navbar('council')}" do %>
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage Council</p>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to admin_history_church_index_path, class: "nav-link #{active_navbar('history')}" do %>
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage History</p>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to admin_environment_church_index_path, class: "nav-link #{active_navbar('environment')}" do %>
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage Environment</p>
+              <% end %>
+            </li>
+          </ul>
+        </li>
         <li class="nav-item">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-edit"></i>

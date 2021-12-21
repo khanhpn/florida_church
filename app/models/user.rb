@@ -25,6 +25,12 @@ class User < ApplicationRecord
   has_many :marriages
   has_many :reconciliations
   has_many :sacramentals
+  has_many :clergies
+  has_many :daecons
+  has_many :staffs
+  has_many :councils
+  has_many :history_churchs
+  has_many :environment_churchs
 
   has_one_attached :logo_icon
 
