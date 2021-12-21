@@ -65,4 +65,13 @@ Rails.application.routes.draw do
   get 'eucharist', to: "eucharist#index"
   get 'reconciliation', to: "reconciliation#index"
   get 'baptism', to: "baptism#index"
+
+  # about us
+  get 'environment_church', to: 'environment_church#index'
+  get 'history_church', to: 'history_church#index'
+  get 'council', to: 'council#index'
+  get 'staff', to: 'staff#index'
+  get 'deacon', to: 'deacon#index'
+  get 'clergy', to: 'clergy#index'
+  get 'welcome', to: 'welcome#index'
 end

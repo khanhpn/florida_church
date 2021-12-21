@@ -1,0 +1,2 @@
+module CouncilHelper
+end
