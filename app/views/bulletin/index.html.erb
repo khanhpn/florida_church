@@ -35,7 +35,7 @@
   <ul id="content1" class="region">
     <li class="bulletin group">
       <div class="bulletinName">
-        <%= link_to @bulletin&.content, class: "name", target: "_blank" do %>
+        <%= link_to @bulletin&.content.present? ? @bulletin&.content : "", class: "name", target: "_blank" do %>
           <span class='july month'><%= @bulletin.updated_at.strftime("%m/%d/%Y") %></span>
           <%= image_tag @bulletin&.image_content.blank? ? "no_available.png" : @bulletin&.image_content %>
         <% end %>
