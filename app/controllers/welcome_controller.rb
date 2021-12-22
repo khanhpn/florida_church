@@ -1,5 +1,5 @@
 class WelcomeController < ApplicationController
   def index
-    @welcome = Welcome.display_article.last
+    @welcome = Welcome.last
   end
 end
