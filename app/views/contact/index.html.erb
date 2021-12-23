@@ -1,117 +1,85 @@
 <div id="core" pageID="249" class="empty duo" class="interior">
   <div id="interiorHeader">
-    <h1 id="pageTitle">How can we help you?</h1>
+    <h1 id="pageTitle">
+      How can we help you?
+    </h1>
   </div>
-  <ul id="content2" class="region moduleRegion" maxModules="10">
-    <li id="module_1184781">
-      <div class="moduleInner customModule">
-        <header>
-        </header>
-        <div class="moduleBody">
-          <p><strong><span style="font-size:18px;">Our Hours of Operation</span></strong><br /> <br />
-            <strong>Parish Office Hours</strong><br /> Mon-Fri:   9:00 am - 3:00 pm<br /> Saturday:  9:00 am - 12:00
-            pm
-          </p>
-          <p><br /> <strong>School Office Hours</strong><br /> Mon-Fri:   8:00 am - 4:00 pm<br /> <br />
-            <strong>Senior Nutrition Center</strong><br /> <em>Temporarily closed due to COVID</em><br /> <br />
-            <strong>Society of St. Vincent De Paul</strong><br /> Tue-Sat:    9:00 am - 12:00 pm
-          </p>
-        </div>
-        <footer></footer>
-      </div>
-    </li>
-  </ul>
-  <ul id="content1" class="region moduleRegion" maxModules="10">
-    <li id="module_1184536">
-      <div class="moduleInner onlineFormModule">
-        <header>
-        </header>
-        <a id="formTop"></a>
-        <div id="onlineForm" class="formStyling moduleBody group " onlineFormID="39566"
-          postUrl="/onlineforms/post/39566" data-checkLimitUrl="/onlineforms/checklimit/39566">
-          <%= form_with url: contact_path, method: :post do |form| %>
-            <div id="submissionLimitMessage" class="submissionLimitVisible">
-              The maximum number of form submissions has been reached. This form is currently not available.
+  <div id="content1" class="region moduleRegion" maxModules="10">
+    <div id="module_1184536">
+      <div id="onlineForm" class="formStyling moduleBody group wrap-contact" onlineFormID="39566"
+        postUrl="/onlineforms/post/39566" data-checkLimitUrl="/onlineforms/checklimit/39566">
+        <%= form_with url: contact_path, method: "post" do |form| %>
+          <div id="onlineFormFields" class="aggregate">
+            <div id="formField_168096_0" fieldID="168096" class="ofField tag    ">
+              <div class="customText"><span style="font-size:16px;">Have a question or comment? Send it to us
+                  directly!</span>
+              </div>
             </div>
-            <ul id="onlineFormFields" class="aggregate">
-              <li id="formField_168096_0" fieldID="168096" class="ofField tag    ">
-                <div class="customText"><span style="font-size:16px;">Have a question or comment? Send it to us
-                    directly!</span></div>
-              </li>
-              <li id="formField_168077_0" fieldID="168077" class="ofField tag    ">
-                <div class="firstLastNameField">
-                  <div id="fieldGroup-fieldFirst_168077_0" class="inputHolder">
-                    <label class="fieldLabel" for="fieldFirst_168077_0">
-                      First Name
-                    </label>
-                    <%= form.text_field :first_name %>
-                    <span class="requiredErrorText">Please fill out this field.</span>
-                    <span class="validateErrorText">Please enter valid data.</span>
-                  </div>
-                  <div id="fieldGroup-fieldLast_168077_0" class="inputHolder">
-                    <label class="fieldLabel" for="fieldLast_168077_0">
-                      Last Name
-                    </label>
-                    <%= form.text_field :last_name %>
-                    <span class="requiredErrorText">Please fill out this field.</span>
-                    <span class="validateErrorText">Please enter valid data.</span>
-                  </div>
-                </div>
-              </li>
-              <li id="formField_168079_0" fieldID="168079" class="ofField tag    ">
-                <div id="fieldGroup-field_168079_0" class="inputHolder">
-                  <label class="fieldLabel" for="field_168079_0">
-                    Phone Number
+            <div id="formField_168077_0" fieldID="168077" class="ofField tag    ">
+              <div class="firstLastNameField">
+                <div id="fieldGroup-fieldFirst_168077_0" class="inputHolder">
+                  <label class="fieldLabel" for="fieldFirst_168077_0">
+                    First Name
                     <span class="required">REQUIRED</span>
                   </label>
-                  <%= form.telephone_field :phone_number %>
+                  <%= form.text_field :first_name, required: true %>
                   <span class="requiredErrorText">Please fill out this field.</span>
-                  <span class="validateErrorText">Please enter a phone number.</span>
-                </div>
-              </li>
-              <li id="formField_168081_0" fieldID="168081" class="ofField tag    ">
-                <div id="fieldGroup-field_168081_0" class="inputHolder">
-                  <label class="fieldLabel" for="field_168081_0">
-                    Subject
-                  </label>
-                  <%= form.text_field :subject %>
                   <span class="validateErrorText">Please enter valid data.</span>
                 </div>
-              </li>
-              <li id="formField_168082_0" fieldID="168082" class="ofField tag    ">
-                <div id="fieldGroup-field_168082_0" class="inputHolder">
-                  <label class="fieldLabel" for="field_168082_0">
-                    Comment or Question
+                <div id="fieldGroup-fieldLast_168077_0" class="inputHolder">
+                  <label class="fieldLabel" for="fieldLast_168077_0">
+                    Last Name
+                    <span class="required">REQUIRED</span>
                   </label>
-                  <%= form.text_area :content, size: "10x10" %>
+                  <%= form.text_field :last_name, required: true %>
+                  <span class="requiredErrorText">Please fill out this field.</span>
+                  <span class="validateErrorText">Please enter valid data.</span>
                 </div>
-              </li>
-            </ul>
-            <div class="contact-btn-submit"><%= form.submit "Submit", class: "btn-contact" %></div>
-            <div class="onlineFormCaptchaInfo">
-              <p>This site is protected by reCAPTCHA and the Google <a
-                  href="https://policies.google.com/privacy">Privacy Policy</a> and <a
-                  href="https://policies.google.com/terms">Terms of Service</a> apply.</p>
+              </div>
             </div>
-            <script id="googleRecaptchaScript" data-sitekey="6Le2L8oZAAAAADNYR53bUnF2tJxt-_id5ZTAHgxk"
-              src="https://www.google.com/recaptcha/api.js?render=6Le2L8oZAAAAADNYR53bUnF2tJxt-_id5ZTAHgxk"></script>
-          <% end %>
-        </div>
-        <footer></footer>
+            <div id="formField_168078_0" fieldID="168078" class="ofField tag    ">
+              <div id="fieldGroup-field_168078_0" class="inputHolder">
+                <label class="fieldLabel" for="field_168078_0">
+                  Email
+                  <span class="required">REQUIRED</span>
+                </label>
+                <%= form.text_field :email, required: true %>
+                <span class="requiredErrorText">Please fill out this field.</span>
+                <span class="validateErrorText">Please enter an email address.</span>
+              </div>
+            </div>
+            <div id="formField_168079_0" fieldID="168079" class="ofField tag    ">
+              <div id="fieldGroup-field_168079_0" class="inputHolder">
+                <label class="fieldLabel" for="field_168079_0">
+                  Phone Number
+                  <span class="required">REQUIRED</span>
+                </label>
+                <%= form.text_field :phone, required: true, placeholder: "555-555-5555", maxlength: 13 %>
+                <span class="requiredErrorText">Please fill out this field.</span>
+                <span class="validateErrorText">Please enter a phone number.</span>
+              </div>
+            </div>
+            <div id="formField_168081_0" fieldID="168081" class="ofField tag    ">
+              <div id="fieldGroup-field_168081_0" class="inputHolder">
+                <label class="fieldLabel" for="field_168081_0">
+                  Subject
+                </label>
+                <%= form.text_field :subject, required: true %>
+                <span class="validateErrorText">Please enter valid data.</span>
+              </div>
+            </div>
+            <div id="formField_168082_0" fieldID="168082" class="ofField tag    ">
+              <div id="fieldGroup-field_168082_0" class="inputHolder">
+                <label class="fieldLabel" for="field_168082_0">
+                  Comment or Question
+                </label>
+                <%= form.text_area :content, row: 10, placeholder: "Type your question, comment, or concern here." %>
+              </div>
+            </div>
+          </div>
+          <%= form.submit "Submit", class: "submitForm normalSubmit" %>
+        <% end %>
       </div>
-    </li>
-    <li id="module_1184560">
-      <div class="moduleInner embedModule mediaFormatting RESIZE_ALL">
-        <header>
-          <h2 class="moduleName">
-            <div class="moduleTitle"><span>How to get here?</span></div>
-          </h2>
-        </header>
-        <div class="moduleBody"><iframe allowfullscreen="" frameborder="0" height="450"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13884.920672705486!2d-98.55714798464085!3d29.538790649235985!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x865c60c120cf88f9%3A0xbd7f5d84c45c6429!2s10703+Wurzbach+Rd!5e0!3m2!1sen!2sus!4v1463514231757"
-            style="border:0" width="600"></iframe></div>
-        <footer></footer>
-      </div>
-    </li>
-  </ul>
+    </div>
+  </div>
 </div>

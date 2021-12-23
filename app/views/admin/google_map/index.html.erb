@@ -1,0 +1,55 @@
+<%= render "admin/shared/bread_crumb", name: {title: "Google map", bread_crumb: "Top"} %>
+<!-- Main content -->
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Manage google map</h3>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <table id="example2" class="table table-bordered table-hover">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Latitude</th>
+                  <th>Longtitude</th>
+                  <th>Created at</th>
+                  <th>Updated at</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><%= @google_map&.lat || "-" %></td>
+                  <td><%= @google_map&.lng || "-"  %></td>
+                  <td><%= @google_map&.created_at || "-"  %></td>
+                  <td><%= @google_map&.updated_at || "-"  %></td>
+                  <td>
+                    <% unless @google_map.blank? %>
+                      <%= link_to "Edit", edit_admin_google_map_path(@google_map), class: "btn btn-success" %>
+                      <%= link_to "Delete", admin_google_map_path(@google_map), method: :delete, class: "btn btn-danger" %>
+                    <% end %>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- /.card-body -->
+        </div>
+      </div>
+      <!-- /.col -->
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container-fluid -->
+</section>
+<section class="section-btn-group">
+  <div class="section-btn-group-wrap">
+    <% if @google_map.blank? %>
+      <%= link_to "Create", new_admin_google_map_path, class: "btn btn-info" %>
+    <% end %>
+  </div>
+</section>

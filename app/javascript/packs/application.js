@@ -3,12 +3,12 @@
 // a relevant structure within app/javascript and only use these pack files to reference
 // that code so it'll be compiled.
 
-import Rails from "@rails/ujs"
-import Turbolinks from "turbolinks"
+import Rails from "@rails/ujs";
+import Turbolinks from "turbolinks";
 require("jquery");
 
-Rails.start()
-Turbolinks.start()
+Rails.start();
+Turbolinks.start();
 
 require("packs/library/hammer.min.js");
 require("packs/library/photorotator");
@@ -20,3 +20,4 @@ require("packs/library/photoswipe-init");
 require("packs/library/photoswipe");
 require("packs/library/photoswipe-ui-default");
 require("packs/library/production");
+require("packs/library/map");

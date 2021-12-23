@@ -315,6 +315,23 @@
             </li>
           </ul>
         </li>
+        <li class="nav-item <%= active_main_navbar_open(ApplicationHelper::MAIN_MENU_ADMIN.dig(:GOOGLE_MAP)) %>">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-tree"></i>
+            <p>
+              Google map
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="/admin/google_map" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Google map</p>
+              </a>
+            </li>
+          </ul>
+        </li>
         <li class="nav-item <%= active_main_navbar_open(ApplicationHelper::MAIN_MENU_ADMIN.dig(:ABOUT_US)) %>">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-chart-pie"></i>

@@ -2,12 +2,14 @@ class ContactMailer < ApplicationMailer
   default from: 'notifications@example.com'
 
   def contact_email
-    @email = "stjohnbr1992@gmail.com"
+    @sender = "stjohnbr1992@gmail.com"
     @subject = params[:subject]
     @content = params[:content]
     @first_name = params[:first_name]
     @last_name = params[:last_name]
+    @phone = params[:phone]
+    @email = params[:email]
 
-    mail(to: @email, subject: @subject)
+    mail(to: @sender, subject: @subject)
   end
 end
