@@ -1,49 +1,50 @@
 <li id="section_145104">
-      <div class="sectionInner columnSection twinColumn">
-        <div class="sectionBackground"></div>
-        <header></header>
-        <div class="sectionBody">
-          <ul class="modulePosition modulePositionColumn content1 halfColumn" sectionPosition="1">
-            <li id="module_3023436">
-              <div class="moduleInner linksModule">
-                <header>
-                  <h2 class="moduleName">
-                    <div class="moduleTitle">
-                      <span>Live stream mass</span>
-                    </div>
-                  </h2>
-                </header>
-                <% @masses.each do |mass| %>
-                <ul class="aggregate moduleBody">
-                  <li class="link group">
-                    <%= link_to mass&.name, mass&.content&.html_safe || mass&.file_attached, target: "_blank", class: "name" %>
-                  </li>
-                </ul>
-                <% end %>
-                <footer></footer>
-              </div>
-            </li>
-          </ul>
-          <ul class="modulePosition modulePositionColumn content2 halfColumn" sectionPosition="101">
-            <li id="module_3135530">
-              <div class="moduleInner customModule">
-                <header>
-                  <h2 class="moduleName">
-                    <div class="moduleTitle">
-                      <span><%= @mass_ticked&.name %></span>
-                    </div>
-                  </h2>
-                </header>
-                <div class="moduleBody">
-                  <span>
-                    <em><%= @mass_ticked&.content&.html_safe %></em>
-                  </span>
+  <div class="sectionInner columnSection twinColumn">
+    <div class="sectionBackground"></div>
+    <header></header>
+    <div class="sectionBody">
+      <ul class="modulePosition modulePositionColumn content1 halfColumn" sectionPosition="1">
+        <li id="module_3023436">
+          <div class="moduleInner linksModule">
+            <header>
+              <h2 class="moduleName">
+                <div class="moduleTitle">
+                  <span>Live stream mass</span>
                 </div>
-                <footer></footer>
-              </div>
-            </li>
-          </ul>
-        </div>
-        <footer></footer>
-      </div>
-    </li>
+              </h2>
+            </header>
+            <% @masses.each do |mass| %>
+              <ul class="aggregate moduleBody">
+                <li class="link group">
+                  <%= mass&.name %>
+                  <%= mass&.content&.html_safe %>
+                </li>
+              </ul>
+            <% end %>
+            <footer></footer>
+          </div>
+        </li>
+      </ul>
+      <ul class="modulePosition modulePositionColumn content2 halfColumn" sectionPosition="101">
+        <li id="module_3135530">
+          <div class="moduleInner customModule">
+            <header>
+              <h2 class="moduleName">
+                <div class="moduleTitle">
+                  <span><%= @mass_ticked&.name %></span>
+                </div>
+              </h2>
+            </header>
+            <div class="moduleBody">
+              <span>
+                <em><%= @mass_ticked&.content&.html_safe %></em>
+              </span>
+            </div>
+            <footer></footer>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <footer></footer>
+  </div>
+</li>

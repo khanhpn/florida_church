@@ -35,8 +35,6 @@
   </div>
   <!--/.col (right) -->
 </div>
-
-
 <script>
   var editor = SUNEDITOR.create((document.getElementById('sample') || 'sample'),{
     "katex": "window.katex",
@@ -45,16 +43,15 @@
     buttonList: [
       [
         'undo', 'redo', 'blockquote', 'bold', 'underline', 'italic', 'strike',
-        'subscript', 'superscript', 'preview', 'print',
+        'subscript', 'superscript', 'preview', 'print', 'outdent', 'indent',
         'align', 'font', 'fontColor', 'fontSize', 'formatBlock',
         'hiliteColor', 'horizontalRule', 'lineHeight', 'list', 'paragraphStyle',
-        'table', 'textStyle', 'audio', 'video', 'image', 'list'
+        'table', 'textStyle', 'audio', 'video', 'image', 'list', 'link'
       ]
     ],
   });
-
+  
   $("#id_submit_special_note").click(function() {
     $("#sample").val(editor.getContents());
   });
-
 </script>
