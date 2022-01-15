@@ -16,8 +16,9 @@
             <% @masses.each do |mass| %>
               <ul class="aggregate moduleBody">
                 <li class="link group">
-                  <%= mass&.name %>
-                  <%= mass&.content&.html_safe %>
+                  <div class="wrap-masses">
+                    <%= mass&.content&.html_safe %>
+                  </div>
                 </li>
               </ul>
             <% end %>
