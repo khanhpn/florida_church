@@ -28,9 +28,7 @@
               <div class="moduleInner buttonModule buttonModule1 focusPointImage fixed">
                 <header></header>
                 <div class="moduleBody">
-                  <a href="pastors-message.html" target="_self"
-                      class="buttonModuleButton firstButton  customButton hasLabel hasSubtext hasImage"
-                      buttonName="Pastor&apos;s Message">
+                  <%= link_to full_path_image(item), target: "_blank", class: "buttonModuleButton firstButton  customButton hasLabel hasSubtext hasImage" do %>
                     <span class="buttonBackground">
                       <div class="focusPointImageArea">
                         <div class="focusPointImagePositioner">
@@ -40,7 +38,7 @@
                         </div>
                       </div>
                     </span>
-                  </a>
+                  <% end %>
                 </div>
                 <footer></footer>
               </div>
