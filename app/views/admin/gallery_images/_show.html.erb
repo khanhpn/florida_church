@@ -1,0 +1,15 @@
+<!-- Main content -->
+<div class="row">
+  <% gallery_image.contents.each_with_index do |item, index| %>
+    <div class="col-sm-2 gallery-wrap" id="id_gallery_image_<%=index%>">
+      <div class="gallery-icon-delete">
+        <%= link_to delete_gallery_admin_gallery_image_path(item, gallery_image), method: :delete, remote: true, data: { confirm: 'Are you sure you want to delete this image?' } do %>
+          <i class="fas fa-minus-circle"></i>
+        <% end %>
+      </div>
+      <%= link_to item, "data-toggle" => "lightbox", "data-title" => "sample 1 - white", "data-gallery" => "gallery" do %>
+        <%= image_tag item, class: "img-fluid mb-2 extra-images" %>
+      <% end %>
+    </div>
+  <% end %>
+</div>

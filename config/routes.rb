@@ -13,7 +13,11 @@ Rails.application.routes.draw do
     resources :mass_times
     resources :special_notes
     resources :adoration_times
-    resources :gallery_images
+    resources :gallery_images do
+      member do
+        delete "delete_gallery/:gallery_id", to: "gallery_images#delete_gallery", as: "delete_gallery"
+      end
+    end
     resources :bulletin, except: :show
     resources :teaching_mass, except: :show
     resources :altar_server, except: :show

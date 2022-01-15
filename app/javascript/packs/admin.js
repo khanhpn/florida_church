@@ -3,11 +3,12 @@
 // a relevant structure within app/javascript and only use these pack files to reference
 // that code so it'll be compiled.
 
-import Rails from "@rails/ujs"
-import Turbolinks from "turbolinks"
-import * as ActiveStorage from "@rails/activestorage"
+import Rails from "@rails/ujs";
+import Turbolinks from "turbolinks";
+import * as ActiveStorage from "@rails/activestorage";
 require("jquery");
 require("raphael");
+require("packs/admin/ekko-lightbox.min.js");
 require("packs/admin/jquery.min.js");
 require("packs/admin/bootstrap.bundle.min.js");
 require("packs/admin/jquery.overlayScrollbars.min.js");
@@ -22,10 +23,8 @@ require("packs/admin/css.js");
 require("packs/admin/xml.js");
 require("packs/admin/htmlmixed.js");
 require("packs/admin/suneditor.js");
-require("packs/admin/ekko-lightbox.min.js");
 require("packs/admin/jquery.filterizr.min.js");
 
-
-Rails.start()
-Turbolinks.start()
-ActiveStorage.start()
+Rails.start();
+Turbolinks.start();
+ActiveStorage.start();

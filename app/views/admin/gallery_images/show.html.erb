@@ -8,16 +8,8 @@
           <div class="card-header">
             <h4 class="card-title"><%= @gallery_image&.name %></h4>
           </div>
-          <div class="card-body">
-            <div class="row">
-              <% @gallery_image.contents.each do |item| %>
-                <div class="col-sm-2">
-                  <%= link_to item, "data-toggle" => "lightbox", "data-title" => "sample 1 - white", "data-gallery" => "gallery" do %>
-                    <%= image_tag item, class: "img-fluid mb-2 extra-images" %>
-                  <% end %>
-                </div>
-              <% end %>
-            </div>
+          <div class="card-body" id="id_wrap_gallery_show">
+            <%= render "show", gallery_image: @gallery_image %>
           </div>
         </div>
       </div>
@@ -32,19 +24,3 @@
     <%= link_to "Delete", admin_gallery_image_path(@gallery_image), method: :delete, class: "btn btn-danger" %>
   </div>
 </section>
-<script>
-  $(function () {
-    $(document).on('click', '[data-toggle="lightbox"]', function(event) {
-      event.preventDefault();
-      $(this).ekkoLightbox({
-        alwaysShowClose: true
-      });
-    });
-
-    $('.filter-container').filterizr({gutterPixels: 3});
-    $('.btn[data-filter]').on('click', function() {
-      $('.btn[data-filter]').removeClass('active');
-      $(this).addClass('active');
-    });
-  })
-</script>
