@@ -3,7 +3,7 @@
     <div id="footerText" class="moduleContainer footerText1 footerText">
       <div class="moduleInner ">
         <div id="footerTextBody" class="footerTextBody1 footerTextBody">
-					<%= image_tag(@introduction&.logo_icon || "no_available.png", class: "footerLogo", style: "width:144px;height:174px;", alt: "footer logo") %>
+          <%= image_tag(@introduction&.logo_icon || "no_available.png", class: "footerLogo", style: "width:144px;height:174px;", alt: "footer logo") %>
           <div class="container">
             <div class="column">
               <p><%= @introduction&.address %></p>
@@ -18,7 +18,7 @@
                     </svg>
                   </a>
                   <span class="flickrIcon">
-										<%= link_to image_tag("pictures/2021/3/z-youtube.png", style: "height: 23px"), @introduction&.youtube_channel_url, alt: "YouTube icon" %>
+                    <%= link_to image_tag("pictures/2021/3/z-youtube.png", style: "height: 23px"), @introduction&.youtube_channel_url, alt: "YouTube icon" %>
                   </span>
                 </p>
               </div>
@@ -31,7 +31,8 @@
               </p>
             </div>
             <div class="column">
-              <p>OFFICE HOURS <br /><%= @introduction&.office_hour %>
+              <p>OFFICE HOURS <br />
+                <%= @introduction&.office_hour %>
               </p>
             </div>
             <div class="column">
@@ -40,16 +41,18 @@
           </div>
           <div class="footerLinksRow">
             <% @linked_logos.each do |item| %>
-						  <%= link_to image_tag(item&.logo_linked || "no_available.png", class: "logo-linked"), item&.logo_url %>
+              <%= link_to image_tag(item&.logo_linked || "no_available.png", class: "logo-linked"), item&.logo_url, target: "_blank" %>
             <% end %>
           </div>
           <div class="copyright"> <%= @introduction&.copywrite %>   <span>-</span>
             <br />
-             All rights reserved.
+            All rights reserved.
           </div>
         </div>
       </div>
     </div>
-    <div id="footerGroup"><div id="footerLinks"></div></div>
+    <div id="footerGroup">
+      <div id="footerLinks"></div>
+    </div>
   </footer>
 </div>
