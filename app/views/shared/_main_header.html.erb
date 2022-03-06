@@ -9,7 +9,7 @@
     <div id="siteLogo" class="moduleContainer logoOnly">
       <div class="moduleInner ">
         <div id="siteLogoBody">
-          <%= image_tag(@introduction&.logo_icon || "no_available.png", style: "left:0px;top:0px;width:100%;height:100%;", alt: "Saint John the Evangelist Catholic Church Boca Raton") %>
+          <%= image_tag(@introduction&.header_logo_icon.present? ? @introduction&.header_logo_icon : "no_available.png", style: "left:0px;top:0px;width:100%;height:100%;", alt: "Saint John the Evangelist Catholic Church Boca Raton") %>
         </div>
       </div>
     </div>

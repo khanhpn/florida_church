@@ -1,0 +1,39 @@
+<div class="row">
+  <!-- right column -->
+  <div class="col-md-12">
+    <!-- Form Element sizes -->
+    <!-- /.card -->
+    <!-- general form elements disabled -->
+    <div class="card card-success">
+      <div class="card-header">
+        <h3 class="card-title">Create children</h3>
+      </div>
+      <!-- /.card-header -->
+      <div class="card-body">
+        <div class="row">
+          <div class="col-sm-12">
+            <!-- text input -->
+            <div class="form-group">
+              <label>Name</label>
+              <%= form.text_field :title, class: "form-control", placeholder: "Enter name" %>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group">
+            <label for="exampleInputFile">Upload gallery image</label>
+            <div class="input-group">
+              <div class="custom-file">
+                <%= form.file_field :worship_upload, class: "custom-file-input", multiple: false, accept: 'application/pdf,application/zip,application/vnd.openxmlformats-officedocument.wordprocessingml.document' %>
+                <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+  </div>
+  <!--/.col (right) -->
+</div>

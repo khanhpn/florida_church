@@ -1,5 +1,5 @@
 class AltarServerController < ApplicationController
   def index
-    @altar_server = AltarServer.display_article.last
+    @altar_servers = AltarServer.display_article
   end
 end

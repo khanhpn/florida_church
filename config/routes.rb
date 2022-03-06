@@ -20,7 +20,17 @@ Rails.application.routes.draw do
     end
     resources :bulletin, except: :show
     resources :teaching_mass, except: :show
-    resources :altar_server, except: :show
+
+    resources :altar_server do
+      member do
+        post 'children', to: 'altar_server#children'
+        get 'new_children', to: 'altar_server#new_children'
+        get 'detail_children/:children_id', to: 'altar_server#detail_children', as: 'altar_server_detail_children'
+        delete 'detail_children/:children_id', to: 'altar_server#delete_children'
+        put 'update_children/:children_id', to: 'altar_server#update_children', as: 'altar_server_update_children'
+      end
+    end
+
     resources :altar_society, except: :show
     resources :children_liturgy, except: :show
     resources :ecuharistic_ministry, except: :show
@@ -54,6 +64,7 @@ Rails.application.routes.draw do
   get 'bulletin', to: "bulletin#index"
   get 'teaching_mass', to: "teaching_mass#index"
   get 'altar_server', to: "altar_server#index"
+  get 'altar_server/:id', to: "altar_server#show"
   get 'altar_society', to: "altar_society#index"
   get 'children_liturgy', to: "children_liturgy#index"
   get 'ecuharistic_ministry', to: "ecuharistic_ministry#index"

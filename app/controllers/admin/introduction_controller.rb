@@ -43,7 +43,7 @@ class Admin::IntroductionController < Admin::AdminController
   def params_introduction
     params.require(:introduction).permit(
       :name, :content, :youtube_url, :flict_channel, :youtube_channel_url, :facebook_channel,
-      :address, :phone, :email, :copywrite, :office_hour, :logo_icon
+      :address, :phone, :email, :copywrite, :office_hour, :logo_icon, :header_logo_icon
     )
   end
 

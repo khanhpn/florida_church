@@ -33,6 +33,7 @@
                     <td><%= altar_server&.updated_at || "-"  %></td>
                     <td>
                       <% unless altar_server.blank? %>
+                        <%= link_to "Show", admin_altar_server_path(altar_server), class: "btn btn-primary" %>
                         <%= link_to "Edit", edit_admin_altar_server_path(altar_server), class: "btn btn-success" %>
                         <%= link_to "Delete", admin_altar_server_path(altar_server), method: :delete, class: "btn btn-danger" %>
                       <% end %>
@@ -51,7 +52,6 @@
   </div>
   <!-- /.container-fluid -->
 </section>
-
 <section class="section-btn-group">
   <div class="section-btn-group-wrap">
     <%= link_to "Create", new_admin_altar_server_path, class: "btn btn-info" %>

@@ -33,7 +33,6 @@
               </tbody>
             </table>
           </div>
-
           <div class="card-body">
             <table id="example2" class="table table-bordered table-hover">
               <thead>
@@ -43,7 +42,8 @@
                   <th>Email</th>
                   <th>Copywrite</th>
                   <th>Office hour</th>
-                  <th>Logo icon</th>
+                  <th>Header logo icon</th>
+                  <th>Footer logo icon</th>
                 </tr>
               </thead>
               <tbody>
@@ -53,7 +53,8 @@
                   <td><%= @introduction&.email || "-"  %></td>
                   <td><%= @introduction&.copywrite || "-"  %></td>
                   <td><%= @introduction&.office_hour || "-"  %></td>
-                  <td class="wrap-img"><%= image_tag @introduction&.logo_icon || "no_available.png", class: "logo-wrap" %></td>
+                  <td class="wrap-img"><%= image_tag @introduction&.header_logo_icon.present? ? @introduction&.header_logo_icon : "no_available.png", class: "logo-wrap" %></td>
+                  <td class="wrap-img"><%= image_tag @introduction&.logo_icon.present? ? @introduction&.logo_icon : "no_available.png", class: "logo-wrap" %></td>
                 </tr>
               </tbody>
             </table>
@@ -67,13 +68,11 @@
   </div>
   <!-- /.container-fluid -->
 </section>
-
 <section class="section-btn-group">
   <div class="section-btn-group-wrap">
     <% if @introduction.blank? %>
       <%= link_to "Create", new_admin_introduction_path, class: "btn btn-info" %>
     <% end %>
-
     <% unless @introduction.blank? %>
       <%= link_to "Edit", edit_admin_introduction_path(@introduction), class: "btn btn-success" %>
       <%= link_to "Delete", admin_introduction_path(@introduction), method: :delete, class: "btn btn-danger" %>
