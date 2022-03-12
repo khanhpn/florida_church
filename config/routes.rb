@@ -64,7 +64,7 @@ Rails.application.routes.draw do
   get 'bulletin', to: "bulletin#index"
   get 'teaching_mass', to: "teaching_mass#index"
   get 'altar_server', to: "altar_server#index"
-  get 'altar_server/:id', to: "altar_server#show"
+  get 'altar_server/:id', to: "altar_server#show", as: "al_detail_page"
   get 'altar_society', to: "altar_society#index"
   get 'children_liturgy', to: "children_liturgy#index"
   get 'ecuharistic_ministry', to: "ecuharistic_ministry#index"
