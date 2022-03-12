@@ -5,12 +5,14 @@
       <thead>
         <tr>
           <th>Name</th>
+          <th>Content</th>
           <th>Action</th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <td><%= @altar_server&.name || "-" %></td>
+          <td><%= @altar_server&.content&.html_safe || "-"  %></td>
           <td>
             <% unless @altar_server.blank? %>
               <%= link_to "Edit", edit_admin_altar_server_path(@altar_server), class: "btn btn-success" %>
@@ -18,44 +20,6 @@
             <% end %>
           </td>
         </tr>
-      </tbody>
-    </table>
-    <!-- /.row -->
-  </div>
-  <!-- /.container-fluid -->
-</section>
-<section class="content">
-  <h3>List articles</h3>
-  <div class="container-fluid">
-    <div><%= link_to "Create", new_children_admin_altar_server_path, class: "btn btn-success" %></div>
-    <table id="example2" class="table table-bordered table-hover">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Content</th>
-          <th>Created at</th>
-          <th>Action</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @worships.each do |item| %>
-          <tr>
-            <td><%= item&.title || "-" %></td>
-            <td>
-              <% if item&.worship_upload.present? %>
-                <%= link_to 'download', item&.worship_upload || "#", download: true %>
-              <% end %>
-            </td>
-            <td><%= item&.created_at || "-"  %></td>
-            <td><%= item&.updated_at || "-"  %></td>
-            <td>
-              <% unless item.blank? %>
-                <%= link_to "Edit", altar_server_detail_children_admin_altar_server_path(@altar_server, item), class: "btn btn-success" %>
-                <%= link_to "Delete", altar_server_detail_children_admin_altar_server_path(@altar_server, item), method: :delete, class: "btn btn-danger", data: {confirm: "Are you sure"} %>
-              <% end %>
-            </td>
-          </tr>
-        <% end %>
       </tbody>
     </table>
     <!-- /.row -->

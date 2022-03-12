@@ -15,6 +15,16 @@
                 <div class="moduleBody">
                   <%= @altar_server&.content&.html_safe %>
                 </div>
+                <div>
+                  <div class="related-articles">Related articles</div>
+                  <div>
+                    <% @altar_server_relateds.each do |item| %>
+                      <div>
+                        <%= link_to item.name, al_detail_page_path(item.id), target: "_blank" %>
+                      </div>
+                    <% end %>
+                  </div>
+                </div>
               </div>
             </li>
           </ul>

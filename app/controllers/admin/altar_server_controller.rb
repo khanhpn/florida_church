@@ -6,6 +6,7 @@ class Admin::AltarServerController < Admin::AdminController
   end
 
   def new
+    @is_main_article = AltarServer.find_by(is_main_article: true)
     @altar_server = AltarServer.new
   end
 
@@ -81,11 +82,11 @@ class Admin::AltarServerController < Admin::AdminController
 
   private
   def params_altar_server
-    params.require(:altar_server).permit(:name, :content, :display_order, :display)
+    params.require(:altar_server).permit(:name, :content, :is_main_article, :display, :file_image, :file_pdf)
   end
 
   def params_altar_server_children
-    params.require(:worship).permit(:title, :worship_upload)
+    params.require(:worship).permit(:title, :worship_upload, :file_image, :file_pdf)
   end
 
   def set_altar_server
