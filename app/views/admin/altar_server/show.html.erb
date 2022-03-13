@@ -5,18 +5,35 @@
       <thead>
         <tr>
           <th>Name</th>
-          <th>Content</th>
+          <% if @is_main_article %>
+            <th>Content</th>
+          <% end %>
+          <% if !@is_main_article && @altar_server.file_image.present? %>
+            <th>Link image</th>
+          <% end %>
+          <% if !@is_main_article && @altar_server.file_pdf.present? %>
+            <th>Link pdf</th>
+          <% end %>
           <th>Action</th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <td><%= @altar_server&.name || "-" %></td>
-          <td><%= @altar_server&.content&.html_safe || "-"  %></td>
+          <% if @is_main_article %>
+            <td><%= @altar_server&.content&.html_safe || "-"  %></td>
+          <% end %>
+          <% if !@is_main_article && @altar_server.file_image.present? %>
+            <td><%= link_to 'download', rails_blob_path(@altar_server.file_image, disposition: "download"), target: "_blank" %></td>
+          <% end %>
+          <% if !@is_main_article && @altar_server.file_pdf.present? %>
+            <td><%= link_to 'download', rails_blob_path(@altar_server.file_pdf, disposition: "download"), target: "_blank"  %></td>
+          <% end %>
           <td>
             <% unless @altar_server.blank? %>
               <%= link_to "Edit", edit_admin_altar_server_path(@altar_server), class: "btn btn-success" %>
               <%= link_to "Delete", admin_altar_server_path(@altar_server), method: :delete, class: "btn btn-danger" %>
+              <%= link_to "Back", admin_altar_server_index_path, class: "btn btn-primary" %>
             <% end %>
           </td>
         </tr>
