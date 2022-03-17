@@ -27,15 +27,49 @@
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="col-sm-12">
-            <!-- textarea -->
-            <div class="form-group">
-              <label>Content</label>
-              <%= form.text_area :content, class: "form-control", placeholder: "Enter name", id: "sample", size: "20x20" %>
+        <% if @is_main_article.present? %>
+          <div class="form-group">
+            <div class="offset-sm-12">
+              <div class="form-check">
+                <%= form.check_box :is_main_article, class: "form-check-input" %>
+                <label class="form-check-label" for="exampleCheck2">Main article</label>
+              </div>
             </div>
           </div>
-        </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <!-- textarea -->
+              <div class="form-group">
+                <label>Content</label>
+                <%= form.text_area :content, class: "form-control", placeholder: "Enter name", id: "sample", size: "20x20" %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+        <% if !@is_main_article.present? %>
+          <div class="row">
+            <div class="form-group">
+              <label for="exampleInputFile">Upload image</label>
+              <div class="input-group">
+                <div class="custom-file">
+                  <%= form.file_field :file_image, class: "custom-file-input", multiple: false, accept: 'image/*' %>
+                  <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group">
+              <label for="exampleInputFile">Upload pdf</label>
+              <div class="input-group">
+                <div class="custom-file">
+                  <%= form.file_field :file_pdf, class: "custom-file-input", multiple: false, accept: 'application/pdf,application/zip,application/vnd.openxmlformats-officedocument.wordprocessingml.document' %>
+                  <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
       </div>
       <!-- /.card-body -->
     </div>

@@ -1,12 +1,17 @@
 class Admin::ChildrenLiturgyController < Admin::AdminController
-  before_action :set_children_liturgy, only: [:destroy, :edit, :update]
+  before_action :set_children_liturgy, only: [:destroy, :edit, :update, :show]
 
   def index
     @children_liturgies = ChildrensLiturgy.all
   end
 
   def new
+    @is_main_article = ChildrensLiturgy.find_by(is_main_article: true)
     @children_liturgy = ChildrensLiturgy.new
+  end
+
+  def show
+    @is_main_article = @children_liturgy.is_main_article
   end
 
   def create
@@ -31,6 +36,7 @@ class Admin::ChildrenLiturgyController < Admin::AdminController
   end
 
   def edit
+    @is_main_article = @children_liturgy.is_main_article
   end
 
   def destroy
@@ -41,7 +47,7 @@ class Admin::ChildrenLiturgyController < Admin::AdminController
 
   private
   def params_children_liturgy
-    params.require(:childrens_liturgy).permit(:name, :content, :display_order, :display)
+    params.require(:childrens_liturgy).permit(:name, :content, :is_main_article, :display, :file_image, :file_pdf)
   end
 
   def set_children_liturgy

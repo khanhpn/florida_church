@@ -1,12 +1,17 @@
 class Admin::AnointingController < Admin::AdminController
-  before_action :set_anointing, only: [:destroy, :edit, :update]
+  before_action :set_anointing, only: [:destroy, :edit, :update, :show]
 
   def index
     @anointings = AnointingThesick.all
   end
 
   def new
+    @is_main_article = AnointingThesick.find_by(is_main_article: true)
     @anointing = AnointingThesick.new
+  end
+
+  def show
+    @is_main_article = @anointing.is_main_article
   end
 
   def create
@@ -31,6 +36,7 @@ class Admin::AnointingController < Admin::AdminController
   end
 
   def edit
+    @is_main_article = @anointing.is_main_article
   end
 
   def destroy
@@ -41,7 +47,7 @@ class Admin::AnointingController < Admin::AdminController
 
   private
   def params_anointing
-    params.require(:anointing_thesick).permit(:name, :content, :display_order, :display)
+    params.require(:anointing_thesick).permit(:name, :content, :is_main_article, :display, :file_image, :file_pdf)
   end
 
   def set_anointing

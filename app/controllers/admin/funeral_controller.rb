@@ -1,12 +1,17 @@
 class Admin::FuneralController < Admin::AdminController
-  before_action :set_funeral, only: [:destroy, :edit, :update]
+  before_action :set_funeral, only: [:destroy, :edit, :update, :show]
 
   def index
     @funerals = Funeral.all
   end
 
   def new
+    @is_main_article = Funeral.find_by(is_main_article: true)
     @funeral = Funeral.new
+  end
+
+  def show
+    @is_main_article = @funeral.is_main_article
   end
 
   def create
@@ -31,6 +36,7 @@ class Admin::FuneralController < Admin::AdminController
   end
 
   def edit
+    @is_main_article = @funeral.is_main_article
   end
 
   def destroy
@@ -41,7 +47,7 @@ class Admin::FuneralController < Admin::AdminController
 
   private
   def params_funeral
-    params.require(:funeral).permit(:name, :content, :display_order, :display)
+    params.require(:funeral).permit(:name, :content, :is_main_article, :display, :file_image, :file_pdf)
   end
 
   def set_funeral

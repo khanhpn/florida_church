@@ -1,12 +1,17 @@
 class Admin::PlayerGroupController < Admin::AdminController
-  before_action :set_player_group, only: [:destroy, :edit, :update]
+  before_action :set_player_group, only: [:destroy, :edit, :update, :show]
 
   def index
     @player_groups = PrayerGroup.all
   end
 
   def new
+    @is_main_article = PrayerGroup.find_by(is_main_article: true)
     @player_group = PrayerGroup.new
+  end
+
+  def show
+    @is_main_article = @player_group.is_main_article
   end
 
   def create
@@ -31,6 +36,7 @@ class Admin::PlayerGroupController < Admin::AdminController
   end
 
   def edit
+    @is_main_article = @player_group.is_main_article
   end
 
   def destroy
@@ -41,7 +47,7 @@ class Admin::PlayerGroupController < Admin::AdminController
 
   private
   def params_player_group
-    params.require(:prayer_group).permit(:name, :content, :display_order, :display)
+    params.require(:prayer_group).permit(:name, :content, :is_main_article, :display, :file_image, :file_pdf)
   end
 
   def set_player_group

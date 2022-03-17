@@ -1,12 +1,17 @@
 class Admin::TeachingMassController < Admin::AdminController
-  before_action :set_teaching_mass, only: [:destroy, :edit, :update]
+  before_action :set_teaching_mass, only: [:destroy, :edit, :update, :show]
 
   def index
     @teaching_masses = TeachingMass.all
   end
 
   def new
+    @is_main_article = TeachingMass.find_by(is_main_article: true)
     @teaching_mass = TeachingMass.new
+  end
+
+  def show
+    @is_main_article = @teaching_mass.is_main_article
   end
 
   def create
@@ -31,6 +36,7 @@ class Admin::TeachingMassController < Admin::AdminController
   end
 
   def edit
+    @is_main_article = @teaching_mass.is_main_article
   end
 
   def destroy
@@ -41,7 +47,7 @@ class Admin::TeachingMassController < Admin::AdminController
 
   private
   def params_teaching_mass
-    params.require(:teaching_mass).permit(:name, :content, :display_order, :display)
+    params.require(:teaching_mass).permit(:name, :content, :is_main_article, :display, :file_image, :file_pdf)
   end
 
   def set_teaching_mass

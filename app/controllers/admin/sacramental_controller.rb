@@ -1,12 +1,17 @@
 class Admin::SacramentalController < Admin::AdminController
-  before_action :set_sacramental, only: [:destroy, :edit, :update]
+  before_action :set_sacramental, only: [:destroy, :edit, :update, :show]
 
   def index
     @sacramentals = Sacramental.all
   end
 
   def new
+    @is_main_article = Sacramental.find_by(is_main_article: true)
     @sacramental = Sacramental.new
+  end
+
+  def show
+    @is_main_article = @sacramental.is_main_article
   end
 
   def create
@@ -31,6 +36,7 @@ class Admin::SacramentalController < Admin::AdminController
   end
 
   def edit
+    @is_main_article = @sacramental.is_main_article
   end
 
   def destroy
@@ -41,7 +47,7 @@ class Admin::SacramentalController < Admin::AdminController
 
   private
   def params_sacramental
-    params.require(:sacramental).permit(:name, :content, :display_order, :display)
+    params.require(:sacramental).permit(:name, :content, :is_main_article, :display, :file_image, :file_pdf)
   end
 
   def set_sacramental

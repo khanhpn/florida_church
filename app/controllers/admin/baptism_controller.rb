@@ -1,12 +1,17 @@
 class Admin::BaptismController < Admin::AdminController
-  before_action :set_baptism, only: [:destroy, :edit, :update]
+  before_action :set_baptism, only: [:destroy, :edit, :update, :show]
 
   def index
     @baptisms = Baptism.all
   end
 
   def new
+    @is_main_article = Baptism.find_by(is_main_article: true)
     @baptism = Baptism.new
+  end
+
+  def show
+    @is_main_article = @baptism.is_main_article
   end
 
   def create
@@ -31,6 +36,7 @@ class Admin::BaptismController < Admin::AdminController
   end
 
   def edit
+    @is_main_article = @baptism.is_main_article
   end
 
   def destroy
@@ -41,7 +47,7 @@ class Admin::BaptismController < Admin::AdminController
 
   private
   def params_baptism
-    params.require(:baptism).permit(:name, :content, :display_order, :display)
+    params.require(:baptism).permit(:name, :content, :is_main_article, :display, :file_image, :file_pdf)
   end
 
   def set_baptism

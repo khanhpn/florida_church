@@ -1,12 +1,17 @@
 class Admin::UshersHospitalController < Admin::AdminController
-  before_action :set_usher_hospital, only: [:destroy, :edit, :update]
+  before_action :set_usher_hospital, only: [:destroy, :edit, :update, :show]
 
   def index
     @usher_hospitals = UshersHospitality.all
   end
 
   def new
+    @is_main_article = UshersHospitality.find_by(is_main_article: true)
     @usher_hospital = UshersHospitality.new
+  end
+
+  def show
+    @is_main_article = @usher_hospital.is_main_article
   end
 
   def create
@@ -31,6 +36,7 @@ class Admin::UshersHospitalController < Admin::AdminController
   end
 
   def edit
+    @is_main_article = @usher_hospital.is_main_article
   end
 
   def destroy
@@ -41,7 +47,7 @@ class Admin::UshersHospitalController < Admin::AdminController
 
   private
   def params_usher_hospital
-    params.require(:ushers_hospitality).permit(:name, :content, :display_order, :display)
+    params.require(:ushers_hospitality).permit(:name, :content, :is_main_article, :display, :file_image, :file_pdf)
   end
 
   def set_usher_hospital

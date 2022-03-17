@@ -1,12 +1,17 @@
 class Admin::HolyordersController < Admin::AdminController
-  before_action :set_holyorder, only: [:destroy, :edit, :update]
+  before_action :set_holyorder, only: [:destroy, :edit, :update, :show]
 
   def index
     @holyorders = Holyorder.all
   end
 
   def new
+    @is_main_article = Holyorder.find_by(is_main_article: true)
     @holyorder = Holyorder.new
+  end
+
+  def show
+    @is_main_article = @holyorder.is_main_article
   end
 
   def create
@@ -31,6 +36,7 @@ class Admin::HolyordersController < Admin::AdminController
   end
 
   def edit
+    @is_main_article = @holyorder.is_main_article
   end
 
   def destroy
@@ -41,7 +47,7 @@ class Admin::HolyordersController < Admin::AdminController
 
   private
   def params_holyorder
-    params.require(:holyorder).permit(:name, :content, :display_order, :display)
+    params.require(:holyorder).permit(:name, :content, :is_main_article, :display, :file_image, :file_pdf)
   end
 
   def set_holyorder

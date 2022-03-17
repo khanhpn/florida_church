@@ -19,7 +19,7 @@ Rails.application.routes.draw do
       end
     end
     resources :bulletin, except: :show
-    resources :teaching_mass, except: :show
+    resources :teaching_mass
 
     resources :altar_server do
       member do
@@ -31,31 +31,31 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :altar_society, except: :show
-    resources :children_liturgy, except: :show
-    resources :ecuharistic_ministry, except: :show
-    resources :funeral, except: :show
-    resources :lector, except: :show
-    resources :music_ministry, except: :show
-    resources :ushers_hospital, except: :show
-    resources :player_group, except: :show
-    resources :sacramental, except: :show
-    resources :anointing, except: :show
-    resources :holyorders, except: :show
-    resources :marriage, except: :show
-    resources :confirmation, except: :show
-    resources :eucharist, except: :show
-    resources :reconciliation, except: :show
-    resources :baptism, except: :show
+    resources :altar_society
+    resources :children_liturgy
+    resources :ecuharistic_ministry
+    resources :funeral
+    resources :lector
+    resources :music_ministry
+    resources :ushers_hospital
+    resources :player_group
+    resources :sacramental
+    resources :anointing
+    resources :holyorders
+    resources :marriage
+    resources :confirmation
+    resources :eucharist
+    resources :reconciliation
+    resources :baptism
 
-    resources :welcome, except: :show
-    resources :environment_church, except: :show
-    resources :history_church, except: :show
-    resources :council, except: :show
-    resources :staff, except: :show
-    resources :deacon, except: :show
-    resources :clergy, except: :show
-    resources :google_map, except: :show
+    resources :welcome
+    resources :environment_church
+    resources :history_church
+    resources :council
+    resources :staff
+    resources :deacon
+    resources :clergy
+    resources :google_map
   end
 
   root to: "home#index"

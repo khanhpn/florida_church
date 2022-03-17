@@ -1,12 +1,17 @@
 class Admin::AltarSocietyController < Admin::AdminController
-  before_action :set_altar_society, only: [:destroy, :edit, :update]
+  before_action :set_altar_society, only: [:destroy, :edit, :update, :show]
 
   def index
     @altar_societies = AltarSociety.all
   end
 
   def new
+    @is_main_article = AltarSociety.find_by(is_main_article: true)
     @altar_society = AltarSociety.new
+  end
+
+  def show
+    @is_main_article = @altar_society.is_main_article
   end
 
   def create
@@ -31,6 +36,7 @@ class Admin::AltarSocietyController < Admin::AdminController
   end
 
   def edit
+    @is_main_article = @altar_society.is_main_article
   end
 
   def destroy
@@ -41,7 +47,7 @@ class Admin::AltarSocietyController < Admin::AdminController
 
   private
   def params_altar_society
-    params.require(:altar_society).permit(:name, :content, :display_order, :display)
+    params.require(:altar_society).permit(:name, :content, :is_main_article, :display, :file_image, :file_pdf)
   end
 
   def set_altar_society

@@ -1,12 +1,17 @@
 class Admin::LectorController < Admin::AdminController
-  before_action :set_lector, only: [:destroy, :edit, :update]
+  before_action :set_lector, only: [:destroy, :edit, :update, :show]
 
   def index
     @lectors = Lector.all
   end
 
   def new
+    @is_main_article = Lector.find_by(is_main_article: true)
     @lector = Lector.new
+  end
+
+  def show
+    @is_main_article = @lector.is_main_article
   end
 
   def create
@@ -31,6 +36,7 @@ class Admin::LectorController < Admin::AdminController
   end
 
   def edit
+    @is_main_article = @lector.is_main_article
   end
 
   def destroy
@@ -41,7 +47,7 @@ class Admin::LectorController < Admin::AdminController
 
   private
   def params_lector
-    params.require(:lector).permit(:name, :content, :display_order, :display)
+    params.require(:lector).permit(:name, :content, :is_main_article, :display, :file_image, :file_pdf)
   end
 
   def set_lector

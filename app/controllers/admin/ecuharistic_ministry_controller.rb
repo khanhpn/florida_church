@@ -1,12 +1,17 @@
 class Admin::EcuharisticMinistryController < Admin::AdminController
-  before_action :set_ecuharistic_ministry, only: [:destroy, :edit, :update]
+  before_action :set_ecuharistic_ministry, only: [:destroy, :edit, :update, :show]
 
   def index
     @ecuharistic_ministries = EcuharisticMinistry.all
   end
 
   def new
+    @is_main_article = EcuharisticMinistry.find_by(is_main_article: true)
     @ecuharistic_ministry = EcuharisticMinistry.new
+  end
+
+  def show
+    @is_main_article = @ecuharistic_ministry.is_main_article
   end
 
   def create
@@ -31,6 +36,7 @@ class Admin::EcuharisticMinistryController < Admin::AdminController
   end
 
   def edit
+    @is_main_article = @ecuharistic_ministry.is_main_article
   end
 
   def destroy
@@ -41,7 +47,7 @@ class Admin::EcuharisticMinistryController < Admin::AdminController
 
   private
   def params_ecuharistic_ministry
-    params.require(:ecuharistic_ministry).permit(:name, :content, :display_order, :display)
+    params.require(:ecuharistic_ministry).permit(:name, :content, :is_main_article, :display, :file_image, :file_pdf)
   end
 
   def set_ecuharistic_ministry

@@ -1,12 +1,17 @@
 class Admin::EucharistController < Admin::AdminController
-  before_action :set_eucharist, only: [:destroy, :edit, :update]
+  before_action :set_eucharist, only: [:destroy, :edit, :update, :show]
 
   def index
     @eucharists = Eucharist.all
   end
 
   def new
+    @is_main_article = Eucharist.find_by(is_main_article: true)
     @eucharist = Eucharist.new
+  end
+
+  def show
+    @is_main_article = @eucharist.is_main_article
   end
 
   def create
@@ -31,6 +36,7 @@ class Admin::EucharistController < Admin::AdminController
   end
 
   def edit
+    @is_main_article = @eucharist.is_main_article
   end
 
   def destroy
@@ -41,7 +47,7 @@ class Admin::EucharistController < Admin::AdminController
 
   private
   def params_eucharist
-    params.require(:eucharist).permit(:name, :content, :display_order, :display)
+    params.require(:eucharist).permit(:name, :content, :is_main_article, :display, :file_image, :file_pdf)
   end
 
   def set_eucharist

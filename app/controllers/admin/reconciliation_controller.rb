@@ -1,12 +1,17 @@
 class Admin::ReconciliationController < Admin::AdminController
-  before_action :set_reconciliation, only: [:destroy, :edit, :update]
+  before_action :set_reconciliation, only: [:destroy, :edit, :update, :show]
 
   def index
     @reconciliations = Reconciliation.all
   end
 
   def new
+    @is_main_article = Reconciliation.find_by(is_main_article: true)
     @reconciliation = Reconciliation.new
+  end
+
+  def show
+    @is_main_article = @reconciliation.is_main_article
   end
 
   def create
@@ -31,6 +36,7 @@ class Admin::ReconciliationController < Admin::AdminController
   end
 
   def edit
+    @is_main_article = @reconciliation.is_main_article
   end
 
   def destroy
@@ -41,7 +47,7 @@ class Admin::ReconciliationController < Admin::AdminController
 
   private
   def params_reconciliation
-    params.require(:reconciliation).permit(:name, :content, :display_order, :display)
+    params.require(:reconciliation).permit(:name, :content, :is_main_article, :display, :file_image, :file_pdf)
   end
 
   def set_reconciliation

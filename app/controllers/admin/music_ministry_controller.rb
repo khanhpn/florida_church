@@ -1,12 +1,17 @@
 class Admin::MusicMinistryController < Admin::AdminController
-  before_action :set_music_ministry, only: [:destroy, :edit, :update]
+  before_action :set_music_ministry, only: [:destroy, :edit, :update, :show]
 
   def index
     @music_ministries = MusicMinistry.all
   end
 
   def new
+    @is_main_article = MusicMinistry.find_by(is_main_article: true)
     @music_ministry = MusicMinistry.new
+  end
+
+  def show
+    @is_main_article = @music_ministry.is_main_article
   end
 
   def create
@@ -31,6 +36,7 @@ class Admin::MusicMinistryController < Admin::AdminController
   end
 
   def edit
+    @is_main_article = @music_ministry.is_main_article
   end
 
   def destroy
@@ -41,7 +47,7 @@ class Admin::MusicMinistryController < Admin::AdminController
 
   private
   def params_music_ministry
-    params.require(:music_ministry).permit(:name, :content, :display_order, :display)
+    params.require(:music_ministry).permit(:name, :content, :is_main_article, :display, :file_image, :file_pdf)
   end
 
   def set_music_ministry
