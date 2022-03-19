@@ -27,7 +27,7 @@
             </div>
           </div>
         </div>
-        <% if @is_main_article.present? %>
+        <% if @altar_server.is_main_article || @is_main_article.blank? %>
           <div class="form-group">
             <div class="offset-sm-12">
               <div class="form-check">
@@ -46,7 +46,7 @@
             </div>
           </div>
         <% end %>
-        <% if !@is_main_article.present? %>
+        <% if !@altar_server.is_main_article || @is_main_article.blank? %>
           <div class="row">
             <div class="form-group">
               <label for="exampleInputFile">Upload image</label>

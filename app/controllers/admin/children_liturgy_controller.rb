@@ -36,7 +36,7 @@ class Admin::ChildrenLiturgyController < Admin::AdminController
   end
 
   def edit
-    @is_main_article = @children_liturgy.is_main_article
+    @is_main_article = ChildrensLiturgy.find_by(is_main_article: true)
   end
 
   def destroy

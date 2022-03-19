@@ -36,7 +36,7 @@ class Admin::FuneralController < Admin::AdminController
   end
 
   def edit
-    @is_main_article = @funeral.is_main_article
+    @is_main_article = Funeral.find_by(is_main_article: true)
   end
 
   def destroy

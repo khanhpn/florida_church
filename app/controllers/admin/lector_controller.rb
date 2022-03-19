@@ -36,7 +36,7 @@ class Admin::LectorController < Admin::AdminController
   end
 
   def edit
-    @is_main_article = @lector.is_main_article
+    @is_main_article = Lector.find_by(is_main_article: true)
   end
 
   def destroy

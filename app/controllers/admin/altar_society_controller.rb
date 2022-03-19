@@ -36,7 +36,7 @@ class Admin::AltarSocietyController < Admin::AdminController
   end
 
   def edit
-    @is_main_article = @altar_society.is_main_article
+    @is_main_article = AltarSociety.find_by(is_main_article: true)
   end
 
   def destroy

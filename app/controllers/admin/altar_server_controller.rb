@@ -37,7 +37,7 @@ class Admin::AltarServerController < Admin::AdminController
   end
 
   def edit
-    @is_main_article = @altar_server.is_main_article
+    @is_main_article = AltarServer.find_by(is_main_article: true)
   end
 
   def destroy

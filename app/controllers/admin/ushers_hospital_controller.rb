@@ -36,7 +36,7 @@ class Admin::UshersHospitalController < Admin::AdminController
   end
 
   def edit
-    @is_main_article = @usher_hospital.is_main_article
+    @is_main_article = UshersHospitality.find_by(is_main_article: true)
   end
 
   def destroy

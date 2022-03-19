@@ -36,7 +36,7 @@ class Admin::MarriageController < Admin::AdminController
   end
 
   def edit
-    @is_main_article = @marriage.is_main_article
+    @is_main_article = Marriage.find_by(is_main_article: true)
   end
 
   def destroy

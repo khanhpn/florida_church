@@ -36,7 +36,7 @@ class Admin::EucharistController < Admin::AdminController
   end
 
   def edit
-    @is_main_article = @eucharist.is_main_article
+    @is_main_article = Eucharist.find_by(is_main_article: true)
   end
 
   def destroy

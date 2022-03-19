@@ -36,7 +36,7 @@ class Admin::ReconciliationController < Admin::AdminController
   end
 
   def edit
-    @is_main_article = @reconciliation.is_main_article
+    @is_main_article = Reconciliation.find_by(is_main_article: true)
   end
 
   def destroy

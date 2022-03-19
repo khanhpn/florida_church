@@ -36,7 +36,7 @@ class Admin::MusicMinistryController < Admin::AdminController
   end
 
   def edit
-    @is_main_article = @music_ministry.is_main_article
+    @is_main_article = MusicMinistry.find_by(is_main_article: true)
   end
 
   def destroy

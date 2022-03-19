@@ -36,7 +36,7 @@ class Admin::HolyordersController < Admin::AdminController
   end
 
   def edit
-    @is_main_article = @holyorder.is_main_article
+    @is_main_article = Holyorder.find_by(is_main_article: true)
   end
 
   def destroy

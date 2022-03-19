@@ -14,11 +14,9 @@
               <thead>
                 <tr>
                   <th>Name</th>
-                  <th>Content</th>
                   <th>Display</th>
-                  <th>Display Order</th>
+                  <th>Main article</th>
                   <th>Created at</th>
-                  <th>Updated at</th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -26,13 +24,12 @@
                 <% @teaching_masses.each do |teaching_mass| %>
                   <tr>
                     <td><%= teaching_mass&.name || "-" %></td>
-                    <td><%= teaching_mass&.content || "-"  %></td>
-                    <td><%= teaching_mass&.display || "-"  %></td>
-                    <td><%= teaching_mass&.display_order || "-"  %></td>
+                    <td><%= teaching_mass&.display ? "Yes" : "No"  %></td>
+                    <td><%= teaching_mass&.is_main_article ? "Yes" : "No"  %></td>
                     <td><%= teaching_mass&.created_at || "-"  %></td>
-                    <td><%= teaching_mass&.updated_at || "-"  %></td>
                     <td>
                       <% unless teaching_mass.blank? %>
+                        <%= link_to "Show", admin_teaching_mass_path(teaching_mass), class: "btn btn-primary" %>
                         <%= link_to "Edit", edit_admin_teaching_mass_path(teaching_mass), class: "btn btn-success" %>
                         <%= link_to "Delete", admin_teaching_mass_path(teaching_mass), method: :delete, class: "btn btn-danger" %>
                       <% end %>

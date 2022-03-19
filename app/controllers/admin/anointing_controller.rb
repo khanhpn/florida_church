@@ -36,7 +36,7 @@ class Admin::AnointingController < Admin::AdminController
   end
 
   def edit
-    @is_main_article = @anointing.is_main_article
+    @is_main_article = AnointingThesick.find_by(is_main_article: true)
   end
 
   def destroy

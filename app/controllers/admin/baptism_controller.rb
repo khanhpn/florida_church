@@ -36,7 +36,7 @@ class Admin::BaptismController < Admin::AdminController
   end
 
   def edit
-    @is_main_article = @baptism.is_main_article
+    @is_main_article = Baptism.find_by(is_main_article: true)
   end
 
   def destroy

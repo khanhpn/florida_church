@@ -36,7 +36,7 @@ class Admin::ConfirmationController < Admin::AdminController
   end
 
   def edit
-    @is_main_article = @confirmation.is_main_article
+    @is_main_article = Confirmation.find_by(is_main_article: true)
   end
 
   def destroy
