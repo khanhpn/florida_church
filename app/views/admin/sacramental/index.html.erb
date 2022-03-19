@@ -24,13 +24,12 @@
                 <% @sacramentals.each do |sacramental| %>
                   <tr>
                     <td><%= sacramental&.name || "-" %></td>
-                    <td><%= sacramental&.content&.html_safe || "-"  %></td>
-                    <td><%= sacramental&.display || "-"  %></td>
-                    <td><%= sacramental&.display_order || "-"  %></td>
+                    <td><%= sacramental&.display ? "Yes" : "No"  %></td>
+                    <td><%= sacramental&.is_main_article ? "Yes" : "No"  %></td>
                     <td><%= sacramental&.created_at || "-"  %></td>
-                    <td><%= sacramental&.updated_at || "-"  %></td>
                     <td>
                       <% unless sacramental.blank? %>
+                        <%= link_to "Show", admin_sacramental_path(sacramental), class: "btn btn-primary" %>
                         <%= link_to "Edit", edit_admin_sacramental_path(sacramental), class: "btn btn-success" %>
                         <%= link_to "Delete", admin_sacramental_path(sacramental), method: :delete, class: "btn btn-danger" %>
                       <% end %>

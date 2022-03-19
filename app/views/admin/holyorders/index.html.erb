@@ -24,13 +24,12 @@
                 <% @holyorders.each do |holyorder| %>
                   <tr>
                     <td><%= holyorder&.name || "-" %></td>
-                    <td><%= holyorder&.content&.html_safe || "-"  %></td>
-                    <td><%= holyorder&.display || "-"  %></td>
-                    <td><%= holyorder&.display_order || "-"  %></td>
+                    <td><%= holyorder&.display ? "Yes" : "No"  %></td>
+                    <td><%= holyorder&.is_main_article ? "Yes" : "No"  %></td>
                     <td><%= holyorder&.created_at || "-"  %></td>
-                    <td><%= holyorder&.updated_at || "-"  %></td>
                     <td>
                       <% unless holyorder.blank? %>
+                        <%= link_to "Show", admin_holyorder_path(holyorder), class: "btn btn-primary" %>
                         <%= link_to "Edit", edit_admin_holyorder_path(holyorder), class: "btn btn-success" %>
                         <%= link_to "Delete", admin_holyorder_path(holyorder), method: :delete, class: "btn btn-danger" %>
                       <% end %>

@@ -24,13 +24,12 @@
                 <% @marriages.each do |marriage| %>
                   <tr>
                     <td><%= marriage&.name || "-" %></td>
-                    <td><%= marriage&.content&.html_safe || "-"  %></td>
-                    <td><%= marriage&.display || "-"  %></td>
-                    <td><%= marriage&.display_order || "-"  %></td>
+                    <td><%= marriage&.display ? "Yes" : "No"  %></td>
+                    <td><%= marriage&.is_main_article ? "Yes" : "No"  %></td>
                     <td><%= marriage&.created_at || "-"  %></td>
-                    <td><%= marriage&.updated_at || "-"  %></td>
                     <td>
                       <% unless marriage.blank? %>
+                        <%= link_to "Show", admin_marriage_path(marriage), class: "btn btn-primary" %>
                         <%= link_to "Edit", edit_admin_marriage_path(marriage), class: "btn btn-success" %>
                         <%= link_to "Delete", admin_marriage_path(marriage), method: :delete, class: "btn btn-danger" %>
                       <% end %>
