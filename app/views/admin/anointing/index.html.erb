@@ -14,11 +14,9 @@
               <thead>
                 <tr>
                   <th>Name</th>
-                  <th>Content</th>
                   <th>Display</th>
-                  <th>Display Order</th>
+                  <th>Main article</th>
                   <th>Created at</th>
-                  <th>Updated at</th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -26,13 +24,12 @@
                 <% @anointings.each do |anoiting| %>
                   <tr>
                     <td><%= anoiting&.name || "-" %></td>
-                    <td><%= anoiting&.content&.html_safe || "-"  %></td>
-                    <td><%= anoiting&.display || "-"  %></td>
-                    <td><%= anoiting&.display_order || "-"  %></td>
+                    <td><%= anoiting&.display ? "Yes" : "No"  %></td>
+                    <td><%= anoiting&.is_main_article ? "Yes" : "No"  %></td>
                     <td><%= anoiting&.created_at || "-"  %></td>
-                    <td><%= anoiting&.updated_at || "-"  %></td>
                     <td>
                       <% unless anoiting.blank? %>
+                        <%= link_to "Show", admin_anoiting_path(anoiting), class: "btn btn-primary" %>
                         <%= link_to "Edit", edit_admin_anointing_path(anoiting), class: "btn btn-success" %>
                         <%= link_to "Delete", admin_anointing_path(anoiting), method: :delete, class: "btn btn-danger" %>
                       <% end %>

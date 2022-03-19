@@ -1,4 +1,4 @@
-<%= render "admin/shared/bread_crumb", name: {title: "Show altar society", bread_crumb: "Show"} %>
+<%= render "admin/shared/bread_crumb", name: {title: "Show player group", bread_crumb: "Show"} %>
 <section class="content">
   <div class="container-fluid">
     <table id="example2" class="table table-bordered table-hover">
@@ -8,10 +8,10 @@
           <% if @is_main_article %>
             <th>Content</th>
           <% end %>
-          <% if !@is_main_article && @altar_society.file_image.present? %>
+          <% if !@is_main_article && @player_group.file_image.present? %>
             <th>Link image</th>
           <% end %>
-          <% if !@is_main_article && @altar_society.file_pdf.present? %>
+          <% if !@is_main_article && @player_group.file_pdf.present? %>
             <th>Link pdf</th>
           <% end %>
           <th>Action</th>
@@ -19,21 +19,21 @@
       </thead>
       <tbody>
         <tr>
-          <td><%= @altar_society&.name || "-" %></td>
+          <td><%= @player_group&.name || "-" %></td>
           <% if @is_main_article %>
-            <td><%= @altar_society&.content&.html_safe || "-"  %></td>
+            <td><%= @player_group&.content&.html_safe || "-"  %></td>
           <% end %>
-          <% if !@is_main_article && @altar_society.file_image.present? %>
-            <td><%= link_to 'download', rails_blob_path(@altar_society.file_image, disposition: "download"), target: "_blank" %></td>
+          <% if !@is_main_article && @player_group.file_image.present? %>
+            <td><%= link_to 'download', rails_blob_path(@player_group.file_image, disposition: "download"), target: "_blank" %></td>
           <% end %>
-          <% if !@is_main_article && @altar_society.file_pdf.present? %>
-            <td><%= link_to 'download', rails_blob_path(@altar_society.file_pdf, disposition: "download"), target: "_blank"  %></td>
+          <% if !@is_main_article && @player_group.file_pdf.present? %>
+            <td><%= link_to 'download', rails_blob_path(@player_group.file_pdf, disposition: "download"), target: "_blank"  %></td>
           <% end %>
           <td>
-            <% unless @altar_society.blank? %>
-              <%= link_to "Edit", edit_admin_altar_society_path(@altar_society), class: "btn btn-success" %>
-              <%= link_to "Delete", admin_altar_society_path(@altar_society), method: :delete, class: "btn btn-danger" %>
-              <%= link_to "Back", admin_altar_society_index_path, class: "btn btn-primary" %>
+            <% unless @player_group.blank? %>
+              <%= link_to "Edit", edit_admin_player_group_path(@player_group), class: "btn btn-success" %>
+              <%= link_to "Delete", admin_player_group_path(@player_group), method: :delete, class: "btn btn-danger" %>
+              <%= link_to "Back", admin_player_group_index_path, class: "btn btn-primary" %>
             <% end %>
           </td>
         </tr>

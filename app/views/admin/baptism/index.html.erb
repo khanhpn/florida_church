@@ -14,11 +14,9 @@
               <thead>
                 <tr>
                   <th>Name</th>
-                  <th>Content</th>
                   <th>Display</th>
-                  <th>Display Order</th>
+                  <th>Main article</th>
                   <th>Created at</th>
-                  <th>Updated at</th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -26,13 +24,12 @@
                 <% @baptisms.each do |baptism| %>
                   <tr>
                     <td><%= baptism&.name || "-" %></td>
-                    <td><%= baptism&.content&.html_safe || "-"  %></td>
-                    <td><%= baptism&.display || "-"  %></td>
-                    <td><%= baptism&.display_order || "-"  %></td>
+                    <td><%= baptism&.display ? "Yes" : "No"  %></td>
+                    <td><%= baptism&.is_main_article ? "Yes" : "No"  %></td>
                     <td><%= baptism&.created_at || "-"  %></td>
-                    <td><%= baptism&.updated_at || "-"  %></td>
                     <td>
                       <% unless baptism.blank? %>
+                        <%= link_to "Show", admin_baptism_path(baptism), class: "btn btn-primary" %>
                         <%= link_to "Edit", edit_admin_baptism_path(baptism), class: "btn btn-success" %>
                         <%= link_to "Delete", admin_baptism_path(baptism), method: :delete, class: "btn btn-danger" %>
                       <% end %>
