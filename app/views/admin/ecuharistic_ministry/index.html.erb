@@ -14,11 +14,9 @@
               <thead>
                 <tr>
                   <th>Name</th>
-                  <th>Content</th>
                   <th>Display</th>
-                  <th>Display Order</th>
+                  <th>Main article</th>
                   <th>Created at</th>
-                  <th>Updated at</th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -26,13 +24,12 @@
                 <% @ecuharistic_ministries.each do |ecuharistic_ministry| %>
                   <tr>
                     <td><%= ecuharistic_ministry&.name || "-" %></td>
-                    <td><%= ecuharistic_ministry&.content&.html_safe || "-"  %></td>
-                    <td><%= ecuharistic_ministry&.display || "-"  %></td>
-                    <td><%= ecuharistic_ministry&.display_order || "-"  %></td>
+                    <td><%= ecuharistic_ministry&.display ? "Yes" : "No"  %></td>
+                    <td><%= ecuharistic_ministry&.is_main_article ? "Yes" : "No"  %></td>
                     <td><%= ecuharistic_ministry&.created_at || "-"  %></td>
-                    <td><%= ecuharistic_ministry&.updated_at || "-"  %></td>
                     <td>
                       <% unless ecuharistic_ministry.blank? %>
+                        <%= link_to "Show", admin_ecuharistic_ministry_path(ecuharistic_ministry), class: "btn btn-primary" %>
                         <%= link_to "Edit", edit_admin_ecuharistic_ministry_path(ecuharistic_ministry), class: "btn btn-success" %>
                         <%= link_to "Delete", admin_ecuharistic_ministry_path(ecuharistic_ministry), method: :delete, class: "btn btn-danger" %>
                       <% end %>
@@ -51,7 +48,6 @@
   </div>
   <!-- /.container-fluid -->
 </section>
-
 <section class="section-btn-group">
   <div class="section-btn-group-wrap">
     <%= link_to "Create", new_admin_ecuharistic_ministry_path, class: "btn btn-info" %>
