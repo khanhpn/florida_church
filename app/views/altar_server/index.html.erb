@@ -18,14 +18,14 @@
                 <div>
                   <div class="related-articles">Related articles</div>
                   <div>
-                    <% @altar_server_relateds.each do |item| %>
+                    <% @relateds.each do |item| %>
                       <div>
-                        <% if !@is_main_article && item.file_image.present? %>
+                        <% if item.file_image.present? %>
                           <%= link_to "#{item.name} - Image", rails_blob_path(item.file_image, disposition: "download"), target: "_blank" %>
                         <% end %>
                       </div>
                       <div>
-                        <% if !@is_main_article && item.file_pdf.present? %>
+                        <% if item.file_pdf.present? %>
                           <%= link_to "#{item.name} - Pdf", rails_blob_path(item.file_pdf, disposition: "download"), target: "_blank"  %>
                         <% end %>
                       </div>
