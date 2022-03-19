@@ -14,11 +14,9 @@
               <thead>
                 <tr>
                   <th>Name</th>
-                  <th>Content</th>
                   <th>Display</th>
-                  <th>Display Order</th>
+                  <th>Main article</th>
                   <th>Created at</th>
-                  <th>Updated at</th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -26,13 +24,12 @@
                 <% @lectors.each do |lector| %>
                   <tr>
                     <td><%= lector&.name || "-" %></td>
-                    <td><%= lector&.content&.html_safe || "-"  %></td>
-                    <td><%= lector&.display || "-"  %></td>
-                    <td><%= lector&.display_order || "-"  %></td>
+                    <td><%= lector&.display ? "Yes" : "No"  %></td>
+                    <td><%= lector&.is_main_article ? "Yes" : "No"  %></td>
                     <td><%= lector&.created_at || "-"  %></td>
-                    <td><%= lector&.updated_at || "-"  %></td>
                     <td>
                       <% unless lector.blank? %>
+                        <%= link_to "Show", admin_lector_path(lector), class: "btn btn-primary" %>
                         <%= link_to "Edit", edit_admin_lector_path(lector), class: "btn btn-success" %>
                         <%= link_to "Delete", admin_lector_path(lector), method: :delete, class: "btn btn-danger" %>
                       <% end %>
@@ -51,7 +48,6 @@
   </div>
   <!-- /.container-fluid -->
 </section>
-
 <section class="section-btn-group">
   <div class="section-btn-group-wrap">
     <%= link_to "Create", new_admin_lector_path, class: "btn btn-info" %>
