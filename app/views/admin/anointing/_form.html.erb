@@ -27,7 +27,7 @@
             </div>
           </div>
         </div>
-        <% if @anoiting.is_main_article || @is_main_article.blank? %>
+        <% if @anointing.is_main_article || @is_main_article.blank? %>
           <div class="form-group">
             <div class="offset-sm-12">
               <div class="form-check">
@@ -46,7 +46,7 @@
             </div>
           </div>
         <% end %>
-        <% if !@anoiting.is_main_article || @is_main_article.blank? %>
+        <% if !@anointing.is_main_article || @is_main_article.blank? %>
           <div class="row">
             <div class="form-group">
               <label for="exampleInputFile">Upload image</label>

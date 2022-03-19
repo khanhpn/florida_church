@@ -29,7 +29,7 @@
                     <td><%= anoiting&.created_at || "-"  %></td>
                     <td>
                       <% unless anoiting.blank? %>
-                        <%= link_to "Show", admin_anoiting_path(anoiting), class: "btn btn-primary" %>
+                        <%= link_to "Show", admin_anointing_path(anoiting), class: "btn btn-primary" %>
                         <%= link_to "Edit", edit_admin_anointing_path(anoiting), class: "btn btn-success" %>
                         <%= link_to "Delete", admin_anointing_path(anoiting), method: :delete, class: "btn btn-danger" %>
                       <% end %>
