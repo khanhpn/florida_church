@@ -14,7 +14,9 @@ module ApplicationHelper
     ABOUT_US: [
       "welcome", "clergy", "deacon", "staff", "council", "history_church", "environment_church"
     ],
-    GOOGLE_MAP: ["google_map"]
+    GOOGLE_MAP: ["google_map"],
+    MINISTRIES: ['adult', 'youth', 'children'],
+    PRAYER_GARDEN: ['pray_garden']
   }
   def active_navbar(prefix)
     request.path.gsub("/admin/", "") == prefix ? "active" : ""

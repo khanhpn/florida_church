@@ -256,6 +256,52 @@
             </li>
           </ul>
         </li>
+        <li class="nav-item <%= active_main_navbar_open(ApplicationHelper::MAIN_MENU_ADMIN.dig(:MINISTRIES)) %>">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-chart-pie"></i>
+            <p>
+              Ministries
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <%= link_to admin_adult_index_path, class: "nav-link #{active_navbar('adult')}" do %>
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage Adult</p>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to admin_youth_index_path, class: "nav-link #{active_navbar('youth')}" do %>
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage Youth</p>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to admin_children_path, class: "nav-link #{active_navbar('children')}" do %>
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage Children</p>
+              <% end %>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item <%= active_main_navbar_open(ApplicationHelper::MAIN_MENU_ADMIN.dig(:PRAYER_GARDEN)) %>">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-chart-pie"></i>
+            <p>
+              Prayer Garden
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <%= link_to admin_pray_garden_index_path, class: "nav-link #{active_navbar('pray_garden')}" do %>
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage Engraved Brick</p>
+              <% end %>
+            </li>
+          </ul>
+        </li>
         <li class="nav-item <%= active_main_navbar_open(ApplicationHelper::MAIN_MENU_ADMIN.dig(:HEADER)) %>">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-tree"></i>

@@ -57,6 +57,11 @@ Rails.application.routes.draw do
     resources :deacon
     resources :clergy
     resources :google_map
+
+    resources :adult
+    resources :youth
+    resources :children
+    resources :pray_garden
   end
 
   root to: "home#index"
