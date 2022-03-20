@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   devise_for :users, skip: [:registrations], controllers: { sessions: 'users/sessions' } do
     get 'admin/login', to: 'devise/sessions#new'
     delete 'admin/logout', to: 'devise/sessions#destroy'
@@ -90,4 +91,8 @@ Rails.application.routes.draw do
   get 'deacon', to: 'deacon#index'
   get 'clergy', to: 'clergy#index'
   get 'welcome', to: 'welcome#index'
+
+  get 'adult', to: 'adult#index'
+  get 'youth', to: 'youth#index'
+  get 'children', to: 'children#index'
 end

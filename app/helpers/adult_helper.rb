@@ -1,0 +1,2 @@
+module AdultHelper
+end
