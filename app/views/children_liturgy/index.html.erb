@@ -15,23 +15,7 @@
                 <div class="moduleBody">
                   <%= @children_liturgy&.content&.html_safe %>
                 </div>
-                <div>
-                  <div class="related-articles">Related articles</div>
-                  <div>
-                    <% @relateds.each do |item| %>
-                      <div>
-                        <% if item.file_image.present? %>
-                          <%= link_to "#{item.name} - Image", rails_blob_path(item.file_image, disposition: "download"), target: "_blank" %>
-                        <% end %>
-                      </div>
-                      <div>
-                        <% if item.file_pdf.present? %>
-                          <%= link_to "#{item.name} - Pdf", rails_blob_path(item.file_pdf, disposition: "download"), target: "_blank"  %>
-                        <% end %>
-                      </div>
-                    <% end %>
-                  </div>
-                </div>
+                <%= render partial: "shared/related_articles", locals: { relateds: @relateds } unless @relateds.blank? %>
               </div>
             </li>
           </ul>
