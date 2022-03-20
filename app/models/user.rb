@@ -32,6 +32,10 @@ class User < ApplicationRecord
   has_many :history_churchs
   has_many :environment_churchs
 
+  has_many :childrens
+  has_many :adults
+  has_many :youths
+
   has_one_attached :logo_icon
 
 
