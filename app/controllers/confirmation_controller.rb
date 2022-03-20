@@ -1,6 +1,6 @@
 class ConfirmationController < ApplicationController
   def index
     @confirmation = Confirmation.display_article.last
-    @relateds = Confirmation.where.not(id: @confirmation, display: false, is_main_article: true)
+    @relateds = Confirmation.where.not(id: @confirmation)
   end
 end
