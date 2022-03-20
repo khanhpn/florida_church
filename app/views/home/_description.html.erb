@@ -4,7 +4,7 @@
       <div class="moduleInner slideshowModule videoMode youtubeMode autoplayOn captionOn callToActionOn">
         <header></header>
         <iframe class="youtube video moduleBody" width="1920" height="1080"
-						src="<%= introduction&.youtube_url %>?feature=player_detailpage&amp;wmode=transparent&amp;rel=0&amp;showinfo=0&amp;modestbranding=1&amp;autoplay=1&amp;loop=1&amp;mute=0&amp;cc_load_policy=0&amp;disablekb=1&amp;iv_load_policy=3&amp;playlist=<%= introduction&.youtube_url&.gsub('https://www.youtube.com/embed/', '') || '' %>&amp;controls=0"
+          src="<%= introduction&.youtube_url %>?feature=player_detailpage&wmode=transparent&rel=0&showinfo=0&modestbranding=1&autoplay=1&loop=1&cc_load_policy=0&disablekb=1&iv_load_policy=3&playlist=<%= introduction&.youtube_url&.gsub('https://www.youtube.com/embed/', '') || '' %>&controls=0&mute=1&disablekb=f"
 						frameborder="0" wmode="Opaque" allowfullscreen></iframe>
         <div class="captionPositioner" width="640" height="360">
           <div class="caption">
