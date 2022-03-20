@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_12_013023) do
+ActiveRecord::Schema.define(version: 2022_03_20_152949) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,6 +62,20 @@ ActiveRecord::Schema.define(version: 2022_02_12_013023) do
     t.index ["user_id"], name: "index_adoration_times_on_user_id"
   end
 
+  create_table "adults", force: :cascade do |t|
+    t.string "name"
+    t.text "content"
+    t.text "file_image"
+    t.text "file_pdf"
+    t.string "link"
+    t.boolean "display", default: false
+    t.boolean "is_main_article", default: false
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_adults_on_user_id"
+  end
+
   create_table "altar_servers", force: :cascade do |t|
     t.string "name"
     t.text "content"
@@ -70,6 +84,9 @@ ActiveRecord::Schema.define(version: 2022_02_12_013023) do
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "is_main_article", default: false
+    t.text "file_image"
+    t.text "file_pdf"
     t.index ["display_order"], name: "index_altar_servers_on_display_order"
     t.index ["user_id"], name: "index_altar_servers_on_user_id"
   end
@@ -82,6 +99,9 @@ ActiveRecord::Schema.define(version: 2022_02_12_013023) do
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "is_main_article", default: false
+    t.text "file_image"
+    t.text "file_pdf"
     t.index ["display_order"], name: "index_altar_societies_on_display_order"
     t.index ["user_id"], name: "index_altar_societies_on_user_id"
   end
@@ -94,6 +114,9 @@ ActiveRecord::Schema.define(version: 2022_02_12_013023) do
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "is_main_article", default: false
+    t.text "file_image"
+    t.text "file_pdf"
     t.index ["display_order"], name: "index_anointing_thesicks_on_display_order"
     t.index ["user_id"], name: "index_anointing_thesicks_on_user_id"
   end
@@ -106,6 +129,9 @@ ActiveRecord::Schema.define(version: 2022_02_12_013023) do
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "is_main_article", default: false
+    t.text "file_image"
+    t.text "file_pdf"
     t.index ["display_order"], name: "index_baptisms_on_display_order"
     t.index ["user_id"], name: "index_baptisms_on_user_id"
   end
@@ -121,6 +147,20 @@ ActiveRecord::Schema.define(version: 2022_02_12_013023) do
     t.index ["user_id"], name: "index_bulletins_on_user_id"
   end
 
+  create_table "children", force: :cascade do |t|
+    t.string "name"
+    t.text "content"
+    t.text "file_image"
+    t.text "file_pdf"
+    t.string "link"
+    t.boolean "display", default: false
+    t.boolean "is_main_article", default: false
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_children_on_user_id"
+  end
+
   create_table "childrens_liturgies", force: :cascade do |t|
     t.string "name"
     t.text "content"
@@ -129,6 +169,9 @@ ActiveRecord::Schema.define(version: 2022_02_12_013023) do
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "is_main_article", default: false
+    t.text "file_image"
+    t.text "file_pdf"
     t.index ["display_order"], name: "index_childrens_liturgies_on_display_order"
     t.index ["user_id"], name: "index_childrens_liturgies_on_user_id"
   end
@@ -154,6 +197,9 @@ ActiveRecord::Schema.define(version: 2022_02_12_013023) do
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "is_main_article", default: false
+    t.text "file_image"
+    t.text "file_pdf"
     t.index ["display_order"], name: "index_confirmations_on_display_order"
     t.index ["user_id"], name: "index_confirmations_on_user_id"
   end
@@ -208,6 +254,9 @@ ActiveRecord::Schema.define(version: 2022_02_12_013023) do
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "is_main_article", default: false
+    t.text "file_image"
+    t.text "file_pdf"
     t.index ["display_order"], name: "index_ecuharistic_ministries_on_display_order"
     t.index ["user_id"], name: "index_ecuharistic_ministries_on_user_id"
   end
@@ -232,6 +281,9 @@ ActiveRecord::Schema.define(version: 2022_02_12_013023) do
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "is_main_article", default: false
+    t.text "file_image"
+    t.text "file_pdf"
     t.index ["display_order"], name: "index_eucharists_on_display_order"
     t.index ["user_id"], name: "index_eucharists_on_user_id"
   end
@@ -244,6 +296,9 @@ ActiveRecord::Schema.define(version: 2022_02_12_013023) do
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "is_main_article", default: false
+    t.text "file_image"
+    t.text "file_pdf"
     t.index ["display_order"], name: "index_funerals_on_display_order"
     t.index ["user_id"], name: "index_funerals_on_user_id"
   end
@@ -286,6 +341,9 @@ ActiveRecord::Schema.define(version: 2022_02_12_013023) do
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "is_main_article", default: false
+    t.text "file_image"
+    t.text "file_pdf"
     t.index ["display_order"], name: "index_holyorders_on_display_order"
     t.index ["user_id"], name: "index_holyorders_on_user_id"
   end
@@ -318,6 +376,9 @@ ActiveRecord::Schema.define(version: 2022_02_12_013023) do
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "is_main_article", default: false
+    t.text "file_image"
+    t.text "file_pdf"
     t.index ["display_order"], name: "index_lectors_on_display_order"
     t.index ["user_id"], name: "index_lectors_on_user_id"
   end
@@ -341,6 +402,9 @@ ActiveRecord::Schema.define(version: 2022_02_12_013023) do
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "is_main_article", default: false
+    t.text "file_image"
+    t.text "file_pdf"
     t.index ["display_order"], name: "index_marriages_on_display_order"
     t.index ["user_id"], name: "index_marriages_on_user_id"
   end
@@ -373,8 +437,25 @@ ActiveRecord::Schema.define(version: 2022_02_12_013023) do
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "is_main_article", default: false
+    t.text "file_image"
+    t.text "file_pdf"
     t.index ["display_order"], name: "index_music_ministries_on_display_order"
     t.index ["user_id"], name: "index_music_ministries_on_user_id"
+  end
+
+  create_table "pray_gardens", force: :cascade do |t|
+    t.string "name"
+    t.text "content"
+    t.text "file_image"
+    t.text "file_pdf"
+    t.string "link"
+    t.boolean "display", default: false
+    t.boolean "is_main_article", default: false
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_pray_gardens_on_user_id"
   end
 
   create_table "prayer_groups", force: :cascade do |t|
@@ -385,6 +466,9 @@ ActiveRecord::Schema.define(version: 2022_02_12_013023) do
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "is_main_article", default: false
+    t.text "file_image"
+    t.text "file_pdf"
     t.index ["display_order"], name: "index_prayer_groups_on_display_order"
     t.index ["user_id"], name: "index_prayer_groups_on_user_id"
   end
@@ -397,6 +481,9 @@ ActiveRecord::Schema.define(version: 2022_02_12_013023) do
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "is_main_article", default: false
+    t.text "file_image"
+    t.text "file_pdf"
     t.index ["display_order"], name: "index_reconciliations_on_display_order"
     t.index ["user_id"], name: "index_reconciliations_on_user_id"
   end
@@ -409,6 +496,9 @@ ActiveRecord::Schema.define(version: 2022_02_12_013023) do
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "is_main_article", default: false
+    t.text "file_image"
+    t.text "file_pdf"
     t.index ["display_order"], name: "index_sacramentals_on_display_order"
     t.index ["user_id"], name: "index_sacramentals_on_user_id"
   end
@@ -443,6 +533,9 @@ ActiveRecord::Schema.define(version: 2022_02_12_013023) do
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "is_main_article", default: false
+    t.text "file_image"
+    t.text "file_pdf"
     t.index ["display_order"], name: "index_teaching_masses_on_display_order"
     t.index ["user_id"], name: "index_teaching_masses_on_user_id"
   end
@@ -489,6 +582,9 @@ ActiveRecord::Schema.define(version: 2022_02_12_013023) do
     t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "is_main_article", default: false
+    t.text "file_image"
+    t.text "file_pdf"
     t.index ["display_order"], name: "index_ushers_hospitalities_on_display_order"
     t.index ["user_id"], name: "index_ushers_hospitalities_on_user_id"
   end
@@ -508,6 +604,20 @@ ActiveRecord::Schema.define(version: 2022_02_12_013023) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["worshipable_type", "worshipable_id"], name: "index_worships_on_worshipable"
+  end
+
+  create_table "youths", force: :cascade do |t|
+    t.string "name"
+    t.text "content"
+    t.text "file_image"
+    t.text "file_pdf"
+    t.string "link"
+    t.boolean "display", default: false
+    t.boolean "is_main_article", default: false
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_youths_on_user_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

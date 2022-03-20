@@ -95,4 +95,5 @@ Rails.application.routes.draw do
   get 'adult', to: 'adult#index'
   get 'youth', to: 'youth#index'
   get 'children', to: 'children#index'
+  get 'pray_garden', to: 'pray_garden#index'
 end

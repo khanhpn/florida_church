@@ -35,6 +35,7 @@ class User < ApplicationRecord
   has_many :childrens
   has_many :adults
   has_many :youths
+  has_many :pray_gardens
 
   has_one_attached :logo_icon
 

@@ -1,0 +1,2 @@
+module PrayGardenHelper
+end
