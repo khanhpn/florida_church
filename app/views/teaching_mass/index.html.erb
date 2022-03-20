@@ -13,7 +13,7 @@
                 <div class="moduleBody">
                   <%= @teachings&.content&.html_safe %>
                 </div>
-                <%= render partial: "shared/related_articles", locals: { relateds: @relateds } unless @relateds.blank? %>
+                <%= render partial: "shared/related_articles", locals: { relateds: @relateds } if @relateds.present? %>
               </div>
             </li>
           </ul>
