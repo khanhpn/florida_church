@@ -25,7 +25,7 @@
               <tbody>
                 <% @councils.each do |council| %>
                   <tr>
-                    <td><%= council&.name || "-" %></td>
+                    <td><%= link_to council&.name, council&.name_link %></td>
                     <td><%= council&.content&.html_safe || "-"  %></td>
                     <td><%= council&.display || "-"  %></td>
                     <td><%= council&.display_order || "-"  %></td>

@@ -25,7 +25,7 @@
               <tbody>
                 <% @clergies.each do |clergy| %>
                   <tr>
-                    <td><%= clergy&.name || "-" %></td>
+                    <td><%= link_to clergy&.name, clergy&.name_link %></td>
                     <td><%= clergy&.content&.html_safe || "-"  %></td>
                     <td><%= clergy&.display || "-"  %></td>
                     <td><%= clergy&.display_order || "-"  %></td>

@@ -16,7 +16,6 @@
                   <th>Name</th>
                   <th>Content</th>
                   <th>Display</th>
-                  <th>Display Order</th>
                   <th>Created at</th>
                   <th>Updated at</th>
                   <th>Action</th>
@@ -25,10 +24,9 @@
               <tbody>
                 <% @staffs.each do |staff| %>
                   <tr>
-                    <td><%= staff&.name || "-" %></td>
+                    <td><%= link_to staff&.name, staff&.name_link %></td>
                     <td><%= staff&.content&.html_safe || "-"  %></td>
                     <td><%= staff&.display || "-"  %></td>
-                    <td><%= staff&.display_order || "-"  %></td>
                     <td><%= staff&.created_at || "-"  %></td>
                     <td><%= staff&.updated_at || "-"  %></td>
                     <td>

@@ -2,7 +2,7 @@
 <%= form_with model: @welcome, url: admin_welcome_path(@welcome), method: :patch do |form| %>
   <section class="content">
     <div class="container-fluid">
-      <%= render "form", form: form %>
+      <%= render "admin/shared_form/form", form: form, item: @welcome, title_name: "Update welcome" %>
       <!-- /.row -->
     </div>
     <!-- /.container-fluid -->

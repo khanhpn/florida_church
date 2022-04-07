@@ -23,7 +23,7 @@
               <tbody>
                 <% @usher_hospitals.each do |usher_hospital| %>
                   <tr>
-                    <td><%= usher_hospital&.name || "-" %></td>
+                    <td><%= link_to usher_hospital&.name, usher_hospital&.name_link %></td>
                     <td><%= usher_hospital&.display ? "Yes" : "No"  %></td>
                     <td><%= usher_hospital&.is_main_article ? "Yes" : "No"  %></td>
                     <td><%= usher_hospital&.created_at || "-"  %></td>

@@ -23,7 +23,7 @@
               <tbody>
                 <% @lectors.each do |lector| %>
                   <tr>
-                    <td><%= lector&.name || "-" %></td>
+                    <td><%= link_to lector&.name, lector&.name_link %></td>
                     <td><%= lector&.display ? "Yes" : "No"  %></td>
                     <td><%= lector&.is_main_article ? "Yes" : "No"  %></td>
                     <td><%= lector&.created_at || "-"  %></td>

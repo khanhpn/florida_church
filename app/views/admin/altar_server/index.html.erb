@@ -23,7 +23,7 @@
               <tbody>
                 <% @altar_servers.each do |altar_server| %>
                   <tr>
-                    <td><%= altar_server&.name || "-" %></td>
+                    <td><%= link_to altar_server&.name, altar_server&.name_link %></td>
                     <td><%= altar_server&.display ? "Yes" : "No"  %></td>
                     <td><%= altar_server&.is_main_article ? "Yes" : "No"  %></td>
                     <td><%= altar_server&.created_at || "-"  %></td>

@@ -23,7 +23,7 @@
               <tbody>
                 <% @sacramentals.each do |sacramental| %>
                   <tr>
-                    <td><%= sacramental&.name || "-" %></td>
+                    <td><%= link_to sacramental&.name, sacramental&.name_link %></td>
                     <td><%= sacramental&.display ? "Yes" : "No"  %></td>
                     <td><%= sacramental&.is_main_article ? "Yes" : "No"  %></td>
                     <td><%= sacramental&.created_at || "-"  %></td>

@@ -47,7 +47,7 @@ class Admin::HolyordersController < Admin::AdminController
 
   private
   def params_holyorder
-    params.require(:holyorder).permit(:name, :content, :is_main_article, :display, :file_image, :file_pdf)
+    params.require(:holyorder).permit(:name, :content, :is_main_article, :display, :file_image, :file_pdf, :name_link)
   end
 
   def set_holyorder

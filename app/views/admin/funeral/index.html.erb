@@ -23,7 +23,7 @@
               <tbody>
                 <% @funerals.each do |funeral| %>
                   <tr>
-                    <td><%= funeral&.name || "-" %></td>
+                    <td><%= link_to funeral&.name, funeral&.name_link %></td>
                     <td><%= funeral&.display ? "Yes" : "No"  %></td>
                     <td><%= funeral&.is_main_article ? "Yes" : "No"  %></td>
                     <td><%= funeral&.created_at || "-"  %></td>

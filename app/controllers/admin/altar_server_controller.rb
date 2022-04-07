@@ -48,7 +48,7 @@ class Admin::AltarServerController < Admin::AdminController
 
   private
   def params_altar_server
-    params.require(:altar_server).permit(:name, :content, :is_main_article, :display, :file_image, :file_pdf)
+    params.require(:altar_server).permit(:name, :content, :is_main_article, :display, :file_image, :file_pdf, :name_link)
   end
 
   def set_altar_server

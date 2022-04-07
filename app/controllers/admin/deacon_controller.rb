@@ -1,12 +1,17 @@
 class Admin::DeaconController < Admin::AdminController
-  before_action :set_deacon, only: [:destroy, :edit, :update]
+  before_action :set_deacon, only: [:destroy, :edit, :update, :show]
 
   def index
     @deacons = Deacon.all
   end
 
   def new
+    @is_main_article = Deacon.find_by(is_main_article: true)
     @deacon = Deacon.new
+  end
+
+  def show
+    @is_main_article = @deacon.is_main_article
   end
 
   def create
@@ -31,6 +36,7 @@ class Admin::DeaconController < Admin::AdminController
   end
 
   def edit
+    @is_main_article = Deacon.find_by(is_main_article: true)
   end
 
   def destroy
@@ -41,7 +47,7 @@ class Admin::DeaconController < Admin::AdminController
 
   private
   def params_deacon
-    params.require(:deacon).permit(:name, :content, :display_order, :display)
+    params.require(:deacon).permit(:name, :content, :is_main_article, :display, :file_image, :file_pdf, :name_link)
   end
 
   def set_deacon

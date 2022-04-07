@@ -1,12 +1,17 @@
 class Admin::StaffController < Admin::AdminController
-  before_action :set_staff, only: [:destroy, :edit, :update]
+  before_action :set_youth, only: [:destroy, :edit, :update, :show]
 
   def index
     @staffs = Staff.all
   end
 
   def new
+    @is_main_article = Staff.find_by(is_main_article: true)
     @staff = Staff.new
+  end
+
+  def show
+    @is_main_article = @staff.is_main_article
   end
 
   def create
@@ -31,6 +36,7 @@ class Admin::StaffController < Admin::AdminController
   end
 
   def edit
+    @is_main_article = Staff.find_by(is_main_article: true)
   end
 
   def destroy
@@ -41,7 +47,7 @@ class Admin::StaffController < Admin::AdminController
 
   private
   def params_staff
-    params.require(:staff).permit(:name, :content, :display_order, :display)
+    params.require(:staff).permit(:name, :content, :is_main_article, :display, :file_image, :file_pdf, :name_link)
   end
 
   def set_staff

@@ -47,7 +47,7 @@ class Admin::YouthController < Admin::AdminController
 
   private
   def params_youth
-    params.require(:youth).permit(:name, :content, :is_main_article, :display, :file_image, :file_pdf)
+    params.require(:youth).permit(:name, :content, :is_main_article, :display, :file_image, :file_pdf, :name_link)
   end
 
   def set_youth

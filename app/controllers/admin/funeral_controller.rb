@@ -47,7 +47,7 @@ class Admin::FuneralController < Admin::AdminController
 
   private
   def params_funeral
-    params.require(:funeral).permit(:name, :content, :is_main_article, :display, :file_image, :file_pdf)
+    params.require(:funeral).permit(:name, :content, :is_main_article, :display, :file_image, :file_pdf, :name_link)
   end
 
   def set_funeral

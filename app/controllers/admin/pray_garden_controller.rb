@@ -47,7 +47,7 @@ class Admin::PrayGardenController < Admin::AdminController
 
   private
   def params_pray_garden
-    params.require(:pray_garden).permit(:name, :content, :is_main_article, :display, :file_image, :file_pdf)
+    params.require(:pray_garden).permit(:name, :content, :is_main_article, :display, :file_image, :file_pdf, :name_link)
   end
 
   def set_pray_garden

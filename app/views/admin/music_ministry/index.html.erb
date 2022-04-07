@@ -23,7 +23,7 @@
               <tbody>
                 <% @music_ministries.each do |music_ministry| %>
                   <tr>
-                    <td><%= music_ministry&.name || "-" %></td>
+                    <td><%= link_to music_ministry&.name, music_ministry&.name_link %></td>
                     <td><%= music_ministry&.display ? "Yes" : "No"  %></td>
                     <td><%= music_ministry&.is_main_article ? "Yes" : "No"  %></td>
                     <td><%= music_ministry&.created_at || "-"  %></td>

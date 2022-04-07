@@ -47,7 +47,7 @@ class Admin::ReconciliationController < Admin::AdminController
 
   private
   def params_reconciliation
-    params.require(:reconciliation).permit(:name, :content, :is_main_article, :display, :file_image, :file_pdf)
+    params.require(:reconciliation).permit(:name, :content, :is_main_article, :display, :file_image, :file_pdf, :name_link)
   end
 
   def set_reconciliation

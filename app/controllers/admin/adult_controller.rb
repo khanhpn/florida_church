@@ -47,7 +47,7 @@ class Admin::AdultController < Admin::AdminController
 
   private
   def params_adult
-    params.require(:adult).permit(:name, :content, :is_main_article, :display, :file_image, :file_pdf)
+    params.require(:adult).permit(:name, :content, :is_main_article, :display, :file_image, :file_pdf, :name_link)
   end
 
   def set_adult

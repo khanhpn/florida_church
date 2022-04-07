@@ -23,7 +23,7 @@
               <tbody>
                 <% @player_groups.each do |player_group| %>
                   <tr>
-                    <td><%= player_group&.name || "-" %></td>
+                    <td><%= link_to player_group&.name, player_group&.name_link %></td>
                     <td><%= player_group&.display ? "Yes" : "No"  %></td>
                     <td><%= player_group&.is_main_article ? "Yes" : "No"  %></td>
                     <td><%= player_group&.created_at || "-"  %></td>

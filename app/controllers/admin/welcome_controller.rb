@@ -1,12 +1,17 @@
 class Admin::WelcomeController < Admin::AdminController
-  before_action :set_welcome, only: [:destroy, :edit, :update]
+  before_action :set_welcome, only: [:destroy, :edit, :update, :show]
 
   def index
-    @welcome = Welcome.last
+    @welcomes = Welcome.all
   end
 
   def new
+    @is_main_article = Welcome.find_by(is_main_article: true)
     @welcome = Welcome.new
+  end
+
+  def show
+    @is_main_article = @welcome.is_main_article
   end
 
   def create
@@ -31,6 +36,7 @@ class Admin::WelcomeController < Admin::AdminController
   end
 
   def edit
+    @is_main_article = Welcome.find_by(is_main_article: true)
   end
 
   def destroy
@@ -41,7 +47,7 @@ class Admin::WelcomeController < Admin::AdminController
 
   private
   def params_welcome
-    params.require(:welcome).permit(:name, :content)
+    params.require(:welcome).permit(:name, :content, :is_main_article, :display, :file_image, :file_pdf, :name_link)
   end
 
   def set_welcome

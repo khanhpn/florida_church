@@ -23,7 +23,7 @@
               <tbody>
                 <% @children_liturgies.each do |children_liturgy| %>
                   <tr>
-                    <td><%= children_liturgy&.name || "-" %></td>
+                    <td><%= link_to children_liturgy&.name, children_liturgy&.name_link %></td>
                     <td><%= children_liturgy&.display ? "Yes" : "No"  %></td>
                     <td><%= children_liturgy&.is_main_article ? "Yes" : "No"  %></td>
                     <td><%= children_liturgy&.created_at || "-"  %></td>

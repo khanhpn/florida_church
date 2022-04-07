@@ -1,12 +1,17 @@
 class Admin::HistoryChurchController < Admin::AdminController
-  before_action :set_history_church, only: [:destroy, :edit, :update]
+  before_action :set_history_church, only: [:destroy, :edit, :update, :show]
 
   def index
     @history_churchs = HistoryChurch.all
   end
 
   def new
+    @is_main_article = HistoryChurch.find_by(is_main_article: true)
     @history_church = HistoryChurch.new
+  end
+
+  def show
+    @is_main_article = @history_church.is_main_article
   end
 
   def create
@@ -31,6 +36,7 @@ class Admin::HistoryChurchController < Admin::AdminController
   end
 
   def edit
+    @is_main_article = HistoryChurch.find_by(is_main_article: true)
   end
 
   def destroy
@@ -41,7 +47,7 @@ class Admin::HistoryChurchController < Admin::AdminController
 
   private
   def params_history_church
-    params.require(:history_church).permit(:name, :content, :display_order, :display)
+    params.require(:history_church).permit(:name, :content, :is_main_article, :display, :file_image, :file_pdf, :name_link)
   end
 
   def set_history_church

@@ -47,7 +47,7 @@ class Admin::MarriageController < Admin::AdminController
 
   private
   def params_marriage
-    params.require(:marriage).permit(:name, :content, :is_main_article, :display, :file_image, :file_pdf)
+    params.require(:marriage).permit(:name, :content, :is_main_article, :display, :file_image, :file_pdf, :name_link)
   end
 
   def set_marriage

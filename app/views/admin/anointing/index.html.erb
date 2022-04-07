@@ -23,7 +23,7 @@
               <tbody>
                 <% @anointings.each do |anoiting| %>
                   <tr>
-                    <td><%= anoiting&.name || "-" %></td>
+                    <td><%= link_to anoiting&.name, anoiting&.name_link %></td>
                     <td><%= anoiting&.display ? "Yes" : "No"  %></td>
                     <td><%= anoiting&.is_main_article ? "Yes" : "No"  %></td>
                     <td><%= anoiting&.created_at || "-"  %></td>

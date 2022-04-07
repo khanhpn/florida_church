@@ -37,6 +37,7 @@ class AddMainArticleToAboutUs < ActiveRecord::Migration[6.1]
 
      add_column :teaching_masses, :name_link, :text
      add_column :altar_societies, :name_link, :text
+     add_column :altar_servers, :name_link, :text
      add_column :childrens_liturgies, :name_link, :text
      add_column :ecuharistic_ministries, :name_link, :text
      add_column :funerals, :name_link, :text
@@ -53,23 +54,6 @@ class AddMainArticleToAboutUs < ActiveRecord::Migration[6.1]
      add_column :anointing_thesicks, :name_link, :text
      add_column :sacramentals, :name_link, :text
 
-
-     add_index :teaching_masses, :is_main_article, unique: true
-     add_index :altar_societies, :is_main_article, unique: true
-     add_index :childrens_liturgies, :is_main_article, unique: true
-     add_index :ecuharistic_ministries, :is_main_article, unique: true
-     add_index :funerals, :is_main_article, unique: true
-     add_index :lectors, :is_main_article, unique: true
-     add_index :music_ministries, :is_main_article, unique: true
-     add_index :ushers_hospitalities, :is_main_article, unique: true
-     add_index :prayer_groups, :is_main_article, unique: true
-     add_index :baptisms, :is_main_article, unique: true
-     add_index :reconciliations, :is_main_article, unique: true
-     add_index :eucharists, :is_main_article, unique: true
-     add_index :confirmations, :is_main_article, unique: true
-     add_index :marriages, :is_main_article, unique: true
-     add_index :holyorders, :is_main_article, unique: true
-     add_index :anointing_thesicks, :is_main_article, unique: true
-     add_index :sacramentals, :is_main_article, unique: true
+     add_column :welcomes, :display, :boolean, default: false, index: true
   end
 end

@@ -22,7 +22,7 @@
               </thead>
               <tbody>
                 <tr>
-                  <td><%= @special_note&.name || "-" %></td>
+                  <td><%= link_to special_note&.name, special_note&.name_link %></td>
                   <td><%= @special_note&.content&.html_safe || "-"  %></td>
                   <td><%= @special_note&.created_at || "-"  %></td>
                   <td><%= @special_note&.updated_at || "-"  %></td>

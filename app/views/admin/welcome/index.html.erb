@@ -14,25 +14,28 @@
               <thead>
                 <tr>
                   <th>Name</th>
-                  <th>Content</th>
+                  <th>Display</th>
+                  <th>Main article</th>
                   <th>Created at</th>
-                  <th>Updated at</th>
                   <th>Action</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td><%= @welcome&.name || "-" %></td>
-                  <td><%= @welcome&.content&.html_safe || "-"  %></td>
-                  <td><%= @welcome&.created_at || "-"  %></td>
-                  <td><%= @welcome&.updated_at || "-"  %></td>
-                  <td>
-                    <% unless @welcome.blank? %>
-                      <%= link_to "Edit", edit_admin_welcome_path(@welcome), class: "btn btn-success" %>
-                      <%= link_to "Delete", admin_welcome_path(@welcome), method: :delete, class: "btn btn-danger" %>
-                    <% end %>
-                  </td>
-                </tr>
+                <% @welcomes.each do |welcome| %>
+                  <tr>
+                    <td><%= link_to welcome&.name, welcome&.name_link %></td>
+                    <td><%= welcome&.display ? "Yes" : "No"  %></td>
+                    <td><%= welcome&.is_main_article ? "Yes" : "No"  %></td>
+                    <td><%= welcome&.created_at || "-"  %></td>
+                    <td>
+                      <% unless welcome.blank? %>
+                        <%= link_to "Show", admin_welcome_path(welcome), class: "btn btn-primary" %>
+                        <%= link_to "Edit", edit_admin_welcome_path(welcome), class: "btn btn-success" %>
+                        <%= link_to "Delete", admin_welcome_path(welcome), method: :delete, data: {confirm: "Are your sure ?"}, class: "btn btn-danger" %>
+                      <% end %>
+                    </td>
+                  </tr>
+                <% end %>
               </tbody>
             </table>
           </div>
@@ -47,6 +50,6 @@
 </section>
 <section class="section-btn-group">
   <div class="section-btn-group-wrap">
-    <%= link_to "Create", new_admin_welcome_path, class: "btn btn-info" if @welcome.blank? %>
+    <%= link_to "Create", new_admin_welcome_path, class: "btn btn-info" %>
   </div>
 </section>

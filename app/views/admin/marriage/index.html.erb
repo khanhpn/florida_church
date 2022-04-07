@@ -23,7 +23,7 @@
               <tbody>
                 <% @marriages.each do |marriage| %>
                   <tr>
-                    <td><%= marriage&.name || "-" %></td>
+                    <td><%= link_to marriage&.name, marriage&.name_link %></td>
                     <td><%= marriage&.display ? "Yes" : "No"  %></td>
                     <td><%= marriage&.is_main_article ? "Yes" : "No"  %></td>
                     <td><%= marriage&.created_at || "-"  %></td>

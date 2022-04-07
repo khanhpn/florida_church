@@ -47,7 +47,7 @@ class Admin::EcuharisticMinistryController < Admin::AdminController
 
   private
   def params_ecuharistic_ministry
-    params.require(:ecuharistic_ministry).permit(:name, :content, :is_main_article, :display, :file_image, :file_pdf)
+    params.require(:ecuharistic_ministry).permit(:name, :content, :is_main_article, :display, :file_image, :file_pdf, :name_link)
   end
 
   def set_ecuharistic_ministry

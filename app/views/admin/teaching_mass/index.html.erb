@@ -23,7 +23,7 @@
               <tbody>
                 <% @teaching_masses.each do |teaching_mass| %>
                   <tr>
-                    <td><%= teaching_mass&.name || "-" %></td>
+                    <td><%= link_to teaching_mass&.name, teaching_mass&.name_link %></td>
                     <td><%= teaching_mass&.display ? "Yes" : "No"  %></td>
                     <td><%= teaching_mass&.is_main_article ? "Yes" : "No"  %></td>
                     <td><%= teaching_mass&.created_at || "-"  %></td>

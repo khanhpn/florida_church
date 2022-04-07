@@ -1,12 +1,17 @@
 class Admin::EnvironmentChurchController < Admin::AdminController
-  before_action :set_environment_church, only: [:destroy, :edit, :update]
+  before_action :set_environment_church, only: [:destroy, :edit, :update, :show]
 
   def index
     @environment_churchs = EnvironmentChurch.all
   end
 
   def new
+    @is_main_article = EnvironmentChurch.find_by(is_main_article: true)
     @environment_church = EnvironmentChurch.new
+  end
+
+  def show
+    @is_main_article = @environment_church.is_main_article
   end
 
   def create
@@ -31,6 +36,7 @@ class Admin::EnvironmentChurchController < Admin::AdminController
   end
 
   def edit
+    @is_main_article = EnvironmentChurch.find_by(is_main_article: true)
   end
 
   def destroy
@@ -41,7 +47,7 @@ class Admin::EnvironmentChurchController < Admin::AdminController
 
   private
   def params_environment_church
-    params.require(:environment_church).permit(:name, :content, :display_order, :display)
+    params.require(:environment_church).permit(:name, :content, :is_main_article, :display, :file_image, :file_pdf, :name_link)
   end
 
   def set_environment_church

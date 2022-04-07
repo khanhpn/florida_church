@@ -47,7 +47,7 @@ class Admin::LectorController < Admin::AdminController
 
   private
   def params_lector
-    params.require(:lector).permit(:name, :content, :is_main_article, :display, :file_image, :file_pdf)
+    params.require(:lector).permit(:name, :content, :is_main_article, :display, :file_image, :file_pdf, :name_link)
   end
 
   def set_lector

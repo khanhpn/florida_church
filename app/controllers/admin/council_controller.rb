@@ -1,12 +1,17 @@
 class Admin::CouncilController < Admin::AdminController
-  before_action :set_council, only: [:destroy, :edit, :update]
+  before_action :set_council, only: [:destroy, :edit, :update, :show]
 
   def index
     @councils = Council.all
   end
 
   def new
+    @is_main_article = Council.find_by(is_main_article: true)
     @council = Council.new
+  end
+
+  def show
+    @is_main_article = @council.is_main_article
   end
 
   def create
@@ -31,6 +36,7 @@ class Admin::CouncilController < Admin::AdminController
   end
 
   def edit
+    @is_main_article = Council.find_by(is_main_article: true)
   end
 
   def destroy
@@ -41,7 +47,7 @@ class Admin::CouncilController < Admin::AdminController
 
   private
   def params_council
-    params.require(:council).permit(:name, :content, :display_order, :display)
+    params.require(:council).permit(:name, :content, :is_main_article, :display, :file_image, :file_pdf, :name_link)
   end
 
   def set_council

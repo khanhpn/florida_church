@@ -23,7 +23,7 @@
               <tbody>
                 <% @holyorders.each do |holyorder| %>
                   <tr>
-                    <td><%= holyorder&.name || "-" %></td>
+                    <td><%= link_to holyorder&.name, holyorder&.name_link %></td>
                     <td><%= holyorder&.display ? "Yes" : "No"  %></td>
                     <td><%= holyorder&.is_main_article ? "Yes" : "No"  %></td>
                     <td><%= holyorder&.created_at || "-"  %></td>

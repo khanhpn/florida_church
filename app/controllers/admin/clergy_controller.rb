@@ -1,12 +1,17 @@
 class Admin::ClergyController < Admin::AdminController
-  before_action :set_clergy, only: [:destroy, :edit, :update]
+  before_action :set_youth, only: [:destroy, :edit, :update, :show]
 
   def index
     @clergies = Clergy.all
   end
 
   def new
+    @is_main_article = Clergy.find_by(is_main_article: true)
     @clergy = Clergy.new
+  end
+
+  def show
+    @is_main_article = @clergy.is_main_article
   end
 
   def create
@@ -31,6 +36,7 @@ class Admin::ClergyController < Admin::AdminController
   end
 
   def edit
+    @is_main_article = Clergy.find_by(is_main_article: true)
   end
 
   def destroy
@@ -41,7 +47,7 @@ class Admin::ClergyController < Admin::AdminController
 
   private
   def params_clergy
-    params.require(:clergy).permit(:name, :content, :display_order, :display)
+    params.require(:clergy).permit(:name, :content, :is_main_article, :display, :file_image, :file_pdf, :name_link)
   end
 
   def set_clergy

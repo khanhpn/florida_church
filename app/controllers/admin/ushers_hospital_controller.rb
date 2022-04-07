@@ -47,7 +47,7 @@ class Admin::UshersHospitalController < Admin::AdminController
 
   private
   def params_usher_hospital
-    params.require(:ushers_hospitality).permit(:name, :content, :is_main_article, :display, :file_image, :file_pdf)
+    params.require(:ushers_hospitality).permit(:name, :content, :is_main_article, :display, :file_image, :file_pdf, :name_link)
   end
 
   def set_usher_hospital

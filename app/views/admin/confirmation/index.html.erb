@@ -23,7 +23,7 @@
               <tbody>
                 <% @confirmations.each do |confirmation| %>
                   <tr>
-                    <td><%= confirmation&.name || "-" %></td>
+                    <td><%= link_to confirmation&.name, confirmation&.name_link %></td>
                     <td><%= confirmation&.display ? "Yes" : "No"  %></td>
                     <td><%= confirmation&.is_main_article ? "Yes" : "No"  %></td>
                     <td><%= confirmation&.created_at || "-"  %></td>

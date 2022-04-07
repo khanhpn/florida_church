@@ -47,7 +47,7 @@ class Admin::TeachingMassController < Admin::AdminController
 
   private
   def params_teaching_mass
-    params.require(:teaching_mass).permit(:name, :content, :is_main_article, :display, :file_image, :file_pdf)
+    params.require(:teaching_mass).permit(:name, :content, :is_main_article, :display, :file_image, :file_pdf, :name_link)
   end
 
   def set_teaching_mass

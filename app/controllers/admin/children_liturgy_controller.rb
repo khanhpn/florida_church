@@ -47,7 +47,7 @@ class Admin::ChildrenLiturgyController < Admin::AdminController
 
   private
   def params_children_liturgy
-    params.require(:childrens_liturgy).permit(:name, :content, :is_main_article, :display, :file_image, :file_pdf)
+    params.require(:childrens_liturgy).permit(:name, :content, :is_main_article, :display, :file_image, :file_pdf, :name_link)
   end
 
   def set_children_liturgy

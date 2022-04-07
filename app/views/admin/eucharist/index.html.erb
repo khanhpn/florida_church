@@ -23,7 +23,7 @@
               <tbody>
                 <% @eucharists.each do |eucharist| %>
                   <tr>
-                    <td><%= eucharist&.name || "-" %></td>
+                    <td><%= link_to eucharist&.name, eucharist&.name_link %></td>
                     <td><%= eucharist&.display ? "Yes" : "No"  %></td>
                     <td><%= eucharist&.is_main_article ? "Yes" : "No"  %></td>
                     <td><%= eucharist&.created_at || "-"  %></td>

@@ -15,7 +15,9 @@
             <!-- text input -->
             <div class="form-group">
               <label>Name</label>
-              <%= form.text_field :name, class: "form-control", placeholder: "Enter name" %>
+              <%= form.text_field :name, class: "form-control", placeholder: "Enter link's name" %>
+              <label>Link</label>
+              <%= form.text_field :name_link, class: "form-control", placeholder: "Enter link" %>
             </div>
           </div>
         </div>
@@ -27,7 +29,7 @@
             </div>
           </div>
         </div>
-        <% if @player_group.is_main_article || @is_main_article.blank? %>
+        <% if item.is_main_article || @is_main_article.blank? %>
           <div class="form-group">
             <div class="offset-sm-12">
               <div class="form-check">
@@ -46,7 +48,7 @@
             </div>
           </div>
         <% end %>
-        <% if !@player_group.is_main_article || @is_main_article.blank? %>
+        <% if !item.is_main_article || @is_main_article.blank? %>
           <div class="row">
             <div class="form-group">
               <label for="exampleInputFile">Upload image</label>
@@ -92,7 +94,7 @@
       ]
     ],
   });
-  
+
   $("#id_submit").click(function() {
     $("#sample").val(editor.getContents());
   });

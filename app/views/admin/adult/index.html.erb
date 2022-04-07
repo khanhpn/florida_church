@@ -23,7 +23,7 @@
               <tbody>
                 <% @adults.each do |adult| %>
                   <tr>
-                    <td><%= adult&.name || "-" %></td>
+                    <td><%= link_to adult&.name, adult&.name_link %></td>
                     <td><%= adult&.display ? "Yes" : "No"  %></td>
                     <td><%= adult&.is_main_article ? "Yes" : "No"  %></td>
                     <td><%= adult&.created_at || "-"  %></td>

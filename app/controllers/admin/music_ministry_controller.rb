@@ -47,7 +47,7 @@ class Admin::MusicMinistryController < Admin::AdminController
 
   private
   def params_music_ministry
-    params.require(:music_ministry).permit(:name, :content, :is_main_article, :display, :file_image, :file_pdf)
+    params.require(:music_ministry).permit(:name, :content, :is_main_article, :display, :file_image, :file_pdf, :name_link)
   end
 
   def set_music_ministry

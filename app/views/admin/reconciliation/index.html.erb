@@ -23,7 +23,7 @@
               <tbody>
                 <% @reconciliations.each do |reconciliation| %>
                   <tr>
-                    <td><%= reconciliation&.name || "-" %></td>
+                    <td><%= link_to reconciliation&.name, reconciliation&.name_link %></td>
                     <td><%= reconciliation&.display ? "Yes" : "No"  %></td>
                     <td><%= reconciliation&.is_main_article ? "Yes" : "No"  %></td>
                     <td><%= reconciliation&.created_at || "-"  %></td>
