@@ -18,7 +18,7 @@ class Admin::HolyordersController < Admin::AdminController
     holyorder = current_user.holyorders.new(params_holyorder)
     if holyorder.save
       flash[:notice] = 'You created holyorder successfully'
-      redirect_to admin_holyorder_index_path
+      redirect_to admin_holyorders_path
     else
       flash.now[:warning] = 'You can not create holyorder, please check error'
       render :new
@@ -28,7 +28,7 @@ class Admin::HolyordersController < Admin::AdminController
   def update
     if @holyorder.update(params_holyorder)
       flash[:notice] = 'You updated holyorder successfully'
-      redirect_to admin_holyorder_index_path
+      redirect_to admin_holyorders_path
     else
       flash.now[:warning] = 'You can not update holyorder, please check error'
       render :edit
@@ -42,7 +42,7 @@ class Admin::HolyordersController < Admin::AdminController
   def destroy
     @holyorder.destroy
     flash[:notice] = 'You deleted holyorder successfully'
-    redirect_to admin_holyorder_index_path
+    redirect_to admin_holyorders_path
   end
 
   private
