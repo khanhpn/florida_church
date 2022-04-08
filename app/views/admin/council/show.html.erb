@@ -1,0 +1,45 @@
+<%= render "admin/shared/bread_crumb", name: {title: "Show council", bread_crumb: "Show"} %>
+<section class="content">
+  <div class="container-fluid">
+    <table id="example2" class="table table-bordered table-hover">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <% if @is_main_article %>
+            <th>Content</th>
+          <% end %>
+          <% if !@is_main_article && @council.file_image.present? %>
+            <th>Link image</th>
+          <% end %>
+          <% if !@is_main_article && @council.file_pdf.present? %>
+            <th>Link pdf</th>
+          <% end %>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= @council&.name || "-" %></td>
+          <% if @is_main_article %>
+            <td><%= @council&.content&.html_safe || "-"  %></td>
+          <% end %>
+          <% if !@is_main_article && @council.file_image.present? %>
+            <td><%= link_to 'download', rails_blob_path(@council.file_image, disposition: "download"), target: "_blank" %></td>
+          <% end %>
+          <% if !@is_main_article && @council.file_pdf.present? %>
+            <td><%= link_to 'download', rails_blob_path(@council.file_pdf, disposition: "download"), target: "_blank"  %></td>
+          <% end %>
+          <td>
+            <% unless @council.blank? %>
+              <%= link_to "Edit", edit_admin_council_path(@council), class: "btn btn-success" %>
+              <%= link_to "Delete", admin_council_path(@council), method: :delete, class: "btn btn-danger" %>
+              <%= link_to "Back", admin_council_index_path, class: "btn btn-primary" %>
+            <% end %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- /.row -->
+  </div>
+  <!-- /.container-fluid -->
+</section>

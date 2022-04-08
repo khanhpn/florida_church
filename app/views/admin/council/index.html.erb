@@ -14,11 +14,9 @@
               <thead>
                 <tr>
                   <th>Name</th>
-                  <th>Content</th>
                   <th>Display</th>
-                  <th>Display Order</th>
+                  <th>Main article</th>
                   <th>Created at</th>
-                  <th>Updated at</th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -26,15 +24,14 @@
                 <% @councils.each do |council| %>
                   <tr>
                     <td><%= link_to council&.name, council&.name_link %></td>
-                    <td><%= council&.content&.html_safe || "-"  %></td>
-                    <td><%= council&.display || "-"  %></td>
-                    <td><%= council&.display_order || "-"  %></td>
+                    <td><%= council&.display ? "Yes" : "No"  %></td>
+                    <td><%= council&.is_main_article ? "Yes" : "No"  %></td>
                     <td><%= council&.created_at || "-"  %></td>
-                    <td><%= council&.updated_at || "-"  %></td>
                     <td>
                       <% unless council.blank? %>
+                        <%= link_to "Show", admin_council_path(council), class: "btn btn-primary" %>
                         <%= link_to "Edit", edit_admin_council_path(council), class: "btn btn-success" %>
-                        <%= link_to "Delete", admin_council_path(council), method: :delete, class: "btn btn-danger" %>
+                        <%= link_to "Delete", admin_council_path(council), method: :delete, data: {confirm: "Are your sure ?"}, class: "btn btn-danger" %>
                       <% end %>
                     </td>
                   </tr>
