@@ -2,7 +2,7 @@
 <%= form_with model: @teaching_mass, url: admin_teaching_mass_path(@teaching_mass), method: :patch do |form| %>
   <section class="content">
     <div class="container-fluid">
-      <%= render "form", form: form %>
+      <%= render "admin/shared_form/form", form: form, item: @teaching_mass, title_name: "Update teaching mass" %>
       <!-- /.row -->
     </div>
     <!-- /.container-fluid -->
