@@ -1,5 +1,5 @@
 class Admin::ClergyController < Admin::AdminController
-  before_action :set_youth, only: [:destroy, :edit, :update, :show]
+  before_action :set_clergy, only: [:destroy, :edit, :update, :show]
 
   def index
     @clergies = Clergy.all

@@ -14,11 +14,9 @@
               <thead>
                 <tr>
                   <th>Name</th>
-                  <th>Content</th>
                   <th>Display</th>
-                  <th>Display Order</th>
+                  <th>Main article</th>
                   <th>Created at</th>
-                  <th>Updated at</th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -26,15 +24,14 @@
                 <% @clergies.each do |clergy| %>
                   <tr>
                     <td><%= link_to clergy&.name, clergy&.name_link %></td>
-                    <td><%= clergy&.content&.html_safe || "-"  %></td>
-                    <td><%= clergy&.display || "-"  %></td>
-                    <td><%= clergy&.display_order || "-"  %></td>
+                    <td><%= clergy&.display ? "Yes" : "No"  %></td>
+                    <td><%= clergy&.is_main_article ? "Yes" : "No"  %></td>
                     <td><%= clergy&.created_at || "-"  %></td>
-                    <td><%= clergy&.updated_at || "-"  %></td>
                     <td>
                       <% unless clergy.blank? %>
+                        <%= link_to "Show", admin_clergy_path(clergy), class: "btn btn-primary" %>
                         <%= link_to "Edit", edit_admin_clergy_path(clergy), class: "btn btn-success" %>
-                        <%= link_to "Delete", admin_clergy_path(clergy), method: :delete, class: "btn btn-danger" %>
+                        <%= link_to "Delete", admin_clergy_path(clergy), method: :delete, data: {confirm: "Are your sure ?"}, class: "btn btn-danger" %>
                       <% end %>
                     </td>
                   </tr>
