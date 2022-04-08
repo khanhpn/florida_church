@@ -2,7 +2,7 @@
 <%= form_with model: @environment_church, url: admin_environment_church_path(@environment_church), method: :patch do |form| %>
   <section class="content">
     <div class="container-fluid">
-      <%= render "form", form: form %>
+      <%= render "admin/shared_form/form", form: form, item: @environment_church, title_name: "Update environment church" %>
       <!-- /.row -->
     </div>
     <!-- /.container-fluid -->
