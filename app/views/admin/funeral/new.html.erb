@@ -2,13 +2,13 @@
 <%= form_with model: @funeral, url: admin_funeral_index_path do |form| %>
   <section class="content">
     <div class="container-fluid">
-      <%= render "form", form: form %>
+      <%= render "admin/shared_form/form", form: form, item: @funeral, title_name: "Create funeral" %>
       <!-- /.row -->
     </div>
     <!-- /.container-fluid -->
     <div class="section-btn-group-wrap">
       <%= link_to "Back", admin_funeral_index_path, class: "btn btn-info" %>
-      <%= form.submit "Create", class: "btn btn-success", id: "id_submit_funeral" %>
+      <%= form.submit "Create", class: "btn btn-success", id: "id_submit" %>
     </div>
   </section>
 <% end %>
