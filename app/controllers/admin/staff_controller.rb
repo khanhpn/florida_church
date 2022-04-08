@@ -1,5 +1,5 @@
 class Admin::StaffController < Admin::AdminController
-  before_action :set_youth, only: [:destroy, :edit, :update, :show]
+  before_action :set_staff, only: [:destroy, :edit, :update, :show]
 
   def index
     @staffs = Staff.all

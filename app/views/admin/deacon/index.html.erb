@@ -14,10 +14,9 @@
               <thead>
                 <tr>
                   <th>Name</th>
-                  <th>Content</th>
                   <th>Display</th>
+                  <th>Main article</th>
                   <th>Created at</th>
-                  <th>Updated at</th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -25,14 +24,14 @@
                 <% @deacons.each do |deacon| %>
                   <tr>
                     <td><%= link_to deacon&.name, deacon&.name_link %></td>
-                    <td><%= deacon&.content&.html_safe || "-"  %></td>
-                    <td><%= deacon&.display || "-"  %></td>
+                    <td><%= deacon&.display ? "Yes" : "No"  %></td>
+                    <td><%= deacon&.is_main_article ? "Yes" : "No"  %></td>
                     <td><%= deacon&.created_at || "-"  %></td>
-                    <td><%= deacon&.updated_at || "-"  %></td>
                     <td>
                       <% unless deacon.blank? %>
+                        <%= link_to "Show", admin_deacon_path(deacon), class: "btn btn-primary" %>
                         <%= link_to "Edit", edit_admin_deacon_path(deacon), class: "btn btn-success" %>
-                        <%= link_to "Delete", admin_deacon_path(deacon), method: :delete, class: "btn btn-danger" %>
+                        <%= link_to "Delete", admin_deacon_path(deacon), method: :delete, data: {confirm: "Are your sure ?"}, class: "btn btn-danger" %>
                       <% end %>
                     </td>
                   </tr>
