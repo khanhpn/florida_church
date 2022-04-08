@@ -1,5 +1,6 @@
 class WelcomeController < ApplicationController
   def index
-    @welcome = Welcome.last
+    @welcome = Welcome.display_article.last
+    @relateds = Welcome.where.not(id: @welcome)
   end
 end

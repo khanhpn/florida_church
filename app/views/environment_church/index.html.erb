@@ -15,6 +15,7 @@
                 <div class="moduleBody">
                   <%= @environment_church&.content&.html_safe %>
                 </div>
+                <%= render partial: "shared/related_articles", locals: { relateds: @relateds } unless @relateds.blank? %>
               </div>
             </li>
           </ul>
