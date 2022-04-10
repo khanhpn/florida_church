@@ -1,0 +1,45 @@
+<%= render "admin/shared/bread_crumb", name: {title: "Show hospital visit", bread_crumb: "Show"} %>
+<section class="content">
+  <div class="container-fluid">
+    <table id="example2" class="table table-bordered table-hover">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <% if @is_main_article %>
+            <th>Content</th>
+          <% end %>
+          <% if !@is_main_article && @hospital_visit.file_image.present? %>
+            <th>Link image</th>
+          <% end %>
+          <% if !@is_main_article && @hospital_visit.file_pdf.present? %>
+            <th>Link pdf</th>
+          <% end %>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= @hospital_visit&.name || "-" %></td>
+          <% if @is_main_article %>
+            <td><%= @hospital_visit&.content&.html_safe || "-"  %></td>
+          <% end %>
+          <% if !@is_main_article && @hospital_visit.file_image.present? %>
+            <td><%= link_to 'download', rails_blob_path(@hospital_visit.file_image, disposition: "download"), target: "_blank" %></td>
+          <% end %>
+          <% if !@is_main_article && @hospital_visit.file_pdf.present? %>
+            <td><%= link_to 'download', rails_blob_path(@hospital_visit.file_pdf, disposition: "download"), target: "_blank"  %></td>
+          <% end %>
+          <td>
+            <% unless @hospital_visit.blank? %>
+              <%= link_to "Edit", edit_admin_hospital_visit_path(@hospital_visit), class: "btn btn-success" %>
+              <%= link_to "Delete", admin_hospital_visit_path(@hospital_visit), method: :delete, class: "btn btn-danger" %>
+              <%= link_to "Back", admin_hospital_visit_index_path, class: "btn btn-primary" %>
+            <% end %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- /.row -->
+  </div>
+  <!-- /.container-fluid -->
+</section>
