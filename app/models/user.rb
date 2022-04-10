@@ -37,6 +37,13 @@ class User < ApplicationRecord
   has_many :youths
   has_many :pray_gardens
 
+  has_many :food_baskets
+  has_many :haitian_prayers
+  has_many :hospital_visits
+  has_many :memorial_books
+  has_many :respect_lifes
+  has_many :art_craft_groups
+
   has_one_attached :logo_icon
 
 
