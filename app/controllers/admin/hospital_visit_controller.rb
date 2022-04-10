@@ -18,7 +18,7 @@ class Admin::HospitalVisitController < Admin::AdminController
     hospital_visit = current_user.hospital_visits.new(params_hospital_visit)
     if hospital_visit.save
       flash[:notice] = 'You created hospital_visit successfully'
-      redirect_to admin_hospital_visit_path
+      redirect_to admin_hospital_visit_index_path
     else
       flash.now[:warning] = 'You can not create hospital visit, please check error'
       render :new
@@ -28,7 +28,7 @@ class Admin::HospitalVisitController < Admin::AdminController
   def update
     if @hospital_visit.update(params_hospital_visit)
       flash[:notice] = 'You updated hospital visit successfully'
-      redirect_to admin_hospital_visits_path
+      redirect_to admin_hospital_visit_index_path
     else
       flash.now[:warning] = 'You can not update hospital visit, please check error'
       render :edit
@@ -42,7 +42,7 @@ class Admin::HospitalVisitController < Admin::AdminController
   def destroy
     @hospital_visit.destroy
     flash[:notice] = 'You deleted hospital visit successfully'
-    redirect_to admin_hospital_visits_path
+    redirect_to admin_hospital_visit_index_path
   end
 
   private

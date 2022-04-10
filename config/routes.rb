@@ -63,12 +63,12 @@ Rails.application.routes.draw do
     resources :children
     resources :pray_garden
 
-    resources :art_craft_groups
-    resources :food_baskets
-    resources :haitian_prayers
-    resources :hospital_visits
-    resources :memorial_books
-    resources :respect_lives
+    resources :art_craft_group
+    resources :food_basket
+    resources :haitian_prayer
+    resources :hospital_visit
+    resources :memorial_book
+    resources :respect_life
   end
 
   root to: "home#index"
@@ -109,7 +109,7 @@ Rails.application.routes.draw do
   get 'children', to: 'children#index'
   get 'pray_garden', to: 'pray_garden#index'
 
-  get 'respect_live', to: 'respect_live#index'
+  get 'respect_life', to: 'respect_life#index'
   get 'memorial_book', to: 'memorial_book#index'
   get 'hospital_visit', to: 'hospital_visit#index'
   get 'haitian_prayer', to: 'haitian_prayer#index'

@@ -1,0 +1,45 @@
+<%= render "admin/shared/bread_crumb", name: {title: "Show memorial book", bread_crumb: "Show"} %>
+<section class="content">
+  <div class="container-fluid">
+    <table id="example2" class="table table-bordered table-hover">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <% if @is_main_article %>
+            <th>Content</th>
+          <% end %>
+          <% if !@is_main_article && @memorial_book.file_image.present? %>
+            <th>Link image</th>
+          <% end %>
+          <% if !@is_main_article && @memorial_book.file_pdf.present? %>
+            <th>Link pdf</th>
+          <% end %>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= @memorial_book&.name || "-" %></td>
+          <% if @is_main_article %>
+            <td><%= @memorial_book&.content&.html_safe || "-"  %></td>
+          <% end %>
+          <% if !@is_main_article && @memorial_book.file_image.present? %>
+            <td><%= link_to 'download', rails_blob_path(@memorial_book.file_image, disposition: "download"), target: "_blank" %></td>
+          <% end %>
+          <% if !@is_main_article && @memorial_book.file_pdf.present? %>
+            <td><%= link_to 'download', rails_blob_path(@memorial_book.file_pdf, disposition: "download"), target: "_blank"  %></td>
+          <% end %>
+          <td>
+            <% unless @memorial_book.blank? %>
+              <%= link_to "Edit", edit_admin_memorial_book_path(@memorial_book), class: "btn btn-success" %>
+              <%= link_to "Delete", admin_memorial_book_path(@memorial_book), method: :delete, class: "btn btn-danger" %>
+              <%= link_to "Back", admin_memorial_book_index_path, class: "btn btn-primary" %>
+            <% end %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- /.row -->
+  </div>
+  <!-- /.container-fluid -->
+</section>

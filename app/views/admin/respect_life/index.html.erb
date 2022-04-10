@@ -1,4 +1,4 @@
-<%= render "admin/shared/bread_crumb", name: {title: "Memorial book", bread_crumb: "Top"} %>
+<%= render "admin/shared/bread_crumb", name: {title: "Respect life", bread_crumb: "Top"} %>
 <!-- Main content -->
 <section class="content">
   <div class="container-fluid">
@@ -6,7 +6,7 @@
       <div class="col-12">
         <div class="card">
           <div class="card-header">
-            <h3 class="card-title">Manage memorial book</h3>
+            <h3 class="card-title">Manage respect live</h3>
           </div>
           <!-- /.card-header -->
           <div class="card-body">
@@ -21,17 +21,17 @@
                 </tr>
               </thead>
               <tbody>
-                <% @memorial_books.each do |memorial_book| %>
+                <% @respect_lifes.each do |respect_life| %>
                   <tr>
-                    <td><%= link_to memorial_book&.name, memorial_book&.name_link %></td>
-                    <td><%= memorial_book&.display ? "Yes" : "No"  %></td>
-                    <td><%= memorial_book&.is_main_article ? "Yes" : "No"  %></td>
-                    <td><%= memorial_book&.created_at || "-"  %></td>
+                    <td><%= link_to respect_life&.name, respect_life&.name_link %></td>
+                    <td><%= respect_life&.display ? "Yes" : "No"  %></td>
+                    <td><%= respect_life&.is_main_article ? "Yes" : "No"  %></td>
+                    <td><%= respect_life&.created_at || "-"  %></td>
                     <td>
-                      <% unless memorial_book.blank? %>
-                        <%= link_to "Show", admin_memorial_book_path(memorial_book), class: "btn btn-primary" %>
-                        <%= link_to "Edit", edit_admin_memorial_book_path(memorial_book), class: "btn btn-success" %>
-                        <%= link_to "Delete", admin_memorial_book_path(memorial_book), method: :delete, class: "btn btn-danger" %>
+                      <% unless respect_life.blank? %>
+                        <%= link_to "Show", admin_respect_life_path(respect_life), class: "btn btn-primary" %>
+                        <%= link_to "Edit", edit_admin_respect_life_path(respect_life), class: "btn btn-success" %>
+                        <%= link_to "Delete", admin_respect_life_path(respect_life), method: :delete, class: "btn btn-danger" %>
                       <% end %>
                     </td>
                   </tr>
@@ -50,6 +50,6 @@
 </section>
 <section class="section-btn-group">
   <div class="section-btn-group-wrap">
-    <%= link_to "Create", new_admin_memorial_book_path, class: "btn btn-info" %>
+    <%= link_to "Create", new_admin_respect_life_path, class: "btn btn-info" %>
   </div>
 </section>

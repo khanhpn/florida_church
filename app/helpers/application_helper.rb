@@ -15,7 +15,11 @@ module ApplicationHelper
       "welcome", "clergy", "deacon", "staff", "council", "history_church", "environment_church"
     ],
     GOOGLE_MAP: ["google_map"],
-    MINISTRIES: ['adult', 'youth', 'children'],
+    MINISTRIES: [
+      'adult', 'youth', 'children', 'respect_life',
+      'memorial_book', 'hospital_visit', 'haitian_prayer',
+      'food_basket', 'art_craft_group'
+    ],
     PRAYER_GARDEN: ['pray_garden']
   }
   def active_navbar(prefix)

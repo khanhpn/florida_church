@@ -283,6 +283,42 @@
                 <p>Manage Children</p>
               <% end %>
             </li>
+            <li class="nav-item">
+              <%= link_to admin_art_craft_group_index_path, class: "nav-link #{active_navbar('art_craft_group')}" do %>
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage Arts&Craft</p>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to admin_food_basket_index_path, class: "nav-link #{active_navbar('food_basket')}" do %>
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage Food Basket</p>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to admin_haitian_prayer_index_path, class: "nav-link #{active_navbar('haitian_prayer')}" do %>
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage Haitian Prayer</p>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to admin_hospital_visit_index_path, class: "nav-link #{active_navbar('hospital_visit')}" do %>
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage Hospital Visits</p>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to admin_memorial_book_index_path, class: "nav-link #{active_navbar('memorial_book')}" do %>
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage Memorial Book</p>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to admin_respect_life_index_path, class: "nav-link #{active_navbar('respect_life')}" do %>
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage Respect Life</p>
+              <% end %>
+            </li>
           </ul>
         </li>
         <li class="nav-item <%= active_main_navbar_open(ApplicationHelper::MAIN_MENU_ADMIN.dig(:PRAYER_GARDEN)) %>">
