@@ -108,4 +108,11 @@ Rails.application.routes.draw do
   get 'youth', to: 'youth#index'
   get 'children', to: 'children#index'
   get 'pray_garden', to: 'pray_garden#index'
+
+  get 'respect_live', to: 'respect_live#index'
+  get 'memorial_book', to: 'memorial_book#index'
+  get 'hospital_visit', to: 'hospital_visit#index'
+  get 'haitian_prayer', to: 'haitian_prayer#index'
+  get 'food_basket', to: 'food_basket#index'
+  get 'art_craft_group', to: 'art_craft_group#index'
 end
