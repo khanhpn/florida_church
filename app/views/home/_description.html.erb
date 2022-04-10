@@ -10,7 +10,7 @@
           <div class="caption">
             <span class="title"><%= introduction&.name %></span>
             <span class="captionContent extra-content"><%= introduction&.content&.html_safe %></span>
-            <%= link_to "#", class: "callToAction" do %>
+            <%= link_to "/pdf/RegistrationFormFinal.pdf", class: "callToAction", download: "Registration Form" do %>
               Join our Parish<span class="callToActionArrow"></span>
             <% end %>
           </div>
