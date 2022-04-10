@@ -1,0 +1,2 @@
+module Admin::RespectLiveHelper
+end

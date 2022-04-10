@@ -62,6 +62,13 @@ Rails.application.routes.draw do
     resources :youth
     resources :children
     resources :pray_garden
+
+    resources :art_craft_groups
+    resources :food_baskets
+    resources :haitian_prayers
+    resources :hospital_visits
+    resources :memorial_books
+    resources :respect_lives
   end
 
   root to: "home#index"
