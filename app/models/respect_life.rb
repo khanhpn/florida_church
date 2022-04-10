@@ -1,0 +1,2 @@
+class RespectLife < ApplicationRecord
+end

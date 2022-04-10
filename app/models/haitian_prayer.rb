@@ -1,0 +1,2 @@
+class HaitianPrayer < ApplicationRecord
+end

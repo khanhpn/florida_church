@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_08_010137) do
+ActiveRecord::Schema.define(version: 2022_04_10_060931) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -123,6 +123,21 @@ ActiveRecord::Schema.define(version: 2022_04_08_010137) do
     t.text "name_link"
     t.index ["display_order"], name: "index_anointing_thesicks_on_display_order"
     t.index ["user_id"], name: "index_anointing_thesicks_on_user_id"
+  end
+
+  create_table "art_craft_groups", force: :cascade do |t|
+    t.string "name"
+    t.string "name_link"
+    t.text "content"
+    t.text "file_image"
+    t.text "file_pdf"
+    t.string "link"
+    t.boolean "display", default: false
+    t.boolean "is_main_article", default: false
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_art_craft_groups_on_user_id"
   end
 
   create_table "baptisms", force: :cascade do |t|
@@ -314,6 +329,21 @@ ActiveRecord::Schema.define(version: 2022_04_08_010137) do
     t.index ["user_id"], name: "index_eucharists_on_user_id"
   end
 
+  create_table "food_baskets", force: :cascade do |t|
+    t.string "name"
+    t.string "name_link"
+    t.text "content"
+    t.text "file_image"
+    t.text "file_pdf"
+    t.string "link"
+    t.boolean "display", default: false
+    t.boolean "is_main_article", default: false
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_food_baskets_on_user_id"
+  end
+
   create_table "funerals", force: :cascade do |t|
     t.string "name"
     t.text "content"
@@ -348,6 +378,21 @@ ActiveRecord::Schema.define(version: 2022_04_08_010137) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "haitian_prayers", force: :cascade do |t|
+    t.string "name"
+    t.string "name_link"
+    t.text "content"
+    t.text "file_image"
+    t.text "file_pdf"
+    t.string "link"
+    t.boolean "display", default: false
+    t.boolean "is_main_article", default: false
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_haitian_prayers_on_user_id"
+  end
+
   create_table "history_churches", force: :cascade do |t|
     t.string "name"
     t.text "content"
@@ -378,6 +423,21 @@ ActiveRecord::Schema.define(version: 2022_04_08_010137) do
     t.text "name_link"
     t.index ["display_order"], name: "index_holyorders_on_display_order"
     t.index ["user_id"], name: "index_holyorders_on_user_id"
+  end
+
+  create_table "hospital_visits", force: :cascade do |t|
+    t.string "name"
+    t.string "name_link"
+    t.text "content"
+    t.text "file_image"
+    t.text "file_pdf"
+    t.string "link"
+    t.boolean "display", default: false
+    t.boolean "is_main_article", default: false
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_hospital_visits_on_user_id"
   end
 
   create_table "introductions", force: :cascade do |t|
@@ -463,6 +523,21 @@ ActiveRecord::Schema.define(version: 2022_04_08_010137) do
     t.index ["user_id"], name: "index_masses_on_user_id"
   end
 
+  create_table "memorial_books", force: :cascade do |t|
+    t.string "name"
+    t.string "name_link"
+    t.text "content"
+    t.text "file_image"
+    t.text "file_pdf"
+    t.string "link"
+    t.boolean "display", default: false
+    t.boolean "is_main_article", default: false
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_memorial_books_on_user_id"
+  end
+
   create_table "music_ministries", force: :cascade do |t|
     t.string "name"
     t.text "content"
@@ -523,6 +598,21 @@ ActiveRecord::Schema.define(version: 2022_04_08_010137) do
     t.text "name_link"
     t.index ["display_order"], name: "index_reconciliations_on_display_order"
     t.index ["user_id"], name: "index_reconciliations_on_user_id"
+  end
+
+  create_table "respect_lives", force: :cascade do |t|
+    t.string "name"
+    t.string "name_link"
+    t.text "content"
+    t.text "file_image"
+    t.text "file_pdf"
+    t.string "link"
+    t.boolean "display", default: false
+    t.boolean "is_main_article", default: false
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_respect_lives_on_user_id"
   end
 
   create_table "sacramentals", force: :cascade do |t|

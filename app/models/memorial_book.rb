@@ -1,0 +1,2 @@
+class MemorialBook < ApplicationRecord
+end

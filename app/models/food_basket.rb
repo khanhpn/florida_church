@@ -1,0 +1,2 @@
+class FoodBasket < ApplicationRecord
+end

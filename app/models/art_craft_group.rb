@@ -1,0 +1,2 @@
+class ArtCraftGroup < ApplicationRecord
+end
