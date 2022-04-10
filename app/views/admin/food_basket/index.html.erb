@@ -1,2 +1,55 @@
-<h1>Admin::FoodBasket#index</h1>
-<p>Find me in app/views/admin/food_basket/index.html.erb</p>
+<%= render "admin/shared/bread_crumb", name: {title: "Food basket", bread_crumb: "Top"} %>
+<!-- Main content -->
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Manage food basket</h3>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <table id="example2" class="table table-bordered table-hover">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Display</th>
+                  <th>Main article</th>
+                  <th>Created at</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @food_baskets.each do |food_basket| %>
+                  <tr>
+                    <td><%= link_to food_basket&.name, food_basket&.name_link %></td>
+                    <td><%= food_basket&.display ? "Yes" : "No"  %></td>
+                    <td><%= food_basket&.is_main_article ? "Yes" : "No"  %></td>
+                    <td><%= food_basket&.created_at || "-"  %></td>
+                    <td>
+                      <% unless food_basket.blank? %>
+                        <%= link_to "Show", admin_food_basket_path(food_basket), class: "btn btn-primary" %>
+                        <%= link_to "Edit", edit_admin_food_basket_path(food_basket), class: "btn btn-success" %>
+                        <%= link_to "Delete", admin_food_basket_path(food_basket), method: :delete, class: "btn btn-danger" %>
+                      <% end %>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+          <!-- /.card-body -->
+        </div>
+      </div>
+      <!-- /.col -->
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container-fluid -->
+</section>
+<section class="section-btn-group">
+  <div class="section-btn-group-wrap">
+    <%= link_to "Create", new_admin_food_basket_path, class: "btn btn-info" %>
+  </div>
+</section>

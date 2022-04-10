@@ -1,2 +1,55 @@
-<h1>Admin::ArtCraftGroup#index</h1>
-<p>Find me in app/views/admin/art_craft_group/index.html.erb</p>
+<%= render "admin/shared/bread_crumb", name: {title: "Art craft group", bread_crumb: "Top"} %>
+<!-- Main content -->
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Manage art craft groups</h3>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <table id="example2" class="table table-bordered table-hover">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Display</th>
+                  <th>Main article</th>
+                  <th>Created at</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @art_craft_groups.each do |art_craft_group| %>
+                  <tr>
+                    <td><%= link_to art_craft_group&.name, art_craft_group&.name_link %></td>
+                    <td><%= art_craft_group&.display ? "Yes" : "No"  %></td>
+                    <td><%= art_craft_group&.is_main_article ? "Yes" : "No"  %></td>
+                    <td><%= art_craft_group&.created_at || "-"  %></td>
+                    <td>
+                      <% unless art_craft_group.blank? %>
+                        <%= link_to "Show", admin_art_craft_group_path(art_craft_group), class: "btn btn-primary" %>
+                        <%= link_to "Edit", edit_admin_art_craft_group_path(art_craft_group), class: "btn btn-success" %>
+                        <%= link_to "Delete", admin_art_craft_group_path(art_craft_group), method: :delete, data: {confirm: "Are your sure ?"}, class: "btn btn-danger" %>
+                      <% end %>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+          <!-- /.card-body -->
+        </div>
+      </div>
+      <!-- /.col -->
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container-fluid -->
+</section>
+<section class="section-btn-group">
+  <div class="section-btn-group-wrap">
+    <%= link_to "Create", new_admin_art_craft_group_path, class: "btn btn-info" %>
+  </div>
+</section>
