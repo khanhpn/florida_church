@@ -189,12 +189,6 @@
                 <p>Manage Ushers Hospital</p>
               <% end %>
             </li>
-            <li class="nav-item">
-              <%= link_to admin_player_group_index_path, class: "nav-link #{active_navbar('player_group')}" do %>
-                <i class="far fa-circle nav-icon"></i>
-                <p>Manage Player Group</p>
-              <% end %>
-            </li>
           </ul>
         </li>
         <li class="nav-item <%= active_main_navbar_open(ApplicationHelper::MAIN_MENU_ADMIN.dig(:SACRAMENT)) %>">
@@ -317,6 +311,12 @@
               <%= link_to admin_respect_life_index_path, class: "nav-link #{active_navbar('respect_life')}" do %>
                 <i class="far fa-circle nav-icon"></i>
                 <p>Manage Respect Life</p>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to admin_player_group_index_path, class: "nav-link #{active_navbar('player_group')}" do %>
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage Player Group</p>
               <% end %>
             </li>
           </ul>

@@ -5,7 +5,7 @@ module ApplicationHelper
     BULLETIN: ["bulletin"],
     WORSHIP: [
       "teaching_mass", "altar_server", "altar_society", "children_liturgy", "ecuharistic_ministry",
-      "funeral", "lector", "music_ministry", "ushers_hospital", "player_group"
+      "funeral", "lector", "music_ministry", "ushers_hospital"
     ],
     SACRAMENT: [
       "baptism", "reconciliation", "eucharist", "confirmation", "marriage",
@@ -18,7 +18,7 @@ module ApplicationHelper
     MINISTRIES: [
       'adult', 'youth', 'children', 'respect_life',
       'memorial_book', 'hospital_visit', 'haitian_prayer',
-      'food_basket', 'art_craft_group'
+      'food_basket', 'art_craft_group', "player_group"
     ],
     PRAYER_GARDEN: ['pray_garden']
   }
