@@ -70,6 +70,13 @@ Rails.application.routes.draw do
     resources :memorial_book
     resources :respect_life
     resources :women_grace
+
+    resources :parish_event
+    resources :faith_formation
+    resources :children_youth
+    resources :knight_columb
+    resources :ladies_saint_john
+    resources :eucharistic_saint_video
   end
 
   root to: "home#index"
@@ -117,4 +124,11 @@ Rails.application.routes.draw do
   get 'food_basket', to: 'food_basket#index'
   get 'art_craft_group', to: 'art_craft_group#index'
   get 'women_grace', to: 'women_grace#index'
+
+  get 'parish_event', to: 'parish_event#index'
+  get 'faith_formation', to: 'faith_formation#index'
+  get 'children_youth', to: 'children_youth#index'
+  get 'knight_columb', to: 'knight_columb#index'
+  get 'ladies_saint_john', to: 'ladies_saint_john#index'
+  get 'eucharistic_saint_video', to: 'eucharistic_saint_video#index'
 end
