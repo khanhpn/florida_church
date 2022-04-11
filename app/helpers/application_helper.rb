@@ -46,4 +46,11 @@ module ApplicationHelper
   def full_path_image(image)
     Rails.application.routes.url_helpers.rails_blob_path(image, only_path: true)
   end
+
+  def list_links_gallery
+    [
+      "/parish_event", "/faith_formation", "/children_youth",
+      "/knight_columb", "/ladies_saint_john", "/eucharistic_saint_video",
+    ]
+  end
 end
