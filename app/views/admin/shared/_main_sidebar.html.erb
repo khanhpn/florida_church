@@ -473,6 +473,53 @@
             </li>
           </ul>
         </li>
+        <li class="nav-item <%= active_main_navbar_open(ApplicationHelper::MAIN_MENU_ADMIN.dig(:INFORMATION_IMG)) %>">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-chart-pie"></i>
+            <p>
+              BOCARATON
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <%= link_to admin_parish_event_index_path, class: "nav-link #{active_navbar('parish_event')}" do %>
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage parish event</p>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to admin_faith_formation_index_path, class: "nav-link #{active_navbar('faith_formation')}" do %>
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage faith formation</p>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to admin_children_youth_index_path, class: "nav-link #{active_navbar('children_youth')}" do %>
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage children youth</p>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to admin_knight_columb_index_path, class: "nav-link #{active_navbar('knight_columb')}" do %>
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage knight columb</p>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to admin_ladies_saint_john_index_path, class: "nav-link #{active_navbar('ladies_saint_john')}" do %>
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage ladies saint john</p>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to admin_eucharistic_saint_video_index_path, class: "nav-link #{active_navbar('eucharistic_saint_video')}" do %>
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage eucharistic saint</p>
+              <% end %>
+            </li>
+          </ul>
+        </li>
         <li class="nav-item">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-edit"></i>

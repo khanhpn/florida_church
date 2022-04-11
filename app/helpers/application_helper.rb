@@ -20,6 +20,10 @@ module ApplicationHelper
       'memorial_book', 'hospital_visit', 'haitian_prayer',
       'food_basket', 'art_craft_group', "player_group", "women_grace"
     ],
+    INFORMATION_IMG: [
+      'parish_event', 'faith_formation', 'children_youth', 'knight_columb',
+      'ladies_saint_john', 'eucharistic_saint_video'
+    ],
     PRAYER_GARDEN: ['pray_garden']
   }
   def active_navbar(prefix)
