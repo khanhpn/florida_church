@@ -1,0 +1,2 @@
+class LadiesSaintJohn < ApplicationRecord
+end

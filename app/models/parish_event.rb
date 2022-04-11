@@ -1,0 +1,2 @@
+class ParishEvent < ApplicationRecord
+end

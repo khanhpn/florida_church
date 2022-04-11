@@ -1,0 +1,2 @@
+class EucharisticSaintVideo < ApplicationRecord
+end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_11_141443) do
+ActiveRecord::Schema.define(version: 2022_04_11_143427) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -182,6 +182,21 @@ ActiveRecord::Schema.define(version: 2022_04_11_141443) do
     t.index ["user_id"], name: "index_children_on_user_id"
   end
 
+  create_table "children_youths", force: :cascade do |t|
+    t.string "name"
+    t.string "name_link"
+    t.text "content"
+    t.text "file_image"
+    t.text "file_pdf"
+    t.string "link"
+    t.boolean "display", default: false
+    t.boolean "is_main_article", default: false
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_children_youths_on_user_id"
+  end
+
   create_table "childrens_liturgies", force: :cascade do |t|
     t.string "name"
     t.text "content"
@@ -313,6 +328,21 @@ ActiveRecord::Schema.define(version: 2022_04_11_141443) do
     t.index ["user_id"], name: "index_environment_churches_on_user_id"
   end
 
+  create_table "eucharistic_saint_videos", force: :cascade do |t|
+    t.string "name"
+    t.string "name_link"
+    t.text "content"
+    t.text "file_image"
+    t.text "file_pdf"
+    t.string "link"
+    t.boolean "display", default: false
+    t.boolean "is_main_article", default: false
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_eucharistic_saint_videos_on_user_id"
+  end
+
   create_table "eucharists", force: :cascade do |t|
     t.string "name"
     t.text "content"
@@ -327,6 +357,21 @@ ActiveRecord::Schema.define(version: 2022_04_11_141443) do
     t.text "name_link"
     t.index ["display_order"], name: "index_eucharists_on_display_order"
     t.index ["user_id"], name: "index_eucharists_on_user_id"
+  end
+
+  create_table "faith_formations", force: :cascade do |t|
+    t.string "name"
+    t.string "name_link"
+    t.text "content"
+    t.text "file_image"
+    t.text "file_pdf"
+    t.string "link"
+    t.boolean "display", default: false
+    t.boolean "is_main_article", default: false
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_faith_formations_on_user_id"
   end
 
   create_table "food_baskets", force: :cascade do |t|
@@ -460,6 +505,36 @@ ActiveRecord::Schema.define(version: 2022_04_11_141443) do
     t.index ["user_id"], name: "index_introductions_on_user_id"
   end
 
+  create_table "knight_columbs", force: :cascade do |t|
+    t.string "name"
+    t.string "name_link"
+    t.text "content"
+    t.text "file_image"
+    t.text "file_pdf"
+    t.string "link"
+    t.boolean "display", default: false
+    t.boolean "is_main_article", default: false
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_knight_columbs_on_user_id"
+  end
+
+  create_table "ladies_saint_johns", force: :cascade do |t|
+    t.string "name"
+    t.string "name_link"
+    t.text "content"
+    t.text "file_image"
+    t.text "file_pdf"
+    t.string "link"
+    t.boolean "display", default: false
+    t.boolean "is_main_article", default: false
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_ladies_saint_johns_on_user_id"
+  end
+
   create_table "lectors", force: :cascade do |t|
     t.string "name"
     t.text "content"
@@ -552,6 +627,21 @@ ActiveRecord::Schema.define(version: 2022_04_11_141443) do
     t.text "name_link"
     t.index ["display_order"], name: "index_music_ministries_on_display_order"
     t.index ["user_id"], name: "index_music_ministries_on_user_id"
+  end
+
+  create_table "parish_events", force: :cascade do |t|
+    t.string "name"
+    t.string "name_link"
+    t.text "content"
+    t.text "file_image"
+    t.text "file_pdf"
+    t.string "link"
+    t.boolean "display", default: false
+    t.boolean "is_main_article", default: false
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_parish_events_on_user_id"
   end
 
   create_table "pray_gardens", force: :cascade do |t|

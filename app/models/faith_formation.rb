@@ -1,0 +1,2 @@
+class FaithFormation < ApplicationRecord
+end

@@ -1,0 +1,2 @@
+class KnightColumb < ApplicationRecord
+end
