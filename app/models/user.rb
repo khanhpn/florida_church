@@ -45,6 +45,13 @@ class User < ApplicationRecord
   has_many :art_craft_groups
   has_many :women_graces
 
+  has_many :parish_events
+  has_many :faith_formations
+  has_many :children_youths
+  has_many :knight_columbs
+  has_many :ladies_saint_johns
+  has_many :eucharistic_saint_videos
+
   has_one_attached :logo_icon
 
 
