@@ -319,6 +319,12 @@
                 <p>Manage Player Group</p>
               <% end %>
             </li>
+            <li class="nav-item">
+              <%= link_to admin_women_grace_index_path, class: "nav-link #{active_navbar('women_grace')}" do %>
+                <i class="far fa-circle nav-icon"></i>
+                <p>Women of grace</p>
+              <% end %>
+            </li>
           </ul>
         </li>
         <li class="nav-item <%= active_main_navbar_open(ApplicationHelper::MAIN_MENU_ADMIN.dig(:PRAYER_GARDEN)) %>">

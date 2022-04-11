@@ -69,6 +69,7 @@ Rails.application.routes.draw do
     resources :hospital_visit
     resources :memorial_book
     resources :respect_life
+    resources :women_grace
   end
 
   root to: "home#index"
@@ -115,4 +116,5 @@ Rails.application.routes.draw do
   get 'haitian_prayer', to: 'haitian_prayer#index'
   get 'food_basket', to: 'food_basket#index'
   get 'art_craft_group', to: 'art_craft_group#index'
+  get 'women_grace', to: 'women_grace#index'
 end

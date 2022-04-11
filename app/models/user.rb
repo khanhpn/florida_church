@@ -43,6 +43,7 @@ class User < ApplicationRecord
   has_many :memorial_books
   has_many :respect_lifes
   has_many :art_craft_groups
+  has_many :women_graces
 
   has_one_attached :logo_icon
 

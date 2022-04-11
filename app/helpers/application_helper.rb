@@ -18,7 +18,7 @@ module ApplicationHelper
     MINISTRIES: [
       'adult', 'youth', 'children', 'respect_life',
       'memorial_book', 'hospital_visit', 'haitian_prayer',
-      'food_basket', 'art_craft_group', "player_group"
+      'food_basket', 'art_craft_group', "player_group", "women_grace"
     ],
     PRAYER_GARDEN: ['pray_garden']
   }
