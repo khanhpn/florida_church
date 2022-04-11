@@ -1,0 +1,14 @@
+<%= render "admin/shared/bread_crumb", name: {title: "Create ladies saint john", bread_crumb: "New"} %>
+<%= form_with model: @ladies_saint_john, url: admin_ladies_saint_john_index_path do |form| %>
+  <section class="content">
+    <div class="container-fluid">
+      <%= render "admin/shared_form/form", form: form, item: @ladies_saint_john, title_name: "Create ladies saint john" %>
+      <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+    <div class="section-btn-group-wrap">
+      <%= link_to "Back", admin_ladies_saint_john_index_path, class: "btn btn-info" %>
+      <%= form.submit "Create", class: "btn btn-success", id: "id_submit" %>
+    </div>
+  </section>
+<% end %>

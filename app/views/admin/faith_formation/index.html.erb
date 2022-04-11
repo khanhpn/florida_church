@@ -1,2 +1,55 @@
-<h1>Admin::FaithFormation#index</h1>
-<p>Find me in app/views/admin/faith_formation/index.html.erb</p>
+<%= render "admin/shared/bread_crumb", name: {title: "Faith formation", bread_crumb: "Top"} %>
+<!-- Main content -->
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Manage faith_formation</h3>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <table id="example2" class="table table-bordered table-hover">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Display</th>
+                  <th>Main article</th>
+                  <th>Created at</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @faith_formations.each do |faith_formation| %>
+                  <tr>
+                    <td><%= link_to faith_formation&.name, faith_formation&.name_link %></td>
+                    <td><%= faith_formation&.display ? "Yes" : "No"  %></td>
+                    <td><%= faith_formation&.is_main_article ? "Yes" : "No"  %></td>
+                    <td><%= faith_formation&.created_at || "-"  %></td>
+                    <td>
+                      <% unless faith_formation.blank? %>
+                        <%= link_to "Show", admin_faith_formation_path(faith_formation), class: "btn btn-primary" %>
+                        <%= link_to "Edit", edit_admin_faith_formation_path(faith_formation), class: "btn btn-success" %>
+                        <%= link_to "Delete", admin_faith_formation_path(faith_formation), method: :delete, data: {confirm: "Are your sure ?"}, class: "btn btn-danger" %>
+                      <% end %>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+          <!-- /.card-body -->
+        </div>
+      </div>
+      <!-- /.col -->
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container-fluid -->
+</section>
+<section class="section-btn-group">
+  <div class="section-btn-group-wrap">
+    <%= link_to "Create", new_admin_faith_formation_path, class: "btn btn-info" %>
+  </div>
+</section>
