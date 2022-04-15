@@ -77,6 +77,10 @@ Rails.application.routes.draw do
     resources :knight_columb
     resources :ladies_saint_john
     resources :eucharistic_saint_video
+
+    resources :category_gallery do
+      resources :photo_gallery
+    end
   end
 
   root to: "home#index"
@@ -131,4 +135,6 @@ Rails.application.routes.draw do
   get 'knight_columb', to: 'knight_columb#index'
   get 'ladies_saint_john', to: 'ladies_saint_john#index'
   get 'eucharistic_saint_video', to: 'eucharistic_saint_video#index'
+
+  get 'photo_gallery', to: 'photo_gallery#index'
 end

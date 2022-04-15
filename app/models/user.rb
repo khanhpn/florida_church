@@ -52,6 +52,9 @@ class User < ApplicationRecord
   has_many :ladies_saint_johns
   has_many :eucharistic_saint_videos
 
+  has_many :photo_galleries
+  has_many :category_galleries
+
   has_one_attached :logo_icon
 
 

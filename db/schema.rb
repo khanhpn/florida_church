@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_11_143427) do
+ActiveRecord::Schema.define(version: 2022_04_15_003257) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -165,6 +165,15 @@ ActiveRecord::Schema.define(version: 2022_04_11_143427) do
     t.datetime "updated_at", precision: 6, null: false
     t.text "image_content"
     t.index ["user_id"], name: "index_bulletins_on_user_id"
+  end
+
+  create_table "category_galleries", force: :cascade do |t|
+    t.string "name"
+    t.boolean "display", default: false
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_category_galleries_on_user_id"
   end
 
   create_table "children", force: :cascade do |t|
@@ -642,6 +651,19 @@ ActiveRecord::Schema.define(version: 2022_04_11_143427) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_parish_events_on_user_id"
+  end
+
+  create_table "photo_galleries", force: :cascade do |t|
+    t.string "name"
+    t.text "file_image"
+    t.string "type_gallery"
+    t.boolean "display", default: false
+    t.boolean "is_main_image", default: false
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "category_gallery_id"
+    t.index ["user_id"], name: "index_photo_galleries_on_user_id"
   end
 
   create_table "pray_gardens", force: :cascade do |t|

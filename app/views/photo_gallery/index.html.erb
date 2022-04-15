@@ -1,0 +1,44 @@
+<script>
+  $(function() {
+    var $gallery = new SimpleLightbox('.gallery a', {});
+  });
+</script>
+<style>
+  .custom-img {
+    width: 200px;
+    height: 200px;
+  }
+  .gallery {
+    margin: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    align-items: baseline;
+  }
+  .gallery-item {
+    padding: 0 10px;
+  }
+  .custom-img:hover {
+    opacity: 0.5;
+  }
+</style>
+<div class="gallery">
+  <div class="gallery-item">
+    <a href="assets/img/01.jpg" class="big"><img src="assets/img/01.jpg" alt="" title="Beautiful Image" class="custom-img" /></a>
+  </div>
+  <div class="gallery-item">
+    <a href="assets/img/02.jpg"><img src="assets/img/02.jpg" alt="" title="" class="custom-img" /></a>
+  </div>
+  <div class="gallery-item">
+    <a href="assets/img/03.jpg"><img src="assets/img/03.jpg" alt="" title="Beautiful Image" class="custom-img" /></a>
+  </div>
+  <div class="gallery-item">
+    <a href="assets/img/04.jpg"><img src="assets/img/04.jpg" alt="" title="" class="custom-img" /></a>
+  </div>
+  <div class="gallery-item">
+    <a href="assets/img/05.jpg"><img src="assets/img/05.jpg" alt="" title="" class="custom-img" /></a>
+  </div>
+  <div class="gallery-item">
+    <a href="assets/img/06.jpg"><img src="assets/img/06.jpg" alt="" title="" class="custom-img" /></a>
+  </div>
+</div>

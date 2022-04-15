@@ -24,6 +24,7 @@ module ApplicationHelper
       'parish_event', 'faith_formation', 'children_youth', 'knight_columb',
       'ladies_saint_john', 'eucharistic_saint_video'
     ],
+    CATEGORY_GALLERY: ['category_gallery'],
     PRAYER_GARDEN: ['pray_garden']
   }
   def active_navbar(prefix)
