@@ -6,12 +6,10 @@ class Admin::CategoryGalleryController < Admin::AdminController
   end
 
   def new
-    @is_main_article = CategoryGallery.find_by(is_main_article: true)
     @category_gallery = CategoryGallery.new
   end
 
   def show
-    @is_main_article = @category_gallery.is_main_article
   end
 
   def create
@@ -36,7 +34,6 @@ class Admin::CategoryGalleryController < Admin::AdminController
   end
 
   def edit
-    @is_main_article = CategoryGallery.find_by(is_main_article: true)
   end
 
   def destroy
@@ -47,7 +44,7 @@ class Admin::CategoryGalleryController < Admin::AdminController
 
   private
   def params_category_gallery
-    params.require(:category_gallery).permit(:name, :content, :is_main_article, :display, :file_image, :file_pdf, :name_link)
+    params.require(:category_gallery).permit(:name, :display)
   end
 
   def set_category_gallery
