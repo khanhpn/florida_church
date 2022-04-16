@@ -23,7 +23,7 @@
               <tbody>
                 <% @category_galleries.each do |category_gallery| %>
                   <tr>
-                    <td><%= link_to category_gallery&.name, category_gallery&.name_link %></td>
+                    <td><%= category_gallery&.name %></td>
                     <td><%= category_gallery&.display ? "Yes" : "No"  %></td>
                     <td></td>
                     <td><%= category_gallery&.created_at || "-"  %></td>

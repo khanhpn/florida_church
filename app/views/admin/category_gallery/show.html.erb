@@ -5,30 +5,12 @@
       <thead>
         <tr>
           <th>Name</th>
-          <% if @is_main_article %>
-            <th>Content</th>
-          <% end %>
-          <% if !@is_main_article && @category_gallery.file_image.present? %>
-            <th>Link image</th>
-          <% end %>
-          <% if !@is_main_article && @category_gallery.file_pdf.present? %>
-            <th>Link pdf</th>
-          <% end %>
           <th>Action</th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <td><%= @category_gallery&.name || "-" %></td>
-          <% if @is_main_article %>
-            <td><%= @category_gallery&.content&.html_safe || "-"  %></td>
-          <% end %>
-          <% if !@is_main_article && @category_gallery.file_image.present? %>
-            <td><%= link_to 'download', rails_blob_path(@category_gallery.file_image, disposition: "download"), target: "_blank" %></td>
-          <% end %>
-          <% if !@is_main_article && @category_gallery.file_pdf.present? %>
-            <td><%= link_to 'download', rails_blob_path(@category_gallery.file_pdf, disposition: "download"), target: "_blank"  %></td>
-          <% end %>
           <td>
             <% unless @category_gallery.blank? %>
               <%= link_to "Edit", edit_admin_category_gallery_path(@category_gallery), class: "btn btn-success" %>
