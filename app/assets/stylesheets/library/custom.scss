@@ -46,3 +46,60 @@ div.custom-logo-header {
 .customStyleSection2TextCenter {
   text-align: center;
 }
+
+// Gallery
+.custom-img {
+  width: 200px;
+  height: 200px;
+}
+.gallery {
+  margin: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  align-items: baseline;
+}
+.gallery-item {
+  padding: 0 10px;
+}
+.custom-img:hover {
+  opacity: 0.5;
+}
+.wrap-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  align-items: center;
+  margin: 20px;
+}
+
+.container-gallery {
+  position: relative;
+  width: 50%;
+  max-width: 300px;
+  margin: 10px;
+}
+.image-gallery {
+  display: block;
+  width: 100%;
+  height: auto;
+  cursor: pointer;
+}
+.overlay-gallery {
+  position: absolute;
+  bottom: 0;
+  background: rgb(0, 0, 0);
+  background: rgba(0, 0, 0, 0.5); /* Black see-through */
+  color: #f1f1f1;
+  width: 100%;
+  transition: .5s ease;
+  opacity:0;
+  color: white;
+  font-size: 20px;
+  padding: 20px 0;
+  text-align: center;
+  cursor: pointer;
+}
+.container-gallery:hover .overlay-gallery {
+  opacity: 1;
+}

@@ -143,4 +143,5 @@ Rails.application.routes.draw do
   get 'eucharistic_saint_video', to: 'eucharistic_saint_video#index'
 
   get 'photo_gallery', to: 'photo_gallery#index'
+  get 'photo_gallery/:id', to: 'photo_gallery#show', as: "photo_gallery_show"
 end

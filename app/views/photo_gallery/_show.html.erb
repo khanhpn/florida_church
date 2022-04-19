@@ -1,0 +1,9 @@
+<div class="gallery">
+  <% photo_galleries.each do |item| %>
+    <div class="gallery-item">
+      <%= link_to full_path_image(item.file_image) do %>
+        <%= image_tag url_for(item.file_image), title: item.name, class: "custom-img" %>
+      <% end %>
+    </div>
+  <% end %>
+</div>

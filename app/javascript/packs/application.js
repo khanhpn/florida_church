@@ -22,3 +22,4 @@ require("packs/library/photoswipe-ui-default");
 require("packs/library/production");
 require("packs/library/map");
 require("packs/library/lightbox");
+require("packs/library/custom");
