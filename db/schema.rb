@@ -656,14 +656,11 @@ ActiveRecord::Schema.define(version: 2022_04_15_003257) do
   create_table "photo_galleries", force: :cascade do |t|
     t.string "name"
     t.text "file_image"
-    t.string "type_gallery"
     t.boolean "display", default: false
     t.boolean "is_main_image", default: false
-    t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "category_gallery_id"
-    t.index ["user_id"], name: "index_photo_galleries_on_user_id"
   end
 
   create_table "pray_gardens", force: :cascade do |t|

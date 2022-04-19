@@ -2,7 +2,7 @@ class Admin::CategoryGalleryController < Admin::AdminController
   before_action :set_category_gallery, only: [:destroy, :edit, :update, :show]
 
   def index
-    @category_galleries = CategoryGallery.all
+    @category_galleries = CategoryGallery.includes(:photo_galleries).all
   end
 
   def new
@@ -48,6 +48,6 @@ class Admin::CategoryGalleryController < Admin::AdminController
   end
 
   def set_category_gallery
-    @category_gallery = CategoryGallery.find_by(id: params[:id])
+    @category_gallery = CategoryGallery.includes(:photo_galleries).find_by(id: params[:id])
   end
 end

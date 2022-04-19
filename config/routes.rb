@@ -81,6 +81,12 @@ Rails.application.routes.draw do
     resources :category_gallery do
       resources :photo_gallery
     end
+
+    resources :photo_gallery do
+      member do
+        delete "delete_gallery/:category_id", to: "photo_gallery#delete_gallery", as: "delete_photo_gallery"
+      end
+    end
   end
 
   root to: "home#index"

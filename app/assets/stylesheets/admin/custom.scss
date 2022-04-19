@@ -19,3 +19,27 @@
   width: 100%;
   padding: 10px;
 }
+.display-flex {
+  display: flex;
+}
+
+.custom-img {
+  width: 200px;
+  height: 200px;
+}
+.gallery {
+  margin: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  align-items: baseline;
+  position: relative;
+}
+.gallery-item {
+  padding: 0 10px;
+}
+.gallery-icon-delete-gallery {
+  position: absolute;
+  top: 2px;
+  cursor: pointer;
+}

@@ -25,7 +25,7 @@
                   <tr>
                     <td><%= category_gallery&.name %></td>
                     <td><%= category_gallery&.display ? "Yes" : "No"  %></td>
-                    <td></td>
+                    <td><%= category_gallery.photo_galleries.size %></td>
                     <td><%= category_gallery&.created_at || "-"  %></td>
                     <td>
                       <% unless category_gallery.blank? %>
