@@ -1,3 +1,3 @@
 $(function () {
-  var $gallery = new SimpleLightbox(".gallery a", {});
+  new SimpleLightbox("#id_gallery div a", {});
 });
