@@ -15,7 +15,6 @@
                 <tr>
                   <th>Name</th>
                   <th>Content</th>
-                  <th>Created at</th>
                   <th>Updated at</th>
                   <th>Action</th>
                 </tr>
@@ -24,7 +23,6 @@
                 <tr>
                   <td><%= @adoration_time&.name || "-" %></td>
                   <td><%= @adoration_time&.content&.html_safe || "-"  %></td>
-                  <td><%= @adoration_time&.created_at || "-"  %></td>
                   <td><%= @adoration_time&.updated_at || "-"  %></td>
                   <td>
                     <% unless @adoration_time.blank? %>
@@ -45,7 +43,6 @@
   </div>
   <!-- /.container-fluid -->
 </section>
-
 <section class="section-btn-group">
   <div class="section-btn-group-wrap">
     <%= link_to "Create", new_admin_adoration_time_path, class: "btn btn-info" %>

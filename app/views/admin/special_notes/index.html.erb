@@ -22,7 +22,7 @@
               </thead>
               <tbody>
                 <tr>
-                  <td><%= link_to special_note&.name, special_note&.name_link %></td>
+                  <td><%= @special_note&.name %></td>
                   <td><%= @special_note&.content&.html_safe || "-"  %></td>
                   <td><%= @special_note&.created_at || "-"  %></td>
                   <td><%= @special_note&.updated_at || "-"  %></td>
@@ -45,7 +45,6 @@
   </div>
   <!-- /.container-fluid -->
 </section>
-
 <section class="section-btn-group">
   <div class="section-btn-group-wrap">
     <%= link_to "Create", new_admin_special_note_path, class: "btn btn-info" %>
