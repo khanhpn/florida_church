@@ -13,11 +13,11 @@
             <table id="example2" class="table table-bordered table-hover">
               <thead>
                 <tr>
+                  <th>Image</th>
                   <th>Name</th>
                   <th>Email</th>
                   <th>Sex</th>
-                  <th>Old</th>
-                  <th>Created at</th>
+                  <th>User Type</th>
                   <th>Updated at</th>
                   <th>Action</th>
                 </tr>
@@ -25,11 +25,11 @@
               <tbody>
                 <% @users.each do |user| %>
                   <tr>
+                    <td><%= image_tag user&.logo_icon.present? ? user.logo_icon : "no_available.png", class: "admin-logo-icon" %></td>
                     <td><%= full_name(user&.first_name, user&.last_name) %></td>
                     <td><%= user&.email || "-"  %></td>
                     <td><%= user&.sex || "-"  %></td>
                     <td><%= user&.year_old || "-"  %></td>
-                    <td><%= user&.created_at || "-"  %></td>
                     <td><%= user&.updated_at || "-"  %></td>
                     <td>
                       <% if user.present? %>

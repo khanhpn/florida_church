@@ -62,4 +62,10 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  # super_admin -> all permission
+  # admin -> limit some permissions
+  # moderator -> limit some permissions
+  # guess -> only view some information
+  enum user_type: {super_admin: 0, admin: 1, moderator: 2, guess: 3}
 end

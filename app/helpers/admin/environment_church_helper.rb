@@ -1,2 +1,0 @@
-module Admin::EnvironmentChurchHelper
-end

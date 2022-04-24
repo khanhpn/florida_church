@@ -1,2 +1,0 @@
-module Admin::HaitianPrayerHelper
-end
