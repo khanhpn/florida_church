@@ -6,7 +6,7 @@
       <!-- /.col -->
       <!-- /.tab-pane -->
       <!-- /.tab-pane -->
-      <%= form_with scope: :user, url: admin_users_path, class: "form-horizontal wrap-edit-user" do |form| %>
+      <%= form_with model: @user, url: admin_user_path(@user), class: "form-horizontal wrap-edit-user" do |form| %>
         <%= render "form", form: form %>
       <% end %>
     </div>

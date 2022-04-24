@@ -28,14 +28,14 @@
                     <td><%= image_tag user&.logo_icon.present? ? user.logo_icon : "no_available.png", class: "admin-logo-icon" %></td>
                     <td><%= full_name(user&.first_name, user&.last_name) %></td>
                     <td><%= user&.email || "-"  %></td>
-                    <td><%= user&.sex || "-"  %></td>
+                    <td><%= user&.sex ? "Male" : "Female" %></td>
                     <td><%= current_user_type(user)  %></td>
                     <td><%= user&.updated_at || "-"  %></td>
                     <td>
                       <% if user.present? %>
                         <%= link_to "Show", admin_user_path(user), class: "btn btn-success" %>
                         <%= link_to "Edit", edit_admin_user_path(user), class: "btn btn-success" %>
-                        <%= link_to "Delete", admin_user_path(user), method: :delete, class: "btn btn-danger" %>
+                        <%= link_to "Delete", admin_user_path(user), method: :delete, class: "btn btn-danger", data: {confirm: "Are you sure ?"} %>
                       <% end %>
                     </td>
                   </tr>

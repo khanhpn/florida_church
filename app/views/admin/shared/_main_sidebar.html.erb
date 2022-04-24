@@ -9,7 +9,7 @@
     <!-- Sidebar user panel (optional) -->
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
       <div class="image">
-        <%= image_tag(current_user&.logo_icon.present? ? current_user&.logo_icon : "admin/user2-160x160.jpg", class: "img-circle elevation-2") %>
+        <%= image_tag(current_user&.logo_icon.present? ? current_user&.logo_icon : "no_available.png", class: "img-circle elevation-2") %>
       </div>
       <div class="info">
         <%= link_to full_name(current_user&.first_name, current_user&.last_name), admin_path, class: "d-block" %>
