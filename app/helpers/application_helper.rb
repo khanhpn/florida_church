@@ -54,4 +54,17 @@ module ApplicationHelper
       "/knight_columb", "/ladies_saint_john", "/eucharistic_saint_video",
     ]
   end
+
+  def current_user_type(user)
+    case user.user_type
+    when "super_admin"
+      "Super Admin"
+    when "admin"
+      "Admin"
+    when "moderator"
+      "Moderator"
+    else
+      "Guess"
+    end
+  end
 end

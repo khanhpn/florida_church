@@ -55,6 +55,7 @@ group :development do
   gem 'capistrano-passenger'
   gem 'capistrano-yarn'
 end
+gem 'friendly_id', '~> 5.4.0'
 
 group :test do
   # Adds support for Capybara system testing and selenium driver
