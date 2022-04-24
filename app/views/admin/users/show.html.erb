@@ -8,7 +8,7 @@
         <div class="card card-primary card-outline">
           <div class="card-body box-profile">
             <div class="text-center">
-              <%= image_tag @user.logo_icon.present? ? @user.logo_icon : "no_available.png", class: "profile-user-img img-fluid img-circle" %>
+              <%= image_tag @user.logo_icon.present? ? @user.logo_icon : "no_available.png", class: "admin-logo-icon-show" %>
             </div>
             <h3 class="profile-username text-center"><%= @user.first_name || "" %> <%= @user.last_name || "" %></h3>
             <p class="text-muted text-center"><%= current_user_type(@user) %></p>
