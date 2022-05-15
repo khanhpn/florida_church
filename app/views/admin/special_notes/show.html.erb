@@ -1,0 +1,48 @@
+<%= render "admin/shared/bread_crumb", name: {title: "Mass", bread_crumb: "Show"} %>
+<!-- Main content -->
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Manage mass</h3>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <table id="example2" class="table table-bordered table-hover">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Content</th>
+                  <th>File attached</th>
+                  <th>Updated at</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><%= @mass&.name || "-" %></td>
+                  <td><%= @mass&.content || "-"  %></td>
+                  <td><%= link_to "File attached", @mass&.file_attached || "#"  %></td>
+                  <td><%= @mass&.updated_at || "-"  %></td>
+                  <td>
+                    <% unless @mass.blank? %>
+                      <%= link_to "Back", admin_mass_index_path, class: "btn btn-success" %>
+                      <%= link_to "Edit", edit_admin_mass_path(@mass), class: "btn btn-success" %>
+                      <%= link_to "Delete", admin_mass_path(@mass), method: :delete, class: "btn btn-danger" %>
+                    <% end %>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- /.card-body -->
+        </div>
+      </div>
+      <!-- /.col -->
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container-fluid -->
+</section>

@@ -1,0 +1,19 @@
+<%= render "admin/shared/bread_crumb", name: {title: "Create user", bread_crumb: "Top"} %>
+<!-- Main content -->
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <!-- /.col -->
+      <!-- /.tab-pane -->
+      <!-- /.tab-pane -->
+      <%= form_with scope: :user, url: admin_users_path, class: "form-horizontal wrap-edit-user" do |form| %>
+        <%= render "form", form: form %>
+      <% end %>
+    </div>
+    <!-- /.col -->
+  </div>
+  <!-- /.row -->
+</div>
+<!-- /.container-fluid -->
+</section>
+<!-- /.content -->

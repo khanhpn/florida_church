@@ -1,0 +1,56 @@
+<%= render "admin/shared/bread_crumb", name: {title: "Linked logo", bread_crumb: "Top"} %>
+<!-- Main content -->
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Manage Linked Logo</h3>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <table id="example2" class="table table-bordered table-hover">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Linked logo</th>
+                  <th>Display</th>
+                  <th>Created at</th>
+                  <th>Updated at</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @linked_logos.each do |logo_link| %>
+                  <tr>
+                    <td><%= logo_link&.name || "-" %></td>
+                    <td class="wrap-img"><%= image_tag logo_link&.logo_linked || "no_available.png", class: "logo-wrap" %></td>
+                    <td><%= logo_link&.display %></td>
+                    <td><%= link_to "Link", logo_link&.logo_url || "-" %></td>
+                    <td><%= logo_link&.created_at || "-"  %></td>
+                    <td><%= logo_link&.updated_at || "-"  %></td>
+                    <td>
+                      <% unless logo_link.blank? %>
+                        <%= link_to "Edit", edit_admin_logo_link_path(logo_link), class: "btn btn-success" %>
+                        <%= link_to "Delete", admin_logo_link_path(logo_link), method: :delete, class: "btn btn-danger" %>
+                      <% end %>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <!-- /.col -->
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container-fluid -->
+</section>
+<section class="section-btn-group">
+  <div class="section-btn-group-wrap">
+    <%= link_to "Create", new_admin_logo_link_path, class: "btn btn-info" %>
+  </div>
+</section>

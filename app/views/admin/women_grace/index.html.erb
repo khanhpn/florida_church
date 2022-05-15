@@ -1,0 +1,55 @@
+<%= render "admin/shared/bread_crumb", name: {title: "Women grace", bread_crumb: "Top"} %>
+<!-- Main content -->
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Manage women grace</h3>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <table id="example2" class="table table-bordered table-hover">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Display</th>
+                  <th>Main article</th>
+                  <th>Created at</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @women_graces.each do |women_grace| %>
+                  <tr>
+                    <td><%= link_to women_grace&.name, women_grace&.name_link %></td>
+                    <td><%= women_grace&.display ? "Yes" : "No"  %></td>
+                    <td><%= women_grace&.is_main_article ? "Yes" : "No"  %></td>
+                    <td><%= women_grace&.created_at || "-"  %></td>
+                    <td>
+                      <% unless women_grace.blank? %>
+                        <%= link_to "Show", admin_women_grace_path(women_grace), class: "btn btn-primary" %>
+                        <%= link_to "Edit", edit_admin_women_grace_path(women_grace), class: "btn btn-success" %>
+                        <%= link_to "Delete", admin_women_grace_path(women_grace), method: :delete, class: "btn btn-danger" %>
+                      <% end %>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+          <!-- /.card-body -->
+        </div>
+      </div>
+      <!-- /.col -->
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container-fluid -->
+</section>
+<section class="section-btn-group">
+  <div class="section-btn-group-wrap">
+    <%= link_to "Create", new_admin_women_grace_path, class: "btn btn-info" %>
+  </div>
+</section>

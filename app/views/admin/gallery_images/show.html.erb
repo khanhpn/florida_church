@@ -1,0 +1,26 @@
+<%= render "admin/shared/bread_crumb", name: {title: "Gallery Images", bread_crumb: "Top"} %>
+<!-- Main content -->
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card card-primary">
+          <div class="card-header">
+            <h4 class="card-title"><%= @gallery_image&.name %></h4>
+          </div>
+          <div class="card-body" id="id_wrap_gallery_show">
+            <%= render "show", gallery_image: @gallery_image %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /.container-fluid -->
+</section>
+<section class="section-btn-group">
+  <div class="section-btn-group-wrap">
+    <%= link_to "Back", admin_gallery_images_path, class: "btn btn-warning" %>
+    <%= link_to "Edit", edit_admin_gallery_image_path(@gallery_image), class: "btn btn-success" %>
+    <%= link_to "Delete", admin_gallery_image_path(@gallery_image), method: :delete, class: "btn btn-danger" %>
+  </div>
+</section>

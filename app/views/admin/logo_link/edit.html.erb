@@ -1,0 +1,14 @@
+<%= render "admin/shared/bread_crumb", name: {title: "Edit linked logo", bread_crumb: "Edit"} %>
+<%= form_with model: @linked_logo, url: admin_logo_link_path(@linked_logo), method: :patch do |form| %>
+  <section class="content">
+    <div class="container-fluid">
+      <%= render "form", form: form %>
+      <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+    <div class="section-btn-group-wrap">
+      <%= link_to "Back", admin_logo_link_index_path, class: "btn btn-info" %>
+      <%= form.submit "Update", class: "btn btn-success" %>
+    </div>
+  </section>
+<% end %>

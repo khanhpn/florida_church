@@ -1,21 +1,21 @@
 <div id="features">
-    <ul id="featureSlideshow" class="featureCustom">
-      <li id="module_3200">
-        <div class="moduleInner slideshowModule videoMode youtubeMode autoplayOn captionOn callToActionOn">
-          <header></header>
-          <iframe class="youtube video moduleBody" width="640" height="360"
-						src="https://www.youtube.com/embed/k_pVbtgh_n8?feature=player_detailpage&amp;wmode=transparent&amp;rel=0&amp;showinfo=0&amp;modestbranding=1&amp;autoplay=1&amp;loop=1&amp;mute=1&amp;cc_load_policy=0&amp;disablekb=1&amp;iv_load_policy=3&amp;playlist=k_pVbtgh_n8&amp;controls=0"
+  <ul id="featureSlideshow" class="featureCustom">
+    <li id="module_3200">
+      <div class="moduleInner slideshowModule videoMode youtubeMode autoplayOn captionOn callToActionOn">
+        <header></header>
+        <iframe class="youtube video moduleBody" width="1920" height="1080"
+          src="<%= introduction&.youtube_url %>?feature=player_detailpage&wmode=transparent&rel=0&showinfo=0&modestbranding=1&autoplay=1&loop=1&cc_load_policy=0&disablekb=1&iv_load_policy=3&playlist=<%= introduction&.youtube_url&.gsub('https://www.youtube.com/embed/', '') || '' %>&controls=0&mute=1&disablekb=f"
 						frameborder="0" wmode="Opaque" allowfullscreen></iframe>
-          <div class="captionPositioner" width="640" height="360">
-            <div class="caption">
-              <span class="title"><%= introduction&.name %></span>
-              <span class="captionContent"><%= introduction&.content %></span>
-              <%= link_to "#", class: "callToAction" do %>
-                Join our Parish<span class="callToActionArrow"></span>
-              <% end %>
-            </div>
+        <div class="captionPositioner" width="640" height="360">
+          <div class="caption">
+            <span class="title"><%= introduction&.name %></span>
+            <span class="captionContent extra-content"><%= introduction&.content&.html_safe %></span>
+            <%= link_to "/pdf/RegistrationFormFinal.pdf", class: "callToAction", download: "Registration Form" do %>
+              Join our Parish<span class="callToActionArrow"></span>
+            <% end %>
           </div>
         </div>
-      </li>
-    </ul>
-  </div>
+      </div>
+    </li>
+  </ul>
+</div>

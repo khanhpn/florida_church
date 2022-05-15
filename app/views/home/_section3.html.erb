@@ -5,7 +5,7 @@
     <header>
       <h2 class="sectionName">
         <div class="sectionTitle">
-          <span>Discover St. Matthew</span>
+          <span>Discover Saint John the Evangelist Catholic Church at Boca Raton</span>
         </div>
       </h2>
     </header>
@@ -15,225 +15,36 @@
           <div class="moduleInner customModule">
             <header></header>
             <div class="moduleBody">
-              <p>Come find out how we can serve you and how you can serve at St. Matthew.</p>
+              <p class="wrap-text-notice">Come find out how we can serve you and how you can serve at Saint John the Evangelist Catholic Church at Boca Raton.</p>
             </div>
             <footer></footer>
           </div>
         </li>
       </ul>
-      <div class="buttonRow buttonRow1">
-        <ul class="modulePosition notSortable buttonPosition swappable_61491" sectionPosition="11">
-          <li id="module_2499467" class="sectionButtonModule">
-            <div class="moduleInner buttonModule buttonModule1 focusPointImage fixed">
-              <header></header>
-              <div class="moduleBody">
-                <a href="pastors-message.html" target="_self"
-									class="buttonModuleButton firstButton  customButton hasLabel hasSubtext hasImage"
-									buttonName="Pastor&apos;s Message">
-                  <span class="buttonBackground">
-                    <div class="focusPointImageArea">
-                      <div class="focusPointImagePositioner">
-                        <picture class="focusPointImageContainer" data-focus-x="0.0" data-focus-y="0.0">
-                          <source type='image/webp'
-														srcset='https://d35r3vzpjv6bi5.cloudfront.net/15071/pictures/2020/3/Picture3-1-1.jpg?t=1585426022000'
-														thumbUrl='https://d35r3vzpjv6bi5.cloudfront.net/15071/pictures/2020/3/Picture3-1-1.jpg?t=1585426022000'>
-                          <img class="focusPointImageHolder image" alt="Pastor&apos;s Message"
-														src="https://d2y1pz2y630308.cloudfront.net/15071/pictures/2020/3/Picture3-1-1.jpg"
-														style="transform: scale(1);">
-                        </picture>
+      <div class="buttonRow buttonRow1 wrap-gallery-image">
+        <% @gallery_image&.contents&.each_with_index do |item, index| %>
+          <ul class="modulePosition notSortable buttonPosition swappable_61491" sectionPosition="<%= index %>">
+            <li id="module_2499467" class="sectionButtonModule">
+              <div class="moduleInner buttonModule buttonModule1 focusPointImage fixed">
+                <header></header>
+                <div class="moduleBody">
+                  <%= link_to list_links_gallery.dig(index), class: "buttonModuleButton firstButton  customButton hasLabel hasSubtext hasImage" do %>
+                    <span class="buttonBackground">
+                      <div class="focusPointImageArea">
+                        <div class="focusPointImagePositioner">
+                          <picture class="focusPointImageContainer" data-focus-x="0.0" data-focus-y="0.0">
+                            <%= image_tag item, class: "focusPointImageHolder image extra-gallery-image-detail", style: "transform: scale(1);" %>
+                          </picture>
+                        </div>
                       </div>
-                    </div>
-                    <span class="buttonLabelContainer">
-                      <span class="buttonLabelCenter">
-                        <span class="buttonLabel">Pastor&apos;s Message</span>
-                        <span class="buttonSubtext">Read</span>
-                        <span class="buttonCallToAction"></span>
-                      </span>
                     </span>
-                  </span>
-                </a>
+                  <% end %>
+                </div>
+                <footer></footer>
               </div>
-              <footer></footer>
-            </div>
-          </li>
-        </ul>
-        <ul class="modulePosition notSortable buttonPosition swappable_61491" sectionPosition="12">
-          <li id="module_2499468" class="sectionButtonModule">
-            <div class="moduleInner buttonModule buttonModule1 focusPointImage fixed">
-              <header></header>
-              <div class="moduleBody">
-                <a href="daily-readings.html" target="_self"
-									class="buttonModuleButton firstButton  customButton hasLabel hasSubtext hasImage"
-									buttonName="Daily Readings">
-                  <span class="buttonBackground">
-                    <div class="focusPointImageArea">
-                      <div class="focusPointImagePositioner">
-                        <picture class="focusPointImageContainer" data-focus-x="0.0" data-focus-y="0.0">
-                          <source type='image/webp'
-														srcset='https://d35r3vzpjv6bi5.cloudfront.net/15071/pictures/2020/1/b2_03.png?t=1579179932000'
-														thumbUrl='https://d35r3vzpjv6bi5.cloudfront.net/15071/pictures/2020/1/b2_03.png?t=1579179932000'>
-                          <img class="focusPointImageHolder image" alt="Daily Readings"
-														src="https://d2y1pz2y630308.cloudfront.net/15071/pictures/2020/1/b2_03.png"
-														style="transform: scale(1);">
-                        </picture>
-                      </div>
-                    </div>
-                    <span class="buttonLabelContainer">
-                      <span class="buttonLabelCenter">
-                        <span class="buttonLabel">Daily Readings</span>
-                        <span class="buttonSubtext">Read More</span>
-                        <span class="buttonCallToAction"></span>
-                      </span>
-                    </span>
-                  </span>
-                </a>
-              </div>
-              <footer></footer>
-            </div>
-          </li>
-        </ul>
-        <ul class="modulePosition notSortable buttonPosition swappable_61491" sectionPosition="13">
-          <li id="module_2499469" class="sectionButtonModule">
-            <div class="moduleInner buttonModule buttonModule1 focusPointImage fixed">
-              <header></header>
-              <div class="moduleBody">
-                <a href="http://stmatts.formed.org/" target="_blank"
-									class="buttonModuleButton firstButton  customButton hasLabel hasSubtext hasImage"
-									buttonName="Formed.org">
-                  <span class="buttonBackground">
-                    <div class="focusPointImageArea">
-                      <div class="focusPointImagePositioner">
-                        <picture class="focusPointImageContainer" data-focus-x="0.0" data-focus-y="0.0">
-                          <source type='image/webp'
-														srcset='https://d35r3vzpjv6bi5.cloudfront.net/15071/pictures/2020/1/b3_03.png?t=1579179949000'
-														thumbUrl='https://d35r3vzpjv6bi5.cloudfront.net/15071/pictures/2020/1/b3_03.png?t=1579179949000'>
-                          <img class="focusPointImageHolder image" alt="Formed.org"
-														src="https://d2y1pz2y630308.cloudfront.net/15071/pictures/2020/1/b3_03.png"
-														style="transform: scale(1);">
-                        </picture>
-                      </div>
-                    </div>
-                    <span class="buttonLabelContainer">
-                      <span class="buttonLabelCenter">
-                        <span class="buttonLabel">Formed.org</span>
-                        <span class="buttonSubtext">Learn More</span>
-                        <span class="buttonCallToAction"></span>
-                      </span>
-                    </span>
-                  </span>
-                </a>
-              </div>
-              <footer></footer>
-            </div>
-          </li>
-        </ul>
-      </div>
-      <div class="buttonRow buttonRow2">
-        <ul class="modulePosition notSortable buttonPosition swappable_61491" sectionPosition="21">
-          <li id="module_2499470" class="sectionButtonModule">
-            <div class="moduleInner buttonModule buttonModule1 focusPointImage fixed">
-              <header></header>
-              <div class="moduleBody">
-                <a href="childrens-programs.html" target="_self"
-									class="buttonModuleButton firstButton  customButton hasLabel hasSubtext hasImage"
-									buttonName="Children">
-                  <span class="buttonBackground">
-                    <div class="focusPointImageArea">
-                      <div class="focusPointImagePositioner">
-                        <picture class="focusPointImageContainer" data-focus-x="0.0" data-focus-y="0.0">
-                          <source type='image/webp'
-														srcset='https://d35r3vzpjv6bi5.cloudfront.net/15071/pictures/2020/1/b4_03.png?t=1579179968000'
-														thumbUrl='https://d35r3vzpjv6bi5.cloudfront.net/15071/pictures/2020/1/b4_03.png?t=1579179968000'>
-                          <img class="focusPointImageHolder image" alt="Children"
-														src="https://d2y1pz2y630308.cloudfront.net/15071/pictures/2020/1/b4_03.png"
-														style="transform: scale(1);">
-                        </picture>
-                      </div>
-                    </div>
-                    <span class="buttonLabelContainer">
-                      <span class="buttonLabelCenter">
-                        <span class="buttonLabel">Children</span>
-                        <span class="buttonSubtext">Learn More</span>
-                        <span class="buttonCallToAction"></span>
-                      </span>
-                    </span>
-                  </span>
-                </a>
-              </div>
-              <footer></footer>
-            </div>
-          </li>
-        </ul>
-        <ul class="modulePosition notSortable buttonPosition swappable_61491" sectionPosition="22">
-          <li id="module_2499471" class="sectionButtonModule">
-            <div class="moduleInner buttonModule buttonModule1 focusPointImage fixed">
-              <header></header>
-              <div class="moduleBody">
-                <a href="youth-programs.html" target="_self"
-									class="buttonModuleButton firstButton  customButton hasLabel hasSubtext hasImage"
-									buttonName="Youth">
-                  <span class="buttonBackground">
-                    <div class="focusPointImageArea">
-                      <div class="focusPointImagePositioner">
-                        <picture class="focusPointImageContainer" data-focus-x="0.0" data-focus-y="0.0">
-                          <source type='image/webp'
-														srcset='https://d35r3vzpjv6bi5.cloudfront.net/15071/pictures/2020/8/IMG_3190-1.jpg?t=1598281670000'
-														thumbUrl='https://d35r3vzpjv6bi5.cloudfront.net/15071/pictures/2020/8/IMG_3190-1.jpg?t=1598281670000'>
-                          <img class="focusPointImageHolder image" alt="Youth"
-														src="https://d2y1pz2y630308.cloudfront.net/15071/pictures/2020/8/IMG_3190-1.jpg"
-														style="transform: scale(1);">
-                        </picture>
-                      </div>
-                    </div>
-                    <span class="buttonLabelContainer">
-                      <span class="buttonLabelCenter">
-                        <span class="buttonLabel">Youth</span>
-                        <span class="buttonSubtext">Learn More</span>
-                        <span class="buttonCallToAction"></span>
-                      </span>
-                    </span>
-                  </span>
-                </a>
-              </div>
-              <footer></footer>
-            </div>
-          </li>
-        </ul>
-        <ul class="modulePosition notSortable buttonPosition swappable_61491" sectionPosition="23">
-          <li id="module_2499472" class="sectionButtonModule">
-            <div class="moduleInner buttonModule buttonModule1 focusPointImage fixed">
-              <header></header>
-              <div class="moduleBody">
-                <a href="adult-programs.html" target="_self"
-													class="buttonModuleButton firstButton  customButton hasLabel hasSubtext hasImage"
-													buttonName="Adults">
-                  <span class="buttonBackground">
-                    <div class="focusPointImageArea">
-                      <div class="focusPointImagePositioner">
-                        <picture class="focusPointImageContainer" data-focus-x="0.0" data-focus-y="0.0">
-                          <source type='image/webp'
-														srcset='https://d35r3vzpjv6bi5.cloudfront.net/15071/pictures/2020/2/ministry.jpg?t=1581025968000'
-														thumbUrl='https://d35r3vzpjv6bi5.cloudfront.net/15071/pictures/2020/2/ministry.jpg?t=1581025968000'>
-                          <img class="focusPointImageHolder image" alt="Adults"
-														src="https://d2y1pz2y630308.cloudfront.net/15071/pictures/2020/2/ministry.jpg"
-														style="transform: scale(1);">
-                        </picture>
-                      </div>
-                    </div>
-                    <span class="buttonLabelContainer">
-                      <span class="buttonLabelCenter">
-                        <span class="buttonLabel">Adults</span>
-                        <span class="buttonSubtext">Learn More</span>
-                        <span class="buttonCallToAction"></span>
-                      </span>
-                    </span>
-                  </span>
-                </a>
-              </div>
-              <footer></footer>
-            </div>
-          </li>
-        </ul>
+            </li>
+          </ul>
+        <% end %>
       </div>
     </div>
     <footer></footer>

@@ -1,0 +1,55 @@
+<%= render "admin/shared/bread_crumb", name: {title: "Ladies of Saint John", bread_crumb: "Top"} %>
+<!-- Main content -->
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Manage Ladies of Saint John</h3>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <table id="example2" class="table table-bordered table-hover">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Display</th>
+                  <th>Main article</th>
+                  <th>Created at</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @ladies_saint_johns.each do |ladies_saint_john| %>
+                  <tr>
+                    <td><%= link_to ladies_saint_john&.name, ladies_saint_john&.name_link %></td>
+                    <td><%= ladies_saint_john&.display ? "Yes" : "No"  %></td>
+                    <td><%= ladies_saint_john&.is_main_article ? "Yes" : "No"  %></td>
+                    <td><%= ladies_saint_john&.created_at || "-"  %></td>
+                    <td>
+                      <% unless ladies_saint_john.blank? %>
+                        <%= link_to "Show", admin_ladies_saint_john_path(ladies_saint_john), class: "btn btn-primary" %>
+                        <%= link_to "Edit", edit_admin_ladies_saint_john_path(ladies_saint_john), class: "btn btn-success" %>
+                        <%= link_to "Delete", admin_ladies_saint_john_path(ladies_saint_john), method: :delete, data: {confirm: "Are your sure ?"}, class: "btn btn-danger" %>
+                      <% end %>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+          <!-- /.card-body -->
+        </div>
+      </div>
+      <!-- /.col -->
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container-fluid -->
+</section>
+<section class="section-btn-group">
+  <div class="section-btn-group-wrap">
+    <%= link_to "Create", new_admin_ladies_saint_john_path, class: "btn btn-info" %>
+  </div>
+</section>

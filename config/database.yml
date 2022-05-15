@@ -82,5 +82,5 @@ test:
 production:
   <<: *default
   database: florida_church_production
-  username: florida_church
-  password: <%= ENV['FLORIDA_CHURCH_DATABASE_PASSWORD'] %>
+  username: postgres
+  password: root

@@ -1,0 +1,12 @@
+<% photo_galleries.each do |item| %>
+  <div class="gallery-item">
+    <div class="gallery-icon-delete-gallery">
+      <%= link_to delete_gallery_admin_gallery_image_path(item, item.category_gallery_id), method: :delete, remote: true, data: { confirm: 'Are you sure you want to delete this image?' } do %>
+        <i class="fas fa-minus-circle fa-2x"></i>
+      <% end %>
+    </div>
+    <%= link_to full_path_image(item.file_image) do %>
+      <%= image_tag url_for(item.file_image), title: item.name, class: "custom-img" %>
+    <% end %>
+  </div>
+<% end %>

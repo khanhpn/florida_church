@@ -6,19 +6,10 @@
     <div id="mobileNavBar">
       <a id="navicon" href="#menu">|||</a>
     </div>
-    <div id="siteLogo" class="moduleContainer logoOnly">
+    <div id="siteLogo" class="moduleContainer logoOnly custom-logo-header">
       <div class="moduleInner ">
         <div id="siteLogoBody">
-          <a href="index.html">
-            <picture>
-              <source type='image/webp'
-										srcset='https://d35r3vzpjv6bi5.cloudfront.net/15071/pictures/2020/1/headerLogo_03.png?t=1579179484000'
-										thumbUrl='https://d35r3vzpjv6bi5.cloudfront.net/15071/pictures/2020/1/headerLogo_03.png?t=1579179484000'>
-              <img alt="St. Matthew Catholic Church"
-										src="https://d2y1pz2y630308.cloudfront.net/15071/pictures/2020/1/headerLogo_03.png"
-										style="left:0px;top:0px;">
-            </picture>
-          </a>
+          <%= image_tag(@introduction&.header_logo_icon.present? ? @introduction&.header_logo_icon : "no_available.png", style: "left:0px;top:0px;width:100%;height:100%;border-radius: 10px;", alt: "Saint John the Evangelist Catholic Church Boca Raton") %>
         </div>
       </div>
     </div>
@@ -26,16 +17,13 @@
       <div class="moduleInner ">
         <ul>
           <li id="quickLink_330450">
-            <a href="bulletins.html" target="_self">Bulletin</a>
+            <%= link_to "Bulletin", bulletin_path %>
           </li>
           <li id="quickLink_249">
-            <a href="contact-us.html">Contact Us</a>
-          </li>
-          <li id="quickLink_426195">
-            <a href="https://smcssa.org/" target="_blank">Our School</a>
+            <%= link_to "Contact Us", contact_path %>
           </li>
           <li id="quickLink_583524">
-            <a href="facilities-reservation-request.html">Facilities Reservation Request</a>
+            <%= link_to "Photo Gallery", photo_gallery_path %>
           </li>
         </ul>
       </div>
@@ -43,12 +31,9 @@
     <div id="socialMedia" class="moduleContainer">
       <div class="moduleInner ">
         <div id="socialMediaBody">
-          <a class="custom1SocialMedia" href="https://www.flickr.com/photos/143326047@N04/albums" target="_blank"
-								title="" alt="Custom Social Media">Custom Social Media</a>
-          <a class="facebookSocialMedia" href="https://www.facebook.com/STMATTSA" target="_blank" title="Facebook"
-								alt="Facebook">Facebook</a>
-          <a class="youtubeSocialMedia" href="https://www.youtube.com/channel/UCRJOUyOibhnRwNjIzIoSOnw"
-								target="_blank" title="YouTube" alt="YouTube">YouTube</a>
+          <%= link_to "", "", class: "custom1SocialMedia" %>
+          <%= link_to "Facebook", @introduction&.facebook_channel, class: "facebookSocialMedia", target: "_blank" %>
+          <%= link_to "YouTube", @introduction&.youtube_channel_url, class: "youtubeSocialMedia", target: "_blank" %>
         </div>
       </div>
     </div>
@@ -61,12 +46,12 @@
     <nav id="nav" class="moduleContainer normal resize">
       <ul>
         <li id="nav1" class="navPage navElement selected subMenu">
-          <a href="index.html">
+          <a href="/">
             <span>Home</span>
           </a>
         </li>
         <li id="nav2" class="navPage navElement subMenu megaMenu">
-          <a href="welcome.html">
+          <a href="#">
             <span>About Us</span>
           </a>
           <ul class="secondLevel">
@@ -74,63 +59,46 @@
               <span class="groupName">Who We Are</span>
               <ul class="secondLevel">
                 <li id="nav165382" class="navPage navElement">
-                  <a href="welcome.html">
+                  <a href="/welcome">
                     <span>Welcome</span>
                   </a>
                 </li>
                 <li id="nav427094" class="navPage navElement">
-                  <a href="our-clergy.html">
+                  <a href="/clergy">
                     <span>Our Clergy</span>
                   </a>
                 </li>
                 <li id="nav162530" class="navPage navElement">
-                  <a href="our-deacons.html">
+                  <a href="/deacon">
                     <span>Our Deacons</span>
                   </a>
                 </li>
                 <li id="nav291" class="navPage navElement">
-                  <a href="staff.html">
+                  <a href="/staff">
                     <span>Our Staff</span>
                   </a>
                 </li>
                 <li id="nav163968" class="navPage navElement">
-                  <a href="allcouncils.html">
+                  <a href="/council">
                     <span>Our Councils</span>
                   </a>
                 </li>
                 <li id="nav249" class="navPage navElement">
-                  <a href="contact-us.html">
-                    <span>Contact Us</span>
-                  </a>
+                  <%= link_to "Contact Us", contact_path %>
                 </li>
               </ul>
             </li>
             <li id="nav428692" class="navGroup navElement">
               <span class="groupName">Our Parish</span>
               <ul class="secondLevel">
-                <li id="nav428466" class="navPage navElement">
-                  <a href="st-matthew-our-patron-saint.html">
-                    <span>St. Matthew, Our Parish Patron</span>
-                  </a>
-                </li>
                 <li id="nav161145" class="navPage navElement">
-                  <a href="history.html">
+                  <a href="/history_church">
                     <span>History</span>
                   </a>
                 </li>
                 <li id="nav427093" class="navPage navElement">
-                  <a href="safe-environment.html">
+                  <a href="/environment_church">
                     <span>Safe Environment</span>
-                  </a>
-                </li>
-                <li id="nav353079" class="navPage navElement">
-                  <a href="50th-anniversary.html">
-                    <span>50th Anniversary</span>
-                  </a>
-                </li>
-                <li id="nav426195" class="navLink navElement">
-                  <a href="https://smcssa.org/" target="_blank">
-                    <span>Our School</span>
                   </a>
                 </li>
               </ul>
@@ -138,7 +106,7 @@
           </ul>
         </li>
         <li id="nav162138" class="navPage navElement subMenu">
-          <a href="teaching-mass.html">
+          <a href="#">
             <span>Worship</span>
           </a>
           <ul class="secondLevel">
@@ -146,283 +114,199 @@
               <span class="groupName">Liturgical Ministries</span>
               <ul class="secondLevel">
                 <li id="nav505201" class="navPage navElement">
-                  <a href="teaching-mass.html">
+                  <%= link_to teaching_mass_path do %>
                     <span>Teaching Mass</span>
-                  </a>
+                  <% end %>
                 </li>
                 <li id="nav162139" class="navPage navElement">
-                  <a href="altarservers.html">
+                  <%= link_to altar_server_path do %>
                     <span>Altar Servers</span>
-                  </a>
+                  <% end %>
                 </li>
                 <li id="nav428108" class="navPage navElement">
-                  <a href="altar-society.html">
+                  <%= link_to altar_society_path do %>
                     <span>Altar Society</span>
-                  </a>
+                  <% end %>
                 </li>
                 <li id="nav163415" class="navPage navElement">
-                  <a href="childrenslturgy.html">
+                  <%= link_to children_liturgy_path do %>
                     <span>Children's Liturgy</span>
-                  </a>
+                  <% end %>
                 </li>
                 <li id="nav162141" class="navPage navElement">
-                  <a href="ecuharisticministry.html">
+                  <%= link_to ecuharistic_ministry_path do %>
                     <span>Eucharistic Ministry</span>
-                  </a>
+                  <% end %>
                 </li>
                 <li id="nav161143" class="navPage navElement">
-                  <a href="funeral.html">
+                  <%= link_to funeral_path do %>
                     <span>Funeral and Memorial Services</span>
-                  </a>
+                  <% end %>
                 </li>
                 <li id="nav162140" class="navPage navElement">
-                  <a href="lectors.html">
+                  <%= link_to lector_path do %>
                     <span>Lectors</span>
-                  </a>
+                  <% end %>
                 </li>
                 <li id="nav162142" class="navPage navElement">
-                  <a href="musicministry.html">
+                  <%= link_to music_ministry_path do %>
                     <span>Music Ministry</span>
-                  </a>
+                  <% end %>
                 </li>
                 <li id="nav162753" class="navPage navElement">
-                  <a href="ushers-hospitality.html">
+                  <%= link_to ushers_hospital_path do %>
                     <span>Ushers and Hospitality Ministries</span>
-                  </a>
-                </li>
-              </ul>
-            </li>
-            <li class="navPageGroup">
-              <ul>
-                <li id="nav427823" class="navPage navElement">
-                  <a href="prayer-groups.html">
-                    <span>Prayer Groups</span>
-                  </a>
+                  <% end %>
                 </li>
               </ul>
             </li>
           </ul>
         </li>
         <li id="nav351" class="navPage navElement subMenu">
-          <a href="baptism.html">
+          <a href="#">
             <span>Sacraments</span>
           </a>
           <ul class="secondLevel">
             <li class="navPageGroup">
               <ul>
                 <li id="nav161137" class="navPage navElement">
-                  <a href="baptism.html">
+                  <%= link_to baptism_path do %>
                     <span>Baptism</span>
-                  </a>
+                  <% end %>
                 </li>
                 <li id="nav161142" class="navPage navElement">
-                  <a href="reconciliation.html">
+                  <%= link_to reconciliation_path do %>
                     <span>Penance</span>
-                  </a>
+                  <% end %>
                 </li>
                 <li id="nav161135" class="navPage navElement">
-                  <a href="eucharist.html">
+                  <%= link_to eucharist_path do %>
                     <span>Eucharist</span>
-                  </a>
+                  <% end %>
                 </li>
                 <li id="nav161141" class="navPage navElement">
-                  <a href="confirmation.html">
+                  <%= link_to confirmation_path do %>
                     <span>Confirmation</span>
-                  </a>
+                  <% end %>
                 </li>
                 <li id="nav161140" class="navPage navElement">
-                  <a href="marriage.html">
+                  <%= link_to marriage_path do %>
                     <span>Marriage</span>
-                  </a>
+                  <% end %>
                 </li>
                 <li id="nav161139" class="navPage navElement">
-                  <a href="holyorders.html">
+                  <%= link_to holyorders_path do %>
                     <span>Holy Orders</span>
-                  </a>
+                  <% end %>
                 </li>
                 <li id="nav161144" class="navPage navElement">
-                  <a href="anointingofthesick.html">
+                  <%= link_to anointing_path do %>
                     <span>Anointing Of The Sick</span>
-                  </a>
+                  <% end %>
                 </li>
                 <li id="nav427169" class="navPage navElement">
-                  <a href="sacramental-certificates.html">
+                  <%= link_to sacramental_path do %>
                     <span>Sacramental Certificates</span>
-                  </a>
+                  <% end %>
                 </li>
               </ul>
             </li>
           </ul>
         </li>
-        <li id="nav355" class="navPage navElement subMenu megaMenu">
-          <a href="childrens-programs.html">
+        <li id="nav355" class="navPage navElement subMenu">
+          <a href="#">
             <span>Ministries & Organizations</span>
           </a>
           <ul class="secondLevel">
-            <li id="nav427949" class="navGroup navElement">
-              <span class="groupName">Children</span>
-              <ul class="secondLevel">
-                <li id="nav427162" class="navPage navElement">
-                  <a href="childrens-programs.html">
-                    <span>Children's Programs</span>
-                  </a>
+            <li class="navPageGroup">
+              <ul>
+                <li id="nav161137" class="navPage navElement">
+                  <%= link_to children_path do %>
+                    <span>Children</span>
+                  <% end %>
                 </li>
-                <li id="nav426425" class="navPage navElement">
-                  <a href="children.html">
-                    <span>Children Formation</span>
-                  </a>
+                <li id="nav161142" class="navPage navElement">
+                  <%= link_to youth_path do %>
+                    <span>Youth</span>
+                  <% end %>
                 </li>
-                <li id="nav163414" class="navPage navElement">
-                  <a href="biblestorytime.html">
-                    <span>Children's Bible Storytime</span>
-                  </a>
+                <li id="nav161135" class="navPage navElement">
+                  <%= link_to adult_path do %>
+                    <span>Adult</span>
+                  <% end %>
                 </li>
-                <li id="nav427405" class="navPage navElement">
-                  <a href="childrens-amp-youth-organizations.html">
-                    <span>Children & Youth Organizations</span>
-                  </a>
+                <li id="nav161135" class="navPage navElement">
+                  <%= link_to respect_life_path do %>
+                    <span>Respect life</span>
+                  <% end %>
                 </li>
-              </ul>
-            </li>
-            <li id="nav427948" class="navGroup navElement">
-              <span class="groupName">Youth</span>
-              <ul class="secondLevel">
-                <li id="nav427165" class="navPage navElement">
-                  <a href="youth-programs.html">
-                    <span>Youth Programs</span>
-                  </a>
+                <li id="nav161135" class="navPage navElement">
+                  <%= link_to memorial_book_path do %>
+                    <span>Memorial Book</span>
+                  <% end %>
                 </li>
-                <li id="nav162979" class="navPage navElement">
-                  <a href="highschoolconfirmation.html">
-                    <span>High School Confirmation</span>
-                  </a>
+                <li id="nav161135" class="navPage navElement">
+                  <%= link_to hospital_visit_path do %>
+                    <span>Hospital Visits</span>
+                  <% end %>
                 </li>
-                <li id="nav427765" class="navPage navElement">
-                  <a href="youth-ministry.html">
-                    <span>Youth Ministry</span>
-                  </a>
+                <li id="nav161135" class="navPage navElement">
+                  <%= link_to haitian_prayer_path do %>
+                    <span>Haitian Prayer Group “Coeur D’Accueil”</span>
+                  <% end %>
                 </li>
-                <li id="nav427946" class="navLink navElement">
-                  <a href="childrens-amp-youth-organizations.html" target="_self">
-                    <span>Children & Youth Organizations</span>
-                  </a>
+                <li id="nav161135" class="navPage navElement">
+                  <%= link_to food_basket_path do %>
+                    <span>Food Basket</span>
+                  <% end %>
                 </li>
-                <li id="nav535680" class="navPage navElement">
-                  <a href="quince.html">
-                    <span>Quinceañeras</span>
-                  </a>
+                <li id="nav161135" class="navPage navElement">
+                  <%= link_to art_craft_group_path do %>
+                    <span>Arts & Crafts Group</span>
+                  <% end %>
                 </li>
-              </ul>
-            </li>
-            <li id="nav427947" class="navGroup navElement">
-              <span class="groupName">Adult</span>
-              <ul class="secondLevel">
-                <li id="nav427164" class="navPage navElement">
-                  <a href="adult-programs.html">
-                    <span>Adult Programs</span>
-                  </a>
+                <li id="nav427823" class="navPage navElement">
+                  <%= link_to player_group_path do %>
+                    <span>Prayer Groups</span>
+                  <% end %>
                 </li>
-                <li id="nav161122" class="navPage navElement">
-                  <a href="adultformation.html">
-                    <span>Adult Formation</span>
-                  </a>
-                </li>
-                <li id="nav583542" class="navPage navElement">
-                  <a href="adult-formation-videos.html">
-                    <span>Faith Formation Videos</span>
-                  </a>
-                </li>
-                <li id="nav427820" class="navPage navElement">
-                  <a href="adult-ministries.html">
-                    <span>Adult Ministries</span>
-                  </a>
-                </li>
-                <li id="nav427787" class="navPage navElement">
-                  <a href="adult-organizations.html">
-                    <span>Adult Organizations</span>
-                  </a>
-                </li>
-                <li id="nav427745" class="navPage navElement">
-                  <a href="social-service-outreach.html">
-                    <span>Social Service Outreach</span>
-                  </a>
+                <li id="nav427823" class="navPage navElement">
+                  <%= link_to women_grace_path do %>
+                    <span>Women of Grace</span>
+                  <% end %>
                 </li>
               </ul>
             </li>
           </ul>
         </li>
         <li id="nav161055" class="navPage navElement subMenu">
-          <a href="facilities-reservation-request.html">
-            <span>Facilities</span>
+          <a href="#">
+            <span>Prayer Garden</span>
           </a>
           <ul class="secondLevel">
             <li id="nav427239" class="navGroup navElement">
-              <span class="groupName">Church and Athletic Facilities</span>
               <ul class="secondLevel">
-                <li id="nav583524" class="navPage navElement">
-                  <a href="facilities-reservation-request.html">
-                    <span>Facilities Reservation Request</span>
-                  </a>
-                </li>
                 <li id="nav161127" class="navPage navElement">
-                  <a href="parish-hall.html">
-                    <span>Parish Hall</span>
-                  </a>
-                </li>
-                <li id="nav161128" class="navPage navElement">
-                  <a href="mcdonaldfamilycenter.html">
-                    <span>McDonald Family Center</span>
-                  </a>
-                </li>
-                <li id="nav427242" class="navPage navElement">
-                  <a href="athletic-center.html">
-                    <span>St Matthew Athletic Center</span>
-                  </a>
-                </li>
-                <li id="nav161930" class="navPage navElement">
-                  <a href="sportspark.html">
-                    <span>St. Matthew Sports Park</span>
-                  </a>
-                </li>
-              </ul>
-            </li>
-            <li class="navPageGroup">
-              <ul>
-                <li id="nav161739" class="navLink navElement">
-                  <a href="https://stmatts.mhsoftware.com/" target="_blank">
-                    <span>Church Facilities Calendar</span>
-                  </a>
-                </li>
-                <li id="nav426127" class="navLink navElement">
-                  <a href="https://stmatthewathleticcenterandspor.mhsoftware.com/View.html" target="_blank">
-                    <span>SMAC & Sports Park Calendar</span>
-                  </a>
+                  <%= link_to pray_garden_path do %>
+                    <span>Engraved Brick</span>
+                  <% end %>
                 </li>
               </ul>
             </li>
           </ul>
         </li>
         <li id="nav162372" class="navPage navElement subMenu">
-          <a href="donate.html">
+          <a href="#">
             <span>Donate</span>
           </a>
           <ul class="secondLevel">
             <li class="navPageGroup">
               <ul>
                 <li id="nav444979" class="navLink navElement">
-                  <a href="https://stmatts.churchgiving.com/ws/opportunities/Regular" target="_blank">
-                    <span>Regular Sunday Collection</span>
-                  </a>
+                  <%= link_to "Our Faith & Our Future", "https://donate.diocesepb.org/pages/dsa2021/donation-pledge-form", target: "_blank" %>
                 </li>
                 <li id="nav240575" class="navLink navElement">
-                  <a href="https://stmatts.churchgiving.com/" target="_blank">
-                    <span>Online Giving-Various Collections</span>
-                  </a>
-                </li>
-                <li id="nav428226" class="navLink navElement">
-                  <a href="https://stmatts.churchgiving.com/ws/opportunities/BuildingtheFuture" target="_blank">
-                    <span>Building the Future</span>
-                  </a>
+                  <%= link_to "Donate to Parish", "https://www.parishgiving.org/payment;id=80252EA406DA072C30F2CD372EF88A5C9E4A05EC9EBD5184", target: "_blank" %>
                 </li>
               </ul>
             </li>

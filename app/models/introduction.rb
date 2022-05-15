@@ -1,6 +1,7 @@
 class Introduction < ApplicationRecord
   belongs_to :user
   has_one_attached :logo_icon
+  has_one_attached :header_logo_icon
 
   validates :name, presence: true
   validates :content, presence: true

@@ -1,18 +1,18 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
   <!-- Brand Logo -->
-  <a href="index3.html" class="brand-link">
+  <a href="/admin" class="brand-link">
     <%= image_tag("admin/AdminLTELogo.png", class: "brand-image img-circle elevation-3", style: "opacity: 0.8;") %>
-    <span class="brand-text font-weight-light">AdminLTE 3</span>
+    <span class="brand-text font-weight-light">Admin Page</span>
   </a>
   <!-- Sidebar -->
   <div class="sidebar">
     <!-- Sidebar user panel (optional) -->
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
       <div class="image">
-        <%= image_tag("admin/user2-160x160.jpg", class: "img-circle elevation-2") %>
+        <%= image_tag(current_user&.logo_icon.present? ? current_user&.logo_icon : "no_available.png", class: "admin-logo-icon") %>
       </div>
       <div class="info">
-        <a href="#" class="d-block">Alexander Pierce</a>
+        <%= link_to full_name(current_user&.first_name, current_user&.last_name), admin_path, class: "d-block" %>
       </div>
     </div>
     <!-- SidebarSearch Form -->
@@ -31,614 +31,444 @@
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-        <li class="nav-item menu-open">
-          <%= link_to "", class: "nav-link active" do %>
+        <li class="nav-item <%= active_main_navbar_open(ApplicationHelper::MAIN_MENU_ADMIN.dig(:HEADER)) %>">
+          <%= link_to "", class: "nav-link #{active_main_navbar(ApplicationHelper::MAIN_MENU_ADMIN.dig(:HEADER))}" do %>
             <i class="nav-icon fas fa-tachometer-alt"></i>
-            <p>Dashboard<i class="right fas fa-angle-left"></i></p>
+            <p>Manage Header-Footer<i class="right fas fa-angle-left"></i></p>
           <% end %>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <%= link_to "", class: "nav-link" do %>
-                <i class="far fa-circle nav-icon"></i>
-                <p>Manage Users</p>
-              <% end %>
-            </li>
-            <li class="nav-item">
-              <%= link_to "", class: "nav-link active" do %>
+              <%= link_to admin_introduction_index_path, class: "nav-link #{active_navbar('introduction')}" do %>
                 <i class="far fa-circle nav-icon"></i>
                 <p>Manage Introduction</p>
               <% end %>
             </li>
             <li class="nav-item">
-              <%= link_to "", class: "nav-link" do %>
+              <%= link_to admin_logo_link_index_path, class: "nav-link #{active_navbar('logo_link')}" do %>
                 <i class="far fa-circle nav-icon"></i>
-                <p>Manage Mass</p>
+                <p>Manage Linked Logos</p>
               <% end %>
             </li>
           </ul>
         </li>
-        <li class="nav-item">
-          <a href="pages/widgets.html" class="nav-link">
-            <i class="nav-icon fas fa-th"></i>
-            <p>
-              Widgets
-              <span class="right badge badge-danger">New</span>
-            </p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="#" class="nav-link">
+        <li class="nav-item <%= active_main_navbar_open(ApplicationHelper::MAIN_MENU_ADMIN.dig(:HOME)) %>">
+          <%= link_to "#", class: "nav-link #{active_main_navbar(ApplicationHelper::MAIN_MENU_ADMIN.dig(:HOME))}" do %>
             <i class="nav-icon fas fa-copy"></i>
             <p>
-              Layout Options
-              <i class="fas fa-angle-left right"></i>
-              <span class="badge badge-info right">6</span>
-            </p>
-          </a>
-          <ul class="nav nav-treeview">
-            <li class="nav-item">
-              <a href="pages/layout/top-nav.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Top Navigation</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Top Navigation + Sidebar</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="pages/layout/boxed.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Boxed</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="pages/layout/fixed-sidebar.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Fixed Sidebar</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="pages/layout/fixed-sidebar-custom.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Fixed Sidebar <small>+ Custom Area</small></p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="pages/layout/fixed-topnav.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Fixed Navbar</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="pages/layout/fixed-footer.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Fixed Footer</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="pages/layout/collapsed-sidebar.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Collapsed Sidebar</p>
-              </a>
-            </li>
-          </ul>
-        </li>
-        <li class="nav-item">
-          <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-chart-pie"></i>
-            <p>
-              Charts
-              <i class="right fas fa-angle-left"></i>
-            </p>
-          </a>
-          <ul class="nav nav-treeview">
-            <li class="nav-item">
-              <a href="pages/charts/chartjs.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>ChartJS</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="pages/charts/flot.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Flot</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="pages/charts/inline.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Inline</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="pages/charts/uplot.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>uPlot</p>
-              </a>
-            </li>
-          </ul>
-        </li>
-        <li class="nav-item">
-          <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-tree"></i>
-            <p>
-              UI Elements
+              Manage Home Page
               <i class="fas fa-angle-left right"></i>
             </p>
-          </a>
+          <% end %>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="pages/UI/general.html" class="nav-link">
+              <%= link_to admin_mass_index_path, class: "nav-link #{active_navbar('mass')}" do %>
                 <i class="far fa-circle nav-icon"></i>
-                <p>General</p>
-              </a>
+                <p>Manage Mass</p>
+              <% end %>
             </li>
             <li class="nav-item">
-              <a href="pages/UI/icons.html" class="nav-link">
+              <%= link_to admin_mass_times_path, class: "nav-link #{active_navbar('mass_times')}" do %>
                 <i class="far fa-circle nav-icon"></i>
-                <p>Icons</p>
-              </a>
+                <p>Manage Mass Times</p>
+              <% end %>
             </li>
             <li class="nav-item">
-              <a href="pages/UI/buttons.html" class="nav-link">
+              <%= link_to admin_special_notes_path, class: "nav-link #{active_navbar('special_notes')}" do %>
                 <i class="far fa-circle nav-icon"></i>
-                <p>Buttons</p>
-              </a>
+                <p>Manage Special Notes</p>
+              <% end %>
             </li>
             <li class="nav-item">
-              <a href="pages/UI/sliders.html" class="nav-link">
+              <%= link_to admin_adoration_times_path, class: "nav-link #{active_navbar('adoration_times')}" do %>
                 <i class="far fa-circle nav-icon"></i>
-                <p>Sliders</p>
-              </a>
+                <p>Manage Adoration Times</p>
+              <% end %>
             </li>
             <li class="nav-item">
-              <a href="pages/UI/modals.html" class="nav-link">
+              <%= link_to admin_gallery_images_path, class: "nav-link #{active_navbar('gallery_images')}" do %>
                 <i class="far fa-circle nav-icon"></i>
-                <p>Modals & Alerts</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="pages/UI/navbar.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Navbar & Tabs</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="pages/UI/timeline.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Timeline</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="pages/UI/ribbons.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Ribbons</p>
-              </a>
+                <p>Manage Gallery Images</p>
+              <% end %>
             </li>
           </ul>
         </li>
-        <li class="nav-item">
-          <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-edit"></i>
-            <p>
-              Forms
-              <i class="fas fa-angle-left right"></i>
-            </p>
-          </a>
-          <ul class="nav nav-treeview">
-            <li class="nav-item">
-              <a href="pages/forms/general.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>General Elements</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="pages/forms/advanced.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Advanced Elements</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="pages/forms/editors.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Editors</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="pages/forms/validation.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Validation</p>
-              </a>
-            </li>
-          </ul>
-        </li>
-        <li class="nav-item">
-          <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-table"></i>
-            <p>
-              Tables
-              <i class="fas fa-angle-left right"></i>
-            </p>
-          </a>
-          <ul class="nav nav-treeview">
-            <li class="nav-item">
-              <a href="pages/tables/simple.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Simple Tables</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="pages/tables/data.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>DataTables</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="pages/tables/jsgrid.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>jsGrid</p>
-              </a>
-            </li>
-          </ul>
-        </li>
-        <li class="nav-header">EXAMPLES</li>
-        <li class="nav-item">
-          <a href="pages/calendar.html" class="nav-link">
-            <i class="nav-icon fas fa-calendar-alt"></i>
-            <p>
-              Calendar
-              <span class="badge badge-info right">2</span>
-            </p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="pages/gallery.html" class="nav-link">
-            <i class="nav-icon far fa-image"></i>
-            <p>
-              Gallery
-            </p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="pages/kanban.html" class="nav-link">
-            <i class="nav-icon fas fa-columns"></i>
-            <p>
-              Kanban Board
-            </p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="#" class="nav-link">
-            <i class="nav-icon far fa-envelope"></i>
-            <p>
-              Mailbox
-              <i class="fas fa-angle-left right"></i>
-            </p>
-          </a>
-          <ul class="nav nav-treeview">
-            <li class="nav-item">
-              <a href="pages/mailbox/mailbox.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Inbox</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="pages/mailbox/compose.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Compose</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="pages/mailbox/read-mail.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Read</p>
-              </a>
-            </li>
-          </ul>
-        </li>
-        <li class="nav-item">
-          <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-book"></i>
-            <p>
-              Pages
-              <i class="fas fa-angle-left right"></i>
-            </p>
-          </a>
-          <ul class="nav nav-treeview">
-            <li class="nav-item">
-              <a href="pages/examples/invoice.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Invoice</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="pages/examples/profile.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Profile</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="pages/examples/e-commerce.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>E-commerce</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="pages/examples/projects.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Projects</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="pages/examples/project-add.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Project Add</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="pages/examples/project-edit.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Project Edit</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="pages/examples/project-detail.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Project Detail</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="pages/examples/contacts.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Contacts</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="pages/examples/faq.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>FAQ</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="pages/examples/contact-us.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Contact us</p>
-              </a>
-            </li>
-          </ul>
-        </li>
-        <li class="nav-item">
-          <a href="#" class="nav-link">
-            <i class="nav-icon far fa-plus-square"></i>
-            <p>
-              Extras
-              <i class="fas fa-angle-left right"></i>
-            </p>
-          </a>
-          <ul class="nav nav-treeview">
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>
-                  Login & Register v1
-                  <i class="fas fa-angle-left right"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="pages/examples/login.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Login v1</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="pages/examples/register.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Register v1</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="pages/examples/forgot-password.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Forgot Password v1</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="pages/examples/recover-password.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Recover Password v1</p>
-                  </a>
-                </li>
-              </ul>
-            </li>
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>
-                  Login & Register v2
-                  <i class="fas fa-angle-left right"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="pages/examples/login-v2.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Login v2</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="pages/examples/register-v2.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Register v2</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="pages/examples/forgot-password-v2.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Forgot Password v2</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="pages/examples/recover-password-v2.html" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Recover Password v2</p>
-                  </a>
-                </li>
-              </ul>
-            </li>
-            <li class="nav-item">
-              <a href="pages/examples/lockscreen.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Lockscreen</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="pages/examples/legacy-user-menu.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Legacy User Menu</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="pages/examples/language-menu.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Language Menu</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="pages/examples/404.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Error 404</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="pages/examples/500.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Error 500</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="pages/examples/pace.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Pace</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="pages/examples/blank.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Blank Page</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="starter.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Starter Page</p>
-              </a>
-            </li>
-          </ul>
-        </li>
-        <li class="nav-item">
+        <li class="nav-item <%= active_main_navbar_open(ApplicationHelper::MAIN_MENU_ADMIN.dig(:HEADER)) %>">
           <a href="#" class="nav-link">
             <i class="nav-icon fas fa-search"></i>
             <p>
-              Search
+              Manage User
               <i class="fas fa-angle-left right"></i>
             </p>
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="pages/search/simple.html" class="nav-link">
+              <%= link_to admin_users_path, class: "nav-link #{active_navbar('user')}" do %>
                 <i class="far fa-circle nav-icon"></i>
-                <p>Simple Search</p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="pages/search/enhanced.html" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Enhanced</p>
-              </a>
+                <p>Manage Users</p>
+              <% end %>
             </li>
           </ul>
         </li>
-        <li class="nav-header">MISCELLANEOUS</li>
-        <li class="nav-item">
-          <a href="iframe.html" class="nav-link">
-            <i class="nav-icon fas fa-ellipsis-h"></i>
-            <p>Tabbed IFrame Plugin</p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="https://adminlte.io/docs/3.1/" class="nav-link">
-            <i class="nav-icon fas fa-file"></i>
-            <p>Documentation</p>
-          </a>
-        </li>
-        <li class="nav-header">MULTI LEVEL EXAMPLE</li>
-        <li class="nav-item">
+        <li class="nav-item <%= active_main_navbar_open(ApplicationHelper::MAIN_MENU_ADMIN.dig(:BULLETIN)) %>">
           <a href="#" class="nav-link">
-            <i class="fas fa-circle nav-icon"></i>
-            <p>Level 1</p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="#" class="nav-link">
-            <i class="nav-icon fas fa-circle"></i>
+            <i class="nav-icon fas fa-edit"></i>
             <p>
-              Level 1
+              Bulletin
               <i class="right fas fa-angle-left"></i>
             </p>
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <%= link_to admin_bulletin_index_path, class: "nav-link #{active_navbar('bulletin')}" do %>
                 <i class="far fa-circle nav-icon"></i>
-                <p>Level 2</p>
-              </a>
+                <p>Manage Bulletin</p>
+              <% end %>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item <%= active_main_navbar_open(ApplicationHelper::MAIN_MENU_ADMIN.dig(:WORSHIP)) %>">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-table"></i>
+            <p>
+              Worship
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <%= link_to admin_teaching_mass_index_path, class: "nav-link #{active_navbar('teaching_mass')}" do %>
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage Teaching mass</p>
+              <% end %>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <%= link_to admin_altar_server_index_path, class: "nav-link #{active_navbar('altar_server')}" do %>
                 <i class="far fa-circle nav-icon"></i>
-                <p>
-                  Level 2
-                  <i class="right fas fa-angle-left"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                <li class="nav-item">
-                  <a href="#" class="nav-link">
-                    <i class="far fa-dot-circle nav-icon"></i>
-                    <p>Level 3</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="#" class="nav-link">
-                    <i class="far fa-dot-circle nav-icon"></i>
-                    <p>Level 3</p>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="#" class="nav-link">
-                    <i class="far fa-dot-circle nav-icon"></i>
-                    <p>Level 3</p>
-                  </a>
-                </li>
-              </ul>
+                <p>Manage Altar Server</p>
+              <% end %>
             </li>
             <li class="nav-item">
-              <a href="#" class="nav-link">
+              <%= link_to admin_altar_society_index_path, class: "nav-link #{active_navbar('altar_society')}" do %>
                 <i class="far fa-circle nav-icon"></i>
-                <p>Level 2</p>
+                <p>Manage Altar Society</p>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to admin_children_liturgy_index_path, class: "nav-link #{active_navbar('children_liturgy')}" do %>
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage Children Liturgy</p>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to admin_ecuharistic_ministry_index_path, class: "nav-link #{active_navbar('ecuharistic_ministry')}" do %>
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage Ecuharistic</p>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to admin_funeral_index_path, class: "nav-link #{active_navbar('funeral')}" do %>
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage Funeral</p>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to admin_lector_index_path, class: "nav-link #{active_navbar('lector')}" do %>
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage Lector</p>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to admin_music_ministry_index_path, class: "nav-link #{active_navbar('music_ministry')}" do %>
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage Music Ministry</p>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to admin_ushers_hospital_index_path, class: "nav-link #{active_navbar('ushers_hospital')}" do %>
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage Ushers Hospital</p>
+              <% end %>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item <%= active_main_navbar_open(ApplicationHelper::MAIN_MENU_ADMIN.dig(:SACRAMENT)) %>">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-chart-pie"></i>
+            <p>
+              Sacrament
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <%= link_to admin_baptism_index_path, class: "nav-link #{active_navbar('baptism')}" do %>
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage Baptism</p>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to admin_reconciliation_index_path, class: "nav-link #{active_navbar('reconciliation')}" do %>
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage Reconciliation</p>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to admin_eucharist_index_path, class: "nav-link #{active_navbar('eucharist')}" do %>
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage Eucharist</p>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to admin_confirmation_index_path, class: "nav-link #{active_navbar('confirmation')}" do %>
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage Confirmation</p>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to admin_marriage_index_path, class: "nav-link #{active_navbar('marriage')}" do %>
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage Marriage</p>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to admin_holyorders_path, class: "nav-link #{active_navbar('holyorders')}" do %>
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage Holyorders</p>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to admin_anointing_index_path, class: "nav-link #{active_navbar('anointing')}" do %>
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage Anointing</p>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to admin_sacramental_index_path, class: "nav-link #{active_navbar('sacramental')}" do %>
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage Sacramental</p>
+              <% end %>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item <%= active_main_navbar_open(ApplicationHelper::MAIN_MENU_ADMIN.dig(:MINISTRIES)) %>">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-calendar-alt"></i>
+            <p>
+              Ministries
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <%= link_to admin_adult_index_path, class: "nav-link #{active_navbar('adult')}" do %>
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage Adult</p>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to admin_youth_index_path, class: "nav-link #{active_navbar('youth')}" do %>
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage Youth</p>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to admin_children_path, class: "nav-link #{active_navbar('children')}" do %>
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage Children</p>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to admin_art_craft_group_index_path, class: "nav-link #{active_navbar('art_craft_group')}" do %>
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage Arts&Craft</p>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to admin_food_basket_index_path, class: "nav-link #{active_navbar('food_basket')}" do %>
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage Food Basket</p>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to admin_haitian_prayer_index_path, class: "nav-link #{active_navbar('haitian_prayer')}" do %>
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage Haitian Prayer</p>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to admin_hospital_visit_index_path, class: "nav-link #{active_navbar('hospital_visit')}" do %>
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage Hospital Visits</p>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to admin_memorial_book_index_path, class: "nav-link #{active_navbar('memorial_book')}" do %>
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage Memorial Book</p>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to admin_respect_life_index_path, class: "nav-link #{active_navbar('respect_life')}" do %>
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage Respect Life</p>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to admin_player_group_index_path, class: "nav-link #{active_navbar('player_group')}" do %>
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage Player Group</p>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to admin_women_grace_index_path, class: "nav-link #{active_navbar('women_grace')}" do %>
+                <i class="far fa-circle nav-icon"></i>
+                <p>Women of grace</p>
+              <% end %>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item <%= active_main_navbar_open(ApplicationHelper::MAIN_MENU_ADMIN.dig(:PRAYER_GARDEN)) %>">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-file"></i>
+            <p>
+              Prayer Garden
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <%= link_to admin_pray_garden_index_path, class: "nav-link #{active_navbar('pray_garden')}" do %>
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage Engraved Brick</p>
+              <% end %>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item <%= active_main_navbar_open(ApplicationHelper::MAIN_MENU_ADMIN.dig(:GOOGLE_MAP)) %>">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-tree"></i>
+            <p>
+              Google map
+              <i class="fas fa-angle-left right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="/admin/google_map" class="nav-link">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Google map</p>
               </a>
             </li>
           </ul>
         </li>
-        <li class="nav-item">
+        <li class="nav-item <%= active_main_navbar_open(ApplicationHelper::MAIN_MENU_ADMIN.dig(:ABOUT_US)) %>">
           <a href="#" class="nav-link">
-            <i class="fas fa-circle nav-icon"></i>
-            <p>Level 1</p>
+            <i class="nav-icon fas fa-chart-pie"></i>
+            <p>
+              About us
+              <i class="right fas fa-angle-left"></i>
+            </p>
           </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <%= link_to admin_welcome_index_path, class: "nav-link #{active_navbar('welcome')}" do %>
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage welcome</p>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to admin_clergy_index_path, class: "nav-link #{active_navbar('clergy')}" do %>
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage clergy</p>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to admin_deacon_index_path, class: "nav-link #{active_navbar('deacon')}" do %>
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage Deacon</p>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to admin_staff_index_path, class: "nav-link #{active_navbar('staff')}" do %>
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage Staff</p>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to admin_council_index_path, class: "nav-link #{active_navbar('council')}" do %>
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage Council</p>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to admin_history_church_index_path, class: "nav-link #{active_navbar('history_church')}" do %>
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage History</p>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to admin_environment_church_index_path, class: "nav-link #{active_navbar('environment_church')}" do %>
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage Environment</p>
+              <% end %>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item <%= active_main_navbar_open(ApplicationHelper::MAIN_MENU_ADMIN.dig(:INFORMATION_IMG)) %>">
+          <a href="#" class="nav-link">
+            <i class="nav-icon fas fa-chart-pie"></i>
+            <p>
+              BOCARATON
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <%= link_to admin_parish_event_index_path, class: "nav-link #{active_navbar('parish_event')}" do %>
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage parish event</p>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to admin_faith_formation_index_path, class: "nav-link #{active_navbar('faith_formation')}" do %>
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage faith formation</p>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to admin_children_youth_index_path, class: "nav-link #{active_navbar('children_youth')}" do %>
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage children youth</p>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to admin_knight_columb_index_path, class: "nav-link #{active_navbar('knight_columb')}" do %>
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage knight columb</p>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to admin_ladies_saint_john_index_path, class: "nav-link #{active_navbar('ladies_saint_john')}" do %>
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage ladies saint john</p>
+              <% end %>
+            </li>
+            <li class="nav-item">
+              <%= link_to admin_eucharistic_saint_video_index_path, class: "nav-link #{active_navbar('eucharistic_saint_video')}" do %>
+                <i class="far fa-circle nav-icon"></i>
+                <p>Manage eucharistic saint</p>
+              <% end %>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-header">Gallery</li>
+        <li class="nav-item <%= active_main_navbar_open(ApplicationHelper::MAIN_MENU_ADMIN.dig(:CATEGORY_GALLERY)) %>">
+          <%= link_to admin_category_gallery_index_path, class: "nav-link" do %>
+            <i class="nav-icon fas fa-image"></i>
+            <p>
+              Photo Gallery
+            </p>
+          <% end %>
         </li>
         <li class="nav-header">LABELS</li>
         <li class="nav-item">

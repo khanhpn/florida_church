@@ -1,0 +1,89 @@
+<%= render "admin/shared/bread_crumb", name: {title: "Mass", bread_crumb: "Top"} %>
+<!-- Main content -->
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Manage mass</h3>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <table id="example2" class="table table-bordered table-hover">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Content</th>
+                  <th>File attached</th>
+                  <th>Created at</th>
+                  <th>Updated at</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @masses.each do |mass| %>
+                  <tr>
+                    <td><%= mass&.name || "-" %></td>
+                    <td><%= mass&.content&.html_safe || "-"  %></td>
+                    <td>
+                        <%= link_to 'download', mass.file_attached.present? ? rails_blob_path(mass.file_attached, disposition: "download") : "-" %>
+                    </td>
+                    <td><%= mass&.created_at || "-"  %></td>
+                    <td><%= mass&.updated_at || "-"  %></td>
+                    <td>
+                      <% unless mass.blank? %>
+                        <%= link_to "Show", admin_mass_path(mass), class: "btn btn-success" %>
+                        <%= link_to "Edit", edit_admin_mass_path(mass), class: "btn btn-success" %>
+                        <%= link_to "Delete", admin_mass_path(mass), method: :delete, class: "btn btn-danger" %>
+                      <% end %>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="card-body">
+            <table id="example2" class="table table-bordered table-hover">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Content</th>
+                  <th>Created at</th>
+                  <th>Updated at</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><%= @ticked_mass&.name || "-" %></td>
+                  <td><%= @ticked_mass&.content&.html_safe || "-"  %></td>
+                  <td><%= @ticked_mass&.created_at || "-"  %></td>
+                  <td><%= @ticked_mass&.updated_at || "-"  %></td>
+                  <td>
+                    <% unless @ticked_mass.blank? %>
+                      <%= link_to "Show", admin_mass_path(@ticked_mass), class: "btn btn-success" %>
+                      <%= link_to "Edit", edit_admin_mass_path(@ticked_mass), class: "btn btn-success" %>
+                      <%= link_to "Delete", admin_mass_path(@ticked_mass), method: :delete, class: "btn btn-danger" %>
+                    <% end %>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- /.card-body -->
+        </div>
+      </div>
+      <!-- /.col -->
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container-fluid -->
+</section>
+
+<section class="section-btn-group">
+  <div class="section-btn-group-wrap">
+    <%= link_to "Create", new_admin_mass_path, class: "btn btn-info" %>
+  </div>
+</section>

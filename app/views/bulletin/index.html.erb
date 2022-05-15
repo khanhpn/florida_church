@@ -1,0 +1,45 @@
+<div id="core" class="interior aggregate bulletins duo">
+  <div id="interiorHeader">
+    <h1 id="pageTitle">Bulletin</h1>
+  </div>
+  <!--
+  <ul id="content2" class="region">
+    <li class="bulletinsSideNav">
+    <ul class="archiveDays">
+      <li class="archiveTitle"><span class="navName" id="topLink">Archive</span></li>
+      <li class="aggregateYear aggregateLabel navCollapsible"><span class="navName">2021</span>
+        <ul>
+          <li class="bulletin group">
+            <div class="bulletinName featured"> <a class="navName"
+                  href="https://d2y1pz2y630308.cloudfront.net/15071/bulletins/20210704.pdf" target="_blank"><span
+                    class='july month'>July</span> <span class='day'>4</span>, <span class='year'>2021</span></a>
+            </div>
+          </li>
+          </li>
+        </ul>
+      </li>
+      <li class="aggregateYear aggregateLabel navCollapsible navCollapsed"><span class="navName">2020</span>
+        <ul>
+          <li class="bulletin group">
+            <div class="bulletinName"> <a class="navName"
+                  href="https://d2y1pz2y630308.cloudfront.net/15071/bulletins/20200105.pdf" target="_blank"><span
+                    class='january month'>January</span> <span class='day'>5</span>, <span class='year'>2020</span></a>
+            </div>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  </ul>
+  -->
+  <ul id="content1" class="region">
+    <li class="bulletin group">
+      <div class="bulletinName">
+        <%= link_to @bulletin&.content.present? ? @bulletin&.content : "", class: "name", target: "_blank" do %>
+          <span class='july month'><%= @bulletin.updated_at.strftime("%m/%d/%Y") %></span>
+          <%= image_tag @bulletin&.image_content.blank? ? "no_available.png" : @bulletin&.image_content %>
+        <% end %>
+      </div>
+    </li>
+  </ul>
+</div>

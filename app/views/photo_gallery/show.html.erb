@@ -1,0 +1,8 @@
+<div id="interiorHeader">
+  <h1 id="pageTitle">
+    <%= @category_gallery&.name %>
+  </h1>
+</div>
+<div class="wrap-gallery">
+  <%= render "show", photo_galleries: @photo_galleries %>
+</div>

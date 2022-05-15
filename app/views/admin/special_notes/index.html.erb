@@ -1,0 +1,52 @@
+<%= render "admin/shared/bread_crumb", name: {title: "SpecialNote", bread_crumb: "Top"} %>
+<!-- Main content -->
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Manage special note</h3>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <table id="example2" class="table table-bordered table-hover">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Content</th>
+                  <th>Created at</th>
+                  <th>Updated at</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><%= @special_note&.name %></td>
+                  <td><%= @special_note&.content&.html_safe || "-"  %></td>
+                  <td><%= @special_note&.created_at || "-"  %></td>
+                  <td><%= @special_note&.updated_at || "-"  %></td>
+                  <td>
+                    <% unless @special_note.blank? %>
+                      <%= link_to "Edit", edit_admin_special_note_path(@special_note), class: "btn btn-success" %>
+                      <%= link_to "Delete", admin_special_note_path(@special_note), method: :delete, class: "btn btn-danger" %>
+                    <% end %>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- /.card-body -->
+        </div>
+      </div>
+      <!-- /.col -->
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container-fluid -->
+</section>
+<section class="section-btn-group">
+  <div class="section-btn-group-wrap">
+    <%= link_to "Create", new_admin_special_note_path, class: "btn btn-info" %>
+  </div>
+</section>

@@ -1,0 +1,41 @@
+<%= render "admin/shared/bread_crumb", name: {title: "Show category gallery", bread_crumb: "Show"} %>
+<section class="content">
+  <div class="container-fluid">
+    <table id="example2" class="table table-bordered table-hover">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Number of images</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= @category_gallery&.name || "-" %></td>
+          <td><%= @category_gallery.photo_galleries.size %></td>
+          <td>
+            <% unless @category_gallery.blank? %>
+              <%= link_to "Edit", edit_admin_category_gallery_path(@category_gallery), class: "btn btn-success" %>
+              <%= link_to "Delete", admin_category_gallery_path(@category_gallery), method: :delete, class: "btn btn-danger" %>
+              <%= link_to "Back", admin_category_gallery_index_path, class: "btn btn-primary" %>
+            <% end %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- /.row -->
+  </div>
+  <!-- /.container-fluid -->
+</section>
+<section class="section-btn-group display-flex">
+  <div class="section-btn-group-wrap">
+    <%= link_to "Add photogallery", new_admin_category_gallery_photo_gallery_path(@category_gallery), class: "btn btn-info" %>
+  </div>
+</section>
+<section class="content">
+  <div class="container-fluid">
+    <div class="gallery gallery-custom" id="id_wrap_gallery_show">
+      <%= render "show", photo_galleries: @category_gallery.photo_galleries %>
+    </div>
+  </div>
+</section>

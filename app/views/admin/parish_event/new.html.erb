@@ -1,0 +1,14 @@
+<%= render "admin/shared/bread_crumb", name: {title: "Create parish event", bread_crumb: "New"} %>
+<%= form_with model: @parish_event, url: admin_parish_event_index_path do |form| %>
+  <section class="content">
+    <div class="container-fluid">
+      <%= render "admin/shared_form/form", form: form, item: @parish_event, title_name: "Create parish event" %>
+      <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+    <div class="section-btn-group-wrap">
+      <%= link_to "Back", admin_parish_event_index_path, class: "btn btn-info" %>
+      <%= form.submit "Create", class: "btn btn-success", id: "id_submit" %>
+    </div>
+  </section>
+<% end %>

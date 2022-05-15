@@ -1,0 +1,9 @@
+<div id="id_gallery" class="gallery gallery-custom">
+  <% photo_galleries.each do |item| %>
+    <div class="gallery-item">
+      <%= link_to full_path_image(item.file_image), target: "_blank" do %>
+        <%= image_tag url_for(item.file_image), title: item.name, class: "custom-img", loading: "lazy", data: { src: url_for(item.file_image) } %>
+      <% end %>
+    </div>
+  <% end %>
+</div>

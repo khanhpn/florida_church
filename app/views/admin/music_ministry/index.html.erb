@@ -1,0 +1,55 @@
+<%= render "admin/shared/bread_crumb", name: {title: "Music ministries", bread_crumb: "Top"} %>
+<!-- Main content -->
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Manage music ministries</h3>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <table id="example2" class="table table-bordered table-hover">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Display</th>
+                  <th>Main article</th>
+                  <th>Created at</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @music_ministries.each do |music_ministry| %>
+                  <tr>
+                    <td><%= link_to music_ministry&.name, music_ministry&.name_link %></td>
+                    <td><%= music_ministry&.display ? "Yes" : "No"  %></td>
+                    <td><%= music_ministry&.is_main_article ? "Yes" : "No"  %></td>
+                    <td><%= music_ministry&.created_at || "-"  %></td>
+                    <td>
+                      <% unless music_ministry.blank? %>
+                        <%= link_to "Show", admin_music_ministry_path(music_ministry), class: "btn btn-primary" %>
+                        <%= link_to "Edit", edit_admin_music_ministry_path(music_ministry), class: "btn btn-success" %>
+                        <%= link_to "Delete", admin_music_ministry_path(music_ministry), method: :delete, class: "btn btn-danger" %>
+                      <% end %>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+          <!-- /.card-body -->
+        </div>
+      </div>
+      <!-- /.col -->
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container-fluid -->
+</section>
+<section class="section-btn-group">
+  <div class="section-btn-group-wrap">
+    <%= link_to "Create", new_admin_music_ministry_path, class: "btn btn-info" %>
+  </div>
+</section>

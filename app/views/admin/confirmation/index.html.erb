@@ -1,0 +1,55 @@
+<%= render "admin/shared/bread_crumb", name: {title: "Confirmation", bread_crumb: "Top"} %>
+<!-- Main content -->
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Manage confirmation</h3>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <table id="example2" class="table table-bordered table-hover">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Display</th>
+                  <th>Main article</th>
+                  <th>Created at</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @confirmations.each do |confirmation| %>
+                  <tr>
+                    <td><%= link_to confirmation&.name, confirmation&.name_link %></td>
+                    <td><%= confirmation&.display ? "Yes" : "No"  %></td>
+                    <td><%= confirmation&.is_main_article ? "Yes" : "No"  %></td>
+                    <td><%= confirmation&.created_at || "-"  %></td>
+                    <td>
+                      <% unless confirmation.blank? %>
+                        <%= link_to "Show", admin_confirmation_path(confirmation), class: "btn btn-primary" %>
+                        <%= link_to "Edit", edit_admin_confirmation_path(confirmation), class: "btn btn-success" %>
+                        <%= link_to "Delete", admin_confirmation_path(confirmation), method: :delete, class: "btn btn-danger" %>
+                      <% end %>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+          <!-- /.card-body -->
+        </div>
+      </div>
+      <!-- /.col -->
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container-fluid -->
+</section>
+<section class="section-btn-group">
+  <div class="section-btn-group-wrap">
+    <%= link_to "Create", new_admin_confirmation_path, class: "btn btn-info" %>
+  </div>
+</section>

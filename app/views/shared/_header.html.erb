@@ -2,7 +2,7 @@
   <nav id="mobileNav">
     <ul>
       <li id="sideNav_1" class="navPage navElement sideNavSelected sideNavCurrent">
-				<%= link_to "Home", root_path, class: "navName" %>
+        <%= link_to "Home", root_path, class: "navName" %>
         <ul></ul>
       </li>
       <li id="sideNav_2" class="navPage navElement navCollapsible navCollapsed">
@@ -234,9 +234,9 @@
               </span>
               <ul>
                 <li id="sideNav_505201" class="navPage navElement">
-                  <a class="navName" href="teaching-mass.html">
+                  <%= link_to teaching_mass_path, class: "navName" do %>
                     <span>Teaching Mass</span>
-                  </a>
+                  <% end %>
                   <ul></ul>
                 </li>
                 <li id="sideNav_162139" class="navPage navElement">
@@ -448,72 +448,12 @@
           </a>
           <ul>
             <li id="sideNav_427949" class="navGroup navElement navCollapsible navCollapsed">
-              <span class="navName">
-                <span>Children</span>
-                <span class="collapsibleIcon">
-                  <svg class="collapsedIcon" version="1.1" xmlns="http://www.w3.org/2000/svg"
-										xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 72.03 72"
-										style="enable-background:new 0 0 72.03 72;" xml:space="preserve">
-                    <path fill="currentColor" d="M63.6,32.4c0.3,0,0.58,0.12,0.83,0.38s0.38,0.52,0.38,0.82v4.8c0,0.3-0.12,0.57-0.38,0.82S63.9,39.6,63.6,39.6
-						h-24v24c0,0.3-0.12,0.58-0.38,0.83S38.7,64.8,38.4,64.8h-4.8c-0.3,0-0.57-0.12-0.82-0.38S32.4,63.9,32.4,63.6v-24h-24
-						c-0.3,0-0.57-0.12-0.82-0.38S7.2,38.7,7.2,38.4v-4.8c0-0.3,0.12-0.57,0.38-0.82S8.1,32.4,8.4,32.4h24v-24c0-0.3,0.12-0.57,0.38-0.82
-						S33.3,7.2,33.6,7.2h4.8c0.3,0,0.57,0.12,0.82,0.38S39.6,8.1,39.6,8.4v24H63.6z" />
-                  </svg>
-                  <svg class="expandedIcon" version="1.1" xmlns="http://www.w3.org/2000/svg"
-										xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 72.03 72"
-										style="enable-background:new 0 0 72.03 72;" xml:space="preserve">
-                    <g>
-                      <path fill="currentColor" d="M63.61,32.4c0.3,0,0.58,0.12,0.83,0.38s0.38,0.52,0.38,0.82v4.8c0,0.3-0.12,0.57-0.38,0.82
-							s-0.53,0.38-0.83,0.38H8.41c-0.3,0-0.58-0.12-0.83-0.38S7.21,38.7,7.21,38.4v-4.8c0-0.3,0.12-0.57,0.38-0.82s0.53-0.38,0.83-0.38
-							H63.61z" />
-                    </g>
-                  </svg>
-                </span>
-              </span>
               <ul>
                 <li id="sideNav_427162" class="navPage navElement">
                   <a class="navName" href="childrens-programs.html">
                     <span>Children's Programs</span>
                   </a>
                   <ul></ul>
-                </li>
-                <li id="sideNav_426425" class="navPage navElement navCollapsible navCollapsed">
-                  <a class="navName" href="children.html">
-                    <span>Children Formation</span>
-                    <span class="collapsibleIcon">
-                      <svg class="collapsedIcon" version="1.1" xmlns="http://www.w3.org/2000/svg"
-												xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 72.03 72"
-												style="enable-background:new 0 0 72.03 72;" xml:space="preserve">
-                        <path fill="currentColor" d="M63.6,32.4c0.3,0,0.58,0.12,0.83,0.38s0.38,0.52,0.38,0.82v4.8c0,0.3-0.12,0.57-0.38,0.82S63.9,39.6,63.6,39.6
-						h-24v24c0,0.3-0.12,0.58-0.38,0.83S38.7,64.8,38.4,64.8h-4.8c-0.3,0-0.57-0.12-0.82-0.38S32.4,63.9,32.4,63.6v-24h-24
-						c-0.3,0-0.57-0.12-0.82-0.38S7.2,38.7,7.2,38.4v-4.8c0-0.3,0.12-0.57,0.38-0.82S8.1,32.4,8.4,32.4h24v-24c0-0.3,0.12-0.57,0.38-0.82
-						S33.3,7.2,33.6,7.2h4.8c0.3,0,0.57,0.12,0.82,0.38S39.6,8.1,39.6,8.4v24H63.6z" />
-                      </svg>
-                      <svg class="expandedIcon" version="1.1" xmlns="http://www.w3.org/2000/svg"
-												xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 72.03 72"
-												style="enable-background:new 0 0 72.03 72;" xml:space="preserve">
-                        <g>
-                          <path fill="currentColor" d="M63.61,32.4c0.3,0,0.58,0.12,0.83,0.38s0.38,0.52,0.38,0.82v4.8c0,0.3-0.12,0.57-0.38,0.82
-							s-0.53,0.38-0.83,0.38H8.41c-0.3,0-0.58-0.12-0.83-0.38S7.21,38.7,7.21,38.4v-4.8c0-0.3,0.12-0.57,0.38-0.82s0.53-0.38,0.83-0.38
-							H63.61z" />
-                        </g>
-                      </svg>
-                    </span>
-                  </a>
-                  <ul>
-                    <li id="sideNav_162146" class="navPage navElement">
-                      <a class="navName" href="religiouseducation.html">
-                        <span>Children's Religious Education</span>
-                      </a>
-                      <ul></ul>
-                    </li>
-                    <li id="sideNav_228835" class="navPage navElement">
-                      <a class="navName" href="catecismo-en-espanol-1.html">
-                        <span>Catecismo en Español</span>
-                      </a>
-                      <ul></ul>
-                    </li>
-                  </ul>
                 </li>
                 <li id="sideNav_163414" class="navPage navElement">
                   <a class="navName" href="biblestorytime.html">
@@ -530,79 +470,7 @@
               </ul>
             </li>
             <li id="sideNav_427948" class="navGroup navElement navCollapsible navCollapsed">
-              <span class="navName">
-                <span>Youth</span>
-                <span class="collapsibleIcon">
-                  <svg class="collapsedIcon" version="1.1" xmlns="http://www.w3.org/2000/svg"
-										xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 72.03 72"
-										style="enable-background:new 0 0 72.03 72;" xml:space="preserve">
-                    <path fill="currentColor" d="M63.6,32.4c0.3,0,0.58,0.12,0.83,0.38s0.38,0.52,0.38,0.82v4.8c0,0.3-0.12,0.57-0.38,0.82S63.9,39.6,63.6,39.6
-						h-24v24c0,0.3-0.12,0.58-0.38,0.83S38.7,64.8,38.4,64.8h-4.8c-0.3,0-0.57-0.12-0.82-0.38S32.4,63.9,32.4,63.6v-24h-24
-						c-0.3,0-0.57-0.12-0.82-0.38S7.2,38.7,7.2,38.4v-4.8c0-0.3,0.12-0.57,0.38-0.82S8.1,32.4,8.4,32.4h24v-24c0-0.3,0.12-0.57,0.38-0.82
-						S33.3,7.2,33.6,7.2h4.8c0.3,0,0.57,0.12,0.82,0.38S39.6,8.1,39.6,8.4v24H63.6z" />
-                  </svg>
-                  <svg class="expandedIcon" version="1.1" xmlns="http://www.w3.org/2000/svg"
-										xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 72.03 72"
-										style="enable-background:new 0 0 72.03 72;" xml:space="preserve">
-                    <g>
-                      <path fill="currentColor" d="M63.61,32.4c0.3,0,0.58,0.12,0.83,0.38s0.38,0.52,0.38,0.82v4.8c0,0.3-0.12,0.57-0.38,0.82
-							s-0.53,0.38-0.83,0.38H8.41c-0.3,0-0.58-0.12-0.83-0.38S7.21,38.7,7.21,38.4v-4.8c0-0.3,0.12-0.57,0.38-0.82s0.53-0.38,0.83-0.38
-							H63.61z" />
-                    </g>
-                  </svg>
-                </span>
-              </span>
               <ul>
-                <li id="sideNav_427165" class="navPage navElement">
-                  <a class="navName" href="youth-programs.html">
-                    <span>Youth Programs</span>
-                  </a>
-                  <ul></ul>
-                </li>
-                <li id="sideNav_162979" class="navPage navElement">
-                  <a class="navName" href="highschoolconfirmation.html">
-                    <span>High School Confirmation</span>
-                  </a>
-                  <ul></ul>
-                </li>
-                <li id="sideNav_427765" class="navPage navElement navCollapsible navCollapsed">
-                  <a class="navName" href="youth-ministry.html">
-                    <span>Youth Ministry</span>
-                    <span class="collapsibleIcon">
-                      <svg class="collapsedIcon" version="1.1" xmlns="http://www.w3.org/2000/svg"
-												xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 72.03 72"
-												style="enable-background:new 0 0 72.03 72;" xml:space="preserve">
-                        <path fill="currentColor" d="M63.6,32.4c0.3,0,0.58,0.12,0.83,0.38s0.38,0.52,0.38,0.82v4.8c0,0.3-0.12,0.57-0.38,0.82S63.9,39.6,63.6,39.6
-						h-24v24c0,0.3-0.12,0.58-0.38,0.83S38.7,64.8,38.4,64.8h-4.8c-0.3,0-0.57-0.12-0.82-0.38S32.4,63.9,32.4,63.6v-24h-24
-						c-0.3,0-0.57-0.12-0.82-0.38S7.2,38.7,7.2,38.4v-4.8c0-0.3,0.12-0.57,0.38-0.82S8.1,32.4,8.4,32.4h24v-24c0-0.3,0.12-0.57,0.38-0.82
-						S33.3,7.2,33.6,7.2h4.8c0.3,0,0.57,0.12,0.82,0.38S39.6,8.1,39.6,8.4v24H63.6z" />
-                      </svg>
-                      <svg class="expandedIcon" version="1.1" xmlns="http://www.w3.org/2000/svg"
-												xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 72.03 72"
-												style="enable-background:new 0 0 72.03 72;" xml:space="preserve">
-                        <g>
-                          <path fill="currentColor" d="M63.61,32.4c0.3,0,0.58,0.12,0.83,0.38s0.38,0.52,0.38,0.82v4.8c0,0.3-0.12,0.57-0.38,0.82
-							s-0.53,0.38-0.83,0.38H8.41c-0.3,0-0.58-0.12-0.83-0.38S7.21,38.7,7.21,38.4v-4.8c0-0.3,0.12-0.57,0.38-0.82s0.53-0.38,0.83-0.38
-							H63.61z" />
-                        </g>
-                      </svg>
-                    </span>
-                  </a>
-                  <ul>
-                    <li id="sideNav_162984" class="navPage navElement">
-                      <a class="navName" href="middleschoolgroup.html">
-                        <span>Middle School Group</span>
-                      </a>
-                      <ul></ul>
-                    </li>
-                    <li id="sideNav_162983" class="navPage navElement">
-                      <a class="navName" href="highschoolyouth.html">
-                        <span>High School Youth</span>
-                      </a>
-                      <ul></ul>
-                    </li>
-                  </ul>
-                </li>
                 <li id="sideNav_427946" class="navLink ">
                   <a class="navName" href="childrens-amp-youth-organizations.html" target="_self">
                     <span>Children & Youth Organizations</span>
@@ -908,7 +776,7 @@
           </li>
           <li id="sideNav_161055" class="navPage navElement navCollapsible navCollapsed">
             <a class="navName" href="facilities-reservation-request.html">
-              <span>Facilities</span>
+              <span>Prayer Garden</span>
               <span class="collapsibleIcon">
                 <svg class="collapsedIcon" version="1.1" xmlns="http://www.w3.org/2000/svg"
 								xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 72.03 72"
@@ -957,30 +825,6 @@
                   <li id="sideNav_583524" class="navPage navElement">
                     <a class="navName" href="facilities-reservation-request.html">
                       <span>Facilities Reservation Request</span>
-                    </a>
-                    <ul></ul>
-                  </li>
-                  <li id="sideNav_161127" class="navPage navElement">
-                    <a class="navName" href="parish-hall.html">
-                      <span>Parish Hall</span>
-                    </a>
-                    <ul></ul>
-                  </li>
-                  <li id="sideNav_161128" class="navPage navElement">
-                    <a class="navName" href="mcdonaldfamilycenter.html">
-                      <span>McDonald Family Center</span>
-                    </a>
-                    <ul></ul>
-                  </li>
-                  <li id="sideNav_427242" class="navPage navElement">
-                    <a class="navName" href="athletic-center.html">
-                      <span>St Matthew Athletic Center</span>
-                    </a>
-                    <ul></ul>
-                  </li>
-                  <li id="sideNav_161930" class="navPage navElement">
-                    <a class="navName" href="sportspark.html">
-                      <span>St. Matthew Sports Park</span>
                     </a>
                     <ul></ul>
                   </li>

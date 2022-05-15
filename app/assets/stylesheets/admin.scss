@@ -1,3 +1,21 @@
 @import "admin/adminlte.min";
 @import "admin/all";
 @import "admin/OverlayScrollbars.min";
+@import "admin/custom";
+@import "admin/summernote-bs4.min";
+@import "admin/codemirror";
+@import "admin/monokai";
+@import 'suneditor/dist/css/suneditor.min.css';
+@import "admin/ekko-lightbox";
+@import "admin/gallery";
+@import "admin/lightbox";
+
+
+.extra-images {
+  width: 300px;
+  height: 100px;
+  object-fit: contain;
+}
+.wrap-gallery-image {
+  flex-wrap: wrap;
+}

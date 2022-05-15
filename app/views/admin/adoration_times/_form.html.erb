@@ -1,0 +1,57 @@
+<div class="row">
+  <!-- right column -->
+  <div class="col-md-12">
+    <!-- Form Element sizes -->
+    <!-- /.card -->
+    <!-- general form elements disabled -->
+    <div class="card card-success">
+      <div class="card-header">
+        <h3 class="card-title">Create adoration_time</h3>
+      </div>
+      <!-- /.card-header -->
+      <div class="card-body">
+        <div class="row">
+          <div class="col-sm-12">
+            <!-- text input -->
+            <div class="form-group">
+              <label>Link</label>
+              <%= form.text_field :name, class: "form-control", placeholder: "Enter name" %>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12">
+            <!-- textarea -->
+            <div class="form-group">
+              <label>Content</label>
+              <%= form.text_area :content, class: "form-control", placeholder: "Enter name", id: "sample", size: "20x20" %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+  </div>
+  <!--/.col (right) -->
+</div>
+<script>
+  var editor = SUNEDITOR.create((document.getElementById('sample') || 'sample'),{
+    "katex": "window.katex",
+    "videoFileInput": false,
+    "tabDisable": false,
+    buttonList: [
+      [
+        'undo', 'redo', 'blockquote', 'bold', 'underline', 'italic', 'strike',
+        'subscript', 'superscript', 'preview', 'print', 'outdent', 'indent',
+        'align', 'font', 'fontColor', 'fontSize', 'formatBlock',
+        'hiliteColor', 'horizontalRule', 'lineHeight', 'list', 'paragraphStyle',
+        'table', 'textStyle', 'audio', 'video', 'image', 'list', 'link'
+      ]
+    ],
+  });
+  
+  $("#id_submit_adoration_time").click(function() {
+    $("#sample").val(editor.getContents());
+  });
+</script>

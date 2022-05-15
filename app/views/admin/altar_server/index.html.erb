@@ -1,0 +1,55 @@
+<%= render "admin/shared/bread_crumb", name: {title: "Altar Server", bread_crumb: "Top"} %>
+<!-- Main content -->
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Manage altar server</h3>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <table id="example2" class="table table-bordered table-hover">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Display</th>
+                  <th>Main article</th>
+                  <th>Created at</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @altar_servers.each do |altar_server| %>
+                  <tr>
+                    <td><%= link_to altar_server&.name, altar_server&.name_link %></td>
+                    <td><%= altar_server&.display ? "Yes" : "No"  %></td>
+                    <td><%= altar_server&.is_main_article ? "Yes" : "No"  %></td>
+                    <td><%= altar_server&.created_at || "-"  %></td>
+                    <td>
+                      <% unless altar_server.blank? %>
+                        <%= link_to "Show", admin_altar_server_path(altar_server), class: "btn btn-primary" %>
+                        <%= link_to "Edit", edit_admin_altar_server_path(altar_server), class: "btn btn-success" %>
+                        <%= link_to "Delete", admin_altar_server_path(altar_server), method: :delete, class: "btn btn-danger" %>
+                      <% end %>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+          <!-- /.card-body -->
+        </div>
+      </div>
+      <!-- /.col -->
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container-fluid -->
+</section>
+<section class="section-btn-group">
+  <div class="section-btn-group-wrap">
+    <%= link_to "Create", new_admin_altar_server_path, class: "btn btn-info" %>
+  </div>
+</section>

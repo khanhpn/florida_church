@@ -1,0 +1,58 @@
+<%= render "admin/shared/bread_crumb", name: {title: "Bulletin", bread_crumb: "Top"} %>
+<!-- Main content -->
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Manage bulletin</h3>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <table id="example2" class="table table-bordered table-hover">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Thumbnail file</th>
+                  <th>PDF file</th>
+                  <th>Display</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @bulletins.each do |bulletin| %>
+                  <tr>
+                    <td><%= bulletin&.name || "-" %></td>
+                    <td><%= image_tag bulletin&.image_content.present? ? bulletin&.image_content : "no_available.png", class: "logo-wrap"  %></td>
+                    <td>
+                      <% if bulletin.content.present? %>
+                        <%= link_to "File download", bulletin&.content || "#", download: true  %>
+                      <% end %>
+                    </td>
+                    <td><%= bulletin&.display || "-"  %></td>
+                    <td>
+                      <% unless bulletin.blank? %>
+                        <%= link_to "Edit", edit_admin_bulletin_path(bulletin), class: "btn btn-success" %>
+                        <%= link_to "Delete", admin_bulletin_path(bulletin), method: :delete, class: "btn btn-danger" %>
+                      <% end %>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <!-- /.col -->
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container-fluid -->
+</section>
+<section class="section-btn-group">
+  <div class="section-btn-group-wrap">
+    <% if @bulletin.blank? %>
+      <%= link_to "Create", new_admin_bulletin_path, class: "btn btn-info" %>
+    <% end %>
+  </div>
+</section>

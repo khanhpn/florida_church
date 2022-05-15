@@ -1,0 +1,15 @@
+<div id="interiorHeader">
+  <h1 id="pageTitle">
+    Photo Gallery
+  </h1>
+</div>
+<div class="wrap-gallery">
+  <% @category_galleries.each do |item| %>
+    <div class="container-gallery">
+      <%= link_to photo_gallery_show_path(item.id) do %>
+        <%= image_tag url_for(item.photo_galleries&.first&.file_image), class: "image-gallery", loading: "lazy", data: { src: url_for(item.photo_galleries&.first&.file_image) } %>
+        <div class="overlay-gallery"><%= item.name %></div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

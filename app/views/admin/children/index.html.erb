@@ -1,0 +1,55 @@
+<%= render "admin/shared/bread_crumb", name: {title: "children", bread_crumb: "Top"} %>
+<!-- Main content -->
+<section class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Manage children</h3>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <table id="example2" class="table table-bordered table-hover">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Display</th>
+                  <th>Main article</th>
+                  <th>Created at</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @childrens.each do |children| %>
+                  <tr>
+                    <td><%= link_to children&.name, children&.name_link %></td>
+                    <td><%= children&.display ? "Yes" : "No"  %></td>
+                    <td><%= children&.is_main_article ? "Yes" : "No"  %></td>
+                    <td><%= children&.created_at || "-"  %></td>
+                    <td>
+                      <% unless children.blank? %>
+                        <%= link_to "Show", admin_child_path(children), class: "btn btn-primary" %>
+                        <%= link_to "Edit", edit_admin_child_path(children), class: "btn btn-success" %>
+                        <%= link_to "Delete", admin_child_path(children), method: :delete, class: "btn btn-danger" %>
+                      <% end %>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+          </div>
+          <!-- /.card-body -->
+        </div>
+      </div>
+      <!-- /.col -->
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container-fluid -->
+</section>
+<section class="section-btn-group">
+  <div class="section-btn-group-wrap">
+    <%= link_to "Create", new_admin_child_path, class: "btn btn-info" %>
+  </div>
+</section>
