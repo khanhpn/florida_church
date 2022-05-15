@@ -94,8 +94,12 @@
       ]
     ],
   });
-
+  
   $("#id_submit").click(function() {
+    var parent = document.getElementById("suneditor_sample");
+    parent.querySelectorAll("figure").forEach(function (item) {
+      item.style.paddingBottom = "1%";
+    });
     $("#sample").val(editor.getContents());
   });
 </script>
