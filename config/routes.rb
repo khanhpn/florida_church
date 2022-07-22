@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get "/", to: 'dashboard#index'
+    post 'uploader/image', to: 'uploader#image'
     resources :introduction, except: :show
     resources :mass
     resources :users
