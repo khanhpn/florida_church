@@ -10,3 +10,6 @@ plugins:
   - insertdatetime media table paste code help wordcount
   - media
 images_upload_url: "/admin/uploader/image"
+relative_urls : false
+remove_script_host : true
+document_base_url : "http://localhost:3000/"
