@@ -3,12 +3,12 @@ menubar: true
 autosave_ask_before_unload: false
 powerpaste_allow_local_images: true
 toolbar:
-  - undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help | link image
+  - undo redo forecolor | formatselect | styleselect | sizeselect fontselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help | link image emoticons
 plugins:
   - advlist autolink lists link image editimage charmap print preview anchor
   - searchreplace visualblocks code fullscreen
   - insertdatetime media table paste code help wordcount
-  - media
+  - media textcolor emoticons
 images_upload_url: "/admin/uploader/image"
 relative_urls : false
 remove_script_host : true
