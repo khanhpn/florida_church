@@ -1,5 +1,7 @@
 <div id="core" pageID="1" class="custom section" class="home">
-  <%= render "description", {introduction: @introduction}  %>
+  <% cache @introduction do %>
+    <%= render "description", {introduction: @introduction}  %>
+  <% end %>
   <ul id="section1" class="region sectionRegion">
     <%= render "section1" %>
     <%= render "section2" %>
