@@ -4,61 +4,67 @@
     <header></header>
     <div class="sectionBody">
       <ul class="modulePosition modulePositionColumn content1 largeColumn" sectionPosition="1">
-        <li id="module_2499461">
-          <div class="moduleInner massTimesModule sacramentTimesModule">
-            <header>
-              <h2 class="moduleName">
-                <div class="moduleTitle customStyleSection2">
-                  <span>Mass Times</span>
-                </div>
-              </h2>
-            </header>
-            <div id="sacramentTimes_15071" class="moduleBody">
-              <%= @mass_time&.content&.html_safe %>
-            </div>
-            <footer></footer>
-          </div>
-        </li>
-        <li id="module_2859000">
-          <div class="moduleInner customModule">
-            <header>
-              <h2 class="moduleName">
-                <div class="moduleTitle customStyleSection2">
-                  <span>Mission Statement  <br />
-                  </span>
-                </div>
-              </h2>
-            </header>
-            <div class="moduleBody">
-              <div style="text-align: center;">
-                <%= @special_note&.content&.html_safe %>
+        <% cache @mass_time do %>
+          <li id="module_2499461">
+            <div class="moduleInner massTimesModule sacramentTimesModule">
+              <header>
+                <h2 class="moduleName">
+                  <div class="moduleTitle customStyleSection2">
+                    <span>Mass Times</span>
+                  </div>
+                </h2>
+              </header>
+              <div id="sacramentTimes_15071" class="moduleBody">
+                <%= @mass_time&.content&.html_safe %>
               </div>
-              <div style="text-align: center;">
-                <hr />
-              </div>
-              <ul></ul>
+              <footer></footer>
             </div>
-            <footer></footer>
-          </div>
-        </li>
-      </ul>
-      <ul class="modulePosition modulePositionColumn content2 smallColumn" sectionPosition="101">
-        <li id="module_2499463">
-          <div class="moduleInner adorationTimesModule sacramentTimesModule custom-adoration">
-            <header>
-              <h2 class="moduleName">
-                <div class="moduleTitle customStyleSection2 customStyleSection2TextCenter">
-                  <span>Adoration Times</span>
+          </li>
+        <% end %>
+        <% cache @special_note do %>
+          <li id="module_2859000">
+            <div class="moduleInner customModule">
+              <header>
+                <h2 class="moduleName">
+                  <div class="moduleTitle customStyleSection2">
+                    <span>Mission Statement  <br />
+                    </span>
+                  </div>
+                </h2>
+              </header>
+              <div class="moduleBody">
+                <div style="text-align: center;">
+                  <%= @special_note&.content&.html_safe %>
                 </div>
-              </h2>
-            </header>
-            <div id="sacramentTimes_15071" class="moduleBody">
-              <%= @adoration_time&.content&.html_safe %>
+                <div style="text-align: center;">
+                  <hr />
+                </div>
+                <ul></ul>
+              </div>
+              <footer></footer>
             </div>
-            <footer></footer>
-          </div>
-        </li>
+          </li>
+        <% end %>
       </ul>
+      <% cache @adoration_time do %>
+        <ul class="modulePosition modulePositionColumn content2 smallColumn" sectionPosition="101">
+          <li id="module_2499463">
+            <div class="moduleInner adorationTimesModule sacramentTimesModule custom-adoration">
+              <header>
+                <h2 class="moduleName">
+                  <div class="moduleTitle customStyleSection2 customStyleSection2TextCenter">
+                    <span>Adoration Times</span>
+                  </div>
+                </h2>
+              </header>
+              <div id="sacramentTimes_15071" class="moduleBody">
+                <%= @adoration_time&.content&.html_safe %>
+              </div>
+              <footer></footer>
+            </div>
+          </li>
+        </ul>
+      <% end %>
     </div>
     <footer></footer>
   </div>

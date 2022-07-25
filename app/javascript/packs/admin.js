@@ -22,7 +22,6 @@ require("packs/admin/codemirror.js");
 require("packs/admin/css.js");
 require("packs/admin/xml.js");
 require("packs/admin/htmlmixed.js");
-require("packs/admin/suneditor.js");
 require("packs/admin/jquery.filterizr.min.js");
 require("packs/admin/lightbox.js");
 require("packs/admin/custom.js");

@@ -24,7 +24,7 @@
             <!-- textarea -->
             <div class="form-group">
               <label>Content</label>
-              <%= form.text_area :content, class: "form-control", placeholder: "Enter name", id: "sample", size: "20x20" %>
+              <%= form.text_area :content, class: "form-control tinymce", placeholder: "Enter name", id: "sample", size: "20x20" %>
             </div>
           </div>
         </div>
@@ -53,23 +53,4 @@
   </div>
   <!--/.col (right) -->
 </div>
-<script>
-  var editor = SUNEDITOR.create((document.getElementById('sample') || 'sample'),{
-    "katex": "window.katex",
-    "videoFileInput": false,
-    "tabDisable": false,
-    buttonList: [
-      [
-        'undo', 'redo', 'blockquote', 'bold', 'underline', 'italic', 'strike',
-        'subscript', 'superscript', 'preview', 'print', 'outdent', 'indent',
-        'align', 'font', 'fontColor', 'fontSize', 'formatBlock',
-        'hiliteColor', 'horizontalRule', 'lineHeight', 'list', 'paragraphStyle',
-        'table', 'textStyle', 'audio', 'video', 'image', 'list', 'link'
-      ]
-    ],
-  });
-  
-  $("#id_submit_mass").click(function() {
-    $("#sample").val(editor.getContents());
-  });
-</script>
+<%= tinymce %>
