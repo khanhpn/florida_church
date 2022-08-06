@@ -1,0 +1,6 @@
+development:
+  cloud_name: "saint-john"
+  api_key: "591523135254481"
+  api_secret: "IyQ7-60pAzl4ICaQ17ayqbHdLTU"
+  secure: true
+  cdn_subdomain: true

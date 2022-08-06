@@ -11,5 +11,8 @@ plugins:
   - media textcolor emoticons
 images_upload_url: "/admin/uploader/image"
 relative_urls : false
-remove_script_host : true
-document_base_url : "http://localhost:3000/"
+# remove_script_host : true
+# document_base_url : "http://localhost:3000/"
+relative_urls: false
+remove_script_host: true
+document_base_url: "https://res.cloudinary.com/khanhpn/image/upload/"
