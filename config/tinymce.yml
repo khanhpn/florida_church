@@ -15,4 +15,4 @@ relative_urls : false
 # document_base_url : "http://localhost:3000/"
 relative_urls: false
 remove_script_host: true
-document_base_url: "https://res.cloudinary.com/khanhpn/image/upload/"
+document_base_url: "https://res.cloudinary.com/saint-john/image/upload/"

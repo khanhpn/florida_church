@@ -1,4 +1,10 @@
 development:
+  cloud_name: "ded5rw2vl"
+  api_key: "851192444683171"
+  api_secret: "sem5EyxNex1Qxqeetu20ciHGJLU"
+  secure: true
+  cdn_subdomain: true
+production:
   cloud_name: "saint-john"
   api_key: "591523135254481"
   api_secret: "IyQ7-60pAzl4ICaQ17ayqbHdLTU"
