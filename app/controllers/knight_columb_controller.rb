@@ -1,6 +1,6 @@
 class KnightColumbController < ApplicationController
   def index
     @knight_columb = KnightColumb.display_article.last
-    @relateds = KnightColumb.where.not(id: @knight_columb)
+    @relateds = KnightColumb.where(display: true, is_main_article: false)
   end
 end

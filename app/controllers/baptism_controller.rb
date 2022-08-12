@@ -1,6 +1,6 @@
 class BaptismController < ApplicationController
   def index
     @baptism = Baptism.display_article.last
-    @relateds = Baptism.where.not(id: @baptism)
+    @relateds = Baptism.where(display: true, is_main_article: false)
   end
 end

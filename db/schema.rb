@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_24_004921) do
+ActiveRecord::Schema.define(version: 2022_08_12_065828) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -679,7 +679,7 @@ ActiveRecord::Schema.define(version: 2022_04_24_004921) do
     t.text "content"
     t.text "file_image"
     t.text "file_pdf"
-    t.string "link"
+    t.string "name_link"
     t.boolean "display", default: false
     t.boolean "is_main_article", default: false
     t.bigint "user_id"
