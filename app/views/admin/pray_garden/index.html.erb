@@ -23,7 +23,7 @@
               <tbody>
                 <% @pray_gardens.each do |pray_garden| %>
                   <tr>
-                    <td><%= link_to pray_garden&.name, pray_garden&.link %></td>
+                    <td><%= link_to pray_garden&.name, pray_garden&.name_link %></td>
                     <td><%= pray_garden&.display ? "Yes" : "No"  %></td>
                     <td><%= pray_garden&.is_main_article ? "Yes" : "No"  %></td>
                     <td><%= pray_garden&.created_at || "-"  %></td>
