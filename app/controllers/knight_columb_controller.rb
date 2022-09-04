@@ -1,6 +1,6 @@
 class KnightColumbController < ApplicationController
   def index
-    @knight_columb = Rails.cache.fetch("knight_columb/main_article", expires_in: 1.hours) do
+    @knight_columb = Rails.cache.fetch("knight_columb/last", expires_in: 1.hours) do
       KnightColumb.display_article.last
     end
 
