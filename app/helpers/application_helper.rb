@@ -45,6 +45,7 @@ module ApplicationHelper
   end
 
   def full_path_image(image)
+    return ""
     Rails.application.routes.url_helpers.rails_blob_path(image, only_path: true)
   end
 
