@@ -6,7 +6,7 @@
       <% end %>
     </div>
     <%= link_to full_path_image(item.file_image) do %>
-      <%= image_tag url_for(item.file_image), title: item.name, class: "custom-img" %>
+      <%= cl_image_tag url_for(item.file_image), title: item.name, class: "custom-img" %>
     <% end %>
   </div>
 <% end %>

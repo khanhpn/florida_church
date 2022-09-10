@@ -8,10 +8,10 @@
           <% if @is_main_article %>
             <th>Content</th>
           <% end %>
-          <% if !@is_main_article && @confirmation.file_image.present? %>
+          <% if !@is_main_article && @pray_garden.file_image.present? %>
             <th>Link image</th>
           <% end %>
-          <% if !@is_main_article && @confirmation.file_pdf.present? %>
+          <% if !@is_main_article && @pray_garden.file_pdf.present? %>
             <th>Link pdf</th>
           <% end %>
           <th>Action</th>
@@ -19,21 +19,21 @@
       </thead>
       <tbody>
         <tr>
-          <td><%= @confirmation&.name || "-" %></td>
+          <td><%= @pray_garden&.name || "-" %></td>
           <% if @is_main_article %>
-            <td><%= @confirmation&.content&.html_safe || "-"  %></td>
+            <td><%= @pray_garden&.content&.html_safe || "-"  %></td>
           <% end %>
-          <% if !@is_main_article && @confirmation.file_image.present? %>
-            <td><%= link_to 'download', rails_blob_path(@confirmation.file_image, disposition: "download"), target: "_blank" %></td>
+          <% if !@is_main_article && @pray_garden.file_image.present? %>
+            <td><%= link_to 'download', rails_blob_path(@pray_garden.file_image, disposition: "download"), target: "_blank" %></td>
           <% end %>
-          <% if !@is_main_article && @confirmation.file_pdf.present? %>
-            <td><%= link_to 'download', rails_blob_path(@confirmation.file_pdf, disposition: "download"), target: "_blank"  %></td>
+          <% if !@is_main_article && @pray_garden.file_pdf.present? %>
+            <td><%= link_to 'download', rails_blob_path(@pray_garden.file_pdf, disposition: "download"), target: "_blank"  %></td>
           <% end %>
           <td>
-            <% unless @confirmation.blank? %>
-              <%= link_to "Edit", edit_admin_confirmation_path(@confirmation), class: "btn btn-success" %>
-              <%= link_to "Delete", admin_confirmation_path(@confirmation), method: :delete, class: "btn btn-danger" %>
-              <%= link_to "Back", admin_confirmation_index_path, class: "btn btn-primary" %>
+            <% unless @pray_garden.blank? %>
+              <%= link_to "Edit", edit_admin_pray_garden_path(@pray_garden), class: "btn btn-success" %>
+              <%= link_to "Delete", admin_pray_garden_path(@pray_garden), method: :delete, class: "btn btn-danger" %>
+              <%= link_to "Back", admin_pray_garden_index_path, class: "btn btn-primary" %>
             <% end %>
           </td>
         </tr>

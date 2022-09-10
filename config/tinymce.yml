@@ -1,0 +1,13 @@
+height: 500
+menubar: true
+autosave_ask_before_unload: false
+powerpaste_allow_local_images: true
+toolbar: undo redo | bold italic underline strikethrough | fontfamily fontsize blocks | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist checklist | forecolor backcolor casechange permanentpen formatpainter removeformat | pagebreak | charmap emoticons | fullscreen  preview save print | insertfile image media pageembed template link anchor codesample | a11ycheck ltr rtl | showcomments addcomment
+plugins: preview powerpaste casechange importcss tinydrive searchreplace autolink autosave save directionality advcode visualblocks visualchars fullscreen image link media mediaembed template codesample table charmap pagebreak nonbreaking anchor tableofcontents insertdatetime advlist lists checklist wordcount tinymcespellchecker a11ychecker editimage help formatpainter permanentpen pageembed charmap tinycomments mentions quickbars linkchecker emoticons advtable export
+images_upload_url: "/admin/uploader/image"
+relative_urls : false
+# remove_script_host : true
+# document_base_url : "http://localhost:3000/"
+relative_urls: false
+remove_script_host: true
+document_base_url: "https://res.cloudinary.com/saint-john/image/upload/"

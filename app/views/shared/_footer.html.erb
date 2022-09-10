@@ -3,47 +3,51 @@
     <div id="footerText" class="moduleContainer footerText1 footerText">
       <div class="moduleInner ">
         <div id="footerTextBody" class="footerTextBody1 footerTextBody">
-          <%= image_tag(@introduction&.logo_icon || "no_available.png", class: "footerLogo", style: "width:144px;height:174px;border-radius: 10px;", alt: "footer logo") %>
-          <div class="container">
-            <div class="column">
-              <p><%= @introduction&.address %></p>
-              <div class="socialMedia">
-                <p>
-                  <a href="<%= @introduction&.facebook_channel %>"
+          <% cache @introduction do %>
+            <%= image_tag(@introduction&.logo_icon || "no_available.png", class: "footerLogo", style: "width:144px;height:174px;border-radius: 10px;", alt: "footer logo") %>
+            <div class="container">
+              <div class="column">
+                <p><%= @introduction&.address %></p>
+                <div class="socialMedia">
+                  <p>
+                    <a href="<%= @introduction&.facebook_channel %>"
 												style="width: 11px; height: 8px; display: inline-block;" target="_blank">
-                    <svg id="svg-icon-Facebook" viewbox="0 0 16.5 32" xmlns="http://www.w3.org/2000/svg">
-                      <path class="iconContent"
+                      <svg id="svg-icon-Facebook" viewbox="0 0 16.5 32" xmlns="http://www.w3.org/2000/svg">
+                        <path class="iconContent"
 														d="M 17.7 27 V 17 h 3.4 l 0.5 -3.9 h -3.9 v -2.5 c 0 -1.1 0.3 -1.9 1.9 -1.9 l 2.1 0 V 5.2 c -0.4 0 -1.6 -0.2 -3 -0.2 c -3 0 -5 1.8 -5 5.2 v 2.9 h -3.4 V 17 h 3.4 v 10 H 17.7 Z"
 														fill="currentColor" transform="matrix(1.45 0 0 1.45 -14.935 -7.2)"></path>
-                    </svg>
-                  </a>
-                  <span class="flickrIcon">
-                    <%= link_to image_tag("pictures/2021/3/z-youtube.png", style: "height: 23px"), @introduction&.youtube_channel_url, alt: "YouTube icon" %>
-                  </span>
+                      </svg>
+                    </a>
+                    <span class="flickrIcon">
+                      <%= link_to image_tag("pictures/2021/3/z-youtube.png", style: "height: 23px"), @introduction&.youtube_channel_url, alt: "YouTube icon" %>
+                    </span>
+                  </p>
+                </div>
+              </div>
+              <div class="column">
+                <p>
+                  <a class="footerWhiteLink" href="tel:<%= @introduction&.phone %>"><%= @introduction&.phone %></a>
+                  <br />
+                  <a href="mailto:<%= @introduction&.email %>"><%= @introduction&.email %></a>
                 </p>
               </div>
+              <div class="column">
+                <p>OFFICE HOURS <br />
+                  <%= @introduction&.office_hour %>
+                </p>
+              </div>
+              <div class="column">
+                <p></p>
+              </div>
             </div>
-            <div class="column">
-              <p>
-                <a class="footerWhiteLink" href="tel:<%= @introduction&.phone %>"><%= @introduction&.phone %></a>
-                <br />
-                <a href="mailto:<%= @introduction&.email %>"><%= @introduction&.email %></a>
-              </p>
+          <% end %>
+          <% cache @linked_logos do %>
+            <div class="footerLinksRow">
+              <% @linked_logos.each do |item| %>
+                <%= link_to image_tag(item&.logo_linked || "no_available.png", class: "logo-linked"), item&.logo_url, target: "_blank" %>
+              <% end %>
             </div>
-            <div class="column">
-              <p>OFFICE HOURS <br />
-                <%= @introduction&.office_hour %>
-              </p>
-            </div>
-            <div class="column">
-              <p></p>
-            </div>
-          </div>
-          <div class="footerLinksRow">
-            <% @linked_logos.each do |item| %>
-              <%= link_to image_tag(item&.logo_linked || "no_available.png", class: "logo-linked"), item&.logo_url, target: "_blank" %>
-            <% end %>
-          </div>
+          <% end %>
           <div class="copyright"> <%= @introduction&.copywrite %>   <span>-</span>
             <br />
             All rights reserved.
@@ -56,30 +60,3 @@
     </div>
   </footer>
 </div>
-<!-- Messenger Plugin chat Code -->
-<div id="fb-root"></div>
-<!-- Your Plugin chat code -->
-<div id="fb-customer-chat" class="fb-customerchat">
-</div>
-<script>
-  var chatbox = document.getElementById('fb-customer-chat');
-  chatbox.setAttribute("page_id", "1184374011577988");
-  chatbox.setAttribute("attribution", "biz_inbox");
-</script>
-<!-- Your SDK code -->
-<script>
-  window.fbAsyncInit = function() {
-    FB.init({
-      xfbml            : true,
-      version          : 'v13.0'
-    });
-  };
-  
-  (function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = 'https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js';
-    fjs.parentNode.insertBefore(js, fjs);
-  }(document, 'script', 'facebook-jssdk'));
-</script>
