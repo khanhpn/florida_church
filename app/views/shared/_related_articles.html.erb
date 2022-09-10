@@ -3,7 +3,7 @@
   <div>
     <% relateds.each do |item| %>
       <div>
-        <% if item.name.present? %>
+        <% if item.name_link.present? %>
           <%= link_to item.name, item.name_link, target: "_blank" %>
         <% end %>
       </div>

@@ -6,7 +6,7 @@ class Admin::PhotoGalleryController < Admin::AdminController
   end
 
   def create
-    gallery_image = current_user.category_galleries.find_by(id: params[:category_gallery_id]).photo_galleries.new(set_params)
+    gallery_image = CategoryGallery.find_by(id: params[:category_gallery_id]).photo_galleries.new(set_params)
     if gallery_image.save
       flash[:notice] = 'You created gallery image successfully'
       redirect_to admin_category_gallery_path(params[:category_gallery_id])
