@@ -32,7 +32,7 @@
           <td>
             <% unless @funeral.blank? %>
               <%= link_to "Edit", edit_admin_funeral_path(@funeral), class: "btn btn-success" %>
-              <%= link_to "Delete", admin_funeral_path(@funeral), method: :delete, class: "btn btn-danger" %>
+              <%= link_to "Delete", admin_funeral_path(@funeral), method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure?" } %>
               <%= link_to "Back", admin_funeral_index_path, class: "btn btn-primary" %>
             <% end %>
           </td>

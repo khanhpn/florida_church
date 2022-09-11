@@ -33,7 +33,7 @@
                     <td>
                       <% unless bulletin.blank? %>
                         <%= link_to "Edit", edit_admin_bulletin_path(bulletin), class: "btn btn-success" %>
-                        <%= link_to "Delete", admin_bulletin_path(bulletin), method: :delete, class: "btn btn-danger" %>
+                        <%= link_to "Delete", admin_bulletin_path(bulletin), method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure?" } %>
                       <% end %>
                     </td>
                   </tr>

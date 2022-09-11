@@ -21,6 +21,6 @@
   <div class="section-btn-group-wrap">
     <%= link_to "Back", admin_gallery_images_path, class: "btn btn-warning" %>
     <%= link_to "Edit", edit_admin_gallery_image_path(@gallery_image), class: "btn btn-success" %>
-    <%= link_to "Delete", admin_gallery_image_path(@gallery_image), method: :delete, class: "btn btn-danger" %>
+    <%= link_to "Delete", admin_gallery_image_path(@gallery_image), method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure?" } %>
   </div>
 </section>

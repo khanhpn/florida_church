@@ -31,7 +31,7 @@
                       <% unless usher_hospital.blank? %>
                         <%= link_to "Show", admin_ushers_hospital_path(usher_hospital), class: "btn btn-primary" %>
                         <%= link_to "Edit", edit_admin_ushers_hospital_path(usher_hospital), class: "btn btn-success" %>
-                        <%= link_to "Delete", admin_ushers_hospital_path(usher_hospital), method: :delete, class: "btn btn-danger" %>
+                        <%= link_to "Delete", admin_ushers_hospital_path(usher_hospital), method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure?" } %>
                       <% end %>
                     </td>
                   </tr>

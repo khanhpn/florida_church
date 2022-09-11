@@ -75,7 +75,7 @@
     <% end %>
     <% unless @introduction.blank? %>
       <%= link_to "Edit", edit_admin_introduction_path(@introduction), class: "btn btn-success" %>
-      <%= link_to "Delete", admin_introduction_path(@introduction), method: :delete, class: "btn btn-danger" %>
+      <%= link_to "Delete", admin_introduction_path(@introduction), method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure?" } %>
     <% end %>
   </div>
 </section>

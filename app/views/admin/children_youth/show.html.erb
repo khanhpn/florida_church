@@ -32,7 +32,7 @@
           <td>
             <% unless @children_youth.blank? %>
               <%= link_to "Edit", edit_admin_children_youth_path(@children_youth), class: "btn btn-success" %>
-              <%= link_to "Delete", admin_children_youth_path(@children_youth), method: :delete, class: "btn btn-danger" %>
+              <%= link_to "Delete", admin_children_youth_path(@children_youth), method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure?" } %>
               <%= link_to "Back", admin_children_youth_index_path, class: "btn btn-primary" %>
             <% end %>
           </td>

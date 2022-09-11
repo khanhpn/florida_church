@@ -27,7 +27,7 @@
                     <td><%= mass&.name || "-" %></td>
                     <td><%= mass&.content&.html_safe || "-"  %></td>
                     <td>
-                        <%= link_to 'download', mass.file_attached.present? ? rails_blob_path(mass.file_attached, disposition: "download") : "-" %>
+                      <%= link_to 'download', mass.file_attached.present? ? rails_blob_path(mass.file_attached, disposition: "download") : "-" %>
                     </td>
                     <td><%= mass&.created_at || "-"  %></td>
                     <td><%= mass&.updated_at || "-"  %></td>
@@ -35,7 +35,7 @@
                       <% unless mass.blank? %>
                         <%= link_to "Show", admin_mass_path(mass), class: "btn btn-success" %>
                         <%= link_to "Edit", edit_admin_mass_path(mass), class: "btn btn-success" %>
-                        <%= link_to "Delete", admin_mass_path(mass), method: :delete, class: "btn btn-danger" %>
+                        <%= link_to "Delete", admin_mass_path(mass), method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure?" } %>
                       <% end %>
                     </td>
                   </tr>
@@ -43,7 +43,6 @@
               </tbody>
             </table>
           </div>
-
           <div class="card-body">
             <table id="example2" class="table table-bordered table-hover">
               <thead>
@@ -65,7 +64,7 @@
                     <% unless @ticked_mass.blank? %>
                       <%= link_to "Show", admin_mass_path(@ticked_mass), class: "btn btn-success" %>
                       <%= link_to "Edit", edit_admin_mass_path(@ticked_mass), class: "btn btn-success" %>
-                      <%= link_to "Delete", admin_mass_path(@ticked_mass), method: :delete, class: "btn btn-danger" %>
+                      <%= link_to "Delete", admin_mass_path(@ticked_mass), method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure?" } %>
                     <% end %>
                   </td>
                 </tr>
@@ -81,7 +80,6 @@
   </div>
   <!-- /.container-fluid -->
 </section>
-
 <section class="section-btn-group">
   <div class="section-btn-group-wrap">
     <%= link_to "Create", new_admin_mass_path, class: "btn btn-info" %>

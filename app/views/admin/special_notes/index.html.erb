@@ -29,7 +29,7 @@
                   <td>
                     <% unless @special_note.blank? %>
                       <%= link_to "Edit", edit_admin_special_note_path(@special_note), class: "btn btn-success" %>
-                      <%= link_to "Delete", admin_special_note_path(@special_note), method: :delete, class: "btn btn-danger" %>
+                      <%= link_to "Delete", admin_special_note_path(@special_note), method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure?" } %>
                     <% end %>
                   </td>
                 </tr>

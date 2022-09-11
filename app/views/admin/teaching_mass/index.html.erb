@@ -31,7 +31,7 @@
                       <% unless teaching_mass.blank? %>
                         <%= link_to "Show", admin_teaching_mass_path(teaching_mass), class: "btn btn-primary" %>
                         <%= link_to "Edit", edit_admin_teaching_mass_path(teaching_mass), class: "btn btn-success" %>
-                        <%= link_to "Delete", admin_teaching_mass_path(teaching_mass), method: :delete, class: "btn btn-danger" %>
+                        <%= link_to "Delete", admin_teaching_mass_path(teaching_mass), method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure?" } %>
                       <% end %>
                     </td>
                   </tr>

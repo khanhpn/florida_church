@@ -32,7 +32,7 @@
           <td>
             <% unless @faith_formation.blank? %>
               <%= link_to "Edit", edit_admin_faith_formation_path(@faith_formation), class: "btn btn-success" %>
-              <%= link_to "Delete", admin_faith_formation_path(@faith_formation), method: :delete, class: "btn btn-danger" %>
+              <%= link_to "Delete", admin_faith_formation_path(@faith_formation), method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure?" } %>
               <%= link_to "Back", admin_faith_formation_index_path, class: "btn btn-primary" %>
             <% end %>
           </td>

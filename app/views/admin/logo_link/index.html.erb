@@ -33,7 +33,7 @@
                     <td>
                       <% unless logo_link.blank? %>
                         <%= link_to "Edit", edit_admin_logo_link_path(logo_link), class: "btn btn-success" %>
-                        <%= link_to "Delete", admin_logo_link_path(logo_link), method: :delete, class: "btn btn-danger" %>
+                        <%= link_to "Delete", admin_logo_link_path(logo_link), method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure?" } %>
                       <% end %>
                     </td>
                   </tr>

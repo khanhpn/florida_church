@@ -31,7 +31,7 @@
                       <% unless altar_society.blank? %>
                         <%= link_to "Show", admin_altar_society_path(altar_society), class: "btn btn-primary" %>
                         <%= link_to "Edit", edit_admin_altar_society_path(altar_society), class: "btn btn-success" %>
-                        <%= link_to "Delete", admin_altar_society_path(altar_society), method: :delete, class: "btn btn-danger" %>
+                        <%= link_to "Delete", admin_altar_society_path(altar_society), method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure?" } %>
                       <% end %>
                     </td>
                   </tr>

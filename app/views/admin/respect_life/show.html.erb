@@ -32,7 +32,7 @@
           <td>
             <% unless @respect_life.blank? %>
               <%= link_to "Edit", edit_admin_respect_life_path(@respect_life), class: "btn btn-success" %>
-              <%= link_to "Delete", admin_respect_life_path(@respect_life), method: :delete, class: "btn btn-danger" %>
+              <%= link_to "Delete", admin_respect_life_path(@respect_life), method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure?" } %>
               <%= link_to "Back", admin_respect_life_index_path, class: "btn btn-primary" %>
             <% end %>
           </td>

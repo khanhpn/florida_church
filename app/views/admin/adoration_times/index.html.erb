@@ -27,7 +27,7 @@
                   <td>
                     <% unless @adoration_time.blank? %>
                       <%= link_to "Edit", edit_admin_adoration_time_path(@adoration_time), class: "btn btn-success" %>
-                      <%= link_to "Delete", admin_adoration_time_path(@adoration_time), method: :delete, class: "btn btn-danger" %>
+                      <%= link_to "Delete", admin_adoration_time_path(@adoration_time), method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure?" } %>
                     <% end %>
                   </td>
                 </tr>

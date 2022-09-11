@@ -31,7 +31,7 @@
                       <% unless children_liturgy.blank? %>
                         <%= link_to "Show", admin_children_liturgy_path(children_liturgy), class: "btn btn-primary" %>
                         <%= link_to "Edit", edit_admin_children_liturgy_path(children_liturgy), class: "btn btn-success" %>
-                        <%= link_to "Delete", admin_children_liturgy_path(children_liturgy), method: :delete, class: "btn btn-danger" %>
+                        <%= link_to "Delete", admin_children_liturgy_path(children_liturgy), method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure?" } %>
                       <% end %>
                     </td>
                   </tr>

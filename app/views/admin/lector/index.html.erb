@@ -31,7 +31,7 @@
                       <% unless lector.blank? %>
                         <%= link_to "Show", admin_lector_path(lector), class: "btn btn-primary" %>
                         <%= link_to "Edit", edit_admin_lector_path(lector), class: "btn btn-success" %>
-                        <%= link_to "Delete", admin_lector_path(lector), method: :delete, class: "btn btn-danger" %>
+                        <%= link_to "Delete", admin_lector_path(lector), method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure?" } %>
                       <% end %>
                     </td>
                   </tr>
