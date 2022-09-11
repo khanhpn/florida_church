@@ -15,6 +15,7 @@ module ApplicationHelper
       "welcome", "clergy", "deacon", "staff", "council", "history_church", "environment_church"
     ],
     GOOGLE_MAP: ["google_map"],
+    DONATE: ["planned_giving"],
     MINISTRIES: [
       'adult', 'youth', 'children', 'respect_life',
       'memorial_book', 'hospital_visit', 'haitian_prayer',
