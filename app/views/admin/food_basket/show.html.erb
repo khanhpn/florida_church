@@ -32,7 +32,7 @@
           <td>
             <% unless @food_basket.blank? %>
               <%= link_to "Edit", edit_admin_food_basket_path(@food_basket), class: "btn btn-success" %>
-              <%= link_to "Delete", admin_food_basket_path(@food_basket), method: :delete, class: "btn btn-danger" %>
+              <%= link_to "Delete", admin_food_basket_path(@food_basket), method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure?" } %>
               <%= link_to "Back", admin_food_basket_index_path, class: "btn btn-primary" %>
             <% end %>
           </td>

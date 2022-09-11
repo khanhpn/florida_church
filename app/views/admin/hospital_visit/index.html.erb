@@ -31,7 +31,7 @@
                       <% unless hospital_visit.blank? %>
                         <%= link_to "Show", admin_hospital_visit_path(hospital_visit), class: "btn btn-primary" %>
                         <%= link_to "Edit", edit_admin_hospital_visit_path(hospital_visit), class: "btn btn-success" %>
-                        <%= link_to "Delete", admin_hospital_visit_path(hospital_visit), method: :delete, class: "btn btn-danger" %>
+                        <%= link_to "Delete", admin_hospital_visit_path(hospital_visit), method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure?" } %>
                       <% end %>
                     </td>
                   </tr>

@@ -31,7 +31,7 @@
                       <% unless eucharist.blank? %>
                         <%= link_to "Show", admin_eucharist_path(eucharist), class: "btn btn-primary" %>
                         <%= link_to "Edit", edit_admin_eucharist_path(eucharist), class: "btn btn-success" %>
-                        <%= link_to "Delete", admin_eucharist_path(eucharist), method: :delete, class: "btn btn-danger" %>
+                        <%= link_to "Delete", admin_eucharist_path(eucharist), method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure?" } %>
                       <% end %>
                     </td>
                   </tr>

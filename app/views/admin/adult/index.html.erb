@@ -31,7 +31,7 @@
                       <% unless adult.blank? %>
                         <%= link_to "Show", admin_adult_path(adult), class: "btn btn-primary" %>
                         <%= link_to "Edit", edit_admin_adult_path(adult), class: "btn btn-success" %>
-                        <%= link_to "Delete", admin_adult_path(adult), method: :delete, class: "btn btn-danger" %>
+                        <%= link_to "Delete", admin_adult_path(adult), method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure?" } %>
                       <% end %>
                     </td>
                   </tr>

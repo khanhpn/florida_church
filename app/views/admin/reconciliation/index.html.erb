@@ -31,7 +31,7 @@
                       <% unless reconciliation.blank? %>
                         <%= link_to "Show", admin_reconciliation_path(reconciliation), class: "btn btn-primary" %>
                         <%= link_to "Edit", edit_admin_reconciliation_path(reconciliation), class: "btn btn-success" %>
-                        <%= link_to "Delete", admin_reconciliation_path(reconciliation), method: :delete, class: "btn btn-danger" %>
+                        <%= link_to "Delete", admin_reconciliation_path(reconciliation), method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure?" } %>
                       <% end %>
                     </td>
                   </tr>

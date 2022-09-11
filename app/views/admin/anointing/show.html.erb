@@ -32,7 +32,7 @@
           <td>
             <% unless @anoiting.blank? %>
               <%= link_to "Edit", edit_admin_anoiting_path(@anoiting), class: "btn btn-success" %>
-              <%= link_to "Delete", admin_anoiting_path(@anoiting), method: :delete, class: "btn btn-danger" %>
+              <%= link_to "Delete", admin_anoiting_path(@anoiting), method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure?" } %>
               <%= link_to "Back", admin_anoiting_index_path, class: "btn btn-primary" %>
             <% end %>
           </td>

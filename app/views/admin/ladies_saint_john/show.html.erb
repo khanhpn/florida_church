@@ -32,7 +32,7 @@
           <td>
             <% unless @ladies_saint_john.blank? %>
               <%= link_to "Edit", edit_admin_ladies_saint_john_path(@ladies_saint_john), class: "btn btn-success" %>
-              <%= link_to "Delete", admin_ladies_saint_john_path(@ladies_saint_john), method: :delete, class: "btn btn-danger" %>
+              <%= link_to "Delete", admin_ladies_saint_john_path(@ladies_saint_john), method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure?" } %>
               <%= link_to "Back", admin_ladies_saint_john_index_path, class: "btn btn-primary" %>
             <% end %>
           </td>

@@ -32,7 +32,7 @@
           <td>
             <% unless @altar_society.blank? %>
               <%= link_to "Edit", edit_admin_altar_society_path(@altar_society), class: "btn btn-success" %>
-              <%= link_to "Delete", admin_altar_society_path(@altar_society), method: :delete, class: "btn btn-danger" %>
+              <%= link_to "Delete", admin_altar_society_path(@altar_society), method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure?" } %>
               <%= link_to "Back", admin_altar_society_index_path, class: "btn btn-primary" %>
             <% end %>
           </td>

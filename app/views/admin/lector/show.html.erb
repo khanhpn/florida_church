@@ -32,7 +32,7 @@
           <td>
             <% unless @lector.blank? %>
               <%= link_to "Edit", edit_admin_lector_path(@lector), class: "btn btn-success" %>
-              <%= link_to "Delete", admin_lector_path(@lector), method: :delete, class: "btn btn-danger" %>
+              <%= link_to "Delete", admin_lector_path(@lector), method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure?" } %>
               <%= link_to "Back", admin_lector_index_path, class: "btn btn-primary" %>
             <% end %>
           </td>

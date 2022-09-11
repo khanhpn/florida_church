@@ -30,7 +30,7 @@
                     <% unless @mass.blank? %>
                       <%= link_to "Back", admin_mass_index_path, class: "btn btn-success" %>
                       <%= link_to "Edit", edit_admin_mass_path(@mass), class: "btn btn-success" %>
-                      <%= link_to "Delete", admin_mass_path(@mass), method: :delete, class: "btn btn-danger" %>
+                      <%= link_to "Delete", admin_mass_path(@mass), method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure?" } %>
                     <% end %>
                   </td>
                 </tr>

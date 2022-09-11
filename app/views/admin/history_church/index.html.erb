@@ -31,7 +31,7 @@
                       <% unless history_church.blank? %>
                         <%= link_to "Show", admin_history_church_path(history_church), class: "btn btn-primary" %>
                         <%= link_to "Edit", edit_admin_history_church_path(history_church), class: "btn btn-success" %>
-                        <%= link_to "Delete", admin_history_church_path(history_church), method: :delete, data: {confirm: "Are your sure ?"}, class: "btn btn-danger" %>
+                        <%= link_to "Delete", admin_history_church_path(history_church), method: :delete, data: {confirm: "Are your sure ?"}, class: "btn btn-danger", data: { confirm: "Are you sure?" } %>
                       <% end %>
                     </td>
                   </tr>

@@ -31,7 +31,7 @@
                       <% unless respect_life.blank? %>
                         <%= link_to "Show", admin_respect_life_path(respect_life), class: "btn btn-primary" %>
                         <%= link_to "Edit", edit_admin_respect_life_path(respect_life), class: "btn btn-success" %>
-                        <%= link_to "Delete", admin_respect_life_path(respect_life), method: :delete, class: "btn btn-danger" %>
+                        <%= link_to "Delete", admin_respect_life_path(respect_life), method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure?" } %>
                       <% end %>
                     </td>
                   </tr>

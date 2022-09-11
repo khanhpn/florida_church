@@ -29,7 +29,7 @@
                   <td>
                     <% unless @mass_time.blank? %>
                       <%= link_to "Edit", edit_admin_mass_time_path(@mass_time), class: "btn btn-success" %>
-                      <%= link_to "Delete", admin_mass_time_path(@mass_time), method: :delete, class: "btn btn-danger" %>
+                      <%= link_to "Delete", admin_mass_time_path(@mass_time), method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure?" } %>
                     <% end %>
                   </td>
                 </tr>
@@ -45,7 +45,6 @@
   </div>
   <!-- /.container-fluid -->
 </section>
-
 <section class="section-btn-group">
   <div class="section-btn-group-wrap">
     <%= link_to "Create", new_admin_mass_time_path, class: "btn btn-info" %>

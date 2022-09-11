@@ -32,7 +32,7 @@
           <td>
             <% unless @parish_event.blank? %>
               <%= link_to "Edit", edit_admin_parish_event_path(@parish_event), class: "btn btn-success" %>
-              <%= link_to "Delete", admin_parish_event_path(@parish_event), method: :delete, class: "btn btn-danger" %>
+              <%= link_to "Delete", admin_parish_event_path(@parish_event), method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure?" } %>
               <%= link_to "Back", admin_parish_event_index_path, class: "btn btn-primary" %>
             <% end %>
           </td>

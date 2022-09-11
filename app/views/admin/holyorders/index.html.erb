@@ -31,7 +31,7 @@
                       <% unless holyorder.blank? %>
                         <%= link_to "Show", admin_holyorder_path(holyorder), class: "btn btn-primary" %>
                         <%= link_to "Edit", edit_admin_holyorder_path(holyorder), class: "btn btn-success" %>
-                        <%= link_to "Delete", admin_holyorder_path(holyorder), method: :delete, class: "btn btn-danger" %>
+                        <%= link_to "Delete", admin_holyorder_path(holyorder), method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure?" } %>
                       <% end %>
                     </td>
                   </tr>

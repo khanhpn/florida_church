@@ -32,7 +32,7 @@
           <td>
             <% unless @teaching_mass.blank? %>
               <%= link_to "Edit", edit_admin_teaching_mass_path(@teaching_mass), class: "btn btn-success" %>
-              <%= link_to "Delete", admin_teaching_mass_path(@teaching_mass), method: :delete, class: "btn btn-danger" %>
+              <%= link_to "Delete", admin_teaching_mass_path(@teaching_mass), method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure?" } %>
               <%= link_to "Back", admin_teaching_mass_index_path, class: "btn btn-primary" %>
             <% end %>
           </td>
