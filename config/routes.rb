@@ -88,6 +88,7 @@ Rails.application.routes.draw do
         delete "delete_gallery/:category_id", to: "photo_gallery#delete_gallery", as: "delete_photo_gallery"
       end
     end
+    resources :planned_giving
   end
 
   root to: "home#index"
@@ -145,4 +146,5 @@ Rails.application.routes.draw do
 
   get 'photo_gallery', to: 'photo_gallery#index'
   get 'photo_gallery/:id', to: 'photo_gallery#show', as: "photo_gallery_show"
+  get 'planned_giving', to: 'planned_giving#index'
 end

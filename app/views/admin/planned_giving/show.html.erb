@@ -1,0 +1,45 @@
+<%= render "admin/shared/bread_crumb", name: {title: "Show planned giving", bread_crumb: "Show"} %>
+<section class="content">
+  <div class="container-fluid">
+    <table id="example2" class="table table-bordered table-hover">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <% if @is_main_article %>
+            <th>Content</th>
+          <% end %>
+          <% if !@is_main_article && @planned_giving.file_image.present? %>
+            <th>Link image</th>
+          <% end %>
+          <% if !@is_main_article && @planned_giving.file_pdf.present? %>
+            <th>Link pdf</th>
+          <% end %>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= @planned_giving&.name || "-" %></td>
+          <% if @is_main_article %>
+            <td><%= @planned_giving&.content&.html_safe || "-"  %></td>
+          <% end %>
+          <% if !@is_main_article && @planned_giving.file_image.present? %>
+            <td><%= link_to 'download', rails_blob_path(@planned_giving.file_image, disposition: "download"), target: "_blank" %></td>
+          <% end %>
+          <% if !@is_main_article && @planned_giving.file_pdf.present? %>
+            <td><%= link_to 'download', rails_blob_path(@planned_giving.file_pdf, disposition: "download"), target: "_blank"  %></td>
+          <% end %>
+          <td>
+            <% unless @planned_giving.blank? %>
+              <%= link_to "Edit", edit_admin_planned_giving_path(@planned_giving), class: "btn btn-success" %>
+              <%= link_to "Delete", admin_planned_giving_path(@planned_giving), method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure?" } %>
+              <%= link_to "Back", admin_planned_giving_index_path, class: "btn btn-primary" %>
+            <% end %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- /.row -->
+  </div>
+  <!-- /.container-fluid -->
+</section>
