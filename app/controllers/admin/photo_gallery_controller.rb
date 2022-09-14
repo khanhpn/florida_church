@@ -11,7 +11,7 @@ class Admin::PhotoGalleryController < Admin::AdminController
       flash[:notice] = 'You created gallery image successfully'
       redirect_to admin_category_gallery_path(params[:category_gallery_id])
     else
-      flash.now[:warning] = 'You can not create gallery image, please check error'
+      flash.now[:error] = 'You can not create gallery image, please add file'
       render :new
     end
   end
