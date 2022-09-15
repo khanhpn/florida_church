@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <meta charset="utf-8">
     <title>Saint John the Evangelist Catholic Church Boca Raton</title>
     <meta name="description" content="We the parishioners of St. John Parish in Boca Raton, Florida desire to grow in faith and in union with Jesus Christ and one another. We strive to always be a place of welcome and reconciliation. Through worship, prayer, learning and action we seek to respond to the challenges of the Gospel of Jesus Christ.  Empowered by the Holy Spirit we will accomplish this mission." />
     <%= favicon_link_tag asset_path('favicon.ico') %>
@@ -30,7 +31,6 @@
       <%= render "shared/header" %>
     <% end %>
     <div id="background" class="noPageImage hasSocialMedia hasPageTitle hasFooterText hasSlideshow hasSections">
-      <div id="massModePlaceholder" getUrl="/getMassMode"></div>
       <%= render "shared/main_header" %>
       <%= yield %>
       <%= render "shared/footer" %>
