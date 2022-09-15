@@ -2,6 +2,9 @@
 <%= form_with model: @photo_gallery, url: admin_category_gallery_photo_gallery_index_path(params[:category_gallery_id]) do |form| %>
   <section class="content">
     <div class="container-fluid">
+      <% if flash[:error].present? %>
+        <div class="error-message"><%= flash[:error] %></div>
+      <% end %>
       <%= render "form", form: form %>
       <!-- /.row -->
     </div>
