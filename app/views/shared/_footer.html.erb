@@ -44,7 +44,7 @@
           <% cache @linked_logos do %>
             <div class="footerLinksRow">
               <% @linked_logos.each do |item| %>
-                <%= link_to image_tag(item&.logo_linked || "no_available.png", class: "logo-linked"), item&.logo_url, target: "_blank" %>
+                <%= link_to image_tag(item&.logo_linked || "no_available.png", class: "logo-linked"), item&.logo_url, target: "_blank", loading: "lazy", rel: "noopener" %>
               <% end %>
             </div>
           <% end %>
