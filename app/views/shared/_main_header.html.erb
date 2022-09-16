@@ -33,8 +33,8 @@
         <div class="moduleInner ">
           <div id="socialMediaBody">
             <%= link_to "", "", class: "custom1SocialMedia" %>
-            <%= link_to "Facebook", @introduction&.facebook_channel, class: "facebookSocialMedia", target: "_blank" %>
-            <%= link_to "YouTube", @introduction&.youtube_channel_url, class: "youtubeSocialMedia", target: "_blank" %>
+            <%= link_to "Facebook", @introduction&.facebook_channel, class: "facebookSocialMedia", target: "_blank", rel: "noopener" %>
+            <%= link_to "YouTube", @introduction&.youtube_channel_url, class: "youtubeSocialMedia", target: "_blank", rel: "noopener" %>
           </div>
         </div>
       </div>
