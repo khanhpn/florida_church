@@ -7,7 +7,7 @@
   <% @category_galleries.each do |item| %>
     <div class="container-gallery">
       <%= link_to photo_gallery_show_path(item.id) do %>
-        <%= image_tag url_for(item.photo_galleries&.first&.file_image), class: "image-gallery", loading: "lazy", data: { src: url_for(item.photo_galleries&.first&.file_image) } %>
+        <%= cl_image_tag(item.photo_galleries&.first&.file_image.key, format: :jpg, title: item.name, class: "image-gallery") %>
         <div class="overlay-gallery"><%= item.name %></div>
       <% end %>
     </div>
