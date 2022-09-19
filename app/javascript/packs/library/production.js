@@ -86,9 +86,6 @@ prod.checkMobile = function (isInitialSetup) {
     }
     prod.checkMobileSmallColumn();
     prod.fixSectionHeights();
-    if (!isInitialSetup) {
-      prod.reinitFocusPoint();
-    }
   } else {
     if (!isInitialSetup) {
       if ($ec("html.oldie").length == 0) {
@@ -98,7 +95,6 @@ prod.checkMobile = function (isInitialSetup) {
       }
       //set up tabs sections when switching from mobile to desktop
       prod.accordionToTabs();
-      prod.reinitFocusPoint();
     }
     if (
       $ec(".slideshowModule.vimeoMode").length > 0 &&
