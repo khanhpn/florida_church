@@ -44,7 +44,7 @@ class Admin::CategoryGalleryController < Admin::AdminController
 
   private
   def params_category_gallery
-    params.require(:category_gallery).permit(:name, :display)
+    params.require(:category_gallery).permit(:name, :display, :link_google_photo, :enable_google_photo, :file_image)
   end
 
   def set_category_gallery

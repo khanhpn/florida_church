@@ -6,9 +6,16 @@
 <div class="wrap-gallery">
   <% @category_galleries.each do |item| %>
     <div class="container-gallery">
-      <%= link_to photo_gallery_show_path(item.id) do %>
-        <%= image_tag url_for(item.photo_galleries&.first&.file_image), class: "image-gallery", loading: "lazy", data: { src: url_for(item.photo_galleries&.first&.file_image) } %>
-        <div class="overlay-gallery"><%= item.name %></div>
+      <% if item.enable_google_photo %>
+        <%= link_to item.link_google_photo, target: "_blank", rel: "noopener" do %>
+          <%= cl_image_tag(item.file_image.key, format: :jpg, title: item.name, class: "image-gallery") %>
+          <div class="overlay-gallery"><%= item.name %></div>
+        <% end %>
+      <% else %>
+        <%= link_to photo_gallery_show_path(item.id) do %>
+          <%= cl_image_tag(item.photo_galleries&.first&.file_image.key, format: :jpg, title: item.name, class: "image-gallery") %>
+          <div class="overlay-gallery"><%= item.name %></div>
+        <% end %>
       <% end %>
     </div>
   <% end %>

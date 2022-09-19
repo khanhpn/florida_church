@@ -77,8 +77,11 @@ div.custom-logo-header {
   position: relative;
   width: 50%;
   max-width: 300px;
+  min-height: 225px;
   margin: 10px;
+  background-color: gray;
 }
+
 .image-gallery {
   display: block;
   width: 100%;
@@ -100,6 +103,6 @@ div.custom-logo-header {
   text-align: center;
   cursor: pointer;
 }
-.container-gallery:hover .overlay-gallery {
+.container-gallery .overlay-gallery {
   opacity: 1;
 }

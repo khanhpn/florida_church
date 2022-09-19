@@ -29,7 +29,7 @@
                     <td><%= category_gallery&.created_at || "-"  %></td>
                     <td>
                       <% unless category_gallery.blank? %>
-                        <%= link_to "Show", admin_category_gallery_path(category_gallery), class: "btn btn-primary" %>
+                        <%= link_to "Show", admin_category_gallery_path(category_gallery), class: "btn btn-primary" unless category_gallery.enable_google_photo %>
                         <%= link_to "Edit", edit_admin_category_gallery_path(category_gallery), class: "btn btn-success" %>
                         <%= link_to "Delete", admin_category_gallery_path(category_gallery), method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure?" } %>
                       <% end %>
