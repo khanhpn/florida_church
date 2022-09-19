@@ -13,7 +13,7 @@
         <% end %>
       <% else %>
         <%= link_to photo_gallery_show_path(item.id) do %>
-          <%= cl_image_tag(item.photo_galleries&.first&.file_image.key, format: :jpg, title: item.name, class: "image-gallery") %>
+          <%= cl_image_tag(item.photo_galleries&.first&.file_image&.key, format: :jpg, title: item.name, class: "image-gallery") %>
           <div class="overlay-gallery"><%= item.name %></div>
         <% end %>
       <% end %>
