@@ -5793,39 +5793,6 @@ img[style="float: right;"] {
   margin: auto;
   max-width: 100%;
 }
-#shieldLogin .loginError {
-  color: #E60505;
-  margin-bottom: 5px;
-}
-#shieldLogin #shieldPassword {
-  float: left;
-  box-sizing: border-box;
-  height: 35px;
-  padding: 7px;
-  border: 1px solid #B9BEC4;
-  border-radius: 5px;
-  background-color: #F6F9FE;
-  color: #222;
-  font-size: 16px;
-  margin-right: 10px;
-  margin-bottom: 10px;
-}
-#shieldLogin .submit {
-  float: left;
-  clear: left;
-  min-width: 100px;
-  padding: 10px 20px;
-  border-radius: 5px;
-  background-color: transparent;
-  color: #7c2335;
-  text-align: center;
-  cursor: pointer;
-  text-decoration: none;
-}
-#shieldLogin .submit:hover {
-  background-color: #7c2335;
-  color: #fff;
-}
 .photos {
   display: flex;
   flex-direction: row;
@@ -8404,9 +8371,6 @@ body.preview.showPreviewToolbar.massModeActive #massModeModal {
     height: 6ex;
     -webkit-line-clamp: 2;
   }
-  #shieldLogin #shieldPassword {
-    width: 270px;
-  }
   .photoAlbum.infinite-item {
     padding-left: 14px;
     padding-right: 14px;
@@ -8440,114 +8404,8 @@ body.preview.showPreviewToolbar.massModeActive #massModeModal {
     width: 100%;
   }
 }
-#resetPassword {
-  width: 400px;
-  margin: 50px auto;
-  padding: 25px;
-  background-color: #fff;
-  color: #646a6d;
-  font-family: "PillGothic300mg-Light", Tahoma, Arial, sans-serif, "Pill Gothic", Arial, sans-serif;
-  font-size: 16px;
-  border-radius: 8px;
-}
-#resetPassword form {
-  padding: 0 15px;
-}
-#resetPassword .formTitle {
-  margin-bottom: 15px;
-  padding-bottom: 2px;
-  border-bottom: 1px dashed #d4d4d4;
-  font-size: 24px;
-  text-align: center;
-}
-#resetPassword .inputHolder {
-  margin-top: 15px;
-}
-#resetPassword .fieldLabel {
-  display: block;
-  color: #646a6d;
-}
-#resetPassword .required {
-  font-size: 10px;
-}
-#resetPassword input {
-  width: 200px;
-  border: 1px solid #738bb9;
-  padding: 5px 10px;
-  background: #f8f8f8;
-  font-size: 16px;
-  outline: none;
-}
-#resetPassword input:focus {
-  border: 1px solid #646a6d;
-  background: #fff7f3;
-}
-#resetPassword #loginError {
-  color: #E60505;
-}
-#resetPassword .requiredErrorText,
-#resetPassword .validateErrorText {
-  display: none;
-}
-#resetPassword #passwordMeter {
-  width: 220px;
-  height: 4px;
-  margin: 4px 1px;
-  background: url('https://d2y1pz2y630308.cloudfront.net/agnes/resources/images/admin/pw_security.png') no-repeat;
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  display: block;
-}
-#resetPassword #passwordMeter::-ms-expand {
-  display: none;
-}
-#resetPassword #passwordMeter #passwordStrength #passwordStrengthLabel {
-  color: #eee;
-}
-#resetPassword #passwordMeter[value="0"] {
-  background-position-y: 0px;
-}
-#resetPassword #passwordMeter[value="0"] + #passwordStrength #passwordStrengthLabel {
-  color: #b84238;
-}
-#resetPassword #passwordMeter[value="1"] {
-  background-position-y: -4px;
-}
-#resetPassword #passwordMeter[value="1"] + #passwordStrength #passwordStrengthLabel {
-  color: #b84238;
-}
-#resetPassword #passwordMeter[value="2"] {
-  background-position-y: -8px;
-}
-#resetPassword #passwordMeter[value="2"] + #passwordStrength #passwordStrengthLabel {
-  color: #edb02e;
-}
-#resetPassword #passwordMeter[value="3"] {
-  background-position-y: -12px;
-}
-#resetPassword #passwordMeter[value="3"] + #passwordStrength #passwordStrengthLabel {
-  color: #e87722;
-}
-#resetPassword #passwordMeter[value="4"] {
-  background-position-y: -16px;
-}
-#resetPassword #passwordMeter[value="4"] + #passwordStrength #passwordStrengthLabel {
-  color: #009c4b;
-}
-#resetPassword #passwordStrength {
-  font-size: 12px;
-  font-weight: bold;
-  margin: 0 0 3px;
-}
-#resetPassword #passwordStrengthLabel {
-  font-weight: normal;
-}
-#resetPassword #passwordSuggestions.warning p {
-  font-size: 11px;
-  color: #999;
-  margin: 0 0 5px;
-}
+
+
 body.preview #adminToolbar {
   display: none;
 }
