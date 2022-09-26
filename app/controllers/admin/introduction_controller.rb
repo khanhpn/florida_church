@@ -10,7 +10,9 @@ class Admin::IntroductionController < Admin::AdminController
   end
 
   def create
-    introduction = current_user.introductions.new(params_introduction)
+    introduction = Introduction.new(params_introduction)
+    introduction.user_id = current_user.id
+
     if introduction.save
       flash[:notice] = 'You created introduction successfully'
       redirect_to admin_introduction_index_path
